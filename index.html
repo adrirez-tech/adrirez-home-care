@@ -1,9 +1,9 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>ADRIREZ HOME CARE - Gestão de Higienização & Impermeabilização</title>
+  <title>ADRIREZ HOME CARE - GestÃ£o de HigienizaÃ§Ã£o & ImpermeabilizaÃ§Ã£o</title>
   
   <!-- PWA Manifest & Meta -->
   <link rel="manifest" href="manifest.json">
@@ -37,9 +37,142 @@
   <script src="https://unpkg.com/lucide@latest"></script>
 
   <!-- Custom CSS -->
-  <link rel="stylesheet" href="css/styles.css">
+  <style>
+/* Estilos Customizados - ADRIREZ HOME CARE */
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+
+:root {
+  --primary: #0284c7;
+  --primary-dark: #0369a1;
+  --primary-light: #e0f2fe;
+  --secondary: #0f172a;
+  --accent: #10b981;
+  --adriano-color: #2563eb;
+  --anny-color: #d946ef;
+}
+
+body {
+  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* Badges e Avatares */
+.badge-adriano {
+  background-color: #eff6ff;
+  color: #1d4ed8;
+  border: 1px solid #bfdbfe;
+}
+.badge-anny {
+  background-color: #fdf4ff;
+  color: #a21caf;
+  border: 1px solid #f5d0fe;
+}
+.badge-ambos {
+  background-color: #f0fdf4;
+  color: #15803d;
+  border: 1px solid #bbf7d0;
+}
+
+/* Status Badges */
+.status-pendente {
+  background-color: #fef3c7;
+  color: #b45309;
+  border: 1px solid #fde68a;
+}
+.status-confirmado {
+  background-color: #dbeafe;
+  color: #1d4ed8;
+  border: 1px solid #bfdbfe;
+}
+.status-a-caminho {
+  background-color: #e0e7ff;
+  color: #4338ca;
+  border: 1px solid #c7d2fe;
+}
+.status-em-andamento {
+  background-color: #fef08a;
+  color: #854d0e;
+  border: 1px solid #fde047;
+}
+.status-concluido {
+  background-color: #dcfce7;
+  color: #15803d;
+  border: 1px solid #bbf7d0;
+}
+.status-cancelado {
+  background-color: #fee2e2;
+  color: #b91c1c;
+  border: 1px solid #fecaca;
+}
+
+/* Card Hover Animations */
+.action-card {
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.action-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.08), 0 8px 10px -6px rgba(0, 0, 0, 0.04);
+}
+
+/* Pulsing Notification Dot */
+@keyframes pulse-ring {
+  0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7); }
+  70% { transform: scale(1); box-shadow: 0 0 0 8px rgba(239, 68, 68, 0); }
+  100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); }
+}
+.notification-pulse {
+  animation: pulse-ring 2s infinite;
+}
+
+/* Estilos de Impressão de Orçamento Profissional */
+@media print {
+  body * {
+    visibility: hidden;
+  }
+  #printProposalContainer, #printProposalContainer * {
+    visibility: visible;
+  }
+  #printProposalContainer {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    margin: 0;
+    padding: 20px;
+    background: white;
+    color: black;
+  }
+  .no-print {
+    display: none !important;
+  }
+}
+
+/* Bottom Nav for Mobile thumbs */
+@media (max-width: 768px) {
+  .mobile-bottom-nav {
+    padding-bottom: max(0.75rem, env(safe-area-inset-bottom));
+  }
+}
+
+</style>
 </head>
-<body class="bg-slate-50 text-slate-800 min-h-screen flex flex-col pb-20 md:pb-6 select-none md:select-auto">
+<body class="bg-slate-50 text-slate-800 min-h-screen flex flex-col pb-20 md:pb-6 ">
 
   <!-- Top Navigation Header -->
   <header class="bg-white border-b border-slate-200 sticky top-0 z-30 shadow-xs">
@@ -55,14 +188,14 @@
             <h1 class="text-base sm:text-lg font-extrabold tracking-tight text-slate-900 leading-tight">
               ADRIREZ <span class="text-sky-600 font-bold">HOME CARE</span>
             </h1>
-            <p class="text-[10px] text-slate-500 font-medium hidden sm:block">Higienização & Impermeabilização de Estofados</p>
+            <p class="text-[10px] text-slate-500 font-medium hidden sm:block">HigienizaÃ§Ã£o & ImpermeabilizaÃ§Ã£o de Estofados</p>
           </div>
         </div>
 
         <!-- Desktop Navigation Tabs -->
         <nav class="hidden md:flex items-center gap-1">
           <button data-view="dashboard" class="nav-btn px-3 py-2 rounded-xl text-xs font-semibold flex items-center gap-2 transition">
-            <i data-lucide="layout-dashboard" class="w-4 h-4"></i> Início
+            <i data-lucide="layout-dashboard" class="w-4 h-4"></i> InÃ­cio
           </button>
           <button data-view="agenda" class="nav-btn px-3 py-2 rounded-xl text-xs font-semibold flex items-center gap-2 transition">
             <i data-lucide="calendar" class="w-4 h-4"></i> Agenda
@@ -71,7 +204,7 @@
             <i data-lucide="users" class="w-4 h-4"></i> Clientes
           </button>
           <button data-view="quotes" class="nav-btn px-3 py-2 rounded-xl text-xs font-semibold flex items-center gap-2 transition">
-            <i data-lucide="file-text" class="w-4 h-4"></i> Orçamentos
+            <i data-lucide="file-text" class="w-4 h-4"></i> OrÃ§amentos
           </button>
           <button data-view="settings" class="nav-btn px-3 py-2 rounded-xl text-xs font-semibold flex items-center gap-2 transition">
             <i data-lucide="settings" class="w-4 h-4"></i> Ajustes
@@ -82,7 +215,8 @@
         <div class="flex items-center gap-2 sm:gap-3">
           
           <!-- Badges dos Administradores: Adriano & Anny -->
-          <div class="hidden lg:flex items-center gap-1.5 px-2.5 py-1 bg-slate-100 rounded-full text-[11px] font-semibold text-slate-700">
+          <div id="cloudDbStatusBadge" class="hidden sm:flex text-[11px] font-semibold px-2.5 py-1 rounded-full bg-amber-100 text-amber-800 items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-amber-500"></span> Modo Local</div>
+<div class="hidden lg:flex items-center gap-1.5 px-2.5 py-1 bg-slate-100 rounded-full text-[11px] font-semibold text-slate-700">
             <span class="flex items-center gap-1 text-blue-700">
               <span class="w-2 h-2 rounded-full bg-blue-600"></span> Adriano
             </span>
@@ -92,20 +226,15 @@
             </span>
           </div>
 
-          <!-- Status do Banco na Nuvem -->
-          <div id="cloudDbStatusBadge" class="hidden sm:flex text-[11px] font-semibold px-2.5 py-1 rounded-full bg-amber-100 text-amber-800 items-center gap-1.5">
-            <span class="w-2 h-2 rounded-full bg-amber-500"></span> Modo Local
-          </div>
-
-          <!-- Botão Notificações com Badge -->
-          <button id="btnToggleNotifications" class="relative p-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 transition" title="Notificações dos Administradores">
+          <!-- BotÃ£o NotificaÃ§Ãµes com Badge -->
+          <button id="btnToggleNotifications" class="relative p-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 transition" title="NotificaÃ§Ãµes dos Administradores">
             <i data-lucide="bell" class="w-5 h-5"></i>
             <span id="notificationBadge" class="hidden absolute -top-1 -right-1 w-5 h-5 bg-red-600 text-white text-[10px] font-bold rounded-full flex items-center justify-center notification-pulse">
               0
             </span>
           </button>
 
-          <!-- Botão de Ação Rápida: + Novo Agendamento -->
+          <!-- BotÃ£o de AÃ§Ã£o RÃ¡pida: + Novo Agendamento -->
           <button onclick="window.app.openAppointmentModal()" class="inline-flex items-center gap-1.5 px-3.5 py-2 bg-sky-600 hover:bg-sky-700 active:bg-sky-800 text-white text-xs font-bold rounded-xl shadow-sm shadow-sky-600/30 transition">
             <i data-lucide="plus" class="w-4 h-4"></i>
             <span class="hidden sm:inline">Novo Agendamento</span>
@@ -128,7 +257,7 @@
       <div class="mb-6 bg-gradient-to-r from-sky-900 via-sky-800 to-cyan-900 rounded-3xl p-6 text-white shadow-lg relative overflow-hidden">
         <div class="relative z-10">
           <div class="flex items-center gap-2 text-cyan-300 text-xs font-semibold tracking-wide uppercase mb-1">
-            <i data-lucide="award" class="w-4 h-4"></i> Painel de Controle • Adriano & Anny
+            <i data-lucide="award" class="w-4 h-4"></i> Painel de Controle â€¢ Adriano & Anny
           </div>
           <h2 class="text-xl sm:text-2xl font-extrabold tracking-tight">ADRIREZ HOME CARE</h2>
           <p class="text-xs sm:text-sm text-cyan-100 max-w-xl mt-1">
@@ -139,7 +268,7 @@
               <i data-lucide="calendar-plus" class="w-4 h-4"></i> Agendar Atendimento
             </button>
             <button onclick="window.app.openQuoteModal()" class="px-3.5 py-1.5 bg-sky-700/60 hover:bg-sky-700 border border-sky-400/40 text-white text-xs font-semibold rounded-xl transition flex items-center gap-1.5">
-              <i data-lucide="file-plus" class="w-4 h-4"></i> Criar Orçamento
+              <i data-lucide="file-plus" class="w-4 h-4"></i> Criar OrÃ§amento
             </button>
             <button onclick="window.app.openClientModal()" class="px-3.5 py-1.5 bg-sky-700/60 hover:bg-sky-700 border border-sky-400/40 text-white text-xs font-semibold rounded-xl transition flex items-center gap-1.5">
               <i data-lucide="user-plus" class="w-4 h-4"></i> Novo Cliente
@@ -150,19 +279,19 @@
         <div class="absolute -right-10 -bottom-10 w-48 h-48 bg-cyan-400/10 rounded-full blur-2xl pointer-events-none"></div>
       </div>
 
-      <!-- Métricas Rápidas -->
+      <!-- MÃ©tricas RÃ¡pidas -->
       <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
         
-        <!-- Faturamento Mês -->
+        <!-- Faturamento MÃªs -->
         <div class="bg-white border border-slate-200/90 rounded-2xl p-4 shadow-sm">
           <div class="flex items-center justify-between text-slate-400 mb-2">
-            <span class="text-xs font-semibold text-slate-500 uppercase tracking-wide">Faturamento Mês</span>
+            <span class="text-xs font-semibold text-slate-500 uppercase tracking-wide">Faturamento MÃªs</span>
             <div class="w-8 h-8 rounded-lg bg-emerald-50 text-emerald-600 flex items-center justify-center">
               <i data-lucide="trending-up" class="w-4 h-4"></i>
             </div>
           </div>
           <div id="dashMonthRevenue" class="text-lg sm:text-2xl font-extrabold text-slate-900">R$ 0,00</div>
-          <p class="text-[11px] text-emerald-600 font-semibold mt-1">Serviços agendados/concluídos</p>
+          <p class="text-[11px] text-emerald-600 font-semibold mt-1">ServiÃ§os agendados/concluÃ­dos</p>
         </div>
 
         <!-- Atendimentos Hoje -->
@@ -186,7 +315,7 @@
             </div>
           </div>
           <div id="dashPendingCount" class="text-lg sm:text-2xl font-extrabold text-slate-900">0</div>
-          <p class="text-[11px] text-amber-600 font-semibold mt-1">Aguardando confirmação</p>
+          <p class="text-[11px] text-amber-600 font-semibold mt-1">Aguardando confirmaÃ§Ã£o</p>
         </div>
 
         <!-- Total de Clientes -->
@@ -203,7 +332,7 @@
 
       </div>
 
-      <!-- Seção: Atendimentos de Hoje -->
+      <!-- SeÃ§Ã£o: Atendimentos de Hoje -->
       <div class="mb-8">
         <div class="flex items-center justify-between mb-4">
           <div class="flex items-center gap-2">
@@ -220,9 +349,9 @@
         </div>
       </div>
 
-      <!-- Seção: Próximos Atendimentos da Semana -->
+      <!-- SeÃ§Ã£o: PrÃ³ximos Atendimentos da Semana -->
       <div>
-        <h3 class="text-base font-extrabold text-slate-900 mb-4">Próximos Dias</h3>
+        <h3 class="text-base font-extrabold text-slate-900 mb-4">PrÃ³ximos Dias</h3>
         <div id="dashUpcomingAppointmentsList" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           <!-- Carregado via JS -->
         </div>
@@ -231,7 +360,7 @@
     </section>
 
     <!-- ============================================== -->
-    <!-- VIEW 2: AGENDA & CALENDÁRIO -->
+    <!-- VIEW 2: AGENDA & CALENDÃRIO -->
     <!-- ============================================== -->
     <section id="view-agenda" class="view-container hidden">
       
@@ -239,7 +368,7 @@
       <div class="bg-white border border-slate-200/90 rounded-2xl p-4 shadow-sm mb-6">
         <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
           
-          <!-- Filtro por Técnico (Adriano / Anny / Todos) -->
+          <!-- Filtro por TÃ©cnico (Adriano / Anny / Todos) -->
           <div class="flex items-center gap-1.5 bg-slate-100 p-1 rounded-xl">
             <button data-tech="all" class="filter-tech-btn px-3 py-1.5 text-xs font-bold rounded-lg bg-sky-600 text-white transition">
               Todos
@@ -256,7 +385,7 @@
           <div class="flex flex-wrap items-center gap-2">
             <div class="relative flex-1 sm:w-64">
               <i data-lucide="search" class="w-4 h-4 text-slate-400 absolute left-3 top-2.5"></i>
-              <input type="text" id="agendaSearchInput" placeholder="Buscar cliente, serviço ou endereço..." class="w-full pl-9 pr-3 py-2 text-xs bg-slate-50 border border-slate-200 rounded-xl focus:outline-hidden focus:ring-2 focus:ring-sky-500">
+              <input type="text" id="agendaSearchInput" placeholder="Buscar cliente, serviÃ§o ou endereÃ§o..." class="w-full pl-9 pr-3 py-2 text-xs bg-slate-50 border border-slate-200 rounded-xl focus:outline-hidden focus:ring-2 focus:ring-sky-500">
             </div>
             <button onclick="window.app.openAppointmentModal()" class="px-3.5 py-2 bg-sky-600 hover:bg-sky-700 text-white text-xs font-bold rounded-xl shadow-sm transition flex items-center gap-1.5">
               <i data-lucide="plus" class="w-4 h-4"></i> Agendar
@@ -297,22 +426,22 @@
     </section>
 
     <!-- ============================================== -->
-    <!-- VIEW 4: ORÇAMENTOS -->
+    <!-- VIEW 4: ORÃ‡AMENTOS -->
     <!-- ============================================== -->
     <section id="view-quotes" class="view-container hidden">
       
-      <!-- Header Orçamentos -->
+      <!-- Header OrÃ§amentos -->
       <div class="bg-white border border-slate-200/90 rounded-2xl p-4 shadow-sm mb-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <h3 class="text-base font-extrabold text-slate-900">Propostas & Orçamentos</h3>
-          <p class="text-xs text-slate-500">Crie propostas rápidas, envie no WhatsApp e converta em agendamento com 1 clique.</p>
+          <h3 class="text-base font-extrabold text-slate-900">Propostas & OrÃ§amentos</h3>
+          <p class="text-xs text-slate-500">Crie propostas rÃ¡pidas, envie no WhatsApp e converta em agendamento com 1 clique.</p>
         </div>
         <button onclick="window.app.openQuoteModal()" class="px-4 py-2 bg-sky-600 hover:bg-sky-700 text-white text-xs font-bold rounded-xl shadow-sm transition flex items-center gap-1.5 self-start sm:self-auto">
           <i data-lucide="file-plus" class="w-4 h-4"></i> Criar Nova Proposta
         </button>
       </div>
 
-      <!-- Lista de Orçamentos -->
+      <!-- Lista de OrÃ§amentos -->
       <div id="quotesListContainer" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         <!-- Renderizado dinamicamente via JS -->
       </div>
@@ -320,16 +449,16 @@
     </section>
 
     <!-- ============================================== -->
-    <!-- VIEW 5: CONFIGURAÇÕES & BACKUP -->
+    <!-- VIEW 5: CONFIGURAÃ‡Ã•ES & BACKUP -->
     <!-- ============================================== -->
     <section id="view-settings" class="view-container hidden">
       
       <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
         
-        <!-- Formulário de Dados da Adrirez Home Care -->
+        <!-- FormulÃ¡rio de Dados da Adrirez Home Care -->
         <div class="lg:col-span-2 bg-white border border-slate-200/90 rounded-2xl p-6 shadow-sm">
           <h3 class="text-base font-extrabold text-slate-900 mb-1">Dados da Empresa & Pagamento</h3>
-          <p class="text-xs text-slate-500 mb-6">Informações utilizadas na geração de propostas impressas e mensagens de WhatsApp.</p>
+          <p class="text-xs text-slate-500 mb-6">InformaÃ§Ãµes utilizadas na geraÃ§Ã£o de propostas impressas e mensagens de WhatsApp.</p>
 
           <form onsubmit="window.app.saveSettingsForm(event)" class="space-y-4">
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -344,7 +473,7 @@
             </div>
 
             <div>
-              <label class="block text-xs font-semibold text-slate-700 mb-1">Slogan / Descrição Curta</label>
+              <label class="block text-xs font-semibold text-slate-700 mb-1">Slogan / DescriÃ§Ã£o Curta</label>
               <input type="text" id="settingSlogan" class="w-full px-3 py-2 text-xs bg-slate-50 border border-slate-200 rounded-xl">
             </div>
 
@@ -359,7 +488,7 @@
                   <option value="Email">E-mail</option>
                   <option value="Telefone">Telefone</option>
                   <option value="CNPJ/CPF">CNPJ / CPF</option>
-                  <option value="Aleatória">Chave Aleatória</option>
+                  <option value="AleatÃ³ria">Chave AleatÃ³ria</option>
                 </select>
               </div>
             </div>
@@ -370,13 +499,13 @@
             </div>
 
             <div>
-              <label class="block text-xs font-semibold text-slate-700 mb-1">Termos de Garantia e Cuidados (Impressão)</label>
+              <label class="block text-xs font-semibold text-slate-700 mb-1">Termos de Garantia e Cuidados (ImpressÃ£o)</label>
               <textarea id="settingWarranty" rows="3" class="w-full px-3 py-2 text-xs bg-slate-50 border border-slate-200 rounded-xl"></textarea>
             </div>
 
             <div class="pt-2">
               <button type="submit" class="px-5 py-2.5 bg-sky-600 hover:bg-sky-700 text-white text-xs font-bold rounded-xl shadow-sm transition">
-                Salvar Alterações
+                Salvar AlteraÃ§Ãµes
               </button>
             </div>
           </form>
@@ -385,10 +514,10 @@
         <!-- Painel Lateral: Alertas, Som & Backup -->
         <div class="space-y-6">
           
-          <!-- Notificações & Som para Adriano e Anny -->
+          <!-- NotificaÃ§Ãµes & Som para Adriano e Anny -->
           <div class="bg-white border border-slate-200/90 rounded-2xl p-5 shadow-sm">
             <h4 class="text-sm font-bold text-slate-900 mb-1 flex items-center gap-2">
-              <i data-lucide="volume-2" class="w-4 h-4 text-sky-600"></i> Som e Notificações dos Admins
+              <i data-lucide="volume-2" class="w-4 h-4 text-sky-600"></i> Som e NotificaÃ§Ãµes dos Admins
             </h4>
             <p class="text-xs text-slate-500 mb-4">Teste o sinal sonoro e ative alertas para quando receber novos agendamentos.</p>
 
@@ -398,17 +527,17 @@
               </button>
 
               <button onclick="window.app.requestPushPermission()" class="w-full py-2 px-3 bg-sky-50 hover:bg-sky-100 text-sky-700 border border-sky-200 text-xs font-semibold rounded-xl flex items-center justify-center gap-2 transition">
-                <i data-lucide="bell" class="w-4 h-4"></i> Ativar Notificações no Celular
+                <i data-lucide="bell" class="w-4 h-4"></i> Ativar NotificaÃ§Ãµes no Celular
               </button>
             </div>
           </div>
 
-          <!-- Backup & Restauração de Dados -->
+          <!-- Backup & RestauraÃ§Ã£o de Dados -->
           <div class="bg-white border border-slate-200/90 rounded-2xl p-5 shadow-sm">
             <h4 class="text-sm font-bold text-slate-900 mb-1 flex items-center gap-2">
-              <i data-lucide="shield-check" class="w-4 h-4 text-emerald-600"></i> Cópia de Segurança (Backup)
+              <i data-lucide="shield-check" class="w-4 h-4 text-emerald-600"></i> CÃ³pia de SeguranÃ§a (Backup)
             </h4>
-            <p class="text-xs text-slate-500 mb-4">Seus dados ficam salvos com segurança neste dispositivo. Exporte o backup regularmente.</p>
+            <p class="text-xs text-slate-500 mb-4">Seus dados ficam salvos com seguranÃ§a neste dispositivo. Exporte o backup regularmente.</p>
 
             <div class="space-y-2.5">
               <button onclick="window.app.exportDataBackup()" class="w-full py-2 px-3 bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold rounded-xl flex items-center justify-center gap-2 transition shadow-xs">
@@ -422,7 +551,7 @@
             </div>
           </div>
 
-          <!-- Conexão Banco de Dados na Nuvem (Supabase / Vercel) -->
+                    <!-- ConexÃ£o Banco de Dados na Nuvem (Supabase / Vercel) -->
           <div class="bg-white border border-slate-200/90 rounded-2xl p-5 shadow-sm">
             <h4 class="text-sm font-bold text-slate-900 mb-1 flex items-center gap-2">
               <i data-lucide="database" class="w-4 h-4 text-sky-600"></i> Banco na Nuvem (Acesso Externo)
@@ -440,11 +569,14 @@
               </div>
               <div class="flex items-center gap-2">
                 <input type="checkbox" id="settingCloudEnabled" class="rounded text-sky-600">
-                <label for="settingCloudEnabled" class="text-xs text-slate-700 font-medium">Ativar Sincronização em Nuvem</label>
+                <label for="settingCloudEnabled" class="text-xs text-slate-700 font-medium">Ativar SincronizaÃ§Ã£o em Nuvem</label>
               </div>
               <div class="pt-1 flex flex-col gap-2">
                 <button type="submit" class="w-full py-2 bg-sky-600 hover:bg-sky-700 text-white text-xs font-bold rounded-xl transition">
                   Salvar & Conectar Nuvem
+                </button>
+                <button type="button" onclick="window.app.copySqlSchema()" class="w-full py-1.5 bg-sky-50 hover:bg-sky-100 text-sky-700 border border-sky-200 text-xs font-semibold rounded-xl transition flex items-center justify-center gap-1.5">
+                  <i data-lucide="copy" class="w-3.5 h-3.5"></i> Copiar Script SQL (Criar Tabelas)
                 </button>
                 <button type="button" onclick="window.cloudDb.syncAllToCloud()" class="w-full py-1.5 bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-semibold rounded-xl transition flex items-center justify-center gap-1.5">
                   <i data-lucide="refresh-cw" class="w-3.5 h-3.5"></i> Sincronizar Tudo para a Nuvem
@@ -453,14 +585,14 @@
             </form>
           </div>
 
-          <!-- Informações da Equipe -->
+<!-- InformaÃ§Ãµes da Equipe -->
           <div class="bg-slate-50 border border-slate-200 rounded-2xl p-4 text-xs text-slate-600">
             <span class="font-bold text-slate-800 block mb-1">Equipe Cadastrada:</span>
             <div class="flex items-center gap-2 mb-1">
-              <span class="w-2.5 h-2.5 rounded-full bg-blue-600"></span> <strong>Adriano</strong> (Técnico / Responsável Operacional)
+              <span class="w-2.5 h-2.5 rounded-full bg-blue-600"></span> <strong>Adriano</strong> (TÃ©cnico / ResponsÃ¡vel Operacional)
             </div>
             <div class="flex items-center gap-2">
-              <span class="w-2.5 h-2.5 rounded-full bg-pink-600"></span> <strong>Anny</strong> (Atendimento, Finanças e Agenda)
+              <span class="w-2.5 h-2.5 rounded-full bg-pink-600"></span> <strong>Anny</strong> (Atendimento, FinanÃ§as e Agenda)
             </div>
           </div>
 
@@ -472,12 +604,12 @@
 
   </main>
 
-  <!-- Mobile Bottom Navigation Bar (Fácil acesso com o polegar) -->
+  <!-- Mobile Bottom Navigation Bar (FÃ¡cil acesso com o polegar) -->
   <div class="md:hidden fixed bottom-0 left-0 right-0 bg-white/95 backdrop-blur-md border-t border-slate-200 z-30 mobile-bottom-nav">
     <div class="grid grid-cols-5 h-16">
       <button data-view="dashboard" class="nav-btn flex flex-col items-center justify-center text-slate-500 hover:text-sky-600">
         <i data-lucide="layout-dashboard" class="w-5 h-5"></i>
-        <span class="text-[10px] font-medium mt-1">Início</span>
+        <span class="text-[10px] font-medium mt-1">InÃ­cio</span>
       </button>
       <button data-view="agenda" class="nav-btn flex flex-col items-center justify-center text-slate-500 hover:text-sky-600">
         <i data-lucide="calendar" class="w-5 h-5"></i>
@@ -491,7 +623,7 @@
       </button>
       <button data-view="quotes" class="nav-btn flex flex-col items-center justify-center text-slate-500 hover:text-sky-600">
         <i data-lucide="file-text" class="w-5 h-5"></i>
-        <span class="text-[10px] font-medium mt-1">Orçamentos</span>
+        <span class="text-[10px] font-medium mt-1">OrÃ§amentos</span>
       </button>
       <button data-view="clients" class="nav-btn flex flex-col items-center justify-center text-slate-500 hover:text-sky-600">
         <i data-lucide="users" class="w-5 h-5"></i>
@@ -536,15 +668,15 @@
             <input type="date" id="appDate" class="w-full px-3 py-2 text-xs bg-slate-50 border border-slate-200 rounded-xl" required>
           </div>
           <div>
-            <label class="block text-xs font-semibold text-slate-700 mb-1">Horário de Início *</label>
+            <label class="block text-xs font-semibold text-slate-700 mb-1">HorÃ¡rio de InÃ­cio *</label>
             <input type="time" id="appTime" class="w-full px-3 py-2 text-xs bg-slate-50 border border-slate-200 rounded-xl" required>
           </div>
         </div>
 
-        <!-- Técnico Atribuído e Status -->
+        <!-- TÃ©cnico AtribuÃ­do e Status -->
         <div class="grid grid-cols-2 gap-3">
           <div>
-            <label class="block text-xs font-semibold text-slate-700 mb-1">Responsável *</label>
+            <label class="block text-xs font-semibold text-slate-700 mb-1">ResponsÃ¡vel *</label>
             <select id="appTech" class="w-full px-3 py-2 text-xs bg-slate-50 border border-slate-200 rounded-xl">
               <option value="adriano">Adriano</option>
               <option value="anny">Anny</option>
@@ -557,24 +689,24 @@
               <option value="confirmado">Confirmado</option>
               <option value="pendente">Pendente</option>
               <option value="a_caminho">A caminho</option>
-              <option value="em_andamento">Em execução</option>
-              <option value="concluido">Concluído</option>
+              <option value="em_andamento">Em execuÃ§Ã£o</option>
+              <option value="concluido">ConcluÃ­do</option>
               <option value="cancelado">Cancelado</option>
             </select>
           </div>
         </div>
 
-        <!-- Serviços -->
+        <!-- ServiÃ§os -->
         <div>
-          <label class="block text-xs font-semibold text-slate-700 mb-1">Serviço(s) *</label>
-          <input type="text" id="appServices" placeholder="ex: Combo Sofá 3 Lugares Retrátil (Hig. + Imp.), Colchão Queen" class="w-full px-3 py-2 text-xs bg-slate-50 border border-slate-200 rounded-xl" required>
-          <p class="text-[10px] text-slate-400 mt-1">Separe múltiplos serviços por vírgula.</p>
+          <label class="block text-xs font-semibold text-slate-700 mb-1">ServiÃ§o(s) *</label>
+          <input type="text" id="appServices" placeholder="ex: Combo SofÃ¡ 3 Lugares RetrÃ¡til (Hig. + Imp.), ColchÃ£o Queen" class="w-full px-3 py-2 text-xs bg-slate-50 border border-slate-200 rounded-xl" required>
+          <p class="text-[10px] text-slate-400 mt-1">Separe mÃºltiplos serviÃ§os por vÃ­rgula.</p>
         </div>
 
-        <!-- Endereço -->
+        <!-- EndereÃ§o -->
         <div>
-          <label class="block text-xs font-semibold text-slate-700 mb-1">Endereço do Atendimento *</label>
-          <input type="text" id="appAddress" placeholder="Rua, número, complemento e bairro" class="w-full px-3 py-2 text-xs bg-slate-50 border border-slate-200 rounded-xl" required>
+          <label class="block text-xs font-semibold text-slate-700 mb-1">EndereÃ§o do Atendimento *</label>
+          <input type="text" id="appAddress" placeholder="Rua, nÃºmero, complemento e bairro" class="w-full px-3 py-2 text-xs bg-slate-50 border border-slate-200 rounded-xl" required>
         </div>
 
         <!-- Valor Total e Pagamento -->
@@ -587,21 +719,21 @@
             <label class="block text-xs font-semibold text-slate-700 mb-1">Forma de Pagamento</label>
             <select id="appPaymentMethod" class="w-full px-3 py-2 text-xs bg-slate-50 border border-slate-200 rounded-xl">
               <option value="PIX">PIX</option>
-              <option value="Cartão de Crédito">Cartão de Crédito</option>
-              <option value="Cartão de Débito">Cartão de Débito</option>
+              <option value="CartÃ£o de CrÃ©dito">CartÃ£o de CrÃ©dito</option>
+              <option value="CartÃ£o de DÃ©bito">CartÃ£o de DÃ©bito</option>
               <option value="Dinheiro">Dinheiro</option>
               <option value="A combinar">A combinar</option>
             </select>
           </div>
         </div>
 
-        <!-- Observações -->
+        <!-- ObservaÃ§Ãµes -->
         <div>
-          <label class="block text-xs font-semibold text-slate-700 mb-1">Observações Internas (Tecido, Pets, etc.)</label>
+          <label class="block text-xs font-semibold text-slate-700 mb-1">ObservaÃ§Ãµes Internas (Tecido, Pets, etc.)</label>
           <textarea id="appNotes" rows="2" placeholder="ex: Tem 2 gatos, tecido linho, portaria liberada..." class="w-full px-3 py-2 text-xs bg-slate-50 border border-slate-200 rounded-xl"></textarea>
         </div>
 
-        <!-- Botões -->
+        <!-- BotÃµes -->
         <div class="pt-3 border-t border-slate-100 flex items-center justify-end gap-2">
           <button type="button" onclick="window.app.closeAppointmentModal()" class="px-4 py-2 text-xs font-semibold text-slate-600 hover:bg-slate-100 rounded-xl transition">
             Cancelar
@@ -642,7 +774,7 @@
         </div>
 
         <div>
-          <label class="block text-xs font-semibold text-slate-700 mb-1">Endereço Completo (Rua, Número, Apto)</label>
+          <label class="block text-xs font-semibold text-slate-700 mb-1">EndereÃ§o Completo (Rua, NÃºmero, Apto)</label>
           <input type="text" id="clientAddress" placeholder="ex: Av. Paulista, 1500 - Apto 82" class="w-full px-3 py-2 text-xs bg-slate-50 border border-slate-200 rounded-xl">
         </div>
 
@@ -653,7 +785,7 @@
           </div>
           <div>
             <label class="block text-xs font-semibold text-slate-700 mb-1">Cidade</label>
-            <input type="text" id="clientCity" value="São Paulo" class="w-full px-3 py-2 text-xs bg-slate-50 border border-slate-200 rounded-xl">
+            <input type="text" id="clientCity" value="SÃ£o Paulo" class="w-full px-3 py-2 text-xs bg-slate-50 border border-slate-200 rounded-xl">
           </div>
         </div>
 
@@ -663,7 +795,7 @@
         </div>
 
         <div>
-          <label class="block text-xs font-semibold text-slate-700 mb-1">Observações (Animais, detalhes de manchas, etc.)</label>
+          <label class="block text-xs font-semibold text-slate-700 mb-1">ObservaÃ§Ãµes (Animais, detalhes de manchas, etc.)</label>
           <textarea id="clientNotes" rows="2" class="w-full px-3 py-2 text-xs bg-slate-50 border border-slate-200 rounded-xl"></textarea>
         </div>
 
@@ -680,13 +812,13 @@
   </div>
 
   <!-- ============================================== -->
-  <!-- MODAL: ORÇAMENTO -->
+  <!-- MODAL: ORÃ‡AMENTO -->
   <!-- ============================================== -->
   <div id="quoteModal" class="hidden fixed inset-0 z-50 overflow-y-auto bg-slate-900/60 backdrop-blur-xs flex items-center justify-center p-4">
     <div class="bg-white rounded-3xl max-w-xl w-full p-6 shadow-2xl relative border border-slate-100 max-h-[90vh] overflow-y-auto">
       
       <div class="flex items-center justify-between pb-4 border-b border-slate-100 mb-4">
-        <h3 id="quoteModalTitle" class="text-base font-extrabold text-slate-900">Novo Orçamento</h3>
+        <h3 id="quoteModalTitle" class="text-base font-extrabold text-slate-900">Novo OrÃ§amento</h3>
         <button onclick="window.app.closeQuoteModal()" class="p-1.5 text-slate-400 hover:text-slate-600 rounded-lg">
           <i data-lucide="x" class="w-5 h-5"></i>
         </button>
@@ -703,12 +835,12 @@
           </select>
         </div>
 
-        <!-- Adicionar Serviços -->
+        <!-- Adicionar ServiÃ§os -->
         <div class="p-3 bg-slate-50 border border-slate-200 rounded-2xl">
-          <label class="block text-xs font-bold text-slate-800 mb-2">Adicionar Serviços da Tabela</label>
+          <label class="block text-xs font-bold text-slate-800 mb-2">Adicionar ServiÃ§os da Tabela</label>
           <div class="flex gap-2">
             <select id="quoteServiceSelect" class="flex-1 px-3 py-2 text-xs bg-white border border-slate-200 rounded-xl">
-              <!-- Carregado via JS com lista padrão de sofás, colchões, etc. -->
+              <!-- Carregado via JS com lista padrÃ£o de sofÃ¡s, colchÃµes, etc. -->
             </select>
             <input type="number" id="quoteServiceQty" min="1" value="1" class="w-16 px-2 py-2 text-xs bg-white border border-slate-200 rounded-xl text-center" title="Quantidade">
             <button type="button" onclick="window.app.addServiceToQuote()" class="px-3 py-2 bg-sky-600 hover:bg-sky-700 text-white text-xs font-bold rounded-xl transition">
@@ -724,7 +856,7 @@
               <tr class="text-[11px] font-bold text-slate-400 uppercase border-b border-slate-200">
                 <th class="py-1.5">Item</th>
                 <th class="py-1.5 text-center">Qtd</th>
-                <th class="py-1.5 text-right">Unitário</th>
+                <th class="py-1.5 text-right">UnitÃ¡rio</th>
                 <th class="py-1.5 text-right">Total</th>
                 <th class="py-1.5 text-center w-8"></th>
               </tr>
@@ -751,11 +883,11 @@
           </div>
         </div>
 
-        <!-- Condições de Pagamento e Validade -->
+        <!-- CondiÃ§Ãµes de Pagamento e Validade -->
         <div class="grid grid-cols-2 gap-3">
           <div>
-            <label class="block text-xs font-semibold text-slate-700 mb-1">Condições de Pagamento</label>
-            <input type="text" id="quotePaymentMethod" value="PIX (5% desc.) ou Cartão até 3x sem juros" class="w-full px-3 py-2 text-xs bg-slate-50 border border-slate-200 rounded-xl">
+            <label class="block text-xs font-semibold text-slate-700 mb-1">CondiÃ§Ãµes de Pagamento</label>
+            <input type="text" id="quotePaymentMethod" value="PIX (5% desc.) ou CartÃ£o atÃ© 3x sem juros" class="w-full px-3 py-2 text-xs bg-slate-50 border border-slate-200 rounded-xl">
           </div>
           <div>
             <label class="block text-xs font-semibold text-slate-700 mb-1">Validade (dias)</label>
@@ -763,7 +895,7 @@
           </div>
         </div>
 
-        <!-- Status e Observações -->
+        <!-- Status e ObservaÃ§Ãµes -->
         <div class="grid grid-cols-2 gap-3">
           <div>
             <label class="block text-xs font-semibold text-slate-700 mb-1">Status da Proposta</label>
@@ -775,12 +907,12 @@
             </select>
           </div>
           <div>
-            <label class="block text-xs font-semibold text-slate-700 mb-1">Observações da Proposta</label>
-            <input type="text" id="quoteNotes" placeholder="ex: Produtos biodegradáveis hospitalares" class="w-full px-3 py-2 text-xs bg-slate-50 border border-slate-200 rounded-xl">
+            <label class="block text-xs font-semibold text-slate-700 mb-1">ObservaÃ§Ãµes da Proposta</label>
+            <input type="text" id="quoteNotes" placeholder="ex: Produtos biodegradÃ¡veis hospitalares" class="w-full px-3 py-2 text-xs bg-slate-50 border border-slate-200 rounded-xl">
           </div>
         </div>
 
-        <!-- Botões -->
+        <!-- BotÃµes -->
         <div class="pt-3 border-t border-slate-100 flex items-center justify-end gap-2">
           <button type="button" onclick="window.app.closeQuoteModal()" class="px-4 py-2 text-xs font-semibold text-slate-600 hover:bg-slate-100 rounded-xl transition">
             Cancelar
@@ -815,35 +947,35 @@
       </div>
 
       <div class="space-y-4">
-        <!-- Telefone Destinatário -->
+        <!-- Telefone DestinatÃ¡rio -->
         <div>
-          <label class="block text-xs font-semibold text-slate-700 mb-1">Número do WhatsApp Destinatário</label>
+          <label class="block text-xs font-semibold text-slate-700 mb-1">NÃºmero do WhatsApp DestinatÃ¡rio</label>
           <input type="tel" id="whatsappPhoneInput" class="w-full px-3 py-2 text-xs bg-slate-50 border border-slate-200 rounded-xl font-medium">
         </div>
 
-        <!-- Seleção de Template -->
+        <!-- SeleÃ§Ã£o de Template -->
         <div>
           <label class="block text-xs font-semibold text-slate-700 mb-1">Selecione o Modelo de Mensagem</label>
           <select id="whatsappTemplateSelect" class="w-full px-3 py-2 text-xs bg-slate-50 border border-slate-200 rounded-xl font-medium">
-            <option value="confirmacao">📅 1. Confirmação de Agendamento</option>
-            <option value="lembrete_24h">⏰ 2. Lembrete de Véspera (24h antes)</option>
-            <option value="a_caminho">🚗 3. Equipe a Caminho</option>
-            <option value="pos_venda_secagem">💨 4. Orientações de Secagem & Cuidados</option>
-            <option value="garantia_impermeabilizacao">🛡️ 5. Certificado & Garantia da Impermeabilização</option>
-            <option value="orcamento_detalhado">📋 6. Envio de Proposta Comercial / Orçamento</option>
+            <option value="confirmacao">ðŸ“… 1. ConfirmaÃ§Ã£o de Agendamento</option>
+            <option value="lembrete_24h">â° 2. Lembrete de VÃ©spera (24h antes)</option>
+            <option value="a_caminho">ðŸš— 3. Equipe a Caminho</option>
+            <option value="pos_venda_secagem">ðŸ’¨ 4. OrientaÃ§Ãµes de Secagem & Cuidados</option>
+            <option value="garantia_impermeabilizacao">ðŸ›¡ï¸ 5. Certificado & Garantia da ImpermeabilizaÃ§Ã£o</option>
+            <option value="orcamento_detalhado">ðŸ“‹ 6. Envio de Proposta Comercial / OrÃ§amento</option>
           </select>
         </div>
 
-        <!-- Área de Pré-Visualização / Edição -->
+        <!-- Ãrea de PrÃ©-VisualizaÃ§Ã£o / EdiÃ§Ã£o -->
         <div>
           <div class="flex items-center justify-between mb-1">
-            <label class="text-xs font-semibold text-slate-700">Mensagem Formatada (Você pode editar antes de enviar)</label>
+            <label class="text-xs font-semibold text-slate-700">Mensagem Formatada (VocÃª pode editar antes de enviar)</label>
             <span class="text-[10px] text-emerald-600 font-bold bg-emerald-50 px-2 py-0.5 rounded-full">Pronta para Enviar</span>
           </div>
           <textarea id="whatsappMessagePreview" rows="8" class="w-full p-3 text-xs bg-slate-50 border border-slate-200 rounded-2xl font-sans leading-relaxed focus:bg-white"></textarea>
         </div>
 
-        <!-- Ação Principal -->
+        <!-- AÃ§Ã£o Principal -->
         <div class="pt-2">
           <button onclick="window.app.sendWhatsAppNow()" class="w-full py-3 bg-emerald-600 hover:bg-emerald-700 active:bg-emerald-800 text-white text-sm font-extrabold rounded-2xl shadow-lg shadow-emerald-600/30 flex items-center justify-center gap-2 transition">
             <i data-lucide="send" class="w-4 h-4"></i> Disparar Mensagem no WhatsApp
@@ -856,10 +988,10 @@
   </div>
 
   <!-- ============================================== -->
-  <!-- DRAWER: NOTIFICAÇÕES (ADRIANO & ANNY) -->
+  <!-- DRAWER: NOTIFICAÃ‡Ã•ES (ADRIANO & ANNY) -->
   <!-- ============================================== -->
   <div id="notificationsBackdrop" class="hidden fixed inset-0 bg-slate-900/40 backdrop-blur-2xs z-40 transition-opacity"></div>
-  <aside id="notificationsDrawer" class="fixed top-0 right-0 bottom-0 w-80 sm:w-96 bg-white z-50 shadow-2xl transform translate-x-full transition-transform duration-300 ease-in-out flex flex-col">
+  <aside id="notificationsDrawer" class="hidden fixed top-0 right-0 bottom-0 w-80 sm:w-96 bg-white z-50 shadow-2xl transform translate-x-full transition-transform duration-300 ease-in-out flex flex-col">
     <div class="p-4 border-b border-slate-100 flex items-center justify-between">
       <div class="flex items-center gap-2">
         <div class="w-8 h-8 rounded-lg bg-sky-50 text-sky-600 flex items-center justify-center">
@@ -893,25 +1025,2684 @@
   <!-- Container de Toasts Flutuantes -->
   <div id="toastContainer" class="fixed top-4 right-4 z-50 flex flex-col gap-2 pointer-events-none max-w-sm w-full px-4 sm:px-0"></div>
 
-  <!-- Container de Impressão de Proposta Comercial -->
+  <!-- Container de ImpressÃ£o de Proposta Comercial -->
   <div id="printProposalContainer" class="hidden"></div>
 
-  <!-- Supabase JS Client (Nuvem / Tempo Real) -->
+    <!-- Supabase JS Client (Nuvem / Tempo Real) -->
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-  <!-- Scripts da Aplicação -->
-  <script src="js/storage.js"></script>
-  <script src="js/whatsapp.js"></script>
-  <script src="js/notifications.js"></script>
-  <script src="js/cloud-db.js"></script>
-  <script src="js/app.js"></script>
+  <!-- Scripts Integrados (Zero DependÃªncia Externa) -->
+  <script>
+  /**
+ * Storage Layer - ADRIREZ HOME CARE
+ * Gerencia persistência local (LocalStorage), dados padrão, backup e restauração
+ */
+
+const STORAGE_KEYS = {
+  CLIENTS: 'adrirez_clients',
+  APPOINTMENTS: 'adrirez_appointments',
+  QUOTES: 'adrirez_quotes',
+  NOTIFICATIONS: 'adrirez_notifications',
+  SETTINGS: 'adrirez_settings',
+  SERVICES: 'adrirez_services'
+};
+
+// Configurações padrão da Adrirez Home Care
+const DEFAULT_SETTINGS = {
+  companyName: 'ADRIREZ HOME CARE',
+  slogan: 'Higienização e Impermeabilização Especializada de Estofados',
+  phone: '(11) 99999-8888',
+  email: 'contato@adrirezhomecare.com.br',
+  city: 'São Paulo - SP',
+  pixKey: 'adrirez.homecare@gmail.com',
+  pixType: 'Email',
+  admins: [
+    { id: 'adriano', name: 'Adriano', role: 'Administrador / Técnico Especialista', phone: '(11) 98765-4321', color: 'blue' },
+    { id: 'anny', name: 'Anny', role: 'Administradora / Atendimento e Gestão', phone: '(11) 91234-5678', color: 'pink' }
+  ],
+  termsWarranty: 'Garantia de 12 meses contra penetração de líquidos pastosos e aquosos na impermeabilização. Higienização com secagem em poucas horas utilizando produtos biodegradáveis dermatologicamente testados.'
+};
+
+// Tabela de Serviços Padrão de Higienização e Impermeabilização
+const DEFAULT_SERVICES = [
+  { id: 'sofa_2l_hig', name: 'Higienização Sofá 2 Lugares', category: 'Sofás', price: 160.00, duration: 90 },
+  { id: 'sofa_2l_imp', name: 'Impermeabilização Sofá 2 Lugares', category: 'Sofás', price: 200.00, duration: 60 },
+  { id: 'sofa_2l_combo', name: 'Combo Sofá 2 Lugares (Hig. + Impermeab.)', category: 'Sofás', price: 320.00, duration: 120 },
+  
+  { id: 'sofa_3l_hig', name: 'Higienização Sofá 3 Lugares Retrátil', category: 'Sofás', price: 220.00, duration: 120 },
+  { id: 'sofa_3l_imp', name: 'Impermeabilização Sofá 3 Lugares Retrátil', category: 'Sofás', price: 280.00, duration: 80 },
+  { id: 'sofa_3l_combo', name: 'Combo Sofá 3 Lugares Retrátil (Hig. + Imp.)', category: 'Sofás', price: 440.00, duration: 150 },
+
+  { id: 'sofa_4l_hig', name: 'Higienização Sofá 4 Lugares / Em L', category: 'Sofás', price: 280.00, duration: 150 },
+  { id: 'sofa_4l_imp', name: 'Impermeabilização Sofá 4 Lugares / Em L', category: 'Sofás', price: 360.00, duration: 90 },
+  { id: 'sofa_4l_combo', name: 'Combo Sofá 4 Lugares / Em L (Hig. + Imp.)', category: 'Sofás', price: 580.00, duration: 180 },
+
+  { id: 'poltrona_hig', name: 'Higienização de Poltrona Individual', category: 'Poltronas', price: 90.00, duration: 45 },
+  { id: 'poltrona_imp', name: 'Impermeabilização de Poltrona', category: 'Poltronas', price: 110.00, duration: 40 },
+  
+  { id: 'cadeira_jantar', name: 'Higienização Cadeira de Jantar (unidade)', category: 'Cadeiras', price: 40.00, duration: 25 },
+  { id: 'cadeira_jantar_imp', name: 'Impermeabilização Cadeira de Jantar (unidade)', category: 'Cadeiras', price: 50.00, duration: 20 },
+
+  { id: 'colchao_casal_hig', name: 'Higienização Profunda Colchão Casal', category: 'Colchões', price: 180.00, duration: 90 },
+  { id: 'colchao_queen_hig', name: 'Higienização Profunda Colchão Queen', category: 'Colchões', price: 210.00, duration: 100 },
+  { id: 'colchao_king_hig', name: 'Higienização Profunda Colchão King', category: 'Colchões', price: 250.00, duration: 120 },
+  { id: 'colchao_solteiro_hig', name: 'Higienização Colchão Solteiro', category: 'Colchões', price: 130.00, duration: 60 },
+
+  { id: 'auto_completo', name: 'Higienização Interna Automotiva Completa', category: 'Automotivo', price: 250.00, duration: 150 },
+  { id: 'tapete_m2', name: 'Higienização de Tapete (m²)', category: 'Tapetes', price: 35.00, duration: 30 }
+];
+
+// Dados Iniciais Realistas para Adriano e Anny já começarem com o sistema pronto
+const INITIAL_CLIENTS = [
+  {
+    id: 'cli_1',
+    name: 'Mariana Silveira',
+    phone: '11988776655',
+    address: 'Av. Paulista, 1500 - Apto 82',
+    neighborhood: 'Bela Vista',
+    city: 'São Paulo',
+    cep: '01310-200',
+    notes: 'Possui 2 gatos persas. Sofá em linho bege claro, priorizar remoção de manchas.',
+    createdAt: '2026-10-20T10:00:00.000Z'
+  },
+  {
+    id: 'cli_2',
+    name: 'Carlos Eduardo Mendes',
+    phone: '11977665544',
+    address: 'Rua das Palmeiras, 340 - Casa',
+    neighborhood: 'Moema',
+    city: 'São Paulo',
+    cep: '04523-010',
+    notes: 'Sofá retrátil 3 lugares verde musgo. Cliente pediu atenção especial na impermeabilização.',
+    createdAt: '2026-10-22T14:30:00.000Z'
+  },
+  {
+    id: 'cli_3',
+    name: 'Juliana Costa e Silva',
+    phone: '11966554433',
+    address: 'Rua Bela Cintra, 789 - Bloco B 121',
+    neighborhood: 'Consolação',
+    city: 'São Paulo',
+    cep: '01415-001',
+    notes: 'Colchão Queen e 6 cadeiras da sala de jantar.',
+    createdAt: '2026-10-24T09:15:00.000Z'
+  }
+];
+
+function getTodayISO() {
+  const now = new Date();
+  return now.toISOString().split('T')[0];
+}
+
+function getRelativeDateISO(offsetDays) {
+  const d = new Date();
+  d.setDate(d.getDate() + offsetDays);
+  return d.toISOString().split('T')[0];
+}
+
+const INITIAL_APPOINTMENTS = [
+  {
+    id: 'app_1',
+    clientId: 'cli_1',
+    clientName: 'Mariana Silveira',
+    clientPhone: '11988776655',
+    date: getTodayISO(),
+    time: '09:30',
+    durationMinutes: 150,
+    services: ['Combo Sofá 3 Lugares Retrátil (Hig. + Imp.)'],
+    assignedTo: 'adriano', // 'adriano' | 'anny' | 'ambos'
+    address: 'Av. Paulista, 1500 - Apto 82, Bela Vista',
+    totalValue: 440.00,
+    paymentMethod: 'PIX',
+    status: 'confirmado', // pendente, confirmado, a_caminho, em_andamento, concluido, cancelado
+    notes: 'Cuidado com os gatos ao abrir a porta.',
+    createdAt: new Date().toISOString()
+  },
+  {
+    id: 'app_2',
+    clientId: 'cli_2',
+    clientName: 'Carlos Eduardo Mendes',
+    clientPhone: '11977665544',
+    date: getTodayISO(),
+    time: '14:00',
+    durationMinutes: 120,
+    services: ['Impermeabilização Sofá 3 Lugares Retrátil'],
+    assignedTo: 'ambos',
+    address: 'Rua das Palmeiras, 340 - Casa, Moema',
+    totalValue: 280.00,
+    paymentMethod: 'Cartão de Crédito',
+    status: 'confirmado',
+    notes: 'Interfone 34.',
+    createdAt: new Date().toISOString()
+  },
+  {
+    id: 'app_3',
+    clientId: 'cli_3',
+    clientName: 'Juliana Costa e Silva',
+    clientPhone: '11966554433',
+    date: getRelativeDateISO(1),
+    time: '10:00',
+    durationMinutes: 120,
+    services: ['Higienização Profunda Colchão Queen', 'Higienização Cadeira de Jantar (unidade) x6'],
+    assignedTo: 'anny',
+    address: 'Rua Bela Cintra, 789 - Bloco B 121, Consolação',
+    totalValue: 450.00,
+    paymentMethod: 'PIX',
+    status: 'pendente',
+    notes: 'Aguardando confirmação de horário com o porteiro.',
+    createdAt: new Date().toISOString()
+  }
+];
+
+const INITIAL_QUOTES = [
+  {
+    id: 'orc_1',
+    clientId: 'cli_3',
+    clientName: 'Juliana Costa e Silva',
+    clientPhone: '11966554433',
+    items: [
+      { name: 'Higienização Profunda Colchão Queen', quantity: 1, unitPrice: 210.00, total: 210.00 },
+      { name: 'Higienização Cadeira de Jantar', quantity: 6, unitPrice: 40.00, total: 240.00 }
+    ],
+    subtotal: 450.00,
+    discount: 0,
+    total: 450.00,
+    paymentMethod: 'PIX com 5% ou Cartão até 3x sem juros',
+    validityDays: 15,
+    status: 'aprovado', // rascunho, enviado, aprovado, recusado
+    notes: 'Proposta com produtos antiácaro especiais.',
+    createdAt: new Date(Date.now() - 86400000 * 2).toISOString()
+  },
+  {
+    id: 'orc_2',
+    clientId: 'cli_2',
+    clientName: 'Carlos Eduardo Mendes',
+    clientPhone: '11977665544',
+    items: [
+      { name: 'Impermeabilização Sofá 3 Lugares Retrátil', quantity: 1, unitPrice: 280.00, total: 280.00 }
+    ],
+    subtotal: 280.00,
+    discount: 0,
+    total: 280.00,
+    paymentMethod: 'Cartão de Crédito 2x',
+    validityDays: 15,
+    status: 'aprovado',
+    notes: 'Garantia de 1 ano com certificado impresso entregue no local.',
+    createdAt: new Date(Date.now() - 86400000 * 3).toISOString()
+  }
+];
+
+const INITIAL_NOTIFICATIONS = [
+  {
+    id: 'notif_1',
+    title: 'Novo Agendamento Marcado!',
+    message: 'Juliana Costa e Silva agendou serviço para amanhã às 10:00 (Responsável: Anny).',
+    date: new Date(Date.now() - 3600000 * 3).toISOString(),
+    read: false,
+    type: 'appointment',
+    recipient: 'all' // adriano, anny, all
+  },
+  {
+    id: 'notif_2',
+    title: 'Orçamento Aprovado',
+    message: 'Carlos Eduardo Mendes aprovou a proposta de Impermeabilização (R$ 280,00).',
+    date: new Date(Date.now() - 3600000 * 8).toISOString(),
+    read: true,
+    type: 'quote',
+    recipient: 'all'
+  }
+];
+
+class StorageManager {
+  constructor() {
+    this.init();
+  }
+
+  init() {
+    if (!localStorage.getItem(STORAGE_KEYS.SETTINGS)) {
+      this.save(STORAGE_KEYS.SETTINGS, DEFAULT_SETTINGS);
+    }
+    if (!localStorage.getItem(STORAGE_KEYS.SERVICES)) {
+      this.save(STORAGE_KEYS.SERVICES, DEFAULT_SERVICES);
+    }
+    if (!localStorage.getItem(STORAGE_KEYS.CLIENTS)) {
+      this.save(STORAGE_KEYS.CLIENTS, INITIAL_CLIENTS);
+    }
+    if (!localStorage.getItem(STORAGE_KEYS.APPOINTMENTS)) {
+      this.save(STORAGE_KEYS.APPOINTMENTS, INITIAL_APPOINTMENTS);
+    }
+    if (!localStorage.getItem(STORAGE_KEYS.QUOTES)) {
+      this.save(STORAGE_KEYS.QUOTES, INITIAL_QUOTES);
+    }
+    if (!localStorage.getItem(STORAGE_KEYS.NOTIFICATIONS)) {
+      this.save(STORAGE_KEYS.NOTIFICATIONS, INITIAL_NOTIFICATIONS);
+    }
+  }
+
+  get(key) {
+    try {
+      const data = localStorage.getItem(key);
+      return data ? JSON.parse(data) : null;
+    } catch (e) {
+      console.error(`Erro ao carregar chave ${key}:`, e);
+      return null;
+    }
+  }
+
+  save(key, data) {
+    try {
+      localStorage.setItem(key, JSON.stringify(data));
+      return true;
+    } catch (e) {
+      console.error(`Erro ao salvar chave ${key}:`, e);
+      return false;
+    }
+  }
+
+  // Clientes
+  getClients() { return this.get(STORAGE_KEYS.CLIENTS) || []; }
+  saveClient(client) {
+    const clients = this.getClients();
+    if (!client.id) {
+      client.id = 'cli_' + Date.now();
+      client.createdAt = new Date().toISOString();
+      clients.unshift(client);
+    } else {
+      const idx = clients.findIndex(c => c.id === client.id);
+      if (idx !== -1) clients[idx] = { ...clients[idx], ...client };
+      else clients.unshift(client);
+    }
+    this.save(STORAGE_KEYS.CLIENTS, clients);
+    if (window.cloudDb && window.cloudDb.isConnected) {
+      window.cloudDb.saveClientCloud(client);
+    }
+    return client;
+  }
+  deleteClient(id) {
+    const clients = this.getClients().filter(c => c.id !== id);
+    this.save(STORAGE_KEYS.CLIENTS, clients);
+  }
+
+  // Agendamentos
+  getAppointments() { return this.get(STORAGE_KEYS.APPOINTMENTS) || []; }
+  saveAppointment(appointment) {
+    const appointments = this.getAppointments();
+    const isNew = !appointment.id;
+    if (isNew) {
+      appointment.id = 'app_' + Date.now();
+      appointment.createdAt = new Date().toISOString();
+      appointments.unshift(appointment);
+    } else {
+      const idx = appointments.findIndex(a => a.id === appointment.id);
+      if (idx !== -1) appointments[idx] = { ...appointments[idx], ...appointment };
+      else appointments.unshift(appointment);
+    }
+    this.save(STORAGE_KEYS.APPOINTMENTS, appointments);
+    if (window.cloudDb && window.cloudDb.isConnected) {
+      window.cloudDb.saveAppointmentCloud(appointment);
+    }
+    return { appointment, isNew };
+  }
+  deleteAppointment(id) {
+    const appointments = this.getAppointments().filter(a => a.id !== id);
+    this.save(STORAGE_KEYS.APPOINTMENTS, appointments);
+  }
+
+  // Orçamentos
+  getQuotes() { return this.get(STORAGE_KEYS.QUOTES) || []; }
+  saveQuote(quote) {
+    const quotes = this.getQuotes();
+    const isNew = !quote.id;
+    if (isNew) {
+      quote.id = 'orc_' + Date.now();
+      quote.createdAt = new Date().toISOString();
+      quotes.unshift(quote);
+    } else {
+      const idx = quotes.findIndex(q => q.id === quote.id);
+      if (idx !== -1) quotes[idx] = { ...quotes[idx], ...quote };
+      else quotes.unshift(quote);
+    }
+    this.save(STORAGE_KEYS.QUOTES, quotes);
+    if (window.cloudDb && window.cloudDb.isConnected) {
+      window.cloudDb.saveQuoteCloud(quote);
+    }
+    return { quote, isNew };
+  }
+  deleteQuote(id) {
+    const quotes = this.getQuotes().filter(q => q.id !== id);
+    this.save(STORAGE_KEYS.QUOTES, quotes);
+  }
+
+  // Notificações
+  getNotifications() { return this.get(STORAGE_KEYS.NOTIFICATIONS) || []; }
+  addNotification(notif) {
+    const notifications = this.getNotifications();
+    const newNotif = {
+      id: 'notif_' + Date.now(),
+      title: notif.title,
+      message: notif.message,
+      date: new Date().toISOString(),
+      read: false,
+      type: notif.type || 'info',
+      recipient: notif.recipient || 'all'
+    };
+    notifications.unshift(newNotif);
+    this.save(STORAGE_KEYS.NOTIFICATIONS, notifications);
+    return newNotif;
+  }
+  markNotificationRead(id) {
+    const notifications = this.getNotifications();
+    const n = notifications.find(x => x.id === id);
+    if (n) {
+      n.read = true;
+      this.save(STORAGE_KEYS.NOTIFICATIONS, notifications);
+    }
+  }
+  markAllNotificationsRead() {
+    const notifications = this.getNotifications().map(n => ({ ...n, read: true }));
+    this.save(STORAGE_KEYS.NOTIFICATIONS, notifications);
+  }
+  clearNotifications() {
+    this.save(STORAGE_KEYS.NOTIFICATIONS, []);
+  }
+
+  // Configurações e Serviços
+  getSettings() { return this.get(STORAGE_KEYS.SETTINGS) || DEFAULT_SETTINGS; }
+  saveSettings(settings) { return this.save(STORAGE_KEYS.SETTINGS, settings); }
+  getServices() { return this.get(STORAGE_KEYS.SERVICES) || DEFAULT_SERVICES; }
+  saveServices(services) { return this.save(STORAGE_KEYS.SERVICES, services); }
+
+  // Backup & Restauração
+  exportBackupJSON() {
+    const backupData = {
+      version: '1.0',
+      exportedAt: new Date().toISOString(),
+      company: 'ADRIREZ HOME CARE',
+      clients: this.getClients(),
+      appointments: this.getAppointments(),
+      quotes: this.getQuotes(),
+      notifications: this.getNotifications(),
+      settings: this.getSettings(),
+      services: this.getServices()
+    };
+    return JSON.stringify(backupData, null, 2);
+  }
+
+  importBackupJSON(jsonString) {
+    try {
+      const data = JSON.parse(jsonString);
+      if (data.clients) this.save(STORAGE_KEYS.CLIENTS, data.clients);
+      if (data.appointments) this.save(STORAGE_KEYS.APPOINTMENTS, data.appointments);
+      if (data.quotes) this.save(STORAGE_KEYS.QUOTES, data.quotes);
+      if (data.notifications) this.save(STORAGE_KEYS.NOTIFICATIONS, data.notifications);
+      if (data.settings) this.save(STORAGE_KEYS.SETTINGS, data.settings);
+      if (data.services) this.save(STORAGE_KEYS.SERVICES, data.services);
+      return { success: true };
+    } catch (e) {
+      return { success: false, error: e.message };
+    }
+  }
+}
+
+window.storage = new StorageManager();
+
+  </script>
+  <script>
+  /**
+ * WhatsApp Integration Layer - ADRIREZ HOME CARE
+ * Gerador de mensagens automáticas de 1 clique para WhatsApp
+ */
+
+const WHATSAPP_TEMPLATES = {
+  confirmacao: {
+    title: 'Confirmação de Agendamento',
+    icon: 'calendar-check',
+    description: 'Envia os dados completos do agendamento para o cliente com endereço, horário e valor.',
+    build: (data) => {
+      const { clientName, dateFormatted, time, servicesList, address, totalValue, paymentMethod, technician } = data;
+      return `Olá, *${clientName}*! Tudo bem? 😊
+
+Aqui é da *ADRIREZ HOME CARE* - Higienização e Impermeabilização de Estofados ✨
+
+Confirmamos com sucesso o seu agendamento:
+📅 *Data:* ${dateFormatted}
+⏰ *Horário:* ${time}h
+🛋️ *Serviço(s):* ${servicesList}
+📍 *Endereço:* ${address}
+👨‍🔧 *Responsável:* ${technician}
+💰 *Valor Total:* R$ ${totalValue} (${paymentMethod || 'A combinar'})
+
+Pedimos a gentileza de nos avisar caso necessite de qualquer ajuste de horário. Estamos ansiosos para deixar seus estofados impecáveis e renovados! 🧼✨
+
+Atenciosamente,
+*Equipe Adrirez Home Care* 🏠`;
+    }
+  },
+
+  lembrete_24h: {
+    title: 'Lembrete de Véspera (24h)',
+    icon: 'bell',
+    description: 'Lembra o cliente do agendamento de amanhã com dicas práticas de preparação.',
+    build: (data) => {
+      const { clientName, dateFormatted, time, technician } = data;
+      return `Olá, *${clientName}*! Tudo bem? 
+
+Passando para lembrar que *amanhã (${dateFormatted}) às ${time}h* nossa equipe (${technician}) estará na sua residência para o atendimento de higienização/impermeabilização! 🧼✨
+
+💡 *Dica rápida:* Se possível, retire almofadas soltas e objetos próximos do estofado para agilizarmos o início do serviço.
+
+Qualquer imprevisto, é só nos avisar por aqui. Até amanhã! 🤝
+*ADRIREZ HOME CARE*`;
+    }
+  },
+
+  a_caminho: {
+    title: 'Equipe a Caminho',
+    icon: 'navigation',
+    description: 'Avisa o cliente que Adriano/Anny já saiu em direção ao endereço.',
+    build: (data) => {
+      const { clientName, technician } = data;
+      return `Olá, *${clientName}*! 🚗💨
+
+A equipe da *ADRIREZ HOME CARE* (${technician}) já está a caminho do seu endereço!
+
+Chegaremos em instantes. Até já! 🏠✨`;
+    }
+  },
+
+  pos_venda_secagem: {
+    title: 'Orientações de Secagem e Cuidados',
+    icon: 'wind',
+    description: 'Instruções para o estofado secar perfeitamente sem odores e garantir durabilidade.',
+    build: (data) => {
+      const { clientName } = data;
+      return `Olá, *${clientName}*! Muito obrigado pela confiança na *ADRIREZ HOME CARE*! 💙
+
+Foi um prazer cuidar dos seus estofados hoje. Seguem algumas orientações essenciais para a secagem perfeita:
+
+💨 *1. Ventilação:* Mantenha portas e janelas abertas para circulação natural do ar. Se tiver ventilador, ligue-o direcionado ao estofado para acelerar o processo.
+⏳ *2. Tempo de Secagem:* A secagem completa ocorre geralmente entre 4 a 8 horas, dependendo do clima.
+🚫 *3. Cuidados:* Evite sentar ou deitar com roupas escuras ou úmidas enquanto o tecido estiver em processo de secagem.
+
+Se puder, nos conte o que achou do resultado! Sua satisfação é nossa prioridade máxima. 🌟🌟🌟🌟🌟`;
+    }
+  },
+
+  garantia_impermeabilizacao: {
+    title: 'Certificado & Cuidados da Impermeabilização',
+    icon: 'shield-check',
+    description: 'Certificado e instruções de limpeza de líquidos em estofados impermeabilizados.',
+    build: (data) => {
+      const { clientName } = data;
+      return `Olá, *${clientName}*! 🛡️✨
+
+Seu estofado está devidamente protegido com a tecnologia de impermeabilização de alta performance da *ADRIREZ HOME CARE*!
+
+📌 *Instruções importantes para máxima durabilidade:*
+1️⃣ *Cura inicial:* Evite derramar qualquer tipo de líquido nas primeiras 24 horas para fixação total da resina protetora.
+2️⃣ *Em caso de acidentes com líquidos:* Não esfregue! Apenas posicione suavemente um papel toalha absorvente sobre o líquido para puxar o excesso.
+3️⃣ *Limpeza de rotina:* Aspire o estofado semanalmente para evitar que partículas de poeira se acumulem na trama do tecido.
+
+Conte sempre conosco para manter seu lar saudável e elegante! 🛋️✨`;
+    }
+  },
+
+  orcamento_detalhado: {
+    title: 'Envio de Proposta / Orçamento',
+    icon: 'file-text',
+    description: 'Envia o orçamento formal detalhado com valores e condições especiais.',
+    build: (data) => {
+      const { clientName, itemsList, totalValue, paymentMethod, validityDays } = data;
+      return `Olá, *${clientName}*! Tudo bem? 😊
+
+Conforme combinamos, segue a proposta de serviços da *ADRIREZ HOME CARE*:
+
+📋 *Serviços Orçados:*
+${itemsList}
+
+💵 *Valor Total:* R$ ${totalValue}
+💳 *Condições de Pagamento:* ${paymentMethod || 'PIX ou Cartão em até 3x sem juros'}
+⏳ *Validade da proposta:* ${validityDays || 15} dias
+
+Trabalhamos com produtos de padrão hospitalar biodegradáveis, que eliminam ácaros, fungos e odores, além de resinas certificadas para impermeabilização sem alterar a textura do tecido.
+
+Podemos reservar o melhor dia e horário para você essa semana? 📅✨`;
+    }
+  }
+};
+
+class WhatsAppService {
+  /**
+   * Limpa o telefone para o formato padrão internacional 55DDD9XXXXXXXX
+   */
+  cleanPhoneNumber(phone) {
+    if (!phone) return '';
+    let digits = phone.replace(/\D/g, '');
+    // Se não tiver o 55 do Brasil na frente, adiciona
+    if (digits.length === 10 || digits.length === 11) {
+      digits = '55' + digits;
+    }
+    return digits;
+  }
+
+  /**
+   * Formata data ISO (YYYY-MM-DD) para DD/MM/AAAA
+   */
+  formatDateBR(isoDate) {
+    if (!isoDate) return '';
+    const parts = isoDate.split('-');
+    if (parts.length === 3) {
+      return `${parts[2]}/${parts[1]}/${parts[0]}`;
+    }
+    return isoDate;
+  }
+
+  /**
+   * Abre o WhatsApp direto no celular ou WhatsApp Web no desktop
+   */
+  sendMessage(phone, text) {
+    const cleanNumber = this.cleanPhoneNumber(phone);
+    if (!cleanNumber) {
+      alert('Telefone do cliente não informado ou inválido!');
+      return false;
+    }
+    const encodedText = encodeURIComponent(text);
+    const url = `https://wa.me/${cleanNumber}?text=${encodedText}`;
+    window.open(url, '_blank');
+    return true;
+  }
+
+  /**
+   * Gera o texto da mensagem a partir do template e dos dados
+   */
+  generateMessage(templateKey, data) {
+    const tpl = WHATSAPP_TEMPLATES[templateKey];
+    if (!tpl) return '';
+    return tpl.build(data);
+  }
+}
+
+window.whatsappService = new WhatsAppService();
+
+  </script>
+  <script>
+  /**
+ * Notification System - ADRIREZ HOME CARE
+ * Som sintetizado via Web Audio API, Toasts na tela, Push Notifications do navegador
+ */
+
+class NotificationManager {
+  constructor() {
+    this.audioContext = null;
+    this.soundEnabled = true;
+    this.initAudio();
+  }
+
+  initAudio() {
+    // Inicialização sob demanda do Web Audio API para contornar restrições de autoplay dos navegadores
+    const init = () => {
+      if (!this.audioContext) {
+        const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+        if (AudioContextClass) {
+          this.audioContext = new AudioContextClass();
+        }
+      }
+      document.removeEventListener('click', init);
+      document.removeEventListener('touchstart', init);
+    };
+    document.addEventListener('click', init, { once: true });
+    document.addEventListener('touchstart', init, { once: true });
+  }
+
+  /**
+   * Toca um som agradável de sino duplo (ding-dong profissional) usando síntese de frequência
+   */
+  playNotificationSound() {
+    if (!this.soundEnabled) return;
+    try {
+      const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+      if (!this.audioContext && AudioContextClass) {
+        this.audioContext = new AudioContextClass();
+      }
+      if (this.audioContext && this.audioContext.state === 'suspended') {
+        this.audioContext.resume();
+      }
+      if (!this.audioContext) return;
+
+      const now = this.audioContext.currentTime;
+
+      // Primeiro tom (suave, frequência 587.33 Hz - D5)
+      const osc1 = this.audioContext.createOscillator();
+      const gain1 = this.audioContext.createGain();
+      osc1.type = 'sine';
+      osc1.frequency.setValueAtTime(587.33, now);
+      gain1.gain.setValueAtTime(0.2, now);
+      gain1.gain.exponentialRampToValueAtTime(0.001, now + 0.5);
+      osc1.connect(gain1);
+      gain1.connect(this.audioContext.destination);
+      osc1.start(now);
+      osc1.stop(now + 0.5);
+
+      // Segundo tom (mais agudo e brilhante, frequência 880 Hz - A5)
+      const osc2 = this.audioContext.createOscillator();
+      const gain2 = this.audioContext.createGain();
+      osc2.type = 'sine';
+      osc2.frequency.setValueAtTime(880, now + 0.15);
+      gain2.gain.setValueAtTime(0.25, now + 0.15);
+      gain2.gain.exponentialRampToValueAtTime(0.001, now + 0.8);
+      osc2.connect(gain2);
+      gain2.connect(this.audioContext.destination);
+      osc2.start(now + 0.15);
+      osc2.stop(now + 0.8);
+
+    } catch (e) {
+      console.warn('Não foi possível reproduzir som de notificação:', e);
+    }
+  }
+
+  /**
+   * Solicita permissão para notificações nativas do sistema operacional / celular
+   */
+  async requestPermission() {
+    if ('Notification' in window) {
+      const perm = await Notification.requestPermission();
+      return perm === 'granted';
+    }
+    return false;
+  }
+
+  /**
+   * Dispara uma notificação completa (Banco local + Toast na tela + Som + Notificação nativa)
+   */
+  notify(title, message, options = {}) {
+    const { type = 'appointment', recipient = 'all', playSound = true } = options;
+
+    // 1. Salvar no histórico
+    const notif = window.storage.addNotification({
+      title,
+      message,
+      type,
+      recipient
+    });
+
+    // 2. Tocar som
+    if (playSound) {
+      this.playNotificationSound();
+    }
+
+    // 3. Exibir Toast visual moderno na tela
+    this.showToast(title, message, type);
+
+    // 4. Notificação do sistema/celular (se permitido)
+    if ('Notification' in window && Notification.permission === 'granted') {
+      try {
+        new Notification(`ADRIREZ: ${title}`, {
+          body: message,
+          icon: 'assets/logo.png',
+          badge: 'assets/logo.png'
+        });
+      } catch (e) {
+        console.warn('Notificação nativa falhou:', e);
+      }
+    }
+
+    // 5. Atualizar badge no cabeçalho
+    this.updateNotificationBadge();
+
+    return notif;
+  }
+
+  /**
+   * Exibe toast flutuante no topo da tela
+   */
+  showToast(title, message, type = 'info') {
+    const container = document.getElementById('toastContainer');
+    if (!container) return;
+
+    const toast = document.createElement('div');
+    toast.className = `flex items-start gap-3 p-4 rounded-xl shadow-xl border bg-white text-slate-800 transition-all duration-300 transform translate-y-[-20px] opacity-0 max-w-sm w-full pointer-events-auto border-sky-100 ring-1 ring-black/5`;
+    
+    let iconSvg = `
+      <div class="w-9 h-9 rounded-full bg-sky-100 text-sky-600 flex items-center justify-center shrink-0">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"></path></svg>
+      </div>`;
+
+    if (type === 'success' || type === 'quote') {
+      iconSvg = `
+        <div class="w-9 h-9 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center shrink-0">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+        </div>`;
+    }
+
+    toast.innerHTML = `
+      ${iconSvg}
+      <div class="flex-1 min-w-0">
+        <div class="flex items-center justify-between gap-1">
+          <h4 class="text-xs font-bold text-slate-900 tracking-wide uppercase">${title}</h4>
+          <span class="text-[10px] text-slate-400">agora</span>
+        </div>
+        <p class="text-xs text-slate-600 mt-0.5 line-clamp-2">${message}</p>
+      </div>
+      <button class="text-slate-400 hover:text-slate-600 p-1" onclick="this.parentElement.remove()">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+      </button>
+    `;
+
+    container.appendChild(toast);
+
+    // Animar entrada
+    requestAnimationFrame(() => {
+      toast.classList.remove('translate-y-[-20px]', 'opacity-0');
+      toast.classList.add('translate-y-0', 'opacity-100');
+    });
+
+    // Auto fechar após 6 segundos
+    setTimeout(() => {
+      toast.classList.add('opacity-0', 'scale-95');
+      setTimeout(() => toast.remove(), 300);
+    }, 6000);
+  }
+
+  updateNotificationBadge() {
+    const notifs = window.storage.getNotifications();
+    const unreadCount = notifs.filter(n => !n.read).length;
+    const badgeEl = document.getElementById('notificationBadge');
+    if (badgeEl) {
+      if (unreadCount > 0) {
+        badgeEl.textContent = unreadCount > 9 ? '9+' : unreadCount;
+        badgeEl.classList.remove('hidden');
+      } else {
+        badgeEl.classList.add('hidden');
+      }
+    }
+  }
+}
+
+window.notificationManager = new NotificationManager();
+
+  </script>
+  <script>
+  /**
+ * Cloud Database Integration - ADRIREZ HOME CARE
+ * Sincronização em Tempo Real com Supabase (PostgreSQL na Nuvem)
+ * Permite que Adriano e Anny usem o aplicativo externamente no celular e PC sincronizados!
+ */
+
+const CLOUD_CONFIG_KEY = 'adrirez_supabase_config';
+
+class CloudDatabaseManager {
+  constructor() {
+    this.client = null;
+    this.isConnected = false;
+    this.lastError = null;
+    this.config = this.loadConfig();
+    this.init();
+  }
+
+  loadConfig() {
+    try {
+      const saved = localStorage.getItem(CLOUD_CONFIG_KEY);
+      return saved ? JSON.parse(saved) : { url: '', anonKey: '', enabled: false };
+    } catch (e) {
+      return { url: '', anonKey: '', enabled: false };
+    }
+  }
+
+  formatUrl(url) {
+    if (!url) return '';
+    let clean = url.trim();
+    if (!clean.startsWith('http://') && !clean.startsWith('https://')) {
+      clean = 'https://' + clean;
+    }
+    // Remover barras no final
+    clean = clean.replace(/\/+$/, '');
+    return clean;
+  }
+
+  async saveConfig(rawUrl, rawAnonKey, enabled = true) {
+    const url = this.formatUrl(rawUrl);
+    const anonKey = (rawAnonKey || '').trim();
+
+    this.config = { url, anonKey, enabled };
+    localStorage.setItem(CLOUD_CONFIG_KEY, JSON.stringify(this.config));
+
+    if (!enabled) {
+      this.isConnected = false;
+      this.updateStatusBadge();
+      return { success: false, disabled: true, message: 'Modo local ativado (offline).' };
+    }
+
+    return await this.testAndInit();
+  }
+
+  async testAndInit() {
+    if (!this.config.url || !this.config.anonKey) {
+      this.isConnected = false;
+      this.updateStatusBadge();
+      return { success: false, message: 'Informe a Project URL e a Anon Key do Supabase.' };
+    }
+
+    if (!window.supabase || !window.supabase.createClient) {
+      this.isConnected = false;
+      this.updateStatusBadge();
+      return { success: false, message: 'Biblioteca do Supabase não foi carregada no navegador.' };
+    }
+
+    try {
+      this.client = window.supabase.createClient(this.config.url, this.config.anonKey);
+      
+      // Testar conexão consultando a tabela 'clients'
+      const { data, error } = await this.client.from('clients').select('id').limit(1);
+
+      if (error) {
+        console.warn('Erro ao conectar ao Supabase:', error);
+        this.isConnected = false;
+        this.updateStatusBadge();
+
+        // Diagnóstico inteligente do erro
+        const msg = (error.message || '').toLowerCase();
+        const code = error.code || '';
+
+        if (code === '42P01' || msg.includes('relation') || msg.includes('does not exist') || code === 'PGRST204' || code === 'PGRST205') {
+          return {
+            success: false,
+            tablesMissing: true,
+            message: 'Conectou ao Supabase, mas as tabelas ainda NÃO foram criadas!\n\nVocê só precisa rodar o script SQL (schema.sql) no painel do Supabase para criar as tabelas.'
+          };
+        }
+
+        if (error.status === 401 || msg.includes('jwt') || msg.includes('api key') || msg.includes('unauthorized') || code === 'PGRST301') {
+          return {
+            success: false,
+            invalidKey: true,
+            message: 'Chave Anon Key inválida ou expirada.\n\nVerifique se você copiou a chave "anon public" (e não a secret/service_role) no Supabase.'
+          };
+        }
+
+        return {
+          success: false,
+          message: `Erro do Supabase: ${error.message || 'Código ' + code}`
+        };
+      }
+
+      // Conexão bem-sucedida!
+      this.isConnected = true;
+      this.updateStatusBadge();
+      this.setupRealtimeListeners();
+      console.log('✅ Supabase conectado com sucesso! Sincronização em tempo real ativa.');
+
+      return {
+        success: true,
+        message: 'Banco de Dados na Nuvem conectado com sucesso! Sincronização em tempo real ativa.'
+      };
+
+    } catch (err) {
+      console.error('Falha de rede ou URL ao inicializar Supabase:', err);
+      this.isConnected = false;
+      this.updateStatusBadge();
+
+      return {
+        success: false,
+        networkError: true,
+        message: `Não foi possível alcançar a URL do Supabase (${this.config.url}). Verifique se o endereço está correto e se o projeto não está pausado.`
+      };
+    }
+  }
+
+  async init() {
+    if (!this.config.url || !this.config.anonKey || !this.config.enabled) {
+      this.isConnected = false;
+      this.updateStatusBadge();
+      return false;
+    }
+    const res = await this.testAndInit();
+    return res.success;
+  }
+
+  setupRealtimeListeners() {
+    if (!this.client || !this.isConnected) return;
+
+    try {
+      this.client
+        .channel('schema-db-changes')
+        .on('postgres_changes', { event: '*', schema: 'public', table: 'appointments' }, (payload) => {
+          this.syncFromCloud('appointments');
+        })
+        .on('postgres_changes', { event: '*', schema: 'public', table: 'clients' }, (payload) => {
+          this.syncFromCloud('clients');
+        })
+        .on('postgres_changes', { event: '*', schema: 'public', table: 'quotes' }, (payload) => {
+          this.syncFromCloud('quotes');
+        })
+        .subscribe();
+    } catch (e) {
+      console.warn('Erro ao configurar realtime listeners:', e);
+    }
+  }
+
+  async syncFromCloud(tableName) {
+    if (!this.client || !this.isConnected) return;
+    try {
+      const { data, error } = await this.client.from(tableName).select('*');
+      if (!error && data) {
+        if (tableName === 'clients') {
+          window.storage.save('adrirez_clients', data.map(d => ({
+            id: d.id,
+            name: d.name,
+            phone: d.phone,
+            address: d.address,
+            neighborhood: d.neighborhood,
+            city: d.city,
+            cep: d.cep,
+            notes: d.notes,
+            createdAt: d.created_at
+          })));
+        } else if (tableName === 'appointments') {
+          window.storage.save('adrirez_appointments', data.map(d => ({
+            id: d.id,
+            clientId: d.client_id,
+            clientName: d.client_name,
+            clientPhone: d.client_phone,
+            date: d.date,
+            time: d.time,
+            durationMinutes: d.duration_minutes,
+            services: d.services,
+            assignedTo: d.assigned_to,
+            address: d.address,
+            totalValue: Number(d.total_value),
+            paymentMethod: d.payment_method,
+            status: d.status,
+            notes: d.notes,
+            createdAt: d.created_at
+          })));
+        } else if (tableName === 'quotes') {
+          window.storage.save('adrirez_quotes', data.map(d => ({
+            id: d.id,
+            clientId: d.client_id,
+            clientName: d.client_name,
+            clientPhone: d.client_phone,
+            items: d.items,
+            subtotal: Number(d.subtotal),
+            discount: Number(d.discount),
+            total: Number(d.total),
+            paymentMethod: d.payment_method,
+            validityDays: d.validity_days,
+            status: d.status,
+            notes: d.notes,
+            createdAt: d.created_at
+          })));
+        }
+        if (window.app) window.app.renderCurrentView();
+      }
+    } catch (e) {
+      console.warn(`Erro na sincronização da tabela ${tableName}:`, e);
+    }
+  }
+
+  // Enviar dados locais para a nuvem
+  async syncAllToCloud() {
+    if (!this.client || !this.isConnected) {
+      alert('Banco de dados em nuvem não configurado ou desconectado. Conecte primeiro.');
+      return false;
+    }
+
+    try {
+      const clients = window.storage.getClients().map(c => ({
+        id: c.id,
+        name: c.name,
+        phone: c.phone,
+        address: c.address,
+        neighborhood: c.neighborhood,
+        city: c.city,
+        cep: c.cep,
+        notes: c.notes,
+        created_at: c.createdAt || new Date().toISOString()
+      }));
+
+      const appointments = window.storage.getAppointments().map(a => ({
+        id: a.id,
+        client_id: a.clientId,
+        client_name: a.clientName,
+        client_phone: a.clientPhone,
+        date: a.date,
+        time: a.time,
+        duration_minutes: a.durationMinutes || 120,
+        services: a.services,
+        assigned_to: a.assignedTo,
+        address: a.address,
+        total_value: a.totalValue,
+        payment_method: a.paymentMethod,
+        status: a.status,
+        notes: a.notes,
+        created_at: a.createdAt || new Date().toISOString()
+      }));
+
+      const quotes = window.storage.getQuotes().map(q => ({
+        id: q.id,
+        client_id: q.clientId,
+        client_name: q.clientName,
+        client_phone: q.clientPhone,
+        items: q.items,
+        subtotal: q.subtotal,
+        discount: q.discount,
+        total: q.total,
+        payment_method: q.paymentMethod,
+        validity_days: q.validityDays,
+        status: q.status,
+        notes: q.notes,
+        created_at: q.createdAt || new Date().toISOString()
+      }));
+
+      if (clients.length) await this.client.from('clients').upsert(clients);
+      if (appointments.length) await this.client.from('appointments').upsert(appointments);
+      if (quotes.length) await this.client.from('quotes').upsert(quotes);
+
+      alert('✅ Todos os seus dados locais foram sincronizados com sucesso na Nuvem!');
+      return true;
+    } catch (e) {
+      alert('Erro na sincronização com a Nuvem: ' + e.message);
+      return false;
+    }
+  }
+
+  async saveClientCloud(client) {
+    if (!this.client || !this.isConnected) return;
+    try {
+      await this.client.from('clients').upsert({
+        id: client.id,
+        name: client.name,
+        phone: client.phone,
+        address: client.address,
+        neighborhood: client.neighborhood,
+        city: client.city,
+        cep: client.cep,
+        notes: client.notes,
+        created_at: client.createdAt || new Date().toISOString()
+      });
+    } catch (e) {
+      console.warn('Erro ao salvar cliente na nuvem:', e);
+    }
+  }
+
+  async saveAppointmentCloud(app) {
+    if (!this.client || !this.isConnected) return;
+    try {
+      await this.client.from('appointments').upsert({
+        id: app.id,
+        client_id: app.clientId,
+        client_name: app.clientName,
+        client_phone: app.clientPhone,
+        date: app.date,
+        time: app.time,
+        duration_minutes: app.durationMinutes || 120,
+        services: app.services,
+        assigned_to: app.assignedTo,
+        address: app.address,
+        total_value: app.totalValue,
+        payment_method: app.paymentMethod,
+        status: app.status,
+        notes: app.notes,
+        created_at: app.createdAt || new Date().toISOString()
+      });
+    } catch (e) {
+      console.warn('Erro ao salvar agendamento na nuvem:', e);
+    }
+  }
+
+  async saveQuoteCloud(quote) {
+    if (!this.client || !this.isConnected) return;
+    try {
+      await this.client.from('quotes').upsert({
+        id: quote.id,
+        client_id: quote.clientId,
+        client_name: quote.clientName,
+        client_phone: quote.clientPhone,
+        items: quote.items,
+        subtotal: quote.subtotal,
+        discount: quote.discount,
+        total: quote.total,
+        payment_method: quote.paymentMethod,
+        validity_days: quote.validityDays,
+        status: quote.status,
+        notes: quote.notes,
+        created_at: quote.createdAt || new Date().toISOString()
+      });
+    } catch (e) {
+      console.warn('Erro ao salvar orçamento na nuvem:', e);
+    }
+  }
+
+  updateStatusBadge() {
+    const el = document.getElementById('cloudDbStatusBadge');
+    if (!el) return;
+    if (this.isConnected) {
+      el.className = 'text-xs font-semibold px-2.5 py-1 rounded-full bg-emerald-100 text-emerald-800 flex items-center gap-1.5';
+      el.innerHTML = '<span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span> Nuvem Conectada (Tempo Real)';
+    } else {
+      el.className = 'text-xs font-semibold px-2.5 py-1 rounded-full bg-amber-100 text-amber-800 flex items-center gap-1.5';
+      el.innerHTML = '<span class="w-2 h-2 rounded-full bg-amber-500"></span> Modo Local (Offline / Sem Nuvem)';
+    }
+  }
+}
+
+window.cloudDb = new CloudDatabaseManager();
+
+  </script>
+  <script>
+  /**
+ * App Controller - ADRIREZ HOME CARE
+ * Gerenciamento central de interface, eventos, navegação e regras de negócio
+ */
+
+class AdrirezApp {
+  constructor() {
+    this.currentView = 'dashboard';
+    this.activeFilterTechnician = 'all';
+    this.activeAgendaView = 'list'; // 'list' | 'calendar'
+    this.selectedDate = new Date().toISOString().split('T')[0];
+    this.quoteItems = [];
+    this.whatsappModalData = null;
+  }
+
+  init() {
+    this.bindEvents();
+    this.renderCurrentView();
+    window.notificationManager.updateNotificationBadge();
+    this.renderNotificationList();
+    this.renderServiceOptionsInModal();
+  }
+
+  // Navegação entre abas
+  navigate(viewId) {
+    this.currentView = viewId;
+    document.querySelectorAll('.view-container').forEach(el => el.classList.add('hidden'));
+    
+    const target = document.getElementById(`view-${viewId}`);
+    if (target) {
+      target.classList.remove('hidden');
+    }
+
+    // Atualizar botões ativos na barra superior e inferior
+    document.querySelectorAll('.nav-btn').forEach(btn => {
+      const match = btn.getAttribute('data-view') === viewId;
+      if (match) {
+        btn.classList.add('text-sky-600', 'font-semibold', 'bg-sky-50');
+        btn.classList.remove('text-slate-600', 'hover:bg-slate-100');
+      } else {
+        btn.classList.remove('text-sky-600', 'font-semibold', 'bg-sky-50');
+        btn.classList.add('text-slate-600', 'hover:bg-slate-100');
+      }
+    });
+
+    this.renderCurrentView();
+  }
+
+  renderCurrentView() {
+    switch (this.currentView) {
+      case 'dashboard':
+        this.renderDashboard();
+        break;
+      case 'agenda':
+        this.renderAgenda();
+        break;
+      case 'clients':
+        this.renderClients();
+        break;
+      case 'quotes':
+        this.renderQuotes();
+        break;
+      case 'settings':
+        this.renderSettings();
+        break;
+    }
+    // Re-iniciar ícones se Lucide estiver disponível
+    if (window.lucide) {
+      window.lucide.createIcons();
+    }
+  }
+
+  bindEvents() {
+    // Cliques de navegação
+    document.querySelectorAll('[data-view]').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        const view = btn.getAttribute('data-view');
+        if (view) this.navigate(view);
+      });
+    });
+
+    // Notificações Drawer
+    const btnToggleNotif = document.getElementById('btnToggleNotifications');
+    const drawerNotif = document.getElementById('notificationsDrawer');
+    const backdropNotif = document.getElementById('notificationsBackdrop');
+    const btnCloseNotif = document.getElementById('btnCloseNotifications');
+
+    const toggleNotifDrawer = (open) => {
+      if (open) {
+        drawerNotif.classList.remove('translate-x-full');
+        backdropNotif.classList.remove('hidden');
+        this.renderNotificationList();
+      } else {
+        drawerNotif.classList.add('translate-x-full');
+        backdropNotif.classList.add('hidden');
+      }
+    };
+
+    if (btnToggleNotif) btnToggleNotif.addEventListener('click', () => toggleNotifDrawer(true));
+    if (btnCloseNotif) btnCloseNotif.addEventListener('click', () => toggleNotifDrawer(false));
+    if (backdropNotif) backdropNotif.addEventListener('click', () => toggleNotifDrawer(false));
+
+    // Marcar todas notificações como lidas
+    const btnMarkAllRead = document.getElementById('btnMarkAllNotificationsRead');
+    if (btnMarkAllRead) {
+      btnMarkAllRead.addEventListener('click', () => {
+        window.storage.markAllNotificationsRead();
+        window.notificationManager.updateNotificationBadge();
+        this.renderNotificationList();
+      });
+    }
+
+    // Busca de clientes
+    const searchClient = document.getElementById('clientSearchInput');
+    if (searchClient) {
+      searchClient.addEventListener('input', (e) => {
+        this.renderClients(e.target.value);
+      });
+    }
+
+    // Busca na Agenda
+    const searchAgenda = document.getElementById('agendaSearchInput');
+    if (searchAgenda) {
+      searchAgenda.addEventListener('input', (e) => {
+        this.renderAgenda();
+      });
+    }
+
+    // Filtro por Técnico na Agenda
+    document.querySelectorAll('.filter-tech-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.filter-tech-btn').forEach(b => {
+          b.classList.remove('bg-sky-600', 'text-white');
+          b.classList.add('bg-white', 'text-slate-700', 'border');
+        });
+        btn.classList.add('bg-sky-600', 'text-white');
+        btn.classList.remove('bg-white', 'text-slate-700', 'border');
+        this.activeFilterTechnician = btn.getAttribute('data-tech') || 'all';
+        this.renderAgenda();
+      });
+    });
+
+    // Seletor de data na agenda
+    const datePicker = document.getElementById('agendaDatePicker');
+    if (datePicker) {
+      datePicker.value = this.selectedDate;
+      datePicker.addEventListener('change', (e) => {
+        this.selectedDate = e.target.value;
+        this.renderAgenda();
+      });
+    }
+  }
+
+  // ==========================================
+  // DASHBOARD
+  // ==========================================
+  renderDashboard() {
+    const appointments = window.storage.getAppointments();
+    const clients = window.storage.getClients();
+    const quotes = window.storage.getQuotes();
+    const today = new Date().toISOString().split('T')[0];
+
+    // Métricas
+    const todayAppointments = appointments.filter(a => a.date === today && a.status !== 'cancelado');
+    const pendingAppointments = appointments.filter(a => a.status === 'pendente');
+
+    // Faturamento do mês atual
+    const currentMonthPrefix = today.substring(0, 7); // 'YYYY-MM'
+    const monthAppointments = appointments.filter(a => a.date && a.date.startsWith(currentMonthPrefix) && a.status !== 'cancelado');
+    const monthRevenue = monthAppointments.reduce((sum, a) => sum + (Number(a.totalValue) || 0), 0);
+
+    const elRev = document.getElementById('dashMonthRevenue');
+    if (elRev) elRev.textContent = `R$ ${monthRevenue.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+
+    const elTodayCount = document.getElementById('dashTodayCount');
+    if (elTodayCount) elTodayCount.textContent = todayAppointments.length;
+
+    const elPendingCount = document.getElementById('dashPendingCount');
+    if (elPendingCount) elPendingCount.textContent = pendingAppointments.length;
+
+    const elClientsCount = document.getElementById('dashClientsCount');
+    if (elClientsCount) elClientsCount.textContent = clients.length;
+
+    // Renderizar Agendamentos de Hoje
+    const todayListContainer = document.getElementById('dashTodayAppointmentsList');
+    if (todayListContainer) {
+      if (todayAppointments.length === 0) {
+        todayListContainer.innerHTML = `
+          <div class="p-8 text-center bg-slate-50 border border-dashed border-slate-200 rounded-2xl">
+            <div class="w-12 h-12 bg-sky-100 text-sky-600 rounded-full flex items-center justify-center mx-auto mb-3">
+              <i data-lucide="calendar" class="w-6 h-6"></i>
+            </div>
+            <p class="text-sm font-semibold text-slate-700">Nenhum atendimento agendado para hoje!</p>
+            <p class="text-xs text-slate-500 mt-1">Aproveite para prospectar clientes, enviar propostas ou agendar novos serviços.</p>
+            <button onclick="window.app.openAppointmentModal()" class="mt-4 inline-flex items-center gap-1.5 px-4 py-2 bg-sky-600 hover:bg-sky-700 text-white text-xs font-semibold rounded-xl shadow-sm transition">
+              <i data-lucide="plus" class="w-4 h-4"></i> Agendar Agora
+            </button>
+          </div>
+        `;
+      } else {
+        // Ordenar por horário
+        todayAppointments.sort((a, b) => (a.time || '').localeCompare(b.time || ''));
+        todayListContainer.innerHTML = todayAppointments.map(app => this.createAppointmentCardHTML(app, true)).join('');
+      }
+    }
+
+    // Próximos Atendimentos da Semana (excluindo hoje)
+    const upcomingListContainer = document.getElementById('dashUpcomingAppointmentsList');
+    if (upcomingListContainer) {
+      const upcoming = appointments
+        .filter(a => a.date > today && a.status !== 'cancelado')
+        .sort((a, b) => a.date.localeCompare(b.date) || (a.time || '').localeCompare(b.time || ''))
+        .slice(0, 5);
+
+      if (upcoming.length === 0) {
+        upcomingListContainer.innerHTML = `
+          <div class="p-6 text-center text-slate-400 text-xs">
+            Nenhum outro atendimento futuro cadastrado.
+          </div>
+        `;
+      } else {
+        upcomingListContainer.innerHTML = upcoming.map(app => this.createAppointmentCardHTML(app, false)).join('');
+      }
+    }
+  }
+
+  // Card de Agendamento reutilizável
+  createAppointmentCardHTML(app, isToday = false) {
+    const techBadge = this.getTechBadgeHTML(app.assignedTo);
+    const statusBadge = this.getStatusBadgeHTML(app.status);
+    const dateFormatted = window.whatsappService.formatDateBR(app.date);
+
+    return `
+      <div class="bg-white border border-slate-200/90 rounded-2xl p-4 shadow-sm hover:shadow-md transition action-card">
+        <div class="flex flex-wrap items-start justify-between gap-2 mb-3">
+          <div class="flex items-center gap-2">
+            <span class="text-xs font-bold px-2.5 py-1 bg-slate-900 text-white rounded-lg flex items-center gap-1">
+              <i data-lucide="clock" class="w-3.5 h-3.5"></i> ${app.time || '--:--'}h
+            </span>
+            ${!isToday ? `<span class="text-xs font-semibold text-slate-600 bg-slate-100 px-2 py-0.5 rounded-md">${dateFormatted}</span>` : ''}
+            ${statusBadge}
+          </div>
+          <div>
+            ${techBadge}
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <div class="flex items-center justify-between">
+            <h4 class="text-base font-bold text-slate-900">${app.clientName}</h4>
+            <span class="text-sm font-bold text-emerald-600">R$ ${Number(app.totalValue || 0).toFixed(2)}</span>
+          </div>
+          <div class="flex items-center gap-1 text-xs text-slate-600 mt-1">
+            <i data-lucide="map-pin" class="w-3.5 h-3.5 text-slate-400 shrink-0"></i>
+            <span class="truncate">${app.address || 'Endereço não informado'}</span>
+          </div>
+          <div class="flex items-center gap-1 text-xs text-sky-700 font-medium mt-1">
+            <i data-lucide="sparkles" class="w-3.5 h-3.5 text-sky-500 shrink-0"></i>
+            <span class="line-clamp-1">${Array.isArray(app.services) ? app.services.join(', ') : app.services}</span>
+          </div>
+          ${app.notes ? `<div class="mt-2 text-xs text-slate-500 italic bg-slate-50 p-2 rounded-lg border border-slate-100">Obs: ${app.notes}</div>` : ''}
+        </div>
+
+        <!-- Botões de Ação Rápida -->
+        <div class="pt-3 border-t border-slate-100 flex flex-wrap items-center justify-between gap-2">
+          <div class="flex items-center gap-1.5">
+            <!-- Botão WhatsApp 1 Clique -->
+            <button onclick="window.app.openWhatsAppModal('appointment', '${app.id}')" title="Enviar WhatsApp de 1 clique" class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-semibold rounded-xl shadow-sm transition">
+              <i data-lucide="message-circle" class="w-4 h-4"></i> WhatsApp
+            </button>
+            <!-- Botão Rota Maps / Waze -->
+            <a href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(app.address || '')}" target="_blank" title="Abrir no Google Maps / Waze" class="inline-flex items-center gap-1 px-2.5 py-1.5 bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-medium rounded-xl transition">
+              <i data-lucide="navigation" class="w-3.5 h-3.5"></i> Mapa
+            </a>
+            <!-- Botão Ligar -->
+            <a href="tel:${app.clientPhone || ''}" title="Ligar para o cliente" class="inline-flex items-center gap-1 px-2.5 py-1.5 bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-medium rounded-xl transition">
+              <i data-lucide="phone" class="w-3.5 h-3.5"></i>
+            </a>
+          </div>
+
+          <div class="flex items-center gap-1.5">
+            <!-- Mudar Status Rápido -->
+            <select onchange="window.app.changeAppointmentStatus('${app.id}', this.value)" class="text-xs bg-slate-50 border border-slate-200 rounded-lg px-2 py-1 text-slate-700 font-medium focus:ring-sky-500">
+              <option value="pendente" ${app.status === 'pendente' ? 'selected' : ''}>Pendente</option>
+              <option value="confirmado" ${app.status === 'confirmado' ? 'selected' : ''}>Confirmado</option>
+              <option value="a_caminho" ${app.status === 'a_caminho' ? 'selected' : ''}>A caminho</option>
+              <option value="em_andamento" ${app.status === 'em_andamento' ? 'selected' : ''}>Em andamento</option>
+              <option value="concluido" ${app.status === 'concluido' ? 'selected' : ''}>Concluído</option>
+              <option value="cancelado" ${app.status === 'cancelado' ? 'selected' : ''}>Cancelado</option>
+            </select>
+            <!-- Editar -->
+            <button onclick="window.app.openAppointmentModal('${app.id}')" title="Editar agendamento" class="p-1.5 text-slate-400 hover:text-sky-600 rounded-lg hover:bg-sky-50 transition">
+              <i data-lucide="edit-3" class="w-4 h-4"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    `;
+  }
+
+  getTechBadgeHTML(assignedTo) {
+    if (assignedTo === 'adriano') {
+      return `<span class="badge-adriano text-[11px] font-semibold px-2 py-0.5 rounded-full flex items-center gap-1">
+        <span class="w-2 h-2 rounded-full bg-blue-600"></span> Adriano
+      </span>`;
+    } else if (assignedTo === 'anny') {
+      return `<span class="badge-anny text-[11px] font-semibold px-2 py-0.5 rounded-full flex items-center gap-1">
+        <span class="w-2 h-2 rounded-full bg-pink-600"></span> Anny
+      </span>`;
+    }
+    return `<span class="badge-ambos text-[11px] font-semibold px-2 py-0.5 rounded-full flex items-center gap-1">
+      <span class="w-2 h-2 rounded-full bg-emerald-600"></span> Adriano & Anny
+    </span>`;
+  }
+
+  getStatusBadgeHTML(status) {
+    const map = {
+      pendente: { label: 'Pendente', class: 'status-pendente' },
+      confirmado: { label: 'Confirmado', class: 'status-confirmado' },
+      a_caminho: { label: 'A Caminho', class: 'status-a-caminho' },
+      em_andamento: { label: 'Em Execução', class: 'status-em-andamento' },
+      concluido: { label: 'Concluído', class: 'status-concluido' },
+      cancelado: { label: 'Cancelado', class: 'status-cancelado' }
+    };
+    const s = map[status] || { label: status, class: 'bg-slate-100 text-slate-700' };
+    return `<span class="${s.class} text-[11px] font-semibold px-2 py-0.5 rounded-md">${s.label}</span>`;
+  }
+
+  changeAppointmentStatus(id, newStatus) {
+    const appointments = window.storage.getAppointments();
+    const app = appointments.find(a => a.id === id);
+    if (app) {
+      app.status = newStatus;
+      window.storage.saveAppointment(app);
+      window.notificationManager.notify(
+        'Status Atualizado',
+        `Agendamento de ${app.clientName} alterado para "${newStatus.replace('_', ' ')}".`,
+        { playSound: false, type: 'info' }
+      );
+      this.renderCurrentView();
+    }
+  }
+
+  // ==========================================
+  // AGENDA & CALENDÁRIO
+  // ==========================================
+  renderAgenda() {
+    let appointments = window.storage.getAppointments();
+    const searchVal = (document.getElementById('agendaSearchInput')?.value || '').toLowerCase().trim();
+
+    // Filtro por Técnico
+    if (this.activeFilterTechnician !== 'all') {
+      appointments = appointments.filter(a => a.assignedTo === this.activeFilterTechnician || a.assignedTo === 'ambos');
+    }
+
+    // Filtro por busca
+    if (searchVal) {
+      appointments = appointments.filter(a => 
+        (a.clientName && a.clientName.toLowerCase().includes(searchVal)) ||
+        (a.address && a.address.toLowerCase().includes(searchVal)) ||
+        (Array.isArray(a.services) ? a.services.join(' ').toLowerCase().includes(searchVal) : (a.services || '').toLowerCase().includes(searchVal))
+      );
+    }
+
+    const container = document.getElementById('agendaListContainer');
+    if (!container) return;
+
+    if (appointments.length === 0) {
+      container.innerHTML = `
+        <div class="col-span-full py-12 text-center bg-white border border-dashed border-slate-200 rounded-2xl">
+          <div class="w-12 h-12 bg-sky-50 text-sky-600 rounded-full flex items-center justify-center mx-auto mb-3">
+            <i data-lucide="calendar-x" class="w-6 h-6"></i>
+          </div>
+          <p class="text-sm font-semibold text-slate-700">Nenhum agendamento encontrado!</p>
+          <p class="text-xs text-slate-500 mt-1">Crie um novo agendamento ou ajuste os filtros acima.</p>
+          <button onclick="window.app.openAppointmentModal()" class="mt-4 px-4 py-2 bg-sky-600 hover:bg-sky-700 text-white text-xs font-semibold rounded-xl">
+            + Novo Agendamento
+          </button>
+        </div>
+      `;
+      return;
+    }
+
+    // Agrupar por data
+    appointments.sort((a, b) => a.date.localeCompare(b.date) || (a.time || '').localeCompare(b.time || ''));
+
+    const groups = {};
+    appointments.forEach(app => {
+      const d = app.date;
+      if (!groups[d]) groups[d] = [];
+      groups[d].push(app);
+    });
+
+    const today = new Date().toISOString().split('T')[0];
+    let html = '';
+
+    for (const date in groups) {
+      const isToday = date === today;
+      const dateFormatted = window.whatsappService.formatDateBR(date);
+      const dayName = new Date(date + 'T12:00:00').toLocaleDateString('pt-BR', { weekday: 'long' });
+
+      html += `
+        <div class="mb-6">
+          <div class="flex items-center gap-2 mb-3">
+            <h3 class="text-sm font-bold text-slate-800 capitalize flex items-center gap-2">
+              <span class="w-2.5 h-2.5 rounded-full ${isToday ? 'bg-emerald-500 animate-pulse' : 'bg-sky-500'}"></span>
+              ${dayName}, ${dateFormatted}
+              ${isToday ? '<span class="text-[10px] bg-emerald-100 text-emerald-800 font-bold px-2 py-0.5 rounded-full">HOJE</span>' : ''}
+            </h3>
+            <div class="flex-1 border-t border-slate-200"></div>
+            <span class="text-xs text-slate-400 font-medium">${groups[date].length} atendimento(s)</span>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            ${groups[date].map(app => this.createAppointmentCardHTML(app, isToday)).join('')}
+          </div>
+        </div>
+      `;
+    }
+
+    container.innerHTML = html;
+  }
+
+  // ==========================================
+  // CLIENTES / CRM
+  // ==========================================
+  renderClients(searchTerm = '') {
+    let clients = window.storage.getClients();
+    const query = searchTerm.toLowerCase().trim();
+
+    if (query) {
+      clients = clients.filter(c => 
+        (c.name && c.name.toLowerCase().includes(query)) ||
+        (c.phone && c.phone.includes(query)) ||
+        (c.neighborhood && c.neighborhood.toLowerCase().includes(query)) ||
+        (c.address && c.address.toLowerCase().includes(query))
+      );
+    }
+
+    const container = document.getElementById('clientsListContainer');
+    if (!container) return;
+
+    if (clients.length === 0) {
+      container.innerHTML = `
+        <div class="col-span-full py-12 text-center bg-white border border-dashed border-slate-200 rounded-2xl">
+          <div class="w-12 h-12 bg-sky-50 text-sky-600 rounded-full flex items-center justify-center mx-auto mb-3">
+            <i data-lucide="users" class="w-6 h-6"></i>
+          </div>
+          <p class="text-sm font-semibold text-slate-700">Nenhum cliente cadastrado ainda.</p>
+          <p class="text-xs text-slate-500 mt-1">Cadastre seus clientes com endereço completo e observações.</p>
+          <button onclick="window.app.openClientModal()" class="mt-4 px-4 py-2 bg-sky-600 hover:bg-sky-700 text-white text-xs font-semibold rounded-xl">
+            + Cadastrar Cliente
+          </button>
+        </div>
+      `;
+      return;
+    }
+
+    const appointments = window.storage.getAppointments();
+
+    container.innerHTML = clients.map(client => {
+      // Contar agendamentos do cliente
+      const clientApps = appointments.filter(a => a.clientId === client.id || a.clientName === client.name);
+      const cleanPhone = window.whatsappService.cleanPhoneNumber(client.phone);
+
+      return `
+        <div class="bg-white border border-slate-200/90 rounded-2xl p-4 shadow-sm hover:shadow-md transition action-card flex flex-col justify-between">
+          <div>
+            <div class="flex items-start justify-between gap-2 mb-2">
+              <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-sky-500 to-blue-600 text-white font-bold text-sm flex items-center justify-center shrink-0 shadow-sm">
+                  ${client.name.substring(0, 2).toUpperCase()}
+                </div>
+                <div>
+                  <h4 class="text-sm font-bold text-slate-900 leading-snug">${client.name}</h4>
+                  <span class="text-xs text-slate-500">${client.phone || 'Sem telefone'}</span>
+                </div>
+              </div>
+              <div class="flex items-center gap-1">
+                <button onclick="window.app.openClientModal('${client.id}')" title="Editar cliente" class="p-1.5 text-slate-400 hover:text-sky-600 rounded-lg hover:bg-sky-50 transition">
+                  <i data-lucide="edit-3" class="w-4 h-4"></i>
+                </button>
+              </div>
+            </div>
+
+            <div class="space-y-1.5 mt-3 text-xs text-slate-600">
+              <div class="flex items-start gap-1.5">
+                <i data-lucide="map-pin" class="w-3.5 h-3.5 text-slate-400 mt-0.5 shrink-0"></i>
+                <span class="line-clamp-2">${client.address || 'Endereço não cadastrado'} ${client.neighborhood ? `(${client.neighborhood})` : ''}</span>
+              </div>
+              ${client.notes ? `
+                <div class="p-2 bg-slate-50 border border-slate-100 rounded-lg text-slate-500 italic text-[11px]">
+                  <strong>Obs:</strong> ${client.notes}
+                </div>
+              ` : ''}
+            </div>
+          </div>
+
+          <div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between gap-2">
+            <span class="text-[11px] font-medium text-slate-400">
+              ${clientApps.length} serviço(s) realizado(s)
+            </span>
+            <div class="flex items-center gap-1.5">
+              <!-- WhatsApp direto -->
+              <a href="https://wa.me/${cleanPhone}" target="_blank" class="inline-flex items-center gap-1 px-3 py-1.5 bg-emerald-50 text-emerald-700 hover:bg-emerald-100 text-xs font-semibold rounded-xl transition">
+                <i data-lucide="message-circle" class="w-3.5 h-3.5"></i> WhatsApp
+              </a>
+              <!-- Novo Agendamento para este cliente -->
+              <button onclick="window.app.quickBookForClient('${client.id}')" title="Agendar serviço para este cliente" class="inline-flex items-center gap-1 px-3 py-1.5 bg-sky-600 hover:bg-sky-700 text-white text-xs font-semibold rounded-xl transition">
+                <i data-lucide="calendar-plus" class="w-3.5 h-3.5"></i> Agendar
+              </button>
+            </div>
+          </div>
+        </div>
+      `;
+    }).join('');
+  }
+
+  quickBookForClient(clientId) {
+    this.openAppointmentModal(null, clientId);
+  }
+
+  // ==========================================
+  // ORÇAMENTOS
+  // ==========================================
+  renderQuotes() {
+    const quotes = window.storage.getQuotes();
+    const container = document.getElementById('quotesListContainer');
+    if (!container) return;
+
+    if (quotes.length === 0) {
+      container.innerHTML = `
+        <div class="col-span-full py-12 text-center bg-white border border-dashed border-slate-200 rounded-2xl">
+          <div class="w-12 h-12 bg-sky-50 text-sky-600 rounded-full flex items-center justify-center mx-auto mb-3">
+            <i data-lucide="file-text" class="w-6 h-6"></i>
+          </div>
+          <p class="text-sm font-semibold text-slate-700">Nenhum orçamento cadastrado.</p>
+          <p class="text-xs text-slate-500 mt-1">Crie propostas rápidas e envie no WhatsApp do cliente com 1 clique!</p>
+          <button onclick="window.app.openQuoteModal()" class="mt-4 px-4 py-2 bg-sky-600 hover:bg-sky-700 text-white text-xs font-semibold rounded-xl">
+            + Criar Orçamento
+          </button>
+        </div>
+      `;
+      return;
+    }
+
+    quotes.sort((a, b) => new Date(b.createdAt || 0) - new Date(a.createdAt || 0));
+
+    container.innerHTML = quotes.map(orc => {
+      const dateFormatted = orc.createdAt ? new Date(orc.createdAt).toLocaleDateString('pt-BR') : '';
+      const statusMap = {
+        rascunho: { label: 'Rascunho', class: 'bg-slate-100 text-slate-700' },
+        enviado: { label: 'Enviado', class: 'bg-blue-100 text-blue-800' },
+        aprovado: { label: 'Aprovado', class: 'bg-emerald-100 text-emerald-800' },
+        recusado: { label: 'Recusado', class: 'bg-red-100 text-red-800' }
+      };
+      const st = statusMap[orc.status] || statusMap.rascunho;
+
+      return `
+        <div class="bg-white border border-slate-200/90 rounded-2xl p-5 shadow-sm hover:shadow-md transition action-card flex flex-col justify-between">
+          <div>
+            <div class="flex items-start justify-between gap-2 mb-3">
+              <div>
+                <span class="text-[11px] font-bold text-slate-400">#${orc.id.substring(4)}</span>
+                <h4 class="text-base font-bold text-slate-900 mt-0.5">${orc.clientName}</h4>
+                <span class="text-xs text-slate-500">${dateFormatted}</span>
+              </div>
+              <span class="${st.class} text-xs font-bold px-2.5 py-1 rounded-lg">${st.label}</span>
+            </div>
+
+            <div class="space-y-1.5 my-3 text-xs text-slate-600 bg-slate-50 p-3 rounded-xl border border-slate-100">
+              ${(orc.items || []).map(item => `
+                <div class="flex justify-between items-center">
+                  <span>${item.quantity}x ${item.name}</span>
+                  <span class="font-semibold text-slate-800">R$ ${Number(item.total).toFixed(2)}</span>
+                </div>
+              `).join('')}
+              ${orc.discount > 0 ? `
+                <div class="flex justify-between items-center text-red-600 pt-1 border-t border-slate-200">
+                  <span>Desconto aplicado:</span>
+                  <span>- R$ ${Number(orc.discount).toFixed(2)}</span>
+                </div>
+              ` : ''}
+            </div>
+
+            <div class="flex items-center justify-between mt-3">
+              <span class="text-xs font-semibold text-slate-500">Valor Total:</span>
+              <span class="text-lg font-extrabold text-emerald-600">R$ ${Number(orc.total || 0).toFixed(2)}</span>
+            </div>
+            <div class="text-[11px] text-slate-500 mt-1">
+              Pagamento: <strong>${orc.paymentMethod || 'A combinar'}</strong>
+            </div>
+          </div>
+
+          <div class="mt-5 pt-3 border-t border-slate-100 flex flex-wrap items-center justify-between gap-2">
+            <div class="flex items-center gap-1.5">
+              <!-- Enviar Orçamento WhatsApp -->
+              <button onclick="window.app.openWhatsAppModal('quote', '${orc.id}')" title="Enviar proposta por WhatsApp" class="inline-flex items-center gap-1 px-3 py-1.5 bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-semibold rounded-xl transition">
+                <i data-lucide="message-circle" class="w-3.5 h-3.5"></i> Enviar WhatsApp
+              </button>
+              <!-- Imprimir / PDF -->
+              <button onclick="window.app.printProposal('${orc.id}')" title="Imprimir / Salvar PDF" class="inline-flex items-center gap-1 px-2.5 py-1.5 bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-medium rounded-xl transition">
+                <i data-lucide="printer" class="w-3.5 h-3.5"></i> Imprimir
+              </button>
+            </div>
+
+            <div class="flex items-center gap-1.5">
+              ${orc.status !== 'aprovado' ? `
+                <button onclick="window.app.approveQuoteAndSchedule('${orc.id}')" title="Aprovar e agendar serviço" class="inline-flex items-center gap-1 px-2.5 py-1.5 bg-sky-50 text-sky-700 hover:bg-sky-100 text-xs font-semibold rounded-xl transition">
+                  <i data-lucide="check-circle" class="w-3.5 h-3.5"></i> Aprovar & Agendar
+                </button>
+              ` : `
+                <span class="text-[11px] font-bold text-emerald-700 bg-emerald-50 px-2 py-1 rounded-lg">Aprovado</span>
+              `}
+              <button onclick="window.app.openQuoteModal('${orc.id}')" title="Editar orçamento" class="p-1.5 text-slate-400 hover:text-sky-600 rounded-lg hover:bg-sky-50 transition">
+                <i data-lucide="edit-3" class="w-4 h-4"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      `;
+    }).join('');
+  }
+
+  // Aprovar Orçamento e Converter em Agendamento com 1 clique
+  approveQuoteAndSchedule(quoteId) {
+    const quotes = window.storage.getQuotes();
+    const orc = quotes.find(q => q.id === quoteId);
+    if (!orc) return;
+
+    orc.status = 'aprovado';
+    window.storage.saveQuote(orc);
+
+    // Abrir modal de agendamento pré-preenchido com os dados do orçamento
+    this.openAppointmentModal(null, orc.clientId, {
+      services: (orc.items || []).map(i => `${i.quantity}x ${i.name}`),
+      totalValue: orc.total,
+      paymentMethod: orc.paymentMethod
+    });
+
+    window.notificationManager.notify(
+      'Orçamento Aprovado!',
+      `Orçamento de ${orc.clientName} aprovado no valor de R$ ${orc.total.toFixed(2)}. Complete o agendamento!`,
+      { type: 'quote' }
+    );
+  }
+
+  // ==========================================
+  // MODAIS E FORMULÁRIOS
+  // ==========================================
+  
+  // Modal de Agendamento
+  openAppointmentModal(appointmentId = null, prefillClientId = null, extraData = {}) {
+    const modal = document.getElementById('appointmentModal');
+    const form = document.getElementById('appointmentForm');
+    if (!modal || !form) return;
+
+    form.reset();
+
+    const titleEl = document.getElementById('appointmentModalTitle');
+    const clients = window.storage.getClients();
+    const clientSelect = document.getElementById('appClientSelect');
+
+    // Popular lista de clientes no select
+    clientSelect.innerHTML = '<option value="">-- Selecione um Cliente --</option>' +
+      clients.map(c => `<option value="${c.id}" data-phone="${c.phone || ''}" data-addr="${c.address || ''}">${c.name} (${c.neighborhood || c.city || ''})</option>`).join('');
+
+    let app = null;
+    if (appointmentId) {
+      app = window.storage.getAppointments().find(a => a.id === appointmentId);
+      if (titleEl) titleEl.textContent = 'Editar Agendamento';
+      document.getElementById('appId').value = app.id;
+      document.getElementById('appDate').value = app.date || '';
+      document.getElementById('appTime').value = app.time || '';
+      document.getElementById('appTech').value = app.assignedTo || 'adriano';
+      document.getElementById('appStatus').value = app.status || 'pendente';
+      document.getElementById('appTotalValue').value = app.totalValue || '';
+      document.getElementById('appPaymentMethod').value = app.paymentMethod || 'PIX';
+      document.getElementById('appAddress').value = app.address || '';
+      document.getElementById('appNotes').value = app.notes || '';
+      document.getElementById('appServices').value = Array.isArray(app.services) ? app.services.join(', ') : (app.services || '');
+      clientSelect.value = app.clientId || '';
+    } else {
+      if (titleEl) titleEl.textContent = 'Novo Agendamento';
+      document.getElementById('appId').value = '';
+      document.getElementById('appDate').value = this.selectedDate || new Date().toISOString().split('T')[0];
+      document.getElementById('appTime').value = '09:00';
+      document.getElementById('appStatus').value = 'confirmado';
+
+      if (prefillClientId) {
+        clientSelect.value = prefillClientId;
+        const opt = clientSelect.selectedOptions[0];
+        if (opt) {
+          document.getElementById('appAddress').value = opt.getAttribute('data-addr') || '';
+        }
+      }
+
+      if (extraData.services) {
+        document.getElementById('appServices').value = Array.isArray(extraData.services) ? extraData.services.join(', ') : extraData.services;
+      }
+      if (extraData.totalValue) {
+        document.getElementById('appTotalValue').value = extraData.totalValue;
+      }
+      if (extraData.paymentMethod) {
+        document.getElementById('appPaymentMethod').value = extraData.paymentMethod;
+      }
+    }
+
+    // Ao mudar o cliente, auto-preencher endereço se vazio
+    clientSelect.onchange = () => {
+      const opt = clientSelect.selectedOptions[0];
+      if (opt && opt.value) {
+        const addr = opt.getAttribute('data-addr');
+        if (addr && !document.getElementById('appAddress').value) {
+          document.getElementById('appAddress').value = addr;
+        }
+      }
+    };
+
+    modal.classList.remove('hidden');
+    if (window.lucide) window.lucide.createIcons();
+  }
+
+  closeAppointmentModal() {
+    const modal = document.getElementById('appointmentModal');
+    if (modal) modal.classList.add('hidden');
+  }
+
+  saveAppointmentForm(e) {
+    e.preventDefault();
+    const id = document.getElementById('appId').value;
+    const clientId = document.getElementById('appClientSelect').value;
+    const clients = window.storage.getClients();
+    const client = clients.find(c => c.id === clientId);
+
+    const clientName = client ? client.name : (document.getElementById('appClientCustomName')?.value || 'Cliente');
+    const clientPhone = client ? client.phone : '';
+
+    const servicesRaw = document.getElementById('appServices').value;
+    const servicesList = servicesRaw.split(',').map(s => s.trim()).filter(Boolean);
+
+    const appointmentData = {
+      id: id || undefined,
+      clientId: clientId || null,
+      clientName,
+      clientPhone,
+      date: document.getElementById('appDate').value,
+      time: document.getElementById('appTime').value,
+      assignedTo: document.getElementById('appTech').value,
+      status: document.getElementById('appStatus').value,
+      totalValue: parseFloat(document.getElementById('appTotalValue').value) || 0,
+      paymentMethod: document.getElementById('appPaymentMethod').value,
+      address: document.getElementById('appAddress').value,
+      notes: document.getElementById('appNotes').value,
+      services: servicesList
+    };
+
+    const { appointment, isNew } = window.storage.saveAppointment(appointmentData);
+
+    this.closeAppointmentModal();
+    this.renderCurrentView();
+
+    // Notificação com som para Adriano e Anny
+    if (isNew) {
+      const techName = appointment.assignedTo === 'adriano' ? 'Adriano' : (appointment.assignedTo === 'anny' ? 'Anny' : 'Adriano & Anny');
+      window.notificationManager.notify(
+        'Novo Agendamento Confirmado! 🔔',
+        `${appointment.clientName} para ${window.whatsappService.formatDateBR(appointment.date)} às ${appointment.time}h (${techName}).`,
+        { playSound: true, type: 'appointment' }
+      );
+
+      // Oferecer envio imediato via WhatsApp de confirmação
+      setTimeout(() => {
+        if (confirm(`Deseja enviar a mensagem de confirmação para o WhatsApp de ${appointment.clientName} agora?`)) {
+          this.openWhatsAppModal('appointment', appointment.id, 'confirmacao');
+        }
+      }, 400);
+    } else {
+      window.notificationManager.showToast('Agendamento Atualizado', `Dados salvos com sucesso!`, 'info');
+    }
+  }
+
+  // Modal de Cliente
+  openClientModal(clientId = null) {
+    const modal = document.getElementById('clientModal');
+    const form = document.getElementById('clientForm');
+    if (!modal || !form) return;
+
+    form.reset();
+    const titleEl = document.getElementById('clientModalTitle');
+
+    if (clientId) {
+      const client = window.storage.getClients().find(c => c.id === clientId);
+      if (titleEl) titleEl.textContent = 'Editar Cliente';
+      document.getElementById('clientId').value = client.id;
+      document.getElementById('clientName').value = client.name || '';
+      document.getElementById('clientPhone').value = client.phone || '';
+      document.getElementById('clientAddress').value = client.address || '';
+      document.getElementById('clientNeighborhood').value = client.neighborhood || '';
+      document.getElementById('clientCity').value = client.city || 'São Paulo';
+      document.getElementById('clientCep').value = client.cep || '';
+      document.getElementById('clientNotes').value = client.notes || '';
+    } else {
+      if (titleEl) titleEl.textContent = 'Novo Cliente';
+      document.getElementById('clientId').value = '';
+      document.getElementById('clientCity').value = 'São Paulo';
+    }
+
+    modal.classList.remove('hidden');
+    if (window.lucide) window.lucide.createIcons();
+  }
+
+  closeClientModal() {
+    const modal = document.getElementById('clientModal');
+    if (modal) modal.classList.add('hidden');
+  }
+
+  saveClientForm(e) {
+    e.preventDefault();
+    const id = document.getElementById('clientId').value;
+    const clientData = {
+      id: id || undefined,
+      name: document.getElementById('clientName').value.trim(),
+      phone: document.getElementById('clientPhone').value.trim(),
+      address: document.getElementById('clientAddress').value.trim(),
+      neighborhood: document.getElementById('clientNeighborhood').value.trim(),
+      city: document.getElementById('clientCity').value.trim(),
+      cep: document.getElementById('clientCep').value.trim(),
+      notes: document.getElementById('clientNotes').value.trim()
+    };
+
+    window.storage.saveClient(clientData);
+    this.closeClientModal();
+    this.renderCurrentView();
+
+    window.notificationManager.showToast('Cliente Salvo', `${clientData.name} foi salvo no cadastro!`, 'success');
+  }
+
+  // Modal de Orçamento
+  renderServiceOptionsInModal() {
+    const select = document.getElementById('quoteServiceSelect');
+    if (!select) return;
+
+    const services = window.storage.getServices();
+    select.innerHTML = '<option value="">-- Escolha um serviço para adicionar --</option>' +
+      services.map(s => `<option value="${s.id}" data-name="${s.name}" data-price="${s.price}">${s.name} - R$ ${s.price.toFixed(2)}</option>`).join('');
+  }
+
+  openQuoteModal(quoteId = null) {
+    const modal = document.getElementById('quoteModal');
+    const form = document.getElementById('quoteForm');
+    if (!modal || !form) return;
+
+    form.reset();
+    this.quoteItems = [];
+    const titleEl = document.getElementById('quoteModalTitle');
+    const clients = window.storage.getClients();
+    const clientSelect = document.getElementById('quoteClientSelect');
+
+    clientSelect.innerHTML = '<option value="">-- Selecione um Cliente --</option>' +
+      clients.map(c => `<option value="${c.id}">${c.name} (${c.neighborhood || c.city || ''})</option>`).join('');
+
+    if (quoteId) {
+      const orc = window.storage.getQuotes().find(q => q.id === quoteId);
+      if (titleEl) titleEl.textContent = 'Editar Orçamento';
+      document.getElementById('quoteId').value = orc.id;
+      clientSelect.value = orc.clientId || '';
+      document.getElementById('quoteDiscount').value = orc.discount || 0;
+      document.getElementById('quotePaymentMethod').value = orc.paymentMethod || 'PIX ou Cartão em até 3x';
+      document.getElementById('quoteValidity').value = orc.validityDays || 15;
+      document.getElementById('quoteNotes').value = orc.notes || '';
+      document.getElementById('quoteStatus').value = orc.status || 'rascunho';
+      this.quoteItems = [...(orc.items || [])];
+    } else {
+      if (titleEl) titleEl.textContent = 'Novo Orçamento';
+      document.getElementById('quoteId').value = '';
+      document.getElementById('quoteDiscount').value = 0;
+      document.getElementById('quoteValidity').value = 15;
+      document.getElementById('quotePaymentMethod').value = 'PIX (5% desc.) ou Cartão até 3x sem juros';
+      document.getElementById('quoteStatus').value = 'enviado';
+    }
+
+    this.renderQuoteItemsTable();
+    modal.classList.remove('hidden');
+    if (window.lucide) window.lucide.createIcons();
+  }
+
+  closeQuoteModal() {
+    const modal = document.getElementById('quoteModal');
+    if (modal) modal.classList.add('hidden');
+  }
+
+  addServiceToQuote() {
+    const select = document.getElementById('quoteServiceSelect');
+    const qtyInput = document.getElementById('quoteServiceQty');
+    if (!select || !select.value) {
+      alert('Selecione um serviço para adicionar.');
+      return;
+    }
+
+    const opt = select.selectedOptions[0];
+    const name = opt.getAttribute('data-name');
+    const unitPrice = parseFloat(opt.getAttribute('data-price')) || 0;
+    const quantity = parseInt(qtyInput.value) || 1;
+
+    this.quoteItems.push({
+      name,
+      quantity,
+      unitPrice,
+      total: unitPrice * quantity
+    });
+
+    select.value = '';
+    qtyInput.value = 1;
+    this.renderQuoteItemsTable();
+  }
+
+  removeQuoteItem(index) {
+    this.quoteItems.splice(index, 1);
+    this.renderQuoteItemsTable();
+  }
+
+  renderQuoteItemsTable() {
+    const tbody = document.getElementById('quoteItemsTableBody');
+    const subtotalEl = document.getElementById('quoteSubtotalDisplay');
+    const totalEl = document.getElementById('quoteTotalDisplay');
+    const discountInput = document.getElementById('quoteDiscount');
+
+    if (!tbody) return;
+
+    if (this.quoteItems.length === 0) {
+      tbody.innerHTML = `<tr><td colspan="5" class="py-4 text-center text-xs text-slate-400">Nenhum item adicionado ainda.</td></tr>`;
+      if (subtotalEl) subtotalEl.textContent = 'R$ 0,00';
+      if (totalEl) totalEl.textContent = 'R$ 0,00';
+      return;
+    }
+
+    const subtotal = this.quoteItems.reduce((acc, item) => acc + (item.total || 0), 0);
+    const discount = parseFloat(discountInput?.value) || 0;
+    const finalTotal = Math.max(0, subtotal - discount);
+
+    tbody.innerHTML = this.quoteItems.map((item, idx) => `
+      <tr class="border-b border-slate-100 text-xs">
+        <td class="py-2.5 font-medium text-slate-800">${item.name}</td>
+        <td class="py-2.5 text-center">${item.quantity}</td>
+        <td class="py-2.5 text-right text-slate-500">R$ ${item.unitPrice.toFixed(2)}</td>
+        <td class="py-2.5 text-right font-bold text-slate-900">R$ ${item.total.toFixed(2)}</td>
+        <td class="py-2.5 text-center">
+          <button type="button" onclick="window.app.removeQuoteItem(${idx})" class="text-red-500 hover:text-red-700 p-1">
+            <i data-lucide="trash-2" class="w-3.5 h-3.5"></i>
+          </button>
+        </td>
+      </tr>
+    `).join('');
+
+    if (subtotalEl) subtotalEl.textContent = `R$ ${subtotal.toFixed(2)}`;
+    if (totalEl) totalEl.textContent = `R$ ${finalTotal.toFixed(2)}`;
+
+    if (window.lucide) window.lucide.createIcons();
+  }
+
+  saveQuoteForm(e) {
+    e.preventDefault();
+    if (this.quoteItems.length === 0) {
+      alert('Adicione pelo menos um serviço ao orçamento.');
+      return;
+    }
+
+    const id = document.getElementById('quoteId').value;
+    const clientId = document.getElementById('quoteClientSelect').value;
+    const client = window.storage.getClients().find(c => c.id === clientId);
+
+    const subtotal = this.quoteItems.reduce((acc, item) => acc + (item.total || 0), 0);
+    const discount = parseFloat(document.getElementById('quoteDiscount').value) || 0;
+    const total = Math.max(0, subtotal - discount);
+
+    const quoteData = {
+      id: id || undefined,
+      clientId: clientId || null,
+      clientName: client ? client.name : 'Cliente Especial',
+      clientPhone: client ? client.phone : '',
+      items: this.quoteItems,
+      subtotal,
+      discount,
+      total,
+      paymentMethod: document.getElementById('quotePaymentMethod').value,
+      validityDays: parseInt(document.getElementById('quoteValidity').value) || 15,
+      notes: document.getElementById('quoteNotes').value,
+      status: document.getElementById('quoteStatus').value
+    };
+
+    const { quote, isNew } = window.storage.saveQuote(quoteData);
+
+    this.closeQuoteModal();
+    this.renderCurrentView();
+
+    window.notificationManager.notify(
+      'Orçamento Salvo!',
+      `Proposta de R$ ${quote.total.toFixed(2)} gerada para ${quote.clientName}.`,
+      { playSound: false, type: 'quote' }
+    );
+
+    // Perguntar se quer enviar pelo WhatsApp
+    setTimeout(() => {
+      if (confirm(`Deseja enviar esta proposta agora pelo WhatsApp de ${quote.clientName}?`)) {
+        this.openWhatsAppModal('quote', quote.id);
+      }
+    }, 400);
+  }
+
+  // ==========================================
+  // WHATSAPP MODAL DE 1 CLIQUE
+  // ==========================================
+  openWhatsAppModal(type, entityId, forceTemplateKey = null) {
+    const modal = document.getElementById('whatsappModal');
+    if (!modal) return;
+
+    let clientPhone = '';
+    let clientName = '';
+    let templateKey = forceTemplateKey || 'confirmacao';
+    let dataObj = {};
+
+    if (type === 'appointment') {
+      const app = window.storage.getAppointments().find(a => a.id === entityId);
+      if (!app) return;
+      clientPhone = app.clientPhone;
+      clientName = app.clientName;
+      const techName = app.assignedTo === 'adriano' ? 'Adriano' : (app.assignedTo === 'anny' ? 'Anny' : 'Adriano & Anny');
+
+      dataObj = {
+        clientName: app.clientName,
+        dateFormatted: window.whatsappService.formatDateBR(app.date),
+        time: app.time,
+        servicesList: Array.isArray(app.services) ? app.services.join(', ') : app.services,
+        address: app.address,
+        totalValue: Number(app.totalValue || 0).toFixed(2),
+        paymentMethod: app.paymentMethod,
+        technician: techName
+      };
+
+      if (!forceTemplateKey) {
+        if (app.status === 'a_caminho') templateKey = 'a_caminho';
+        else if (app.status === 'concluido') templateKey = 'pos_venda_secagem';
+        else templateKey = 'confirmacao';
+      }
+    } else if (type === 'quote') {
+      const orc = window.storage.getQuotes().find(q => q.id === entityId);
+      if (!orc) return;
+      clientPhone = orc.clientPhone;
+      clientName = orc.clientName;
+      templateKey = 'orcamento_detalhado';
+
+      const itemsText = (orc.items || []).map(i => `• ${i.quantity}x ${i.name} - R$ ${i.total.toFixed(2)}`).join('\n');
+
+      dataObj = {
+        clientName: orc.clientName,
+        itemsList: itemsText,
+        totalValue: Number(orc.total || 0).toFixed(2),
+        paymentMethod: orc.paymentMethod,
+        validityDays: orc.validityDays
+      };
+    }
+
+    this.whatsappModalData = { type, entityId, clientPhone, clientName, dataObj };
+
+    // Configurar seletor de modelos
+    const tplSelect = document.getElementById('whatsappTemplateSelect');
+    if (tplSelect) {
+      tplSelect.value = templateKey;
+      tplSelect.onchange = () => {
+        this.updateWhatsAppPreviewText();
+      };
+    }
+
+    document.getElementById('whatsappClientDisplay').textContent = `${clientName} (${clientPhone || 'sem telefone'})`;
+    document.getElementById('whatsappPhoneInput').value = clientPhone || '';
+
+    this.updateWhatsAppPreviewText();
+
+    modal.classList.remove('hidden');
+    if (window.lucide) window.lucide.createIcons();
+  }
+
+  updateWhatsAppPreviewText() {
+    if (!this.whatsappModalData) return;
+    const tplSelect = document.getElementById('whatsappTemplateSelect');
+    const textarea = document.getElementById('whatsappMessagePreview');
+    const key = tplSelect ? tplSelect.value : 'confirmacao';
+
+    const text = window.whatsappService.generateMessage(key, this.whatsappModalData.dataObj);
+    if (textarea) textarea.value = text;
+  }
+
+  sendWhatsAppNow() {
+    const phoneInput = document.getElementById('whatsappPhoneInput');
+    const textarea = document.getElementById('whatsappMessagePreview');
+    const phone = phoneInput ? phoneInput.value : '';
+    const text = textarea ? textarea.value : '';
+
+    if (!phone) {
+      alert('Por favor informe o telefone / WhatsApp do cliente.');
+      return;
+    }
+
+    const success = window.whatsappService.sendMessage(phone, text);
+    if (success) {
+      this.closeWhatsAppModal();
+      window.notificationManager.showToast('WhatsApp Aberto', 'Mensagem enviada para o aplicativo do WhatsApp!', 'success');
+    }
+  }
+
+  closeWhatsAppModal() {
+    const modal = document.getElementById('whatsappModal');
+    if (modal) modal.classList.add('hidden');
+  }
+
+  // ==========================================
+  // IMPRESSÃO E PDF DE ORÇAMENTO
+  // ==========================================
+  printProposal(quoteId) {
+    const orc = window.storage.getQuotes().find(q => q.id === quoteId);
+    if (!orc) return;
+
+    const settings = window.storage.getSettings();
+    const clients = window.storage.getClients();
+    const client = clients.find(c => c.id === orc.clientId) || {};
+
+    const container = document.getElementById('printProposalContainer');
+    if (!container) return;
+
+    const dateFormatted = orc.createdAt ? new Date(orc.createdAt).toLocaleDateString('pt-BR') : new Date().toLocaleDateString('pt-BR');
+
+    container.innerHTML = `
+      <div style="font-family: Arial, sans-serif; max-width: 800px; margin: 0 auto; color: #1e293b; padding: 20px;">
+        <!-- Cabeçalho -->
+        <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #0284c7; padding-bottom: 15px; margin-bottom: 20px;">
+          <div>
+            <h1 style="margin: 0; font-size: 24px; color: #0f172a; font-weight: 800;">${settings.companyName}</h1>
+            <p style="margin: 4px 0 0 0; font-size: 13px; color: #0284c7; font-weight: 600;">${settings.slogan}</p>
+            <p style="margin: 4px 0 0 0; font-size: 12px; color: #64748b;">Administração: Adriano & Anny | Tel/WhatsApp: ${settings.phone}</p>
+          </div>
+          <div style="text-align: right;">
+            <span style="font-size: 18px; font-weight: bold; color: #0284c7;">PROPOSTA Nº ${orc.id.substring(4)}</span>
+            <p style="margin: 4px 0 0 0; font-size: 12px; color: #64748b;">Data: ${dateFormatted}</p>
+            <p style="margin: 2px 0 0 0; font-size: 12px; color: #64748b;">Validade: ${orc.validityDays || 15} dias</p>
+          </div>
+        </div>
+
+        <!-- Dados do Cliente -->
+        <div style="background-color: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 12px 16px; margin-bottom: 20px;">
+          <h3 style="margin: 0 0 8px 0; font-size: 13px; text-transform: uppercase; color: #475569; letter-spacing: 0.5px;">Dados do Cliente</h3>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; font-size: 13px;">
+            <div><strong>Nome:</strong> ${orc.clientName}</div>
+            <div><strong>WhatsApp:</strong> ${orc.clientPhone || client.phone || 'A combinar'}</div>
+            <div><strong>Endereço:</strong> ${client.address || 'Conforme agendamento'}</div>
+            <div><strong>Bairro/Cidade:</strong> ${client.neighborhood || ''} - ${client.city || settings.city}</div>
+          </div>
+        </div>
+
+        <!-- Tabela de Itens -->
+        <table style="width: 100%; border-collapse: collapse; margin-bottom: 20px; font-size: 13px;">
+          <thead>
+            <tr style="background-color: #0f172a; color: white;">
+              <th style="padding: 10px; text-align: left; border-radius: 4px 0 0 0;">Item / Descrição do Serviço</th>
+              <th style="padding: 10px; text-align: center;">Qtd</th>
+              <th style="padding: 10px; text-align: right;">Valor Unit.</th>
+              <th style="padding: 10px; text-align: right; border-radius: 0 4px 0 0;">Subtotal</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${(orc.items || []).map(item => `
+              <tr style="border-bottom: 1px solid #e2e8f0;">
+                <td style="padding: 10px; font-weight: 500;">${item.name}</td>
+                <td style="padding: 10px; text-align: center;">${item.quantity}</td>
+                <td style="padding: 10px; text-align: right;">R$ ${item.unitPrice.toFixed(2)}</td>
+                <td style="padding: 10px; text-align: right; font-weight: bold;">R$ ${item.total.toFixed(2)}</td>
+              </tr>
+            `).join('')}
+          </tbody>
+        </table>
+
+        <!-- Totais -->
+        <div style="display: flex; justify-content: flex-end; margin-bottom: 25px;">
+          <div style="width: 280px; font-size: 13px;">
+            <div style="display: flex; justify-content: space-between; padding: 4px 0;">
+              <span>Subtotal:</span>
+              <span>R$ ${orc.subtotal.toFixed(2)}</span>
+            </div>
+            ${orc.discount > 0 ? `
+              <div style="display: flex; justify-content: space-between; padding: 4px 0; color: #dc2626;">
+                <span>Desconto especial:</span>
+                <span>- R$ ${orc.discount.toFixed(2)}</span>
+              </div>
+            ` : ''}
+            <div style="display: flex; justify-content: space-between; padding: 8px 0; border-top: 2px solid #0f172a; font-size: 16px; font-weight: bold; color: #0284c7;">
+              <span>VALOR TOTAL:</span>
+              <span>R$ ${orc.total.toFixed(2)}</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Condições de Pagamento e Chave PIX -->
+        <div style="background-color: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 8px; padding: 12px 16px; margin-bottom: 20px; font-size: 12px; color: #166534;">
+          <strong>Condições de Pagamento:</strong> ${orc.paymentMethod || 'PIX ou Cartão'}<br>
+          <strong>Chave PIX:</strong> ${settings.pixKey} (${settings.pixType}) - Titular: ${settings.companyName}
+        </div>
+
+        <!-- Termos e Garantias -->
+        <div style="font-size: 11px; color: #64748b; line-height: 1.5; border-top: 1px solid #e2e8f0; padding-top: 15px;">
+          <strong>Garantia & Procedimento Técnico:</strong><br>
+          ${settings.termsWarranty}
+        </div>
+
+        <div style="margin-top: 40px; display: flex; justify-content: space-between; text-align: center; font-size: 12px; color: #475569;">
+          <div style="width: 220px; border-top: 1px solid #94a3b8; padding-top: 6px;">
+            <strong>ADRIREZ HOME CARE</strong><br>Adriano / Anny
+          </div>
+          <div style="width: 220px; border-top: 1px solid #94a3b8; padding-top: 6px;">
+            <strong>${orc.clientName}</strong><br>De Acordo / Assinatura
+          </div>
+        </div>
+      </div>
+    `;
+
+    window.print();
+  }
+
+  // ==========================================
+  // NOTIFICAÇÕES LISTA (DRAWER)
+  // ==========================================
+  renderNotificationList() {
+    const list = document.getElementById('notificationsDrawerList');
+    if (!list) return;
+
+    const notifs = window.storage.getNotifications();
+    if (notifs.length === 0) {
+      list.innerHTML = `<div class="p-8 text-center text-xs text-slate-400">Nenhuma notificação no histórico.</div>`;
+      return;
+    }
+
+    list.innerHTML = notifs.map(n => {
+      const timeAgo = this.formatTimeAgo(n.date);
+      return `
+        <div class="p-3.5 rounded-xl border ${n.read ? 'bg-white border-slate-100 text-slate-600' : 'bg-sky-50/70 border-sky-200 text-slate-900'} transition" onclick="window.app.markNotificationAsRead('${n.id}')">
+          <div class="flex items-center justify-between gap-1 mb-1">
+            <span class="text-xs font-bold ${n.read ? 'text-slate-700' : 'text-sky-900'} flex items-center gap-1.5">
+              ${!n.read ? '<span class="w-2 h-2 rounded-full bg-sky-600"></span>' : ''}
+              ${n.title}
+            </span>
+            <span class="text-[10px] text-slate-400">${timeAgo}</span>
+          </div>
+          <p class="text-xs ${n.read ? 'text-slate-500' : 'text-slate-700'}">${n.message}</p>
+        </div>
+      `;
+    }).join('');
+  }
+
+  markNotificationAsRead(id) {
+    window.storage.markNotificationRead(id);
+    window.notificationManager.updateNotificationBadge();
+    this.renderNotificationList();
+  }
+
+  formatTimeAgo(isoDate) {
+    if (!isoDate) return '';
+    const diff = Date.now() - new Date(isoDate).getTime();
+    const minutes = Math.floor(diff / 60000);
+    if (minutes < 1) return 'agora';
+    if (minutes < 60) return `${minutes}m atrás`;
+    const hours = Math.floor(minutes / 60);
+    if (hours < 24) return `${hours}h atrás`;
+    const days = Math.floor(hours / 24);
+    return `${days}d atrás`;
+  }
+
+  // ==========================================
+  // CONFIGURAÇÕES & BACKUP
+  // ==========================================
+  renderSettings() {
+    const settings = window.storage.getSettings();
+    document.getElementById('settingCompanyName').value = settings.companyName || '';
+    document.getElementById('settingSlogan').value = settings.slogan || '';
+    document.getElementById('settingPhone').value = settings.phone || '';
+    document.getElementById('settingCity').value = settings.city || '';
+    document.getElementById('settingPixKey').value = settings.pixKey || '';
+    document.getElementById('settingPixType').value = settings.pixType || 'Chave Aleatória';
+    document.getElementById('settingWarranty').value = settings.termsWarranty || '';
+
+    if (window.cloudDb) {
+      const elUrl = document.getElementById('settingCloudUrl');
+      const elKey = document.getElementById('settingCloudAnonKey');
+      const elEn = document.getElementById('settingCloudEnabled');
+      if (elUrl) elUrl.value = window.cloudDb.config.url || '';
+      if (elKey) elKey.value = window.cloudDb.config.anonKey || '';
+      if (elEn) elEn.checked = !!window.cloudDb.config.enabled;
+    }
+  }
+
+  async saveCloudDbConfig(e) {
+    e.preventDefault();
+    const url = document.getElementById('settingCloudUrl').value.trim();
+    const anonKey = document.getElementById('settingCloudAnonKey').value.trim();
+    const enabled = document.getElementById('settingCloudEnabled').checked;
+
+    if (enabled && (!url || !anonKey)) {
+      alert('Por favor informe a URL e a Anon Key do Supabase.');
+      return;
+    }
+
+    const res = await window.cloudDb.saveConfig(url, anonKey, enabled);
+    if (res.success) {
+      window.notificationManager.showToast('Nuvem Conectada! 🟢', res.message, 'success');
+      alert('✅ ' + res.message);
+    } else if (res.tablesMissing) {
+      alert('⚠️ ' + res.message);
+      if (confirm('Deseja copiar o script SQL (schema.sql) agora para colar no Supabase?')) {
+        this.copySqlSchema();
+      }
+    } else if (res.disabled) {
+      window.notificationManager.showToast('Modo Local', 'Sincronização em nuvem desativada.', 'info');
+    } else {
+      alert('❌ ' + (res.message || 'Falha ao conectar. Verifique as credenciais.'));
+    }
+  }
+
+  async copySqlSchema() {
+    const sql = `-- ========================================================
+-- ADRIREZ HOME CARE - ESTRUTURA DO BANCO DE DADOS (SUPABASE)
+-- ========================================================
+CREATE TABLE IF NOT EXISTS clients (
+  id TEXT PRIMARY KEY,
+  name TEXT NOT NULL,
+  phone TEXT,
+  address TEXT,
+  neighborhood TEXT,
+  city TEXT DEFAULT 'São Paulo',
+  cep TEXT,
+  notes TEXT,
+  created_at TIMESTAMPTZ DEFAULT NOW()
+);
+
+CREATE TABLE IF NOT EXISTS appointments (
+  id TEXT PRIMARY KEY,
+  client_id TEXT REFERENCES clients(id) ON DELETE SET NULL,
+  client_name TEXT NOT NULL,
+  client_phone TEXT,
+  date DATE NOT NULL,
+  time TEXT NOT NULL,
+  duration_minutes INTEGER DEFAULT 120,
+  services JSONB DEFAULT '[]'::jsonb,
+  assigned_to TEXT DEFAULT 'adriano',
+  address TEXT,
+  total_value NUMERIC(10, 2) DEFAULT 0.00,
+  payment_method TEXT DEFAULT 'PIX',
+  status TEXT DEFAULT 'confirmado',
+  notes TEXT,
+  created_at TIMESTAMPTZ DEFAULT NOW()
+);
+
+CREATE TABLE IF NOT EXISTS quotes (
+  id TEXT PRIMARY KEY,
+  client_id TEXT REFERENCES clients(id) ON DELETE SET NULL,
+  client_name TEXT NOT NULL,
+  client_phone TEXT,
+  items JSONB DEFAULT '[]'::jsonb,
+  subtotal NUMERIC(10, 2) DEFAULT 0.00,
+  discount NUMERIC(10, 2) DEFAULT 0.00,
+  total NUMERIC(10, 2) DEFAULT 0.00,
+  payment_method TEXT,
+  validity_days INTEGER DEFAULT 15,
+  status TEXT DEFAULT 'enviado',
+  notes TEXT,
+  created_at TIMESTAMPTZ DEFAULT NOW()
+);
+
+CREATE TABLE IF NOT EXISTS notifications (
+  id TEXT PRIMARY KEY,
+  title TEXT NOT NULL,
+  message TEXT NOT NULL,
+  type TEXT DEFAULT 'info',
+  recipient TEXT DEFAULT 'all',
+  read BOOLEAN DEFAULT FALSE,
+  created_at TIMESTAMPTZ DEFAULT NOW()
+);
+
+CREATE TABLE IF NOT EXISTS company_settings (
+  id TEXT PRIMARY KEY DEFAULT 'main',
+  company_name TEXT DEFAULT 'ADRIREZ HOME CARE',
+  slogan TEXT DEFAULT 'Higienização e Impermeabilização Especializada de Estofados',
+  phone TEXT,
+  email TEXT,
+  city TEXT DEFAULT 'São Paulo - SP',
+  pix_key TEXT,
+  pix_type TEXT DEFAULT 'Email',
+  terms_warranty TEXT,
+  updated_at TIMESTAMPTZ DEFAULT NOW()
+);
+
+ALTER TABLE clients ENABLE ROW LEVEL SECURITY;
+ALTER TABLE appointments ENABLE ROW LEVEL SECURITY;
+ALTER TABLE quotes ENABLE ROW LEVEL SECURITY;
+ALTER TABLE notifications ENABLE ROW LEVEL SECURITY;
+ALTER TABLE company_settings ENABLE ROW LEVEL SECURITY;
+
+DROP POLICY IF EXISTS "Acesso Total Clientes" ON clients;
+CREATE POLICY "Acesso Total Clientes" ON clients FOR ALL USING (true) WITH CHECK (true);
+
+DROP POLICY IF EXISTS "Acesso Total Agendamentos" ON appointments;
+CREATE POLICY "Acesso Total Agendamentos" ON appointments FOR ALL USING (true) WITH CHECK (true);
+
+DROP POLICY IF EXISTS "Acesso Total Orçamentos" ON quotes;
+CREATE POLICY "Acesso Total Orçamentos" ON quotes FOR ALL USING (true) WITH CHECK (true);
+
+DROP POLICY IF EXISTS "Acesso Total Notificações" ON notifications;
+CREATE POLICY "Acesso Total Notificações" ON notifications FOR ALL USING (true) WITH CHECK (true);
+
+DROP POLICY IF EXISTS "Acesso Total Configurações" ON company_settings;
+CREATE POLICY "Acesso Total Configurações" ON company_settings FOR ALL USING (true) WITH CHECK (true);
+
+DO $$
+BEGIN
+  IF NOT EXISTS (
+    SELECT 1 FROM pg_publication_tables 
+    WHERE pubname = 'supabase_realtime' AND tablename = 'clients'
+  ) THEN
+    ALTER PUBLICATION supabase_realtime ADD TABLE clients, appointments, quotes, notifications, company_settings;
+  END IF;
+END $$;`;
+
+    try {
+      await navigator.clipboard.writeText(sql);
+      alert('📋 Script SQL copiado com sucesso!\n\nAgora vá no Supabase -> "SQL Editor" -> clique em "New Query", cole e clique em "RUN"!');
+    } catch (e) {
+      prompt('Copie o script SQL abaixo:', sql);
+    }
+  }
+
+  saveSettingsForm(e) {
+    e.preventDefault();
+    const current = window.storage.getSettings();
+    const updated = {
+      ...current,
+      companyName: document.getElementById('settingCompanyName').value.trim(),
+      slogan: document.getElementById('settingSlogan').value.trim(),
+      phone: document.getElementById('settingPhone').value.trim(),
+      city: document.getElementById('settingCity').value.trim(),
+      pixKey: document.getElementById('settingPixKey').value.trim(),
+      pixType: document.getElementById('settingPixType').value,
+      termsWarranty: document.getElementById('settingWarranty').value.trim()
+    };
+
+    window.storage.saveSettings(updated);
+    window.notificationManager.showToast('Configurações Salvas', 'Dados da Adrirez Home Care atualizados!', 'success');
+  }
+
+  testNotificationSound() {
+    window.notificationManager.playNotificationSound();
+    window.notificationManager.showToast('Alerta de Teste', 'Som do alarme reproduzido com sucesso!', 'info');
+  }
+
+  requestPushPermission() {
+    window.notificationManager.requestPermission().then(granted => {
+      if (granted) {
+        alert('Notificações no celular/computador ativadas com sucesso!');
+      } else {
+        alert('Permissão de notificação não concedida ou bloqueada pelo navegador.');
+      }
+    });
+  }
+
+  exportDataBackup() {
+    const jsonStr = window.storage.exportBackupJSON();
+    const blob = new Blob([jsonStr], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `backup_adrirez_home_care_${new Date().toISOString().split('T')[0]}.json`;
+    a.click();
+    URL.revokeObjectURL(url);
+    window.notificationManager.showToast('Backup Exportado', 'Arquivo de segurança baixado com sucesso!', 'success');
+  }
+
+  importDataBackup(fileInput) {
+    const file = fileInput.files[0];
+    if (!file) return;
+
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      const content = e.target.result;
+      const res = window.storage.importBackupJSON(content);
+      if (res.success) {
+        alert('Backup restaurado com sucesso! Todos os dados foram atualizados.');
+        location.reload();
+      } else {
+        alert('Erro ao restaurar arquivo de backup: ' + res.error);
+      }
+    };
+    reader.readAsText(file);
+  }
+}
+
+// Inicializar aplicação
+window.addEventListener('DOMContentLoaded', () => {
+  window.app = new AdrirezApp();
+  window.app.init();
+});
+
+  </script>
 
   <!-- Service Worker para suporte PWA / Offline -->
   <script>
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
         navigator.serviceWorker.register('sw.js').catch(err => {
-          console.log('ServiceWorker não registrado:', err);
+          console.log('ServiceWorker nÃ£o registrado:', err);
         });
       });
     }
