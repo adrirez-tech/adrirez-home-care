@@ -1,16 +1,21 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>ADRIREZ HOME CARE - GestÃ£o de HigienizaÃ§Ã£o & ImpermeabilizaÃ§Ã£o</title>
+  <title>ADRIREZ HOME CARE - Higienização & Impermeabilização Especializada</title>
   
   <!-- PWA Manifest & Meta -->
   <link rel="manifest" href="manifest.json">
-  <meta name="theme-color" content="#0284c7">
+  <meta name="theme-color" content="#0a0a0c">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="apple-mobile-web-app-title" content="Adrirez Care">
+
+  <!-- Fontes Google: Plus Jakarta Sans & Cinzel (Luxury) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -20,12 +25,17 @@
         extend: {
           colors: {
             brand: {
-              50: '#f0f9ff',
-              100: '#e0f2fe',
-              500: '#0ea5e9',
-              600: '#0284c7',
-              700: '#0369a1',
-              900: '#0c4a6e',
+              50: '#fdfbf7',
+              100: '#fbf5e6',
+              200: '#f7e7c3',
+              300: '#f1d397',
+              400: '#e8b864',
+              500: '#d4af37',
+              600: '#b89628',
+              700: '#8c6e1b',
+              800: '#5e4812',
+              900: '#342609',
+              950: '#171104',
             }
           }
         }
@@ -36,111 +46,139 @@
   <!-- Lucide Icons -->
   <script src="https://unpkg.com/lucide@latest"></script>
 
-  <!-- Custom CSS -->
+  <!-- Custom CSS (Black & Gold) -->
   <style>
-/* Estilos Customizados - ADRIREZ HOME CARE */
-@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+/* Estilos Customizados - ADRIREZ HOME CARE (Identidade Black & Gold / Preto & Dourado) */
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Cinzel:wght@600;700;800&display=swap');
 
 :root {
-  --primary: #0284c7;
-  --primary-dark: #0369a1;
-  --primary-light: #e0f2fe;
-  --secondary: #0f172a;
-  --accent: #10b981;
-  --adriano-color: #2563eb;
-  --anny-color: #d946ef;
+  --primary: #d4af37;
+  --primary-dark: #b89628;
+  --primary-light: #fef3c7;
+  --secondary: #0a0a0c;
+  --accent: #f59e0b;
+  --gold-gradient: linear-gradient(135deg, #bf953f 0%, #fcf6ba 25%, #b38728 50%, #fbf5b7 75%, #aa771c 100%);
+  --gold-glow: 0 0 20px rgba(212, 175, 55, 0.25);
+  --adriano-color: #d4af37;
+  --anny-color: #f59e0b;
 }
 
 body {
   font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   -webkit-tap-highlight-color: transparent;
+  background-color: #0a0a0c;
+  color: #f4f4f5;
 }
 
-/* Custom Scrollbar */
+/* Custom Scrollbar Dourada */
 ::-webkit-scrollbar {
   width: 6px;
   height: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: #f1f5f9;
+  background: #0f0f12;
 }
 ::-webkit-scrollbar-thumb {
-  background: #cbd5e1;
+  background: #3f3f46;
   border-radius: 9999px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #94a3b8;
+  background: #d4af37;
 }
 
-/* Badges e Avatares */
+/* Badges e Avatares no estilo Black & Gold */
 .badge-adriano {
-  background-color: #eff6ff;
-  color: #1d4ed8;
-  border: 1px solid #bfdbfe;
+  background-color: #18150c;
+  color: #fbbf24;
+  border: 1px solid #785312;
 }
 .badge-anny {
-  background-color: #fdf4ff;
-  color: #a21caf;
-  border: 1px solid #f5d0fe;
+  background-color: #1a140f;
+  color: #f59e0b;
+  border: 1px solid #92400e;
 }
 .badge-ambos {
-  background-color: #f0fdf4;
-  color: #15803d;
-  border: 1px solid #bbf7d0;
+  background-color: #1c190d;
+  color: #fef08a;
+  border: 1px solid #d4af37;
 }
 
 /* Status Badges */
 .status-pendente {
-  background-color: #fef3c7;
-  color: #b45309;
-  border: 1px solid #fde68a;
+  background-color: #271c0c;
+  color: #fde68a;
+  border: 1px solid #785312;
 }
 .status-confirmado {
-  background-color: #dbeafe;
-  color: #1d4ed8;
-  border: 1px solid #bfdbfe;
+  background-color: #172017;
+  color: #86efac;
+  border: 1px solid #166534;
 }
 .status-a-caminho {
-  background-color: #e0e7ff;
-  color: #4338ca;
-  border: 1px solid #c7d2fe;
+  background-color: #1a172a;
+  color: #c4b5fd;
+  border: 1px solid #5b21b6;
 }
 .status-em-andamento {
-  background-color: #fef08a;
-  color: #854d0e;
-  border: 1px solid #fde047;
+  background-color: #261f0d;
+  color: #fef08a;
+  border: 1px solid #a16207;
 }
 .status-concluido {
-  background-color: #dcfce7;
-  color: #15803d;
-  border: 1px solid #bbf7d0;
+  background-color: #0c2016;
+  color: #4ade80;
+  border: 1px solid #15803d;
 }
 .status-cancelado {
-  background-color: #fee2e2;
-  color: #b91c1c;
-  border: 1px solid #fecaca;
+  background-color: #270f0f;
+  color: #fca5a5;
+  border: 1px solid #991b1b;
 }
 
-/* Card Hover Animations */
+/* Card Hover Animations com Glow Dourado */
 .action-card {
-  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  background-color: #131317;
+  border: 1px solid rgba(212, 175, 55, 0.15);
 }
 .action-card:hover {
   transform: translateY(-2px);
-  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.08), 0 8px 10px -6px rgba(0, 0, 0, 0.04);
+  border-color: rgba(212, 175, 55, 0.4);
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5), 0 0 15px rgba(212, 175, 55, 0.15);
 }
 
-/* Pulsing Notification Dot */
+/* Texto Dourado Metálico */
+.text-gold-gradient {
+  background: linear-gradient(135deg, #fce588 0%, #d4af37 50%, #aa771c 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Botão Dourado Premium */
+.btn-gold {
+  background: linear-gradient(135deg, #f59e0b 0%, #d4af37 50%, #b89628 100%);
+  color: #09090b;
+  font-weight: 700;
+  box-shadow: 0 4px 15px rgba(212, 175, 55, 0.25);
+  transition: all 0.2s ease;
+}
+.btn-gold:hover {
+  filter: brightness(1.1);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
+}
+
+/* Pulsing Notification Dot Dourado/Vermelho */
 @keyframes pulse-ring {
-  0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7); }
-  70% { transform: scale(1); box-shadow: 0 0 0 8px rgba(239, 68, 68, 0); }
-  100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); }
+  0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.7); }
+  70% { transform: scale(1); box-shadow: 0 0 0 8px rgba(212, 175, 55, 0); }
+  100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(212, 175, 55, 0); }
 }
 .notification-pulse {
   animation: pulse-ring 2s infinite;
 }
 
-/* Estilos de Impressão de Orçamento Profissional */
+/* Estilos de Impressão de Orçamento Profissional (Fundo branco para impressão limpa) */
 @media print {
   body * {
     visibility: hidden;
@@ -155,8 +193,8 @@ body {
     width: 100%;
     margin: 0;
     padding: 20px;
-    background: white;
-    color: black;
+    background: white !important;
+    color: black !important;
   }
   .no-print {
     display: none !important;
@@ -170,43 +208,43 @@ body {
   }
 }
 
-</style>
+  </style>
 </head>
-<body class="bg-slate-50 text-slate-800 min-h-screen flex flex-col pb-20 md:pb-6 ">
+<body class="bg-[#0a0a0c] text-zinc-100 min-h-screen flex flex-col pb-20 md:pb-6 font-sans selection:bg-amber-500/30 selection:text-amber-200">
 
   <!-- Top Navigation Header -->
-  <header class="bg-white border-b border-slate-200 sticky top-0 z-30 shadow-xs">
+  <header class="bg-[#0f0f13]/95 backdrop-blur-md border-b border-amber-500/15 sticky top-0 z-30 shadow-lg shadow-black/40">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex items-center justify-between h-16">
         
-        <!-- Logo & Branding -->
+        <!-- Logo Oficial do Instagram & Branding -->
         <div class="flex items-center gap-3 cursor-pointer" onclick="window.app.navigate('dashboard')">
-          <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-sky-600 to-cyan-500 flex items-center justify-center text-white shadow-md shadow-sky-500/20">
-            <i data-lucide="sparkles" class="w-5 h-5"></i>
+          <div class="relative w-11 h-11 rounded-full p-[2px] bg-gradient-to-tr from-amber-500 via-yellow-200 to-amber-600 shadow-md shadow-amber-500/20 shrink-0">
+            <img src="assets/logo.png" alt="Adrirez Home Care" class="w-full h-full rounded-full object-cover bg-black" onerror="if(window.ADRIREZ_LOGO_B64) this.src=window.ADRIREZ_LOGO_B64" />
           </div>
           <div>
-            <h1 class="text-base sm:text-lg font-extrabold tracking-tight text-slate-900 leading-tight">
-              ADRIREZ <span class="text-sky-600 font-bold">HOME CARE</span>
+            <h1 class="text-base sm:text-lg font-black tracking-tight text-white leading-tight font-['Cinzel',sans-serif]">
+              ADRIREZ <span class="text-gold-gradient">HOME CARE</span>
             </h1>
-            <p class="text-[10px] text-slate-500 font-medium hidden sm:block">HigienizaÃ§Ã£o & ImpermeabilizaÃ§Ã£o de Estofados</p>
+            <p class="text-[10px] text-amber-200/70 font-medium tracking-wide hidden sm:block">Higienização & Impermeabilização Premium</p>
           </div>
         </div>
 
         <!-- Desktop Navigation Tabs -->
         <nav class="hidden md:flex items-center gap-1">
-          <button data-view="dashboard" class="nav-btn px-3 py-2 rounded-xl text-xs font-semibold flex items-center gap-2 transition">
-            <i data-lucide="layout-dashboard" class="w-4 h-4"></i> InÃ­cio
+          <button data-view="dashboard" class="nav-btn px-3 py-2 rounded-xl text-xs font-semibold flex items-center gap-2 transition text-amber-400 bg-amber-500/10 border border-amber-500/30">
+            <i data-lucide="layout-dashboard" class="w-4 h-4"></i> Início
           </button>
-          <button data-view="agenda" class="nav-btn px-3 py-2 rounded-xl text-xs font-semibold flex items-center gap-2 transition">
+          <button data-view="agenda" class="nav-btn px-3 py-2 rounded-xl text-xs font-semibold flex items-center gap-2 transition text-zinc-400 hover:text-white hover:bg-zinc-800/60 border border-transparent">
             <i data-lucide="calendar" class="w-4 h-4"></i> Agenda
           </button>
-          <button data-view="clients" class="nav-btn px-3 py-2 rounded-xl text-xs font-semibold flex items-center gap-2 transition">
+          <button data-view="clients" class="nav-btn px-3 py-2 rounded-xl text-xs font-semibold flex items-center gap-2 transition text-zinc-400 hover:text-white hover:bg-zinc-800/60 border border-transparent">
             <i data-lucide="users" class="w-4 h-4"></i> Clientes
           </button>
-          <button data-view="quotes" class="nav-btn px-3 py-2 rounded-xl text-xs font-semibold flex items-center gap-2 transition">
-            <i data-lucide="file-text" class="w-4 h-4"></i> OrÃ§amentos
+          <button data-view="quotes" class="nav-btn px-3 py-2 rounded-xl text-xs font-semibold flex items-center gap-2 transition text-zinc-400 hover:text-white hover:bg-zinc-800/60 border border-transparent">
+            <i data-lucide="file-text" class="w-4 h-4"></i> Orçamentos
           </button>
-          <button data-view="settings" class="nav-btn px-3 py-2 rounded-xl text-xs font-semibold flex items-center gap-2 transition">
+          <button data-view="settings" class="nav-btn px-3 py-2 rounded-xl text-xs font-semibold flex items-center gap-2 transition text-zinc-400 hover:text-white hover:bg-zinc-800/60 border border-transparent">
             <i data-lucide="settings" class="w-4 h-4"></i> Ajustes
           </button>
         </nav>
@@ -214,28 +252,32 @@ body {
         <!-- Right Side Actions: Admins, Notifications, Quick Action -->
         <div class="flex items-center gap-2 sm:gap-3">
           
+          <!-- Badge de Status da Nuvem Supabase -->
+          <div id="cloudDbStatusBadge" class="hidden sm:flex text-[11px] font-semibold px-2.5 py-1 rounded-full bg-amber-950/60 text-amber-300 border border-amber-500/30 items-center gap-1.5 shadow-sm">
+            <span class="w-2 h-2 rounded-full bg-amber-400 animate-pulse"></span> Modo Local
+          </div>
+
           <!-- Badges dos Administradores: Adriano & Anny -->
-          <div id="cloudDbStatusBadge" class="hidden sm:flex text-[11px] font-semibold px-2.5 py-1 rounded-full bg-amber-100 text-amber-800 items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-amber-500"></span> Modo Local</div>
-<div class="hidden lg:flex items-center gap-1.5 px-2.5 py-1 bg-slate-100 rounded-full text-[11px] font-semibold text-slate-700">
-            <span class="flex items-center gap-1 text-blue-700">
-              <span class="w-2 h-2 rounded-full bg-blue-600"></span> Adriano
+          <div class="hidden lg:flex items-center gap-2 px-3 py-1 bg-zinc-900 border border-amber-500/20 rounded-full text-[11px] font-medium text-zinc-300">
+            <span class="flex items-center gap-1.5 text-amber-300 font-semibold">
+              <span class="w-2 h-2 rounded-full bg-amber-400"></span> Adriano
             </span>
-            <span class="text-slate-300">|</span>
-            <span class="flex items-center gap-1 text-pink-700">
-              <span class="w-2 h-2 rounded-full bg-pink-600"></span> Anny
+            <span class="text-zinc-600">|</span>
+            <span class="flex items-center gap-1.5 text-amber-200 font-semibold">
+              <span class="w-2 h-2 rounded-full bg-amber-500"></span> Anny
             </span>
           </div>
 
-          <!-- BotÃ£o NotificaÃ§Ãµes com Badge -->
-          <button id="btnToggleNotifications" class="relative p-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 transition" title="NotificaÃ§Ãµes dos Administradores">
+          <!-- Botão Notificações com Badge -->
+          <button id="btnToggleNotifications" class="relative p-2.5 rounded-xl bg-zinc-900 border border-zinc-800 hover:border-amber-500/40 text-zinc-300 hover:text-amber-400 transition" title="Notificações dos Administradores">
             <i data-lucide="bell" class="w-5 h-5"></i>
-            <span id="notificationBadge" class="hidden absolute -top-1 -right-1 w-5 h-5 bg-red-600 text-white text-[10px] font-bold rounded-full flex items-center justify-center notification-pulse">
+            <span id="notificationBadge" class="hidden absolute -top-1 -right-1 w-5 h-5 bg-amber-500 text-zinc-950 text-[10px] font-black rounded-full flex items-center justify-center notification-pulse">
               0
             </span>
           </button>
 
-          <!-- BotÃ£o de AÃ§Ã£o RÃ¡pida: + Novo Agendamento -->
-          <button onclick="window.app.openAppointmentModal()" class="inline-flex items-center gap-1.5 px-3.5 py-2 bg-sky-600 hover:bg-sky-700 active:bg-sky-800 text-white text-xs font-bold rounded-xl shadow-sm shadow-sky-600/30 transition">
+          <!-- Botão de Ação Rápida: + Novo Agendamento (Botão Dourado Premium) -->
+          <button onclick="window.app.openAppointmentModal()" class="btn-gold inline-flex items-center gap-1.5 px-3.5 py-2 text-xs font-bold rounded-xl transition">
             <i data-lucide="plus" class="w-4 h-4"></i>
             <span class="hidden sm:inline">Novo Agendamento</span>
           </button>
@@ -253,93 +295,102 @@ body {
     <!-- ============================================== -->
     <section id="view-dashboard" class="view-container">
       
-      <!-- Banner de Boas-Vindas para Adriano & Anny -->
-      <div class="mb-6 bg-gradient-to-r from-sky-900 via-sky-800 to-cyan-900 rounded-3xl p-6 text-white shadow-lg relative overflow-hidden">
-        <div class="relative z-10">
-          <div class="flex items-center gap-2 text-cyan-300 text-xs font-semibold tracking-wide uppercase mb-1">
-            <i data-lucide="award" class="w-4 h-4"></i> Painel de Controle â€¢ Adriano & Anny
+      <!-- Banner de Boas-Vindas Black & Gold com a Logo Oficial do Instagram -->
+      <div class="mb-6 bg-gradient-to-r from-zinc-950 via-[#14120c] to-zinc-950 border border-amber-500/30 rounded-3xl p-6 text-white shadow-xl relative overflow-hidden">
+        <div class="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-6">
+          <div class="flex items-start sm:items-center gap-4">
+            <div class="relative w-16 h-16 sm:w-20 sm:h-20 rounded-full p-[2.5px] bg-gradient-to-tr from-amber-500 via-yellow-200 to-amber-600 shadow-xl shadow-amber-500/25 shrink-0">
+              <img src="assets/logo.png" alt="Adrirez Home Care" class="w-full h-full rounded-full object-cover bg-black" onerror="if(window.ADRIREZ_LOGO_B64) this.src=window.ADRIREZ_LOGO_B64" />
+            </div>
+            <div>
+              <div class="flex items-center gap-2 text-amber-400 text-xs font-bold tracking-wider uppercase mb-1">
+                <i data-lucide="crown" class="w-4 h-4 text-amber-400"></i> Painel de Gestão &bull; Adriano & Anny
+              </div>
+              <h2 class="text-xl sm:text-2xl font-black tracking-tight text-white font-['Cinzel',sans-serif]">
+                ADRIREZ <span class="text-gold-gradient">HOME CARE</span>
+              </h2>
+              <p class="text-xs sm:text-sm text-zinc-300 max-w-xl mt-1 leading-relaxed">
+                🛋️ Seu estofado limpo, protegido e renovado. Higienização Profissional & Impermeabilização Premium.
+              </p>
+            </div>
           </div>
-          <h2 class="text-xl sm:text-2xl font-extrabold tracking-tight">ADRIREZ HOME CARE</h2>
-          <p class="text-xs sm:text-sm text-cyan-100 max-w-xl mt-1">
-            Gerenciamento completo de agendamentos, clientes, propostas e disparo de mensagens no WhatsApp com 1 clique.
-          </p>
-          <div class="mt-4 flex flex-wrap gap-2">
-            <button onclick="window.app.openAppointmentModal()" class="px-3.5 py-1.5 bg-white text-sky-900 hover:bg-cyan-50 text-xs font-bold rounded-xl shadow-xs transition flex items-center gap-1.5">
+          <div class="flex flex-wrap gap-2 shrink-0">
+            <button onclick="window.app.openAppointmentModal()" class="btn-gold px-3.5 py-2 text-xs font-bold rounded-xl transition flex items-center gap-1.5">
               <i data-lucide="calendar-plus" class="w-4 h-4"></i> Agendar Atendimento
             </button>
-            <button onclick="window.app.openQuoteModal()" class="px-3.5 py-1.5 bg-sky-700/60 hover:bg-sky-700 border border-sky-400/40 text-white text-xs font-semibold rounded-xl transition flex items-center gap-1.5">
-              <i data-lucide="file-plus" class="w-4 h-4"></i> Criar OrÃ§amento
+            <button onclick="window.app.openQuoteModal()" class="px-3.5 py-2 bg-zinc-900/90 hover:bg-zinc-800 border border-amber-500/40 text-amber-300 text-xs font-semibold rounded-xl transition flex items-center gap-1.5">
+              <i data-lucide="file-plus" class="w-4 h-4"></i> Criar Orçamento
             </button>
-            <button onclick="window.app.openClientModal()" class="px-3.5 py-1.5 bg-sky-700/60 hover:bg-sky-700 border border-sky-400/40 text-white text-xs font-semibold rounded-xl transition flex items-center gap-1.5">
+            <button onclick="window.app.openClientModal()" class="px-3.5 py-2 bg-zinc-900/90 hover:bg-zinc-800 border border-amber-500/40 text-amber-300 text-xs font-semibold rounded-xl transition flex items-center gap-1.5">
               <i data-lucide="user-plus" class="w-4 h-4"></i> Novo Cliente
             </button>
           </div>
         </div>
-        <!-- Efeito decorativo de fundo -->
-        <div class="absolute -right-10 -bottom-10 w-48 h-48 bg-cyan-400/10 rounded-full blur-2xl pointer-events-none"></div>
+        <!-- Efeito decorativo dourado de fundo -->
+        <div class="absolute -right-10 -bottom-10 w-56 h-56 bg-amber-500/10 rounded-full blur-3xl pointer-events-none"></div>
       </div>
 
-      <!-- MÃ©tricas RÃ¡pidas -->
+      <!-- Métricas Rápidas Black & Gold -->
       <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
         
-        <!-- Faturamento MÃªs -->
-        <div class="bg-white border border-slate-200/90 rounded-2xl p-4 shadow-sm">
-          <div class="flex items-center justify-between text-slate-400 mb-2">
-            <span class="text-xs font-semibold text-slate-500 uppercase tracking-wide">Faturamento MÃªs</span>
-            <div class="w-8 h-8 rounded-lg bg-emerald-50 text-emerald-600 flex items-center justify-center">
+        <!-- Faturamento Mês -->
+        <div class="action-card rounded-2xl p-4 shadow-sm">
+          <div class="flex items-center justify-between text-zinc-400 mb-2">
+            <span class="text-xs font-bold text-amber-400/90 uppercase tracking-wider">Faturamento Mês</span>
+            <div class="w-8 h-8 rounded-lg bg-emerald-950/60 text-emerald-400 border border-emerald-500/30 flex items-center justify-center">
               <i data-lucide="trending-up" class="w-4 h-4"></i>
             </div>
           </div>
-          <div id="dashMonthRevenue" class="text-lg sm:text-2xl font-extrabold text-slate-900">R$ 0,00</div>
-          <p class="text-[11px] text-emerald-600 font-semibold mt-1">ServiÃ§os agendados/concluÃ­dos</p>
+          <div id="dashMonthRevenue" class="text-lg sm:text-2xl font-black text-white">R$ 0,00</div>
+          <p class="text-[11px] text-emerald-400 font-semibold mt-1">Serviços agendados/concluídos</p>
         </div>
 
         <!-- Atendimentos Hoje -->
-        <div class="bg-white border border-slate-200/90 rounded-2xl p-4 shadow-sm">
-          <div class="flex items-center justify-between text-slate-400 mb-2">
-            <span class="text-xs font-semibold text-slate-500 uppercase tracking-wide">Hoje</span>
-            <div class="w-8 h-8 rounded-lg bg-sky-50 text-sky-600 flex items-center justify-center">
+        <div class="action-card rounded-2xl p-4 shadow-sm">
+          <div class="flex items-center justify-between text-zinc-400 mb-2">
+            <span class="text-xs font-bold text-amber-400/90 uppercase tracking-wider">Hoje</span>
+            <div class="w-8 h-8 rounded-lg bg-amber-500/10 text-amber-400 border border-amber-500/30 flex items-center justify-center">
               <i data-lucide="calendar" class="w-4 h-4"></i>
             </div>
           </div>
-          <div id="dashTodayCount" class="text-lg sm:text-2xl font-extrabold text-slate-900">0</div>
-          <p class="text-[11px] text-sky-600 font-semibold mt-1">Atendimentos no dia</p>
+          <div id="dashTodayCount" class="text-lg sm:text-2xl font-black text-white">0</div>
+          <p class="text-[11px] text-amber-300 font-semibold mt-1">Atendimentos no dia</p>
         </div>
 
         <!-- Agendamentos Pendentes -->
-        <div class="bg-white border border-slate-200/90 rounded-2xl p-4 shadow-sm">
-          <div class="flex items-center justify-between text-slate-400 mb-2">
-            <span class="text-xs font-semibold text-slate-500 uppercase tracking-wide">Pendentes</span>
-            <div class="w-8 h-8 rounded-lg bg-amber-50 text-amber-600 flex items-center justify-center">
+        <div class="action-card rounded-2xl p-4 shadow-sm">
+          <div class="flex items-center justify-between text-zinc-400 mb-2">
+            <span class="text-xs font-bold text-amber-400/90 uppercase tracking-wider">Pendentes</span>
+            <div class="w-8 h-8 rounded-lg bg-yellow-500/10 text-yellow-400 border border-yellow-500/30 flex items-center justify-center">
               <i data-lucide="clock" class="w-4 h-4"></i>
             </div>
           </div>
-          <div id="dashPendingCount" class="text-lg sm:text-2xl font-extrabold text-slate-900">0</div>
-          <p class="text-[11px] text-amber-600 font-semibold mt-1">Aguardando confirmaÃ§Ã£o</p>
+          <div id="dashPendingCount" class="text-lg sm:text-2xl font-black text-white">0</div>
+          <p class="text-[11px] text-yellow-300 font-semibold mt-1">Aguardando confirmação</p>
         </div>
 
         <!-- Total de Clientes -->
-        <div class="bg-white border border-slate-200/90 rounded-2xl p-4 shadow-sm">
-          <div class="flex items-center justify-between text-slate-400 mb-2">
-            <span class="text-xs font-semibold text-slate-500 uppercase tracking-wide">Clientes Ativos</span>
-            <div class="w-8 h-8 rounded-lg bg-purple-50 text-purple-600 flex items-center justify-center">
+        <div class="action-card rounded-2xl p-4 shadow-sm">
+          <div class="flex items-center justify-between text-zinc-400 mb-2">
+            <span class="text-xs font-bold text-amber-400/90 uppercase tracking-wider">Clientes Ativos</span>
+            <div class="w-8 h-8 rounded-lg bg-amber-500/10 text-amber-300 border border-amber-500/30 flex items-center justify-center">
               <i data-lucide="users" class="w-4 h-4"></i>
             </div>
           </div>
-          <div id="dashClientsCount" class="text-lg sm:text-2xl font-extrabold text-slate-900">0</div>
-          <p class="text-[11px] text-purple-600 font-semibold mt-1">Base de contatos</p>
+          <div id="dashClientsCount" class="text-lg sm:text-2xl font-black text-white">0</div>
+          <p class="text-[11px] text-amber-400/80 font-semibold mt-1">Base cadastrada</p>
         </div>
 
       </div>
 
-      <!-- SeÃ§Ã£o: Atendimentos de Hoje -->
+      <!-- Seção: Atendimentos de Hoje -->
       <div class="mb-8">
         <div class="flex items-center justify-between mb-4">
           <div class="flex items-center gap-2">
-            <div class="w-3 h-3 rounded-full bg-emerald-500 animate-pulse"></div>
-            <h3 class="text-base font-extrabold text-slate-900">Atendimentos de Hoje</h3>
+            <div class="w-3 h-3 rounded-full bg-emerald-400 animate-pulse"></div>
+            <h3 class="text-base font-extrabold text-white">Atendimentos de Hoje</h3>
           </div>
-          <button onclick="window.app.navigate('agenda')" class="text-xs font-semibold text-sky-600 hover:text-sky-700 flex items-center gap-1">
+          <button onclick="window.app.navigate('agenda')" class="text-xs font-semibold text-amber-400 hover:text-amber-300 flex items-center gap-1 transition">
             Ver Agenda Completa <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
           </button>
         </div>
@@ -349,9 +400,9 @@ body {
         </div>
       </div>
 
-      <!-- SeÃ§Ã£o: PrÃ³ximos Atendimentos da Semana -->
+      <!-- Seção: Próximos Atendimentos da Semana -->
       <div>
-        <h3 class="text-base font-extrabold text-slate-900 mb-4">PrÃ³ximos Dias</h3>
+        <h3 class="text-base font-extrabold text-white mb-4">Próximos Dias</h3>
         <div id="dashUpcomingAppointmentsList" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           <!-- Carregado via JS -->
         </div>
@@ -360,34 +411,34 @@ body {
     </section>
 
     <!-- ============================================== -->
-    <!-- VIEW 2: AGENDA & CALENDÃRIO -->
+    <!-- VIEW 2: AGENDA & CALENDÁRIO -->
     <!-- ============================================== -->
     <section id="view-agenda" class="view-container hidden">
       
       <!-- Top Filters Bar -->
-      <div class="bg-white border border-slate-200/90 rounded-2xl p-4 shadow-sm mb-6">
+      <div class="action-card rounded-2xl p-4 shadow-sm mb-6">
         <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
           
-          <!-- Filtro por TÃ©cnico (Adriano / Anny / Todos) -->
-          <div class="flex items-center gap-1.5 bg-slate-100 p-1 rounded-xl">
-            <button data-tech="all" class="filter-tech-btn px-3 py-1.5 text-xs font-bold rounded-lg bg-sky-600 text-white transition">
+          <!-- Filtro por Técnico (Adriano / Anny / Todos) -->
+          <div class="flex items-center gap-1.5 bg-zinc-900 p-1 rounded-xl border border-zinc-800">
+            <button data-tech="all" class="filter-tech-btn px-3 py-1.5 text-xs font-bold rounded-lg bg-amber-500 text-zinc-950 transition">
               Todos
             </button>
-            <button data-tech="adriano" class="filter-tech-btn px-3 py-1.5 text-xs font-bold rounded-lg bg-white text-slate-700 border transition">
+            <button data-tech="adriano" class="filter-tech-btn px-3 py-1.5 text-xs font-bold rounded-lg bg-zinc-900 text-zinc-300 border border-zinc-800 transition">
               Adriano
             </button>
-            <button data-tech="anny" class="filter-tech-btn px-3 py-1.5 text-xs font-bold rounded-lg bg-white text-slate-700 border transition">
+            <button data-tech="anny" class="filter-tech-btn px-3 py-1.5 text-xs font-bold rounded-lg bg-zinc-900 text-zinc-300 border border-zinc-800 transition">
               Anny
             </button>
           </div>
 
-          <!-- Busca e Data -->
+          <!-- Busca e Agendamento -->
           <div class="flex flex-wrap items-center gap-2">
             <div class="relative flex-1 sm:w-64">
-              <i data-lucide="search" class="w-4 h-4 text-slate-400 absolute left-3 top-2.5"></i>
-              <input type="text" id="agendaSearchInput" placeholder="Buscar cliente, serviÃ§o ou endereÃ§o..." class="w-full pl-9 pr-3 py-2 text-xs bg-slate-50 border border-slate-200 rounded-xl focus:outline-hidden focus:ring-2 focus:ring-sky-500">
+              <i data-lucide="search" class="w-4 h-4 text-zinc-500 absolute left-3 top-2.5"></i>
+              <input type="text" id="agendaSearchInput" placeholder="Buscar cliente, serviço ou endereço..." class="w-full pl-9 pr-3 py-2 text-xs bg-[#1c1c24] border border-zinc-700 text-white rounded-xl placeholder-zinc-500 focus:outline-hidden focus:border-amber-400">
             </div>
-            <button onclick="window.app.openAppointmentModal()" class="px-3.5 py-2 bg-sky-600 hover:bg-sky-700 text-white text-xs font-bold rounded-xl shadow-sm transition flex items-center gap-1.5">
+            <button onclick="window.app.openAppointmentModal()" class="btn-gold px-3.5 py-2 text-xs font-bold rounded-xl transition flex items-center gap-1.5">
               <i data-lucide="plus" class="w-4 h-4"></i> Agendar
             </button>
           </div>
@@ -408,12 +459,12 @@ body {
     <section id="view-clients" class="view-container hidden">
       
       <!-- Header Clientes -->
-      <div class="bg-white border border-slate-200/90 rounded-2xl p-4 shadow-sm mb-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+      <div class="action-card rounded-2xl p-4 shadow-sm mb-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div class="relative flex-1 max-w-md">
-          <i data-lucide="search" class="w-4 h-4 text-slate-400 absolute left-3 top-2.5"></i>
-          <input type="text" id="clientSearchInput" placeholder="Pesquisar por nome, WhatsApp, bairro ou rua..." class="w-full pl-9 pr-3 py-2 text-xs bg-slate-50 border border-slate-200 rounded-xl focus:outline-hidden focus:ring-2 focus:ring-sky-500">
+          <i data-lucide="search" class="w-4 h-4 text-zinc-500 absolute left-3 top-2.5"></i>
+          <input type="text" id="clientSearchInput" placeholder="Pesquisar por nome, WhatsApp, bairro ou rua..." class="w-full pl-9 pr-3 py-2 text-xs bg-[#1c1c24] border border-zinc-700 text-white rounded-xl placeholder-zinc-500 focus:outline-hidden focus:border-amber-400">
         </div>
-        <button onclick="window.app.openClientModal()" class="px-4 py-2 bg-sky-600 hover:bg-sky-700 text-white text-xs font-bold rounded-xl shadow-sm transition flex items-center gap-1.5 self-start sm:self-auto">
+        <button onclick="window.app.openClientModal()" class="btn-gold px-4 py-2 text-xs font-bold rounded-xl transition flex items-center gap-1.5 self-start sm:self-auto">
           <i data-lucide="user-plus" class="w-4 h-4"></i> Cadastrar Novo Cliente
         </button>
       </div>
@@ -426,22 +477,22 @@ body {
     </section>
 
     <!-- ============================================== -->
-    <!-- VIEW 4: ORÃ‡AMENTOS -->
+    <!-- VIEW 4: ORÇAMENTOS -->
     <!-- ============================================== -->
     <section id="view-quotes" class="view-container hidden">
       
-      <!-- Header OrÃ§amentos -->
-      <div class="bg-white border border-slate-200/90 rounded-2xl p-4 shadow-sm mb-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+      <!-- Header Orçamentos -->
+      <div class="action-card rounded-2xl p-4 shadow-sm mb-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <h3 class="text-base font-extrabold text-slate-900">Propostas & OrÃ§amentos</h3>
-          <p class="text-xs text-slate-500">Crie propostas rÃ¡pidas, envie no WhatsApp e converta em agendamento com 1 clique.</p>
+          <h3 class="text-base font-extrabold text-white">Propostas & Orçamentos</h3>
+          <p class="text-xs text-zinc-400">Crie propostas rápidas, envie no WhatsApp e converta em agendamento com 1 clique.</p>
         </div>
-        <button onclick="window.app.openQuoteModal()" class="px-4 py-2 bg-sky-600 hover:bg-sky-700 text-white text-xs font-bold rounded-xl shadow-sm transition flex items-center gap-1.5 self-start sm:self-auto">
+        <button onclick="window.app.openQuoteModal()" class="btn-gold px-4 py-2 text-xs font-bold rounded-xl transition flex items-center gap-1.5 self-start sm:self-auto">
           <i data-lucide="file-plus" class="w-4 h-4"></i> Criar Nova Proposta
         </button>
       </div>
 
-      <!-- Lista de OrÃ§amentos -->
+      <!-- Lista de Orçamentos -->
       <div id="quotesListContainer" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         <!-- Renderizado dinamicamente via JS -->
       </div>
@@ -449,150 +500,150 @@ body {
     </section>
 
     <!-- ============================================== -->
-    <!-- VIEW 5: CONFIGURAÃ‡Ã•ES & BACKUP -->
+    <!-- VIEW 5: CONFIGURAÇÕES & SUPABASE -->
     <!-- ============================================== -->
     <section id="view-settings" class="view-container hidden">
       
       <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
         
-        <!-- FormulÃ¡rio de Dados da Adrirez Home Care -->
-        <div class="lg:col-span-2 bg-white border border-slate-200/90 rounded-2xl p-6 shadow-sm">
-          <h3 class="text-base font-extrabold text-slate-900 mb-1">Dados da Empresa & Pagamento</h3>
-          <p class="text-xs text-slate-500 mb-6">InformaÃ§Ãµes utilizadas na geraÃ§Ã£o de propostas impressas e mensagens de WhatsApp.</p>
+        <!-- Formulário de Dados da Adrirez Home Care -->
+        <div class="lg:col-span-2 action-card rounded-2xl p-6 shadow-sm">
+          <h3 class="text-base font-extrabold text-white mb-1">Dados da Empresa & Pagamento</h3>
+          <p class="text-xs text-zinc-400 mb-6">Informações utilizadas na geração de propostas impressas e mensagens de WhatsApp.</p>
 
           <form onsubmit="window.app.saveSettingsForm(event)" class="space-y-4">
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
-                <label class="block text-xs font-semibold text-slate-700 mb-1">Nome da Empresa</label>
-                <input type="text" id="settingCompanyName" class="w-full px-3 py-2 text-xs bg-slate-50 border border-slate-200 rounded-xl" required>
+                <label class="block text-xs font-semibold text-zinc-300 mb-1">Nome da Empresa</label>
+                <input type="text" id="settingCompanyName" class="w-full px-3 py-2 text-xs bg-[#1c1c24] border border-zinc-700 text-white rounded-xl focus:border-amber-400" required>
               </div>
               <div>
-                <label class="block text-xs font-semibold text-slate-700 mb-1">Telefone Comercial / WhatsApp</label>
-                <input type="text" id="settingPhone" class="w-full px-3 py-2 text-xs bg-slate-50 border border-slate-200 rounded-xl" required>
+                <label class="block text-xs font-semibold text-zinc-300 mb-1">Telefone Comercial / WhatsApp</label>
+                <input type="text" id="settingPhone" class="w-full px-3 py-2 text-xs bg-[#1c1c24] border border-zinc-700 text-white rounded-xl focus:border-amber-400" required>
               </div>
             </div>
 
             <div>
-              <label class="block text-xs font-semibold text-slate-700 mb-1">Slogan / DescriÃ§Ã£o Curta</label>
-              <input type="text" id="settingSlogan" class="w-full px-3 py-2 text-xs bg-slate-50 border border-slate-200 rounded-xl">
+              <label class="block text-xs font-semibold text-zinc-300 mb-1">Slogan / Descrição Curta (Instagram)</label>
+              <input type="text" id="settingSlogan" class="w-full px-3 py-2 text-xs bg-[#1c1c24] border border-zinc-700 text-white rounded-xl focus:border-amber-400">
             </div>
 
             <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
               <div class="sm:col-span-2">
-                <label class="block text-xs font-semibold text-slate-700 mb-1">Chave PIX</label>
-                <input type="text" id="settingPixKey" class="w-full px-3 py-2 text-xs bg-slate-50 border border-slate-200 rounded-xl" placeholder="ex: seu@email.com ou telefone">
+                <label class="block text-xs font-semibold text-zinc-300 mb-1">Chave PIX</label>
+                <input type="text" id="settingPixKey" class="w-full px-3 py-2 text-xs bg-[#1c1c24] border border-zinc-700 text-white rounded-xl focus:border-amber-400" placeholder="ex: seu@email.com ou telefone">
               </div>
               <div>
-                <label class="block text-xs font-semibold text-slate-700 mb-1">Tipo de Chave</label>
-                <select id="settingPixType" class="w-full px-3 py-2 text-xs bg-slate-50 border border-slate-200 rounded-xl">
+                <label class="block text-xs font-semibold text-zinc-300 mb-1">Tipo de Chave</label>
+                <select id="settingPixType" class="w-full px-3 py-2 text-xs bg-[#1c1c24] border border-zinc-700 text-white rounded-xl focus:border-amber-400">
                   <option value="Email">E-mail</option>
                   <option value="Telefone">Telefone</option>
                   <option value="CNPJ/CPF">CNPJ / CPF</option>
-                  <option value="AleatÃ³ria">Chave AleatÃ³ria</option>
+                  <option value="Aleatória">Chave Aleatória</option>
                 </select>
               </div>
             </div>
 
             <div>
-              <label class="block text-xs font-semibold text-slate-700 mb-1">Cidade Principal de Atendimento</label>
-              <input type="text" id="settingCity" class="w-full px-3 py-2 text-xs bg-slate-50 border border-slate-200 rounded-xl">
+              <label class="block text-xs font-semibold text-zinc-300 mb-1">Cidade Principal de Atendimento</label>
+              <input type="text" id="settingCity" class="w-full px-3 py-2 text-xs bg-[#1c1c24] border border-zinc-700 text-white rounded-xl focus:border-amber-400">
             </div>
 
             <div>
-              <label class="block text-xs font-semibold text-slate-700 mb-1">Termos de Garantia e Cuidados (ImpressÃ£o)</label>
-              <textarea id="settingWarranty" rows="3" class="w-full px-3 py-2 text-xs bg-slate-50 border border-slate-200 rounded-xl"></textarea>
+              <label class="block text-xs font-semibold text-zinc-300 mb-1">Termos de Garantia e Cuidados (Impressão)</label>
+              <textarea id="settingWarranty" rows="3" class="w-full px-3 py-2 text-xs bg-[#1c1c24] border border-zinc-700 text-white rounded-xl focus:border-amber-400"></textarea>
             </div>
 
             <div class="pt-2">
-              <button type="submit" class="px-5 py-2.5 bg-sky-600 hover:bg-sky-700 text-white text-xs font-bold rounded-xl shadow-sm transition">
-                Salvar AlteraÃ§Ãµes
+              <button type="submit" class="btn-gold px-5 py-2.5 text-xs font-bold rounded-xl transition">
+                Salvar Alterações
               </button>
             </div>
           </form>
         </div>
 
-        <!-- Painel Lateral: Alertas, Som & Backup -->
+        <!-- Painel Lateral: Nuvem Supabase, Alertas & Backup -->
         <div class="space-y-6">
           
-          <!-- NotificaÃ§Ãµes & Som para Adriano e Anny -->
-          <div class="bg-white border border-slate-200/90 rounded-2xl p-5 shadow-sm">
-            <h4 class="text-sm font-bold text-slate-900 mb-1 flex items-center gap-2">
-              <i data-lucide="volume-2" class="w-4 h-4 text-sky-600"></i> Som e NotificaÃ§Ãµes dos Admins
+          <!-- Conexão Banco de Dados na Nuvem (Supabase Oficial) -->
+          <div class="action-card rounded-2xl p-5 shadow-sm">
+            <h4 class="text-sm font-bold text-white mb-1 flex items-center gap-2">
+              <i data-lucide="database" class="w-4 h-4 text-amber-400"></i> Banco na Nuvem (Supabase)
             </h4>
-            <p class="text-xs text-slate-500 mb-4">Teste o sinal sonoro e ative alertas para quando receber novos agendamentos.</p>
-
-            <div class="space-y-2.5">
-              <button onclick="window.app.testNotificationSound()" class="w-full py-2 px-3 bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-semibold rounded-xl flex items-center justify-center gap-2 transition">
-                <i data-lucide="play" class="w-4 h-4"></i> Testar Sinal Sonoro
-              </button>
-
-              <button onclick="window.app.requestPushPermission()" class="w-full py-2 px-3 bg-sky-50 hover:bg-sky-100 text-sky-700 border border-sky-200 text-xs font-semibold rounded-xl flex items-center justify-center gap-2 transition">
-                <i data-lucide="bell" class="w-4 h-4"></i> Ativar NotificaÃ§Ãµes no Celular
-              </button>
-            </div>
-          </div>
-
-          <!-- Backup & RestauraÃ§Ã£o de Dados -->
-          <div class="bg-white border border-slate-200/90 rounded-2xl p-5 shadow-sm">
-            <h4 class="text-sm font-bold text-slate-900 mb-1 flex items-center gap-2">
-              <i data-lucide="shield-check" class="w-4 h-4 text-emerald-600"></i> CÃ³pia de SeguranÃ§a (Backup)
-            </h4>
-            <p class="text-xs text-slate-500 mb-4">Seus dados ficam salvos com seguranÃ§a neste dispositivo. Exporte o backup regularmente.</p>
-
-            <div class="space-y-2.5">
-              <button onclick="window.app.exportDataBackup()" class="w-full py-2 px-3 bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold rounded-xl flex items-center justify-center gap-2 transition shadow-xs">
-                <i data-lucide="download" class="w-4 h-4"></i> Baixar Arquivo de Backup (.json)
-              </button>
-
-              <label class="w-full py-2 px-3 bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-semibold rounded-xl flex items-center justify-center gap-2 transition cursor-pointer">
-                <i data-lucide="upload" class="w-4 h-4"></i> Restaurar Backup Existente
-                <input type="file" accept=".json" class="hidden" onchange="window.app.importDataBackup(this)">
-              </label>
-            </div>
-          </div>
-
-                    <!-- ConexÃ£o Banco de Dados na Nuvem (Supabase / Vercel) -->
-          <div class="bg-white border border-slate-200/90 rounded-2xl p-5 shadow-sm">
-            <h4 class="text-sm font-bold text-slate-900 mb-1 flex items-center gap-2">
-              <i data-lucide="database" class="w-4 h-4 text-sky-600"></i> Banco na Nuvem (Acesso Externo)
-            </h4>
-            <p class="text-xs text-slate-500 mb-3">Conecte o Supabase gratuito para sincronizar em tempo real no celular de Adriano e Anny na rua.</p>
+            <p class="text-xs text-zinc-400 mb-3">Sincronização em tempo real entre o celular de Adriano e Anny na rua e o PC da empresa.</p>
 
             <form onsubmit="window.app.saveCloudDbConfig(event)" class="space-y-3">
               <div>
-                <label class="block text-[11px] font-semibold text-slate-700 mb-1">Project URL (Supabase)</label>
-                <input type="url" id="settingCloudUrl" placeholder="https://xyzcompany.supabase.co" class="w-full px-2.5 py-1.5 text-xs bg-slate-50 border border-slate-200 rounded-lg">
+                <label class="block text-[11px] font-semibold text-zinc-300 mb-1">Project URL (Supabase)</label>
+                <input type="url" id="settingCloudUrl" placeholder="https://xyz.supabase.co" class="w-full px-2.5 py-1.5 text-xs bg-[#1c1c24] border border-zinc-700 text-white rounded-lg focus:border-amber-400">
               </div>
               <div>
-                <label class="block text-[11px] font-semibold text-slate-700 mb-1">Anon Public Key (Supabase)</label>
-                <input type="password" id="settingCloudAnonKey" placeholder="eyJhbGciOiJIUzI1NiIsIn..." class="w-full px-2.5 py-1.5 text-xs bg-slate-50 border border-slate-200 rounded-lg">
+                <label class="block text-[11px] font-semibold text-zinc-300 mb-1">Anon Public Key (Supabase)</label>
+                <input type="password" id="settingCloudAnonKey" placeholder="sb_publishable_..." class="w-full px-2.5 py-1.5 text-xs bg-[#1c1c24] border border-zinc-700 text-white rounded-lg focus:border-amber-400">
               </div>
               <div class="flex items-center gap-2">
-                <input type="checkbox" id="settingCloudEnabled" class="rounded text-sky-600">
-                <label for="settingCloudEnabled" class="text-xs text-slate-700 font-medium">Ativar SincronizaÃ§Ã£o em Nuvem</label>
+                <input type="checkbox" id="settingCloudEnabled" class="rounded text-amber-500 bg-zinc-900 border-zinc-700 focus:ring-amber-400">
+                <label for="settingCloudEnabled" class="text-xs text-zinc-300 font-medium">Ativar Sincronização em Nuvem</label>
               </div>
               <div class="pt-1 flex flex-col gap-2">
-                <button type="submit" class="w-full py-2 bg-sky-600 hover:bg-sky-700 text-white text-xs font-bold rounded-xl transition">
+                <button type="submit" class="btn-gold w-full py-2 text-xs font-bold rounded-xl transition">
                   Salvar & Conectar Nuvem
                 </button>
-                <button type="button" onclick="window.app.copySqlSchema()" class="w-full py-1.5 bg-sky-50 hover:bg-sky-100 text-sky-700 border border-sky-200 text-xs font-semibold rounded-xl transition flex items-center justify-center gap-1.5">
+                <button type="button" onclick="window.app.copySqlSchema()" class="w-full py-1.5 bg-zinc-900 hover:bg-zinc-800 text-amber-300 border border-amber-500/30 text-xs font-semibold rounded-xl transition flex items-center justify-center gap-1.5">
                   <i data-lucide="copy" class="w-3.5 h-3.5"></i> Copiar Script SQL (Criar Tabelas)
                 </button>
-                <button type="button" onclick="window.cloudDb.syncAllToCloud()" class="w-full py-1.5 bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-semibold rounded-xl transition flex items-center justify-center gap-1.5">
-                  <i data-lucide="refresh-cw" class="w-3.5 h-3.5"></i> Sincronizar Tudo para a Nuvem
+                <button type="button" onclick="window.cloudDb.syncAllToCloud()" class="w-full py-1.5 bg-zinc-900 hover:bg-zinc-800 text-zinc-300 border border-zinc-800 text-xs font-semibold rounded-xl transition flex items-center justify-center gap-1.5">
+                  <i data-lucide="refresh-cw" class="w-3.5 h-3.5 text-amber-400"></i> Sincronizar Tudo para a Nuvem
                 </button>
               </div>
             </form>
           </div>
 
-<!-- InformaÃ§Ãµes da Equipe -->
-          <div class="bg-slate-50 border border-slate-200 rounded-2xl p-4 text-xs text-slate-600">
-            <span class="font-bold text-slate-800 block mb-1">Equipe Cadastrada:</span>
-            <div class="flex items-center gap-2 mb-1">
-              <span class="w-2.5 h-2.5 rounded-full bg-blue-600"></span> <strong>Adriano</strong> (TÃ©cnico / ResponsÃ¡vel Operacional)
+          <!-- Notificações & Som para Adriano e Anny -->
+          <div class="action-card rounded-2xl p-5 shadow-sm">
+            <h4 class="text-sm font-bold text-white mb-1 flex items-center gap-2">
+              <i data-lucide="volume-2" class="w-4 h-4 text-amber-400"></i> Som e Alertas dos Admins
+            </h4>
+            <p class="text-xs text-zinc-400 mb-4">Sinal sonoro agradável para novos agendamentos e notificações no celular.</p>
+
+            <div class="space-y-2.5">
+              <button onclick="window.app.testNotificationSound()" class="w-full py-2 px-3 bg-zinc-900 hover:bg-zinc-800 border border-zinc-800 text-zinc-200 text-xs font-semibold rounded-xl flex items-center justify-center gap-2 transition">
+                <i data-lucide="play" class="w-4 h-4 text-amber-400"></i> Testar Sinal Sonoro
+              </button>
+
+              <button onclick="window.app.requestPushPermission()" class="w-full py-2 px-3 bg-amber-500/10 hover:bg-amber-500/20 text-amber-300 border border-amber-500/30 text-xs font-semibold rounded-xl flex items-center justify-center gap-2 transition">
+                <i data-lucide="bell" class="w-4 h-4"></i> Ativar Notificações no Navegador
+              </button>
+            </div>
+          </div>
+
+          <!-- Backup & Restauração -->
+          <div class="action-card rounded-2xl p-5 shadow-sm">
+            <h4 class="text-sm font-bold text-white mb-1 flex items-center gap-2">
+              <i data-lucide="shield-check" class="w-4 h-4 text-emerald-400"></i> Backup de Segurança
+            </h4>
+            <p class="text-xs text-zinc-400 mb-4">Seus dados ficam protegidos. Baixe o backup offline com 1 clique.</p>
+
+            <div class="space-y-2.5">
+              <button onclick="window.app.exportDataBackup()" class="w-full py-2 px-3 bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold rounded-xl flex items-center justify-center gap-2 transition shadow-md">
+                <i data-lucide="download" class="w-4 h-4"></i> Baixar Arquivo de Backup (.json)
+              </button>
+
+              <label class="w-full py-2 px-3 bg-zinc-900 hover:bg-zinc-800 border border-zinc-800 text-zinc-300 text-xs font-semibold rounded-xl flex items-center justify-center gap-2 transition cursor-pointer">
+                <i data-lucide="upload" class="w-4 h-4 text-amber-400"></i> Restaurar Backup Existente
+                <input type="file" accept=".json" class="hidden" onchange="window.app.importDataBackup(this)">
+              </label>
+            </div>
+          </div>
+
+          <!-- Informações da Equipe -->
+          <div class="bg-[#121216] border border-amber-500/15 rounded-2xl p-4 text-xs text-zinc-400">
+            <span class="font-bold text-white block mb-2">Equipe Cadastrada:</span>
+            <div class="flex items-center gap-2 mb-1.5">
+              <span class="w-2.5 h-2.5 rounded-full bg-amber-400"></span> <strong class="text-amber-300">Adriano</strong> (Técnico / Especialista Operacional)
             </div>
             <div class="flex items-center gap-2">
-              <span class="w-2.5 h-2.5 rounded-full bg-pink-600"></span> <strong>Anny</strong> (Atendimento, FinanÃ§as e Agenda)
+              <span class="w-2.5 h-2.5 rounded-full bg-amber-200"></span> <strong class="text-amber-200">Anny</strong> (Atendimento, Finanças e Agenda)
             </div>
           </div>
 
@@ -604,28 +655,28 @@ body {
 
   </main>
 
-  <!-- Mobile Bottom Navigation Bar (FÃ¡cil acesso com o polegar) -->
-  <div class="md:hidden fixed bottom-0 left-0 right-0 bg-white/95 backdrop-blur-md border-t border-slate-200 z-30 mobile-bottom-nav">
+  <!-- Mobile Bottom Navigation Bar (Fácil acesso com o polegar) -->
+  <div class="md:hidden fixed bottom-0 left-0 right-0 bg-[#0f0f13]/95 backdrop-blur-md border-t border-amber-500/20 z-30 mobile-bottom-nav">
     <div class="grid grid-cols-5 h-16">
-      <button data-view="dashboard" class="nav-btn flex flex-col items-center justify-center text-slate-500 hover:text-sky-600">
+      <button data-view="dashboard" class="nav-btn flex flex-col items-center justify-center text-amber-400">
         <i data-lucide="layout-dashboard" class="w-5 h-5"></i>
-        <span class="text-[10px] font-medium mt-1">InÃ­cio</span>
+        <span class="text-[10px] font-semibold mt-1">Início</span>
       </button>
-      <button data-view="agenda" class="nav-btn flex flex-col items-center justify-center text-slate-500 hover:text-sky-600">
+      <button data-view="agenda" class="nav-btn flex flex-col items-center justify-center text-zinc-400">
         <i data-lucide="calendar" class="w-5 h-5"></i>
         <span class="text-[10px] font-medium mt-1">Agenda</span>
       </button>
-      <button onclick="window.app.openAppointmentModal()" class="flex flex-col items-center justify-center text-sky-600">
-        <div class="w-10 h-10 rounded-full bg-sky-600 text-white flex items-center justify-center shadow-lg shadow-sky-600/40 -mt-5">
-          <i data-lucide="plus" class="w-5 h-5"></i>
+      <button onclick="window.app.openAppointmentModal()" class="flex flex-col items-center justify-center text-amber-400">
+        <div class="btn-gold w-11 h-11 rounded-full text-zinc-950 flex items-center justify-center shadow-lg shadow-amber-500/40 -mt-5">
+          <i data-lucide="plus" class="w-6 h-6"></i>
         </div>
-        <span class="text-[10px] font-bold text-sky-600 mt-1">Agendar</span>
+        <span class="text-[10px] font-bold text-amber-400 mt-1">Agendar</span>
       </button>
-      <button data-view="quotes" class="nav-btn flex flex-col items-center justify-center text-slate-500 hover:text-sky-600">
+      <button data-view="quotes" class="nav-btn flex flex-col items-center justify-center text-zinc-400">
         <i data-lucide="file-text" class="w-5 h-5"></i>
-        <span class="text-[10px] font-medium mt-1">OrÃ§amentos</span>
+        <span class="text-[10px] font-medium mt-1">Orçamentos</span>
       </button>
-      <button data-view="clients" class="nav-btn flex flex-col items-center justify-center text-slate-500 hover:text-sky-600">
+      <button data-view="clients" class="nav-btn flex flex-col items-center justify-center text-zinc-400">
         <i data-lucide="users" class="w-5 h-5"></i>
         <span class="text-[10px] font-medium mt-1">Clientes</span>
       </button>
@@ -633,14 +684,14 @@ body {
   </div>
 
   <!-- ============================================== -->
-  <!-- MODAL: AGENDAMENTO -->
+  <!-- MODAL: AGENDAMENTO (Black & Gold) -->
   <!-- ============================================== -->
-  <div id="appointmentModal" class="hidden fixed inset-0 z-50 overflow-y-auto bg-slate-900/60 backdrop-blur-xs flex items-center justify-center p-4">
-    <div class="bg-white rounded-3xl max-w-lg w-full p-6 shadow-2xl relative border border-slate-100 max-h-[90vh] overflow-y-auto">
+  <div id="appointmentModal" class="hidden fixed inset-0 z-50 overflow-y-auto bg-black/80 backdrop-blur-xs flex items-center justify-center p-4">
+    <div class="bg-[#141419] rounded-3xl max-w-lg w-full p-6 shadow-2xl relative border border-amber-500/30 max-h-[90vh] overflow-y-auto text-white">
       
-      <div class="flex items-center justify-between pb-4 border-b border-slate-100 mb-4">
-        <h3 id="appointmentModalTitle" class="text-base font-extrabold text-slate-900">Novo Agendamento</h3>
-        <button onclick="window.app.closeAppointmentModal()" class="p-1.5 text-slate-400 hover:text-slate-600 rounded-lg">
+      <div class="flex items-center justify-between pb-4 border-b border-zinc-800 mb-4">
+        <h3 id="appointmentModalTitle" class="text-base font-extrabold text-white">Novo Agendamento</h3>
+        <button onclick="window.app.closeAppointmentModal()" class="p-1.5 text-zinc-400 hover:text-white rounded-lg">
           <i data-lucide="x" class="w-5 h-5"></i>
         </button>
       </div>
@@ -651,12 +702,12 @@ body {
         <!-- Cliente -->
         <div>
           <div class="flex items-center justify-between mb-1">
-            <label class="text-xs font-semibold text-slate-700">Cliente *</label>
-            <button type="button" onclick="window.app.openClientModal()" class="text-xs font-bold text-sky-600 hover:underline">
+            <label class="text-xs font-semibold text-zinc-300">Cliente *</label>
+            <button type="button" onclick="window.app.openClientModal()" class="text-xs font-bold text-amber-400 hover:underline">
               + Cadastrar Novo
             </button>
           </div>
-          <select id="appClientSelect" class="w-full px-3 py-2 text-xs bg-slate-50 border border-slate-200 rounded-xl focus:ring-sky-500" required>
+          <select id="appClientSelect" class="w-full px-3 py-2 text-xs bg-[#1c1c24] border border-zinc-700 text-white rounded-xl focus:border-amber-400" required>
             <!-- Carregado via JS -->
           </select>
         </div>
@@ -664,81 +715,81 @@ body {
         <!-- Data e Hora -->
         <div class="grid grid-cols-2 gap-3">
           <div>
-            <label class="block text-xs font-semibold text-slate-700 mb-1">Data *</label>
-            <input type="date" id="appDate" class="w-full px-3 py-2 text-xs bg-slate-50 border border-slate-200 rounded-xl" required>
+            <label class="block text-xs font-semibold text-zinc-300 mb-1">Data *</label>
+            <input type="date" id="appDate" class="w-full px-3 py-2 text-xs bg-[#1c1c24] border border-zinc-700 text-white rounded-xl focus:border-amber-400" required>
           </div>
           <div>
-            <label class="block text-xs font-semibold text-slate-700 mb-1">HorÃ¡rio de InÃ­cio *</label>
-            <input type="time" id="appTime" class="w-full px-3 py-2 text-xs bg-slate-50 border border-slate-200 rounded-xl" required>
+            <label class="block text-xs font-semibold text-zinc-300 mb-1">Horário de Início *</label>
+            <input type="time" id="appTime" class="w-full px-3 py-2 text-xs bg-[#1c1c24] border border-zinc-700 text-white rounded-xl focus:border-amber-400" required>
           </div>
         </div>
 
-        <!-- TÃ©cnico AtribuÃ­do e Status -->
+        <!-- Técnico Atribuído e Status -->
         <div class="grid grid-cols-2 gap-3">
           <div>
-            <label class="block text-xs font-semibold text-slate-700 mb-1">ResponsÃ¡vel *</label>
-            <select id="appTech" class="w-full px-3 py-2 text-xs bg-slate-50 border border-slate-200 rounded-xl">
+            <label class="block text-xs font-semibold text-zinc-300 mb-1">Responsável *</label>
+            <select id="appTech" class="w-full px-3 py-2 text-xs bg-[#1c1c24] border border-zinc-700 text-white rounded-xl focus:border-amber-400">
               <option value="adriano">Adriano</option>
               <option value="anny">Anny</option>
               <option value="ambos">Adriano & Anny</option>
             </select>
           </div>
           <div>
-            <label class="block text-xs font-semibold text-slate-700 mb-1">Status *</label>
-            <select id="appStatus" class="w-full px-3 py-2 text-xs bg-slate-50 border border-slate-200 rounded-xl">
+            <label class="block text-xs font-semibold text-zinc-300 mb-1">Status *</label>
+            <select id="appStatus" class="w-full px-3 py-2 text-xs bg-[#1c1c24] border border-zinc-700 text-white rounded-xl focus:border-amber-400">
               <option value="confirmado">Confirmado</option>
               <option value="pendente">Pendente</option>
               <option value="a_caminho">A caminho</option>
-              <option value="em_andamento">Em execuÃ§Ã£o</option>
-              <option value="concluido">ConcluÃ­do</option>
+              <option value="em_andamento">Em execução</option>
+              <option value="concluido">Concluído</option>
               <option value="cancelado">Cancelado</option>
             </select>
           </div>
         </div>
 
-        <!-- ServiÃ§os -->
+        <!-- Serviços -->
         <div>
-          <label class="block text-xs font-semibold text-slate-700 mb-1">ServiÃ§o(s) *</label>
-          <input type="text" id="appServices" placeholder="ex: Combo SofÃ¡ 3 Lugares RetrÃ¡til (Hig. + Imp.), ColchÃ£o Queen" class="w-full px-3 py-2 text-xs bg-slate-50 border border-slate-200 rounded-xl" required>
-          <p class="text-[10px] text-slate-400 mt-1">Separe mÃºltiplos serviÃ§os por vÃ­rgula.</p>
+          <label class="block text-xs font-semibold text-zinc-300 mb-1">Serviço(s) *</label>
+          <input type="text" id="appServices" placeholder="ex: Combo Sofá 3 Lugares Retrátil (Hig. + Imp.), Colchão Queen" class="w-full px-3 py-2 text-xs bg-[#1c1c24] border border-zinc-700 text-white rounded-xl focus:border-amber-400" required>
+          <p class="text-[10px] text-zinc-500 mt-1">Separe múltiplos serviços por vírgula.</p>
         </div>
 
-        <!-- EndereÃ§o -->
+        <!-- Endereço -->
         <div>
-          <label class="block text-xs font-semibold text-slate-700 mb-1">EndereÃ§o do Atendimento *</label>
-          <input type="text" id="appAddress" placeholder="Rua, nÃºmero, complemento e bairro" class="w-full px-3 py-2 text-xs bg-slate-50 border border-slate-200 rounded-xl" required>
+          <label class="block text-xs font-semibold text-zinc-300 mb-1">Endereço do Atendimento *</label>
+          <input type="text" id="appAddress" placeholder="Rua, número, complemento e bairro" class="w-full px-3 py-2 text-xs bg-[#1c1c24] border border-zinc-700 text-white rounded-xl focus:border-amber-400" required>
         </div>
 
         <!-- Valor Total e Pagamento -->
         <div class="grid grid-cols-2 gap-3">
           <div>
-            <label class="block text-xs font-semibold text-slate-700 mb-1">Valor Total (R$) *</label>
-            <input type="number" step="0.01" id="appTotalValue" placeholder="0.00" class="w-full px-3 py-2 text-xs bg-slate-50 border border-slate-200 rounded-xl font-bold text-slate-900" required>
+            <label class="block text-xs font-semibold text-zinc-300 mb-1">Valor Total (R$) *</label>
+            <input type="number" step="0.01" id="appTotalValue" placeholder="0.00" class="w-full px-3 py-2 text-xs bg-[#1c1c24] border border-zinc-700 text-amber-300 font-bold rounded-xl focus:border-amber-400" required>
           </div>
           <div>
-            <label class="block text-xs font-semibold text-slate-700 mb-1">Forma de Pagamento</label>
-            <select id="appPaymentMethod" class="w-full px-3 py-2 text-xs bg-slate-50 border border-slate-200 rounded-xl">
+            <label class="block text-xs font-semibold text-zinc-300 mb-1">Forma de Pagamento</label>
+            <select id="appPaymentMethod" class="w-full px-3 py-2 text-xs bg-[#1c1c24] border border-zinc-700 text-white rounded-xl focus:border-amber-400">
               <option value="PIX">PIX</option>
-              <option value="CartÃ£o de CrÃ©dito">CartÃ£o de CrÃ©dito</option>
-              <option value="CartÃ£o de DÃ©bito">CartÃ£o de DÃ©bito</option>
+              <option value="Cartão de Crédito">Cartão de Crédito</option>
+              <option value="Cartão de Débito">Cartão de Débito</option>
               <option value="Dinheiro">Dinheiro</option>
               <option value="A combinar">A combinar</option>
             </select>
           </div>
         </div>
 
-        <!-- ObservaÃ§Ãµes -->
+        <!-- Observações -->
         <div>
-          <label class="block text-xs font-semibold text-slate-700 mb-1">ObservaÃ§Ãµes Internas (Tecido, Pets, etc.)</label>
-          <textarea id="appNotes" rows="2" placeholder="ex: Tem 2 gatos, tecido linho, portaria liberada..." class="w-full px-3 py-2 text-xs bg-slate-50 border border-slate-200 rounded-xl"></textarea>
+          <label class="block text-xs font-semibold text-zinc-300 mb-1">Observações Internas (Tecido, Pets, etc.)</label>
+          <textarea id="appNotes" rows="2" placeholder="ex: Tem 2 gatos, tecido linho, portaria liberada..." class="w-full px-3 py-2 text-xs bg-[#1c1c24] border border-zinc-700 text-white rounded-xl focus:border-amber-400"></textarea>
         </div>
 
-        <!-- BotÃµes -->
-        <div class="pt-3 border-t border-slate-100 flex items-center justify-end gap-2">
-          <button type="button" onclick="window.app.closeAppointmentModal()" class="px-4 py-2 text-xs font-semibold text-slate-600 hover:bg-slate-100 rounded-xl transition">
+        <!-- Botões -->
+        <div class="pt-3 border-t border-zinc-800 flex items-center justify-end gap-2">
+          <button type="button" onclick="window.app.closeAppointmentModal()" class="px-4 py-2 text-xs font-semibold text-zinc-400 hover:text-white rounded-xl transition">
             Cancelar
           </button>
-          <button type="submit" class="px-5 py-2 bg-sky-600 hover:bg-sky-700 text-white text-xs font-bold rounded-xl shadow-sm transition">
+          <button type="submit" class="btn-gold px-5 py-2 text-xs font-bold rounded-xl transition">
             Salvar Agendamento
           </button>
         </div>
@@ -747,14 +798,14 @@ body {
   </div>
 
   <!-- ============================================== -->
-  <!-- MODAL: CLIENTE -->
+  <!-- MODAL: CLIENTE (Black & Gold) -->
   <!-- ============================================== -->
-  <div id="clientModal" class="hidden fixed inset-0 z-50 overflow-y-auto bg-slate-900/60 backdrop-blur-xs flex items-center justify-center p-4">
-    <div class="bg-white rounded-3xl max-w-md w-full p-6 shadow-2xl relative border border-slate-100 max-h-[90vh] overflow-y-auto">
+  <div id="clientModal" class="hidden fixed inset-0 z-50 overflow-y-auto bg-black/80 backdrop-blur-xs flex items-center justify-center p-4">
+    <div class="bg-[#141419] rounded-3xl max-w-md w-full p-6 shadow-2xl relative border border-amber-500/30 max-h-[90vh] overflow-y-auto text-white">
       
-      <div class="flex items-center justify-between pb-4 border-b border-slate-100 mb-4">
-        <h3 id="clientModalTitle" class="text-base font-extrabold text-slate-900">Cadastrar Cliente</h3>
-        <button onclick="window.app.closeClientModal()" class="p-1.5 text-slate-400 hover:text-slate-600 rounded-lg">
+      <div class="flex items-center justify-between pb-4 border-b border-zinc-800 mb-4">
+        <h3 id="clientModalTitle" class="text-base font-extrabold text-white">Cadastrar Cliente</h3>
+        <button onclick="window.app.closeClientModal()" class="p-1.5 text-zinc-400 hover:text-white rounded-lg">
           <i data-lucide="x" class="w-5 h-5"></i>
         </button>
       </div>
@@ -763,47 +814,47 @@ body {
         <input type="hidden" id="clientId">
 
         <div>
-          <label class="block text-xs font-semibold text-slate-700 mb-1">Nome Completo *</label>
-          <input type="text" id="clientName" class="w-full px-3 py-2 text-xs bg-slate-50 border border-slate-200 rounded-xl" required>
+          <label class="block text-xs font-semibold text-zinc-300 mb-1">Nome Completo *</label>
+          <input type="text" id="clientName" class="w-full px-3 py-2 text-xs bg-[#1c1c24] border border-zinc-700 text-white rounded-xl focus:border-amber-400" required>
         </div>
 
         <div>
-          <label class="block text-xs font-semibold text-slate-700 mb-1">WhatsApp / Telefone *</label>
-          <input type="tel" id="clientPhone" placeholder="ex: 11988887777" class="w-full px-3 py-2 text-xs bg-slate-50 border border-slate-200 rounded-xl" required>
-          <p class="text-[10px] text-slate-400 mt-1">Coloque com DDD (ex: 11987654321) para o envio de WhatsApp de 1 clique.</p>
+          <label class="block text-xs font-semibold text-zinc-300 mb-1">WhatsApp / Telefone *</label>
+          <input type="tel" id="clientPhone" placeholder="ex: 11988887777" class="w-full px-3 py-2 text-xs bg-[#1c1c24] border border-zinc-700 text-white rounded-xl focus:border-amber-400" required>
+          <p class="text-[10px] text-zinc-500 mt-1">Coloque com DDD (ex: 11987654321) para o envio de WhatsApp de 1 clique.</p>
         </div>
 
         <div>
-          <label class="block text-xs font-semibold text-slate-700 mb-1">EndereÃ§o Completo (Rua, NÃºmero, Apto)</label>
-          <input type="text" id="clientAddress" placeholder="ex: Av. Paulista, 1500 - Apto 82" class="w-full px-3 py-2 text-xs bg-slate-50 border border-slate-200 rounded-xl">
+          <label class="block text-xs font-semibold text-zinc-300 mb-1">Endereço Completo (Rua, Número, Apto)</label>
+          <input type="text" id="clientAddress" placeholder="ex: Av. Paulista, 1500 - Apto 82" class="w-full px-3 py-2 text-xs bg-[#1c1c24] border border-zinc-700 text-white rounded-xl focus:border-amber-400">
         </div>
 
         <div class="grid grid-cols-2 gap-3">
           <div>
-            <label class="block text-xs font-semibold text-slate-700 mb-1">Bairro</label>
-            <input type="text" id="clientNeighborhood" placeholder="ex: Moema" class="w-full px-3 py-2 text-xs bg-slate-50 border border-slate-200 rounded-xl">
+            <label class="block text-xs font-semibold text-zinc-300 mb-1">Bairro</label>
+            <input type="text" id="clientNeighborhood" placeholder="ex: Moema" class="w-full px-3 py-2 text-xs bg-[#1c1c24] border border-zinc-700 text-white rounded-xl focus:border-amber-400">
           </div>
           <div>
-            <label class="block text-xs font-semibold text-slate-700 mb-1">Cidade</label>
-            <input type="text" id="clientCity" value="SÃ£o Paulo" class="w-full px-3 py-2 text-xs bg-slate-50 border border-slate-200 rounded-xl">
+            <label class="block text-xs font-semibold text-zinc-300 mb-1">Cidade</label>
+            <input type="text" id="clientCity" value="São Paulo" class="w-full px-3 py-2 text-xs bg-[#1c1c24] border border-zinc-700 text-white rounded-xl focus:border-amber-400">
           </div>
         </div>
 
         <div>
-          <label class="block text-xs font-semibold text-slate-700 mb-1">CEP</label>
-          <input type="text" id="clientCep" placeholder="00000-000" class="w-full px-3 py-2 text-xs bg-slate-50 border border-slate-200 rounded-xl">
+          <label class="block text-xs font-semibold text-zinc-300 mb-1">CEP</label>
+          <input type="text" id="clientCep" placeholder="00000-000" class="w-full px-3 py-2 text-xs bg-[#1c1c24] border border-zinc-700 text-white rounded-xl focus:border-amber-400">
         </div>
 
         <div>
-          <label class="block text-xs font-semibold text-slate-700 mb-1">ObservaÃ§Ãµes (Animais, detalhes de manchas, etc.)</label>
-          <textarea id="clientNotes" rows="2" class="w-full px-3 py-2 text-xs bg-slate-50 border border-slate-200 rounded-xl"></textarea>
+          <label class="block text-xs font-semibold text-zinc-300 mb-1">Observações (Animais, detalhes de manchas, etc.)</label>
+          <textarea id="clientNotes" rows="2" class="w-full px-3 py-2 text-xs bg-[#1c1c24] border border-zinc-700 text-white rounded-xl focus:border-amber-400"></textarea>
         </div>
 
-        <div class="pt-3 border-t border-slate-100 flex items-center justify-end gap-2">
-          <button type="button" onclick="window.app.closeClientModal()" class="px-4 py-2 text-xs font-semibold text-slate-600 hover:bg-slate-100 rounded-xl transition">
+        <div class="pt-3 border-t border-zinc-800 flex items-center justify-end gap-2">
+          <button type="button" onclick="window.app.closeClientModal()" class="px-4 py-2 text-xs font-semibold text-zinc-400 hover:text-white rounded-xl transition">
             Cancelar
           </button>
-          <button type="submit" class="px-5 py-2 bg-sky-600 hover:bg-sky-700 text-white text-xs font-bold rounded-xl shadow-sm transition">
+          <button type="submit" class="btn-gold px-5 py-2 text-xs font-bold rounded-xl transition">
             Salvar Cliente
           </button>
         </div>
@@ -812,14 +863,14 @@ body {
   </div>
 
   <!-- ============================================== -->
-  <!-- MODAL: ORÃ‡AMENTO -->
+  <!-- MODAL: ORÇAMENTO (Black & Gold) -->
   <!-- ============================================== -->
-  <div id="quoteModal" class="hidden fixed inset-0 z-50 overflow-y-auto bg-slate-900/60 backdrop-blur-xs flex items-center justify-center p-4">
-    <div class="bg-white rounded-3xl max-w-xl w-full p-6 shadow-2xl relative border border-slate-100 max-h-[90vh] overflow-y-auto">
+  <div id="quoteModal" class="hidden fixed inset-0 z-50 overflow-y-auto bg-black/80 backdrop-blur-xs flex items-center justify-center p-4">
+    <div class="bg-[#141419] rounded-3xl max-w-xl w-full p-6 shadow-2xl relative border border-amber-500/30 max-h-[90vh] overflow-y-auto text-white">
       
-      <div class="flex items-center justify-between pb-4 border-b border-slate-100 mb-4">
-        <h3 id="quoteModalTitle" class="text-base font-extrabold text-slate-900">Novo OrÃ§amento</h3>
-        <button onclick="window.app.closeQuoteModal()" class="p-1.5 text-slate-400 hover:text-slate-600 rounded-lg">
+      <div class="flex items-center justify-between pb-4 border-b border-zinc-800 mb-4">
+        <h3 id="quoteModalTitle" class="text-base font-extrabold text-white">Novo Orçamento</h3>
+        <button onclick="window.app.closeQuoteModal()" class="p-1.5 text-zinc-400 hover:text-white rounded-lg">
           <i data-lucide="x" class="w-5 h-5"></i>
         </button>
       </div>
@@ -829,36 +880,36 @@ body {
 
         <!-- Cliente -->
         <div>
-          <label class="block text-xs font-semibold text-slate-700 mb-1">Cliente *</label>
-          <select id="quoteClientSelect" class="w-full px-3 py-2 text-xs bg-slate-50 border border-slate-200 rounded-xl focus:ring-sky-500" required>
+          <label class="block text-xs font-semibold text-zinc-300 mb-1">Cliente *</label>
+          <select id="quoteClientSelect" class="w-full px-3 py-2 text-xs bg-[#1c1c24] border border-zinc-700 text-white rounded-xl focus:border-amber-400" required>
             <!-- Carregado via JS -->
           </select>
         </div>
 
-        <!-- Adicionar ServiÃ§os -->
-        <div class="p-3 bg-slate-50 border border-slate-200 rounded-2xl">
-          <label class="block text-xs font-bold text-slate-800 mb-2">Adicionar ServiÃ§os da Tabela</label>
+        <!-- Adicionar Serviços da Tabela -->
+        <div class="p-3 bg-[#18181f] border border-amber-500/20 rounded-2xl">
+          <label class="block text-xs font-bold text-amber-300 mb-2">Adicionar Serviços da Tabela</label>
           <div class="flex gap-2">
-            <select id="quoteServiceSelect" class="flex-1 px-3 py-2 text-xs bg-white border border-slate-200 rounded-xl">
-              <!-- Carregado via JS com lista padrÃ£o de sofÃ¡s, colchÃµes, etc. -->
+            <select id="quoteServiceSelect" class="flex-1 px-3 py-2 text-xs bg-[#1c1c24] border border-zinc-700 text-white rounded-xl focus:border-amber-400">
+              <!-- Carregado via JS -->
             </select>
-            <input type="number" id="quoteServiceQty" min="1" value="1" class="w-16 px-2 py-2 text-xs bg-white border border-slate-200 rounded-xl text-center" title="Quantidade">
-            <button type="button" onclick="window.app.addServiceToQuote()" class="px-3 py-2 bg-sky-600 hover:bg-sky-700 text-white text-xs font-bold rounded-xl transition">
+            <input type="number" id="quoteServiceQty" min="1" value="1" class="w-16 px-2 py-2 text-xs bg-[#1c1c24] border border-zinc-700 text-white rounded-xl text-center font-bold" title="Quantidade">
+            <button type="button" onclick="window.app.addServiceToQuote()" class="btn-gold px-3 py-2 text-xs font-bold rounded-xl transition">
               + Adicionar
             </button>
           </div>
         </div>
 
         <!-- Tabela de Itens Selecionados -->
-        <div>
+        <div class="overflow-x-auto">
           <table class="w-full text-left">
             <thead>
-              <tr class="text-[11px] font-bold text-slate-400 uppercase border-b border-slate-200">
-                <th class="py-1.5">Item</th>
-                <th class="py-1.5 text-center">Qtd</th>
-                <th class="py-1.5 text-right">UnitÃ¡rio</th>
-                <th class="py-1.5 text-right">Total</th>
-                <th class="py-1.5 text-center w-8"></th>
+              <tr class="text-[11px] font-bold text-zinc-400 uppercase border-b border-zinc-800">
+                <th class="py-2">Item</th>
+                <th class="py-2 text-center">Qtd</th>
+                <th class="py-2 text-right">Unitário</th>
+                <th class="py-2 text-right">Total</th>
+                <th class="py-2 text-center w-8"></th>
               </tr>
             </thead>
             <tbody id="quoteItemsTableBody">
@@ -868,38 +919,38 @@ body {
         </div>
 
         <!-- Resumo Financeiro -->
-        <div class="bg-sky-50/60 p-4 rounded-2xl border border-sky-100 space-y-2">
-          <div class="flex justify-between items-center text-xs text-slate-600">
+        <div class="bg-[#1c1c24] p-4 rounded-2xl border border-amber-500/20 space-y-2">
+          <div class="flex justify-between items-center text-xs text-zinc-300">
             <span>Subtotal:</span>
-            <span id="quoteSubtotalDisplay" class="font-bold text-slate-800">R$ 0,00</span>
+            <span id="quoteSubtotalDisplay" class="font-bold text-white">R$ 0,00</span>
           </div>
           <div class="flex justify-between items-center text-xs">
-            <span class="text-slate-600">Desconto Especial (R$):</span>
-            <input type="number" step="0.01" id="quoteDiscount" value="0" oninput="window.app.renderQuoteItemsTable()" class="w-24 px-2 py-1 text-xs bg-white border border-slate-200 rounded-lg text-right font-semibold text-red-600">
+            <span class="text-zinc-300">Desconto Especial (R$):</span>
+            <input type="number" step="0.01" id="quoteDiscount" value="0" oninput="window.app.renderQuoteItemsTable()" class="w-24 px-2 py-1 text-xs bg-zinc-900 border border-zinc-700 text-red-400 rounded-lg text-right font-bold">
           </div>
-          <div class="flex justify-between items-center pt-2 border-t border-sky-200 text-sm font-extrabold text-slate-900">
+          <div class="flex justify-between items-center pt-2 border-t border-zinc-700/60 text-sm font-extrabold text-white">
             <span>VALOR TOTAL:</span>
-            <span id="quoteTotalDisplay" class="text-base text-emerald-600">R$ 0,00</span>
+            <span id="quoteTotalDisplay" class="text-base text-amber-400 font-black">R$ 0,00</span>
           </div>
         </div>
 
-        <!-- CondiÃ§Ãµes de Pagamento e Validade -->
+        <!-- Condições de Pagamento e Validade -->
         <div class="grid grid-cols-2 gap-3">
           <div>
-            <label class="block text-xs font-semibold text-slate-700 mb-1">CondiÃ§Ãµes de Pagamento</label>
-            <input type="text" id="quotePaymentMethod" value="PIX (5% desc.) ou CartÃ£o atÃ© 3x sem juros" class="w-full px-3 py-2 text-xs bg-slate-50 border border-slate-200 rounded-xl">
+            <label class="block text-xs font-semibold text-zinc-300 mb-1">Condições de Pagamento</label>
+            <input type="text" id="quotePaymentMethod" value="PIX (5% desc.) ou Cartão até 3x sem juros" class="w-full px-3 py-2 text-xs bg-[#1c1c24] border border-zinc-700 text-white rounded-xl focus:border-amber-400">
           </div>
           <div>
-            <label class="block text-xs font-semibold text-slate-700 mb-1">Validade (dias)</label>
-            <input type="number" id="quoteValidity" value="15" class="w-full px-3 py-2 text-xs bg-slate-50 border border-slate-200 rounded-xl">
+            <label class="block text-xs font-semibold text-zinc-300 mb-1">Validade (dias)</label>
+            <input type="number" id="quoteValidity" value="15" class="w-full px-3 py-2 text-xs bg-[#1c1c24] border border-zinc-700 text-white rounded-xl focus:border-amber-400">
           </div>
         </div>
 
-        <!-- Status e ObservaÃ§Ãµes -->
+        <!-- Status e Observações -->
         <div class="grid grid-cols-2 gap-3">
           <div>
-            <label class="block text-xs font-semibold text-slate-700 mb-1">Status da Proposta</label>
-            <select id="quoteStatus" class="w-full px-3 py-2 text-xs bg-slate-50 border border-slate-200 rounded-xl">
+            <label class="block text-xs font-semibold text-zinc-300 mb-1">Status da Proposta</label>
+            <select id="quoteStatus" class="w-full px-3 py-2 text-xs bg-[#1c1c24] border border-zinc-700 text-white rounded-xl focus:border-amber-400">
               <option value="enviado">Enviado</option>
               <option value="rascunho">Rascunho</option>
               <option value="aprovado">Aprovado</option>
@@ -907,17 +958,17 @@ body {
             </select>
           </div>
           <div>
-            <label class="block text-xs font-semibold text-slate-700 mb-1">ObservaÃ§Ãµes da Proposta</label>
-            <input type="text" id="quoteNotes" placeholder="ex: Produtos biodegradÃ¡veis hospitalares" class="w-full px-3 py-2 text-xs bg-slate-50 border border-slate-200 rounded-xl">
+            <label class="block text-xs font-semibold text-zinc-300 mb-1">Observações da Proposta</label>
+            <input type="text" id="quoteNotes" placeholder="ex: Produtos biodegradáveis hospitalares" class="w-full px-3 py-2 text-xs bg-[#1c1c24] border border-zinc-700 text-white rounded-xl focus:border-amber-400">
           </div>
         </div>
 
-        <!-- BotÃµes -->
-        <div class="pt-3 border-t border-slate-100 flex items-center justify-end gap-2">
-          <button type="button" onclick="window.app.closeQuoteModal()" class="px-4 py-2 text-xs font-semibold text-slate-600 hover:bg-slate-100 rounded-xl transition">
+        <!-- Botões -->
+        <div class="pt-3 border-t border-zinc-800 flex items-center justify-end gap-2">
+          <button type="button" onclick="window.app.closeQuoteModal()" class="px-4 py-2 text-xs font-semibold text-zinc-400 hover:text-white rounded-xl transition">
             Cancelar
           </button>
-          <button type="submit" class="px-5 py-2 bg-sky-600 hover:bg-sky-700 text-white text-xs font-bold rounded-xl shadow-sm transition">
+          <button type="submit" class="btn-gold px-5 py-2 text-xs font-bold rounded-xl transition">
             Salvar Proposta
           </button>
         </div>
@@ -926,61 +977,61 @@ body {
   </div>
 
   <!-- ============================================== -->
-  <!-- MODAL: WHATSAPP 1 CLIQUE -->
+  <!-- MODAL: WHATSAPP 1 CLIQUE (Black & Gold) -->
   <!-- ============================================== -->
-  <div id="whatsappModal" class="hidden fixed inset-0 z-50 overflow-y-auto bg-slate-900/60 backdrop-blur-xs flex items-center justify-center p-4">
-    <div class="bg-white rounded-3xl max-w-lg w-full p-6 shadow-2xl relative border border-slate-100 max-h-[90vh] overflow-y-auto">
+  <div id="whatsappModal" class="hidden fixed inset-0 z-50 overflow-y-auto bg-black/80 backdrop-blur-xs flex items-center justify-center p-4">
+    <div class="bg-[#141419] rounded-3xl max-w-lg w-full p-6 shadow-2xl relative border border-amber-500/30 max-h-[90vh] overflow-y-auto text-white">
       
-      <div class="flex items-center justify-between pb-3 border-b border-slate-100 mb-4">
-        <div class="flex items-center gap-2">
-          <div class="w-9 h-9 rounded-xl bg-emerald-500 text-white flex items-center justify-center shadow-md shadow-emerald-500/20">
+      <div class="flex items-center justify-between pb-3 border-b border-zinc-800 mb-4">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-xl bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 flex items-center justify-center shrink-0">
             <i data-lucide="message-circle" class="w-5 h-5"></i>
           </div>
           <div>
-            <h3 class="text-sm sm:text-base font-extrabold text-slate-900">Assistente WhatsApp (1 Clique)</h3>
-            <p id="whatsappClientDisplay" class="text-xs text-slate-500 font-medium"></p>
+            <h3 class="text-sm sm:text-base font-extrabold text-white">Assistente WhatsApp (1 Clique)</h3>
+            <p id="whatsappClientDisplay" class="text-xs text-amber-300 font-medium"></p>
           </div>
         </div>
-        <button onclick="window.app.closeWhatsAppModal()" class="p-1.5 text-slate-400 hover:text-slate-600 rounded-lg">
+        <button onclick="window.app.closeWhatsAppModal()" class="p-1.5 text-zinc-400 hover:text-white rounded-lg">
           <i data-lucide="x" class="w-5 h-5"></i>
         </button>
       </div>
 
       <div class="space-y-4">
-        <!-- Telefone DestinatÃ¡rio -->
+        <!-- Telefone Destinatário -->
         <div>
-          <label class="block text-xs font-semibold text-slate-700 mb-1">NÃºmero do WhatsApp DestinatÃ¡rio</label>
-          <input type="tel" id="whatsappPhoneInput" class="w-full px-3 py-2 text-xs bg-slate-50 border border-slate-200 rounded-xl font-medium">
+          <label class="block text-xs font-semibold text-zinc-300 mb-1">Número do WhatsApp Destinatário</label>
+          <input type="tel" id="whatsappPhoneInput" class="w-full px-3 py-2 text-xs bg-[#1c1c24] border border-zinc-700 text-white rounded-xl font-medium focus:border-amber-400">
         </div>
 
-        <!-- SeleÃ§Ã£o de Template -->
+        <!-- Seleção de Template -->
         <div>
-          <label class="block text-xs font-semibold text-slate-700 mb-1">Selecione o Modelo de Mensagem</label>
-          <select id="whatsappTemplateSelect" class="w-full px-3 py-2 text-xs bg-slate-50 border border-slate-200 rounded-xl font-medium">
-            <option value="confirmacao">ðŸ“… 1. ConfirmaÃ§Ã£o de Agendamento</option>
-            <option value="lembrete_24h">â° 2. Lembrete de VÃ©spera (24h antes)</option>
-            <option value="a_caminho">ðŸš— 3. Equipe a Caminho</option>
-            <option value="pos_venda_secagem">ðŸ’¨ 4. OrientaÃ§Ãµes de Secagem & Cuidados</option>
-            <option value="garantia_impermeabilizacao">ðŸ›¡ï¸ 5. Certificado & Garantia da ImpermeabilizaÃ§Ã£o</option>
-            <option value="orcamento_detalhado">ðŸ“‹ 6. Envio de Proposta Comercial / OrÃ§amento</option>
+          <label class="block text-xs font-semibold text-zinc-300 mb-1">Selecione o Modelo de Mensagem</label>
+          <select id="whatsappTemplateSelect" class="w-full px-3 py-2 text-xs bg-[#1c1c24] border border-zinc-700 text-white rounded-xl font-medium focus:border-amber-400">
+            <option value="confirmacao">📅 1. Confirmação de Agendamento</option>
+            <option value="lembrete_24h">⏰ 2. Lembrete de Véspera (24h antes)</option>
+            <option value="a_caminho">🚗 3. Equipe a Caminho</option>
+            <option value="pos_venda_secagem">💨 4. Orientações de Secagem & Cuidados</option>
+            <option value="garantia_impermeabilizacao">🛡️ 5. Certificado & Garantia da Impermeabilização</option>
+            <option value="orcamento_detalhado">📋 6. Envio de Proposta Comercial / Orçamento</option>
           </select>
         </div>
 
-        <!-- Ãrea de PrÃ©-VisualizaÃ§Ã£o / EdiÃ§Ã£o -->
+        <!-- Área de Pré-Visualização / Edição -->
         <div>
           <div class="flex items-center justify-between mb-1">
-            <label class="text-xs font-semibold text-slate-700">Mensagem Formatada (VocÃª pode editar antes de enviar)</label>
-            <span class="text-[10px] text-emerald-600 font-bold bg-emerald-50 px-2 py-0.5 rounded-full">Pronta para Enviar</span>
+            <label class="text-xs font-semibold text-zinc-300">Mensagem Formatada (Você pode editar antes de enviar)</label>
+            <span class="text-[10px] text-emerald-400 font-bold bg-emerald-950/60 border border-emerald-500/30 px-2 py-0.5 rounded-full">Pronta para Enviar</span>
           </div>
-          <textarea id="whatsappMessagePreview" rows="8" class="w-full p-3 text-xs bg-slate-50 border border-slate-200 rounded-2xl font-sans leading-relaxed focus:bg-white"></textarea>
+          <textarea id="whatsappMessagePreview" rows="8" class="w-full p-3 text-xs bg-[#1c1c24] border border-zinc-700 text-zinc-100 rounded-2xl font-sans leading-relaxed focus:border-amber-400"></textarea>
         </div>
 
-        <!-- AÃ§Ã£o Principal -->
+        <!-- Ação Principal -->
         <div class="pt-2">
-          <button onclick="window.app.sendWhatsAppNow()" class="w-full py-3 bg-emerald-600 hover:bg-emerald-700 active:bg-emerald-800 text-white text-sm font-extrabold rounded-2xl shadow-lg shadow-emerald-600/30 flex items-center justify-center gap-2 transition">
+          <button onclick="window.app.sendWhatsAppNow()" class="w-full py-3 bg-emerald-600 hover:bg-emerald-500 active:bg-emerald-700 text-white text-sm font-extrabold rounded-2xl shadow-lg shadow-emerald-600/30 flex items-center justify-center gap-2 transition">
             <i data-lucide="send" class="w-4 h-4"></i> Disparar Mensagem no WhatsApp
           </button>
-          <p class="text-[11px] text-center text-slate-400 mt-2">Abre diretamente no WhatsApp Web ou App do celular sem precisar salvar o contato.</p>
+          <p class="text-[11px] text-center text-zinc-500 mt-2">Abre diretamente no WhatsApp Web ou App do celular sem precisar salvar o contato.</p>
         </div>
       </div>
 
@@ -988,21 +1039,21 @@ body {
   </div>
 
   <!-- ============================================== -->
-  <!-- DRAWER: NOTIFICAÃ‡Ã•ES (ADRIANO & ANNY) -->
+  <!-- DRAWER: NOTIFICAÇÕES (ADRIANO & ANNY) -->
   <!-- ============================================== -->
-  <div id="notificationsBackdrop" class="hidden fixed inset-0 bg-slate-900/40 backdrop-blur-2xs z-40 transition-opacity"></div>
-  <aside id="notificationsDrawer" class="hidden fixed top-0 right-0 bottom-0 w-80 sm:w-96 bg-white z-50 shadow-2xl transform translate-x-full transition-transform duration-300 ease-in-out flex flex-col">
-    <div class="p-4 border-b border-slate-100 flex items-center justify-between">
+  <div id="notificationsBackdrop" class="hidden fixed inset-0 bg-black/60 backdrop-blur-2xs z-40 transition-opacity"></div>
+  <aside id="notificationsDrawer" class="hidden fixed top-0 right-0 bottom-0 w-80 sm:w-96 bg-[#141419] border-l border-amber-500/20 z-50 shadow-2xl transform translate-x-full transition-transform duration-300 ease-in-out flex flex-col text-white">
+    <div class="p-4 border-b border-zinc-800 flex items-center justify-between">
       <div class="flex items-center gap-2">
-        <div class="w-8 h-8 rounded-lg bg-sky-50 text-sky-600 flex items-center justify-center">
+        <div class="w-8 h-8 rounded-lg bg-amber-500/10 text-amber-400 border border-amber-500/30 flex items-center justify-center">
           <i data-lucide="bell" class="w-4 h-4"></i>
         </div>
         <div>
-          <h3 class="text-sm font-bold text-slate-900">Central de Alertas</h3>
-          <p class="text-[10px] text-slate-400">Adriano & Anny</p>
+          <h3 class="text-sm font-bold text-white">Central de Alertas</h3>
+          <p class="text-[10px] text-amber-300">Adriano & Anny</p>
         </div>
       </div>
-      <button id="btnCloseNotifications" class="p-1.5 text-slate-400 hover:text-slate-600 rounded-lg">
+      <button id="btnCloseNotifications" class="p-1.5 text-zinc-400 hover:text-white rounded-lg">
         <i data-lucide="x" class="w-5 h-5"></i>
       </button>
     </div>
@@ -1012,12 +1063,12 @@ body {
       <!-- Injetado via JS -->
     </div>
 
-    <div class="p-3 border-t border-slate-100 bg-slate-50 flex items-center justify-between">
-      <button id="btnMarkAllNotificationsRead" class="text-xs font-semibold text-sky-600 hover:text-sky-800">
+    <div class="p-3 border-t border-zinc-800 bg-[#0f0f13] flex items-center justify-between">
+      <button id="btnMarkAllNotificationsRead" class="text-xs font-semibold text-amber-400 hover:text-amber-300">
         Marcar todas como lidas
       </button>
-      <button onclick="window.app.testNotificationSound()" class="text-xs font-semibold text-slate-500 hover:text-slate-700 flex items-center gap-1">
-        <i data-lucide="volume-2" class="w-3.5 h-3.5"></i> Testar Som
+      <button onclick="window.app.testNotificationSound()" class="text-xs font-semibold text-zinc-400 hover:text-white flex items-center gap-1">
+        <i data-lucide="volume-2" class="w-3.5 h-3.5 text-amber-400"></i> Testar Som
       </button>
     </div>
   </aside>
@@ -1025,15 +1076,397 @@ body {
   <!-- Container de Toasts Flutuantes -->
   <div id="toastContainer" class="fixed top-4 right-4 z-50 flex flex-col gap-2 pointer-events-none max-w-sm w-full px-4 sm:px-0"></div>
 
-  <!-- Container de ImpressÃ£o de Proposta Comercial -->
+  <!-- Container de Impressão de Proposta Comercial -->
   <div id="printProposalContainer" class="hidden"></div>
 
-    <!-- Supabase JS Client (Nuvem / Tempo Real) -->
+  <!-- Supabase JS Client (Nuvem / Tempo Real) -->
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-  <!-- Scripts Integrados (Zero DependÃªncia Externa) -->
+  <!-- Logo Oficial Base64 Inline Constant -->
   <script>
-  /**
+    window.ADRIREZ_LOGO_B64 = "data:image/jpeg;base64,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";
+  </script>
+
+  <!-- 1. Cloud Database (Supabase) -->
+  <script>
+/**
+ * Cloud Database Integration - ADRIREZ HOME CARE
+ * Sincronização em Tempo Real com Supabase (PostgreSQL na Nuvem)
+ * Permite que Adriano e Anny usem o aplicativo externamente no celular e PC sincronizados!
+ */
+
+const CLOUD_CONFIG_KEY = 'adrirez_supabase_config';
+
+// Credenciais Oficiais Configuradas para a ADRIREZ HOME CARE
+const DEFAULT_CLOUD_CONFIG = {
+  url: 'https://wcatjfrwleqllogiudmv.supabase.co',
+  anonKey: 'sb_publishable_L7kiJaOHLyM1sce5YMrh5w_OoKehWIk',
+  enabled: true
+};
+
+class CloudDatabaseManager {
+  constructor() {
+    this.client = null;
+    this.isConnected = false;
+    this.lastError = null;
+    this.config = this.loadConfig();
+    this.init();
+  }
+
+  loadConfig() {
+    try {
+      const saved = localStorage.getItem(CLOUD_CONFIG_KEY);
+      if (saved) {
+        const parsed = JSON.parse(saved);
+        if (parsed && parsed.url && parsed.anonKey) {
+          return parsed;
+        }
+      }
+      return { ...DEFAULT_CLOUD_CONFIG };
+    } catch (e) {
+      return { ...DEFAULT_CLOUD_CONFIG };
+    }
+  }
+
+  formatUrl(url) {
+    if (!url) return '';
+    let clean = url.trim();
+    if (!clean.startsWith('http://') && !clean.startsWith('https://')) {
+      clean = 'https://' + clean;
+    }
+    clean = clean.replace(/\/+$/, '');
+    return clean;
+  }
+
+  async saveConfig(rawUrl, rawAnonKey, enabled = true) {
+    const url = this.formatUrl(rawUrl);
+    const anonKey = (rawAnonKey || '').trim();
+
+    this.config = { url, anonKey, enabled };
+    localStorage.setItem(CLOUD_CONFIG_KEY, JSON.stringify(this.config));
+
+    if (!enabled) {
+      this.isConnected = false;
+      this.updateStatusBadge();
+      return { success: false, disabled: true, message: 'Modo local ativado (offline).' };
+    }
+
+    return await this.testAndInit();
+  }
+
+  async testAndInit() {
+    if (!this.config.url || !this.config.anonKey) {
+      this.isConnected = false;
+      this.updateStatusBadge();
+      return { success: false, message: 'Informe a Project URL e a Chave do Supabase.' };
+    }
+
+    if (!window.supabase || !window.supabase.createClient) {
+      this.isConnected = false;
+      this.updateStatusBadge();
+      return { success: false, message: 'Biblioteca do Supabase carregando...' };
+    }
+
+    try {
+      this.client = window.supabase.createClient(this.config.url, this.config.anonKey);
+      
+      // Testar conexão consultando a tabela 'clients'
+      const { data, error } = await this.client.from('clients').select('id').limit(1);
+
+      if (error) {
+        console.warn('Erro ao conectar ao Supabase:', error);
+        this.isConnected = false;
+        this.updateStatusBadge();
+
+        const msg = (error.message || '').toLowerCase();
+        const code = error.code || '';
+
+        if (code === '42P01' || msg.includes('relation') || msg.includes('does not exist') || code === 'PGRST204' || code === 'PGRST205') {
+          return {
+            success: false,
+            tablesMissing: true,
+            message: 'Conectou ao Supabase, mas as tabelas ainda NÃO foram criadas!\n\nVocê só precisa rodar o script SQL (schema.sql) no painel do Supabase para criar as tabelas.'
+          };
+        }
+
+        return {
+          success: false,
+          message: `Erro do Supabase: ${error.message || 'Código ' + code}`
+        };
+      }
+
+      // Conexão 100% estabelecida!
+      this.isConnected = true;
+      this.updateStatusBadge();
+      this.setupRealtimeListeners();
+      console.log('✅ Supabase conectado com sucesso! Sincronização em tempo real ativa.');
+
+      // Sincronizar dados automaticamente
+      this.syncFromCloud('clients');
+      this.syncFromCloud('appointments');
+      this.syncFromCloud('quotes');
+
+      return {
+        success: true,
+        message: 'Banco de Dados na Nuvem conectado com sucesso! Sincronização em tempo real ativa.'
+      };
+
+    } catch (err) {
+      console.error('Falha de conexão Supabase:', err);
+      this.isConnected = false;
+      this.updateStatusBadge();
+
+      return {
+        success: false,
+        networkError: true,
+        message: `Não foi possível conectar ao Supabase. Verifique sua conexão à internet.`
+      };
+    }
+  }
+
+  async init() {
+    if (!this.config.url || !this.config.anonKey || !this.config.enabled) {
+      this.isConnected = false;
+      this.updateStatusBadge();
+      return false;
+    }
+    const res = await this.testAndInit();
+    return res.success;
+  }
+
+  setupRealtimeListeners() {
+    if (!this.client || !this.isConnected) return;
+
+    try {
+      this.client
+        .channel('schema-db-changes')
+        .on('postgres_changes', { event: '*', schema: 'public', table: 'appointments' }, (payload) => {
+          this.syncFromCloud('appointments');
+        })
+        .on('postgres_changes', { event: '*', schema: 'public', table: 'clients' }, (payload) => {
+          this.syncFromCloud('clients');
+        })
+        .on('postgres_changes', { event: '*', schema: 'public', table: 'quotes' }, (payload) => {
+          this.syncFromCloud('quotes');
+        })
+        .subscribe();
+    } catch (e) {
+      console.warn('Erro ao configurar realtime listeners:', e);
+    }
+  }
+
+  async syncFromCloud(tableName) {
+    if (!this.client || !this.isConnected) return;
+    try {
+      const { data, error } = await this.client.from(tableName).select('*');
+      if (!error && data) {
+        if (tableName === 'clients' && data.length > 0) {
+          window.storage.save('adrirez_clients', data.map(d => ({
+            id: d.id,
+            name: d.name,
+            phone: d.phone,
+            address: d.address,
+            neighborhood: d.neighborhood,
+            city: d.city,
+            cep: d.cep,
+            notes: d.notes,
+            createdAt: d.created_at
+          })));
+        } else if (tableName === 'appointments' && data.length > 0) {
+          window.storage.save('adrirez_appointments', data.map(d => ({
+            id: d.id,
+            clientId: d.client_id,
+            clientName: d.client_name,
+            clientPhone: d.client_phone,
+            date: d.date,
+            time: d.time,
+            durationMinutes: d.duration_minutes,
+            services: d.services,
+            assignedTo: d.assigned_to,
+            address: d.address,
+            totalValue: Number(d.total_value),
+            paymentMethod: d.payment_method,
+            status: d.status,
+            notes: d.notes,
+            createdAt: d.created_at
+          })));
+        } else if (tableName === 'quotes' && data.length > 0) {
+          window.storage.save('adrirez_quotes', data.map(d => ({
+            id: d.id,
+            clientId: d.client_id,
+            clientName: d.client_name,
+            clientPhone: d.client_phone,
+            items: d.items,
+            subtotal: Number(d.subtotal),
+            discount: Number(d.discount),
+            total: Number(d.total),
+            paymentMethod: d.payment_method,
+            validityDays: d.validity_days,
+            status: d.status,
+            notes: d.notes,
+            createdAt: d.created_at
+          })));
+        }
+        if (window.app) window.app.renderCurrentView();
+      }
+    } catch (e) {
+      console.warn(`Erro na sincronização da tabela ${tableName}:`, e);
+    }
+  }
+
+  // Enviar dados locais para a nuvem
+  async syncAllToCloud() {
+    if (!this.client || !this.isConnected) {
+      alert('Banco de dados em nuvem não configurado ou desconectado.');
+      return false;
+    }
+
+    try {
+      const clients = window.storage.getClients().map(c => ({
+        id: c.id,
+        name: c.name,
+        phone: c.phone,
+        address: c.address,
+        neighborhood: c.neighborhood,
+        city: c.city,
+        cep: c.cep,
+        notes: c.notes,
+        created_at: c.createdAt || new Date().toISOString()
+      }));
+
+      const appointments = window.storage.getAppointments().map(a => ({
+        id: a.id,
+        client_id: a.clientId,
+        client_name: a.clientName,
+        client_phone: a.clientPhone,
+        date: a.date,
+        time: a.time,
+        duration_minutes: a.durationMinutes || 120,
+        services: a.services,
+        assigned_to: a.assignedTo,
+        address: a.address,
+        total_value: a.totalValue,
+        payment_method: a.paymentMethod,
+        status: a.status,
+        notes: a.notes,
+        created_at: a.createdAt || new Date().toISOString()
+      }));
+
+      const quotes = window.storage.getQuotes().map(q => ({
+        id: q.id,
+        client_id: q.clientId,
+        client_name: q.clientName,
+        client_phone: q.clientPhone,
+        items: q.items,
+        subtotal: q.subtotal,
+        discount: q.discount,
+        total: q.total,
+        payment_method: q.paymentMethod,
+        validity_days: q.validityDays,
+        status: q.status,
+        notes: q.notes,
+        created_at: q.createdAt || new Date().toISOString()
+      }));
+
+      if (clients.length) await this.client.from('clients').upsert(clients);
+      if (appointments.length) await this.client.from('appointments').upsert(appointments);
+      if (quotes.length) await this.client.from('quotes').upsert(quotes);
+
+      alert('✅ Todos os seus dados locais foram enviados com sucesso para a Nuvem!');
+      return true;
+    } catch (e) {
+      alert('Erro na sincronização com a Nuvem: ' + e.message);
+      return false;
+    }
+  }
+
+  async saveClientCloud(client) {
+    if (!this.client || !this.isConnected) return;
+    try {
+      await this.client.from('clients').upsert({
+        id: client.id,
+        name: client.name,
+        phone: client.phone,
+        address: client.address,
+        neighborhood: client.neighborhood,
+        city: client.city,
+        cep: client.cep,
+        notes: client.notes,
+        created_at: client.createdAt || new Date().toISOString()
+      });
+    } catch (e) {
+      console.warn('Erro ao salvar cliente na nuvem:', e);
+    }
+  }
+
+  async saveAppointmentCloud(app) {
+    if (!this.client || !this.isConnected) return;
+    try {
+      await this.client.from('appointments').upsert({
+        id: app.id,
+        client_id: app.clientId,
+        client_name: app.clientName,
+        client_phone: app.clientPhone,
+        date: app.date,
+        time: app.time,
+        duration_minutes: app.durationMinutes || 120,
+        services: app.services,
+        assigned_to: app.assignedTo,
+        address: app.address,
+        total_value: app.totalValue,
+        payment_method: app.paymentMethod,
+        status: app.status,
+        notes: app.notes,
+        created_at: app.createdAt || new Date().toISOString()
+      });
+    } catch (e) {
+      console.warn('Erro ao salvar agendamento na nuvem:', e);
+    }
+  }
+
+  async saveQuoteCloud(quote) {
+    if (!this.client || !this.isConnected) return;
+    try {
+      await this.client.from('quotes').upsert({
+        id: quote.id,
+        client_id: quote.clientId,
+        client_name: quote.clientName,
+        client_phone: quote.clientPhone,
+        items: quote.items,
+        subtotal: quote.subtotal,
+        discount: quote.discount,
+        total: quote.total,
+        payment_method: quote.paymentMethod,
+        validity_days: quote.validityDays,
+        status: quote.status,
+        notes: quote.notes,
+        created_at: quote.createdAt || new Date().toISOString()
+      });
+    } catch (e) {
+      console.warn('Erro ao salvar orçamento na nuvem:', e);
+    }
+  }
+
+  updateStatusBadge() {
+    const el = document.getElementById('cloudDbStatusBadge');
+    if (!el) return;
+    if (this.isConnected) {
+      el.className = 'text-xs font-semibold px-2.5 py-1 rounded-full bg-emerald-950/70 text-emerald-300 border border-emerald-500/30 flex items-center gap-1.5 shadow-sm';
+      el.innerHTML = '<span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span> Nuvem Conectada (Tempo Real)';
+    } else {
+      el.className = 'text-xs font-semibold px-2.5 py-1 rounded-full bg-amber-950/60 text-amber-300 border border-amber-500/30 flex items-center gap-1.5 shadow-sm';
+      el.innerHTML = '<span class="w-2 h-2 rounded-full bg-amber-400"></span> Modo Local (Offline / Sem Nuvem)';
+    }
+  }
+}
+
+window.cloudDb = new CloudDatabaseManager();
+
+  </script>
+
+  <!-- 2. Local Storage Layer -->
+  <script>
+/**
  * Storage Layer - ADRIREZ HOME CARE
  * Gerencia persistência local (LocalStorage), dados padrão, backup e restauração
  */
@@ -1050,15 +1483,15 @@ const STORAGE_KEYS = {
 // Configurações padrão da Adrirez Home Care
 const DEFAULT_SETTINGS = {
   companyName: 'ADRIREZ HOME CARE',
-  slogan: 'Higienização e Impermeabilização Especializada de Estofados',
+  slogan: '🛋️ Seu estofado limpo, protegido e renovado | ✨ Higienização & Impermeabilização Premium',
   phone: '(11) 99999-8888',
   email: 'contato@adrirezhomecare.com.br',
   city: 'São Paulo - SP',
   pixKey: 'adrirez.homecare@gmail.com',
   pixType: 'Email',
   admins: [
-    { id: 'adriano', name: 'Adriano', role: 'Administrador / Técnico Especialista', phone: '(11) 98765-4321', color: 'blue' },
-    { id: 'anny', name: 'Anny', role: 'Administradora / Atendimento e Gestão', phone: '(11) 91234-5678', color: 'pink' }
+    { id: 'adriano', name: 'Adriano', role: 'Administrador / Técnico Especialista', phone: '(11) 98765-4321', color: 'gold' },
+    { id: 'anny', name: 'Anny', role: 'Administradora / Atendimento e Gestão', phone: '(11) 91234-5678', color: 'amber' }
   ],
   termsWarranty: 'Garantia de 12 meses contra penetração de líquidos pastosos e aquosos na impermeabilização. Higienização com secagem em poucas horas utilizando produtos biodegradáveis dermatologicamente testados.'
 };
@@ -1447,8 +1880,208 @@ class StorageManager {
 window.storage = new StorageManager();
 
   </script>
+
+  <!-- 3. Notification & Sound Manager -->
   <script>
+/**
+ * Notification System - ADRIREZ HOME CARE
+ * Som sintetizado via Web Audio API, Toasts na tela, Push Notifications do navegador
+ */
+
+class NotificationManager {
+  constructor() {
+    this.audioContext = null;
+    this.soundEnabled = true;
+    this.initAudio();
+  }
+
+  initAudio() {
+    // Inicialização sob demanda do Web Audio API para contornar restrições de autoplay dos navegadores
+    const init = () => {
+      if (!this.audioContext) {
+        const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+        if (AudioContextClass) {
+          this.audioContext = new AudioContextClass();
+        }
+      }
+      document.removeEventListener('click', init);
+      document.removeEventListener('touchstart', init);
+    };
+    document.addEventListener('click', init, { once: true });
+    document.addEventListener('touchstart', init, { once: true });
+  }
+
   /**
+   * Toca um som agradável de sino duplo (ding-dong profissional) usando síntese de frequência
+   */
+  playNotificationSound() {
+    if (!this.soundEnabled) return;
+    try {
+      const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+      if (!this.audioContext && AudioContextClass) {
+        this.audioContext = new AudioContextClass();
+      }
+      if (this.audioContext && this.audioContext.state === 'suspended') {
+        this.audioContext.resume();
+      }
+      if (!this.audioContext) return;
+
+      const now = this.audioContext.currentTime;
+
+      // Primeiro tom (suave, frequência 587.33 Hz - D5)
+      const osc1 = this.audioContext.createOscillator();
+      const gain1 = this.audioContext.createGain();
+      osc1.type = 'sine';
+      osc1.frequency.setValueAtTime(587.33, now);
+      gain1.gain.setValueAtTime(0.2, now);
+      gain1.gain.exponentialRampToValueAtTime(0.001, now + 0.5);
+      osc1.connect(gain1);
+      gain1.connect(this.audioContext.destination);
+      osc1.start(now);
+      osc1.stop(now + 0.5);
+
+      // Segundo tom (mais agudo e brilhante, frequência 880 Hz - A5)
+      const osc2 = this.audioContext.createOscillator();
+      const gain2 = this.audioContext.createGain();
+      osc2.type = 'sine';
+      osc2.frequency.setValueAtTime(880, now + 0.15);
+      gain2.gain.setValueAtTime(0.25, now + 0.15);
+      gain2.gain.exponentialRampToValueAtTime(0.001, now + 0.8);
+      osc2.connect(gain2);
+      gain2.connect(this.audioContext.destination);
+      osc2.start(now + 0.15);
+      osc2.stop(now + 0.8);
+
+    } catch (e) {
+      console.warn('Não foi possível reproduzir som de notificação:', e);
+    }
+  }
+
+  /**
+   * Solicita permissão para notificações nativas do sistema operacional / celular
+   */
+  async requestPermission() {
+    if ('Notification' in window) {
+      const perm = await Notification.requestPermission();
+      return perm === 'granted';
+    }
+    return false;
+  }
+
+  /**
+   * Dispara uma notificação completa (Banco local + Toast na tela + Som + Notificação nativa)
+   */
+  notify(title, message, options = {}) {
+    const { type = 'appointment', recipient = 'all', playSound = true } = options;
+
+    // 1. Salvar no histórico
+    const notif = window.storage.addNotification({
+      title,
+      message,
+      type,
+      recipient
+    });
+
+    // 2. Tocar som
+    if (playSound) {
+      this.playNotificationSound();
+    }
+
+    // 3. Exibir Toast visual moderno na tela
+    this.showToast(title, message, type);
+
+    // 4. Notificação do sistema/celular (se permitido)
+    if ('Notification' in window && Notification.permission === 'granted') {
+      try {
+        new Notification(`ADRIREZ: ${title}`, {
+          body: message,
+          icon: 'assets/logo.png',
+          badge: 'assets/logo.png'
+        });
+      } catch (e) {
+        console.warn('Notificação nativa falhou:', e);
+      }
+    }
+
+    // 5. Atualizar badge no cabeçalho
+    this.updateNotificationBadge();
+
+    return notif;
+  }
+
+  /**
+   * Exibe toast flutuante no topo da tela
+   */
+  showToast(title, message, type = 'info') {
+    const container = document.getElementById('toastContainer');
+    if (!container) return;
+
+    const toast = document.createElement('div');
+    toast.className = `flex items-start gap-3 p-4 rounded-2xl shadow-2xl border bg-[#141419] text-zinc-100 transition-all duration-300 transform translate-y-[-20px] opacity-0 max-w-sm w-full pointer-events-auto border-amber-500/30 ring-1 ring-amber-500/20`;
+    
+    let iconSvg = `
+      <div class="w-9 h-9 rounded-xl bg-amber-500/20 text-amber-400 border border-amber-500/30 flex items-center justify-center shrink-0">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"></path></svg>
+      </div>`;
+
+    if (type === 'success' || type === 'quote') {
+      iconSvg = `
+        <div class="w-9 h-9 rounded-xl bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 flex items-center justify-center shrink-0">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+        </div>`;
+    }
+
+    toast.innerHTML = `
+      ${iconSvg}
+      <div class="flex-1 min-w-0">
+        <div class="flex items-center justify-between gap-1">
+          <h4 class="text-xs font-bold text-amber-300 tracking-wide uppercase">${title}</h4>
+          <span class="text-[10px] text-zinc-500">agora</span>
+        </div>
+        <p class="text-xs text-zinc-300 mt-0.5 line-clamp-2">${message}</p>
+      </div>
+      <button class="text-zinc-500 hover:text-zinc-300 p-1" onclick="this.parentElement.remove()">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+      </button>
+    `;
+
+    container.appendChild(toast);
+
+    // Animar entrada
+    requestAnimationFrame(() => {
+      toast.classList.remove('translate-y-[-20px]', 'opacity-0');
+      toast.classList.add('translate-y-0', 'opacity-100');
+    });
+
+    // Auto fechar após 6 segundos
+    setTimeout(() => {
+      toast.classList.add('opacity-0', 'scale-95');
+      setTimeout(() => toast.remove(), 300);
+    }, 6000);
+  }
+
+  updateNotificationBadge() {
+    const notifs = window.storage.getNotifications();
+    const unreadCount = notifs.filter(n => !n.read).length;
+    const badgeEl = document.getElementById('notificationBadge');
+    if (badgeEl) {
+      if (unreadCount > 0) {
+        badgeEl.textContent = unreadCount > 9 ? '9+' : unreadCount;
+        badgeEl.classList.remove('hidden');
+      } else {
+        badgeEl.classList.add('hidden');
+      }
+    }
+  }
+}
+
+window.notificationManager = new NotificationManager();
+
+  </script>
+
+  <!-- 4. WhatsApp Service -->
+  <script>
+/**
  * WhatsApp Integration Layer - ADRIREZ HOME CARE
  * Gerador de mensagens automáticas de 1 clique para WhatsApp
  */
@@ -1625,580 +2258,10 @@ class WhatsAppService {
 window.whatsappService = new WhatsAppService();
 
   </script>
+
+  <!-- 5. App Controller -->
   <script>
-  /**
- * Notification System - ADRIREZ HOME CARE
- * Som sintetizado via Web Audio API, Toasts na tela, Push Notifications do navegador
- */
-
-class NotificationManager {
-  constructor() {
-    this.audioContext = null;
-    this.soundEnabled = true;
-    this.initAudio();
-  }
-
-  initAudio() {
-    // Inicialização sob demanda do Web Audio API para contornar restrições de autoplay dos navegadores
-    const init = () => {
-      if (!this.audioContext) {
-        const AudioContextClass = window.AudioContext || window.webkitAudioContext;
-        if (AudioContextClass) {
-          this.audioContext = new AudioContextClass();
-        }
-      }
-      document.removeEventListener('click', init);
-      document.removeEventListener('touchstart', init);
-    };
-    document.addEventListener('click', init, { once: true });
-    document.addEventListener('touchstart', init, { once: true });
-  }
-
-  /**
-   * Toca um som agradável de sino duplo (ding-dong profissional) usando síntese de frequência
-   */
-  playNotificationSound() {
-    if (!this.soundEnabled) return;
-    try {
-      const AudioContextClass = window.AudioContext || window.webkitAudioContext;
-      if (!this.audioContext && AudioContextClass) {
-        this.audioContext = new AudioContextClass();
-      }
-      if (this.audioContext && this.audioContext.state === 'suspended') {
-        this.audioContext.resume();
-      }
-      if (!this.audioContext) return;
-
-      const now = this.audioContext.currentTime;
-
-      // Primeiro tom (suave, frequência 587.33 Hz - D5)
-      const osc1 = this.audioContext.createOscillator();
-      const gain1 = this.audioContext.createGain();
-      osc1.type = 'sine';
-      osc1.frequency.setValueAtTime(587.33, now);
-      gain1.gain.setValueAtTime(0.2, now);
-      gain1.gain.exponentialRampToValueAtTime(0.001, now + 0.5);
-      osc1.connect(gain1);
-      gain1.connect(this.audioContext.destination);
-      osc1.start(now);
-      osc1.stop(now + 0.5);
-
-      // Segundo tom (mais agudo e brilhante, frequência 880 Hz - A5)
-      const osc2 = this.audioContext.createOscillator();
-      const gain2 = this.audioContext.createGain();
-      osc2.type = 'sine';
-      osc2.frequency.setValueAtTime(880, now + 0.15);
-      gain2.gain.setValueAtTime(0.25, now + 0.15);
-      gain2.gain.exponentialRampToValueAtTime(0.001, now + 0.8);
-      osc2.connect(gain2);
-      gain2.connect(this.audioContext.destination);
-      osc2.start(now + 0.15);
-      osc2.stop(now + 0.8);
-
-    } catch (e) {
-      console.warn('Não foi possível reproduzir som de notificação:', e);
-    }
-  }
-
-  /**
-   * Solicita permissão para notificações nativas do sistema operacional / celular
-   */
-  async requestPermission() {
-    if ('Notification' in window) {
-      const perm = await Notification.requestPermission();
-      return perm === 'granted';
-    }
-    return false;
-  }
-
-  /**
-   * Dispara uma notificação completa (Banco local + Toast na tela + Som + Notificação nativa)
-   */
-  notify(title, message, options = {}) {
-    const { type = 'appointment', recipient = 'all', playSound = true } = options;
-
-    // 1. Salvar no histórico
-    const notif = window.storage.addNotification({
-      title,
-      message,
-      type,
-      recipient
-    });
-
-    // 2. Tocar som
-    if (playSound) {
-      this.playNotificationSound();
-    }
-
-    // 3. Exibir Toast visual moderno na tela
-    this.showToast(title, message, type);
-
-    // 4. Notificação do sistema/celular (se permitido)
-    if ('Notification' in window && Notification.permission === 'granted') {
-      try {
-        new Notification(`ADRIREZ: ${title}`, {
-          body: message,
-          icon: 'assets/logo.png',
-          badge: 'assets/logo.png'
-        });
-      } catch (e) {
-        console.warn('Notificação nativa falhou:', e);
-      }
-    }
-
-    // 5. Atualizar badge no cabeçalho
-    this.updateNotificationBadge();
-
-    return notif;
-  }
-
-  /**
-   * Exibe toast flutuante no topo da tela
-   */
-  showToast(title, message, type = 'info') {
-    const container = document.getElementById('toastContainer');
-    if (!container) return;
-
-    const toast = document.createElement('div');
-    toast.className = `flex items-start gap-3 p-4 rounded-xl shadow-xl border bg-white text-slate-800 transition-all duration-300 transform translate-y-[-20px] opacity-0 max-w-sm w-full pointer-events-auto border-sky-100 ring-1 ring-black/5`;
-    
-    let iconSvg = `
-      <div class="w-9 h-9 rounded-full bg-sky-100 text-sky-600 flex items-center justify-center shrink-0">
-        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"></path></svg>
-      </div>`;
-
-    if (type === 'success' || type === 'quote') {
-      iconSvg = `
-        <div class="w-9 h-9 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center shrink-0">
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-        </div>`;
-    }
-
-    toast.innerHTML = `
-      ${iconSvg}
-      <div class="flex-1 min-w-0">
-        <div class="flex items-center justify-between gap-1">
-          <h4 class="text-xs font-bold text-slate-900 tracking-wide uppercase">${title}</h4>
-          <span class="text-[10px] text-slate-400">agora</span>
-        </div>
-        <p class="text-xs text-slate-600 mt-0.5 line-clamp-2">${message}</p>
-      </div>
-      <button class="text-slate-400 hover:text-slate-600 p-1" onclick="this.parentElement.remove()">
-        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
-      </button>
-    `;
-
-    container.appendChild(toast);
-
-    // Animar entrada
-    requestAnimationFrame(() => {
-      toast.classList.remove('translate-y-[-20px]', 'opacity-0');
-      toast.classList.add('translate-y-0', 'opacity-100');
-    });
-
-    // Auto fechar após 6 segundos
-    setTimeout(() => {
-      toast.classList.add('opacity-0', 'scale-95');
-      setTimeout(() => toast.remove(), 300);
-    }, 6000);
-  }
-
-  updateNotificationBadge() {
-    const notifs = window.storage.getNotifications();
-    const unreadCount = notifs.filter(n => !n.read).length;
-    const badgeEl = document.getElementById('notificationBadge');
-    if (badgeEl) {
-      if (unreadCount > 0) {
-        badgeEl.textContent = unreadCount > 9 ? '9+' : unreadCount;
-        badgeEl.classList.remove('hidden');
-      } else {
-        badgeEl.classList.add('hidden');
-      }
-    }
-  }
-}
-
-window.notificationManager = new NotificationManager();
-
-  </script>
-  <script>
-  /**
- * Cloud Database Integration - ADRIREZ HOME CARE
- * Sincronização em Tempo Real com Supabase (PostgreSQL na Nuvem)
- * Permite que Adriano e Anny usem o aplicativo externamente no celular e PC sincronizados!
- */
-
-const CLOUD_CONFIG_KEY = 'adrirez_supabase_config';
-
-// Credenciais Oficiais Configuradas para a ADRIREZ HOME CARE
-const DEFAULT_CLOUD_CONFIG = {
-  url: 'https://wcatjfrwleqllogiudmv.supabase.co',
-  anonKey: 'sb_publishable_L7kiJaOHLyM1sce5YMrh5w_OoKehWIk',
-  enabled: true
-};
-
-class CloudDatabaseManager {
-  constructor() {
-    this.client = null;
-    this.isConnected = false;
-    this.lastError = null;
-    this.config = this.loadConfig();
-    this.init();
-  }
-
-  loadConfig() {
-    try {
-      const saved = localStorage.getItem(CLOUD_CONFIG_KEY);
-      if (saved) {
-        const parsed = JSON.parse(saved);
-        if (parsed && parsed.url && parsed.anonKey) {
-          return parsed;
-        }
-      }
-      return { ...DEFAULT_CLOUD_CONFIG };
-    } catch (e) {
-      return { ...DEFAULT_CLOUD_CONFIG };
-    }
-  }
-
-  formatUrl(url) {
-    if (!url) return '';
-    let clean = url.trim();
-    if (!clean.startsWith('http://') && !clean.startsWith('https://')) {
-      clean = 'https://' + clean;
-    }
-    clean = clean.replace(/\/+$/, '');
-    return clean;
-  }
-
-  async saveConfig(rawUrl, rawAnonKey, enabled = true) {
-    const url = this.formatUrl(rawUrl);
-    const anonKey = (rawAnonKey || '').trim();
-
-    this.config = { url, anonKey, enabled };
-    localStorage.setItem(CLOUD_CONFIG_KEY, JSON.stringify(this.config));
-
-    if (!enabled) {
-      this.isConnected = false;
-      this.updateStatusBadge();
-      return { success: false, disabled: true, message: 'Modo local ativado (offline).' };
-    }
-
-    return await this.testAndInit();
-  }
-
-  async testAndInit() {
-    if (!this.config.url || !this.config.anonKey) {
-      this.isConnected = false;
-      this.updateStatusBadge();
-      return { success: false, message: 'Informe a Project URL e a Chave do Supabase.' };
-    }
-
-    if (!window.supabase || !window.supabase.createClient) {
-      this.isConnected = false;
-      this.updateStatusBadge();
-      return { success: false, message: 'Biblioteca do Supabase carregando...' };
-    }
-
-    try {
-      this.client = window.supabase.createClient(this.config.url, this.config.anonKey);
-      
-      // Testar conexão consultando a tabela 'clients'
-      const { data, error } = await this.client.from('clients').select('id').limit(1);
-
-      if (error) {
-        console.warn('Erro ao conectar ao Supabase:', error);
-        this.isConnected = false;
-        this.updateStatusBadge();
-
-        const msg = (error.message || '').toLowerCase();
-        const code = error.code || '';
-
-        if (code === '42P01' || msg.includes('relation') || msg.includes('does not exist') || code === 'PGRST204' || code === 'PGRST205') {
-          return {
-            success: false,
-            tablesMissing: true,
-            message: 'Conectou ao Supabase, mas as tabelas ainda NÃO foram criadas!\n\nVocê só precisa rodar o script SQL (schema.sql) no painel do Supabase para criar as tabelas.'
-          };
-        }
-
-        return {
-          success: false,
-          message: `Erro do Supabase: ${error.message || 'Código ' + code}`
-        };
-      }
-
-      // Conexão 100% estabelecida!
-      this.isConnected = true;
-      this.updateStatusBadge();
-      this.setupRealtimeListeners();
-      console.log('✅ Supabase conectado com sucesso! Sincronização em tempo real ativa.');
-
-      // Sincronizar dados automaticamente
-      this.syncFromCloud('clients');
-      this.syncFromCloud('appointments');
-      this.syncFromCloud('quotes');
-
-      return {
-        success: true,
-        message: 'Banco de Dados na Nuvem conectado com sucesso! Sincronização em tempo real ativa.'
-      };
-
-    } catch (err) {
-      console.error('Falha de conexão Supabase:', err);
-      this.isConnected = false;
-      this.updateStatusBadge();
-
-      return {
-        success: false,
-        networkError: true,
-        message: `Não foi possível conectar ao Supabase. Verifique sua conexão à internet.`
-      };
-    }
-  }
-
-  async init() {
-    if (!this.config.url || !this.config.anonKey || !this.config.enabled) {
-      this.isConnected = false;
-      this.updateStatusBadge();
-      return false;
-    }
-    const res = await this.testAndInit();
-    return res.success;
-  }
-
-  setupRealtimeListeners() {
-    if (!this.client || !this.isConnected) return;
-
-    try {
-      this.client
-        .channel('schema-db-changes')
-        .on('postgres_changes', { event: '*', schema: 'public', table: 'appointments' }, (payload) => {
-          this.syncFromCloud('appointments');
-        })
-        .on('postgres_changes', { event: '*', schema: 'public', table: 'clients' }, (payload) => {
-          this.syncFromCloud('clients');
-        })
-        .on('postgres_changes', { event: '*', schema: 'public', table: 'quotes' }, (payload) => {
-          this.syncFromCloud('quotes');
-        })
-        .subscribe();
-    } catch (e) {
-      console.warn('Erro ao configurar realtime listeners:', e);
-    }
-  }
-
-  async syncFromCloud(tableName) {
-    if (!this.client || !this.isConnected) return;
-    try {
-      const { data, error } = await this.client.from(tableName).select('*');
-      if (!error && data) {
-        if (tableName === 'clients' && data.length > 0) {
-          window.storage.save('adrirez_clients', data.map(d => ({
-            id: d.id,
-            name: d.name,
-            phone: d.phone,
-            address: d.address,
-            neighborhood: d.neighborhood,
-            city: d.city,
-            cep: d.cep,
-            notes: d.notes,
-            createdAt: d.created_at
-          })));
-        } else if (tableName === 'appointments' && data.length > 0) {
-          window.storage.save('adrirez_appointments', data.map(d => ({
-            id: d.id,
-            clientId: d.client_id,
-            clientName: d.client_name,
-            clientPhone: d.client_phone,
-            date: d.date,
-            time: d.time,
-            durationMinutes: d.duration_minutes,
-            services: d.services,
-            assignedTo: d.assigned_to,
-            address: d.address,
-            totalValue: Number(d.total_value),
-            paymentMethod: d.payment_method,
-            status: d.status,
-            notes: d.notes,
-            createdAt: d.created_at
-          })));
-        } else if (tableName === 'quotes' && data.length > 0) {
-          window.storage.save('adrirez_quotes', data.map(d => ({
-            id: d.id,
-            clientId: d.client_id,
-            clientName: d.client_name,
-            clientPhone: d.client_phone,
-            items: d.items,
-            subtotal: Number(d.subtotal),
-            discount: Number(d.discount),
-            total: Number(d.total),
-            paymentMethod: d.payment_method,
-            validityDays: d.validity_days,
-            status: d.status,
-            notes: d.notes,
-            createdAt: d.created_at
-          })));
-        }
-        if (window.app) window.app.renderCurrentView();
-      }
-    } catch (e) {
-      console.warn(`Erro na sincronização da tabela ${tableName}:`, e);
-    }
-  }
-
-  // Enviar dados locais para a nuvem
-  async syncAllToCloud() {
-    if (!this.client || !this.isConnected) {
-      alert('Banco de dados em nuvem não configurado ou desconectado.');
-      return false;
-    }
-
-    try {
-      const clients = window.storage.getClients().map(c => ({
-        id: c.id,
-        name: c.name,
-        phone: c.phone,
-        address: c.address,
-        neighborhood: c.neighborhood,
-        city: c.city,
-        cep: c.cep,
-        notes: c.notes,
-        created_at: c.createdAt || new Date().toISOString()
-      }));
-
-      const appointments = window.storage.getAppointments().map(a => ({
-        id: a.id,
-        client_id: a.clientId,
-        client_name: a.clientName,
-        client_phone: a.clientPhone,
-        date: a.date,
-        time: a.time,
-        duration_minutes: a.durationMinutes || 120,
-        services: a.services,
-        assigned_to: a.assignedTo,
-        address: a.address,
-        total_value: a.totalValue,
-        payment_method: a.paymentMethod,
-        status: a.status,
-        notes: a.notes,
-        created_at: a.createdAt || new Date().toISOString()
-      }));
-
-      const quotes = window.storage.getQuotes().map(q => ({
-        id: q.id,
-        client_id: q.clientId,
-        client_name: q.clientName,
-        client_phone: q.clientPhone,
-        items: q.items,
-        subtotal: q.subtotal,
-        discount: q.discount,
-        total: q.total,
-        payment_method: q.paymentMethod,
-        validity_days: q.validityDays,
-        status: q.status,
-        notes: q.notes,
-        created_at: q.createdAt || new Date().toISOString()
-      }));
-
-      if (clients.length) await this.client.from('clients').upsert(clients);
-      if (appointments.length) await this.client.from('appointments').upsert(appointments);
-      if (quotes.length) await this.client.from('quotes').upsert(quotes);
-
-      alert('✅ Todos os seus dados locais foram enviados com sucesso para a Nuvem!');
-      return true;
-    } catch (e) {
-      alert('Erro na sincronização com a Nuvem: ' + e.message);
-      return false;
-    }
-  }
-
-  async saveClientCloud(client) {
-    if (!this.client || !this.isConnected) return;
-    try {
-      await this.client.from('clients').upsert({
-        id: client.id,
-        name: client.name,
-        phone: client.phone,
-        address: client.address,
-        neighborhood: client.neighborhood,
-        city: client.city,
-        cep: client.cep,
-        notes: client.notes,
-        created_at: client.createdAt || new Date().toISOString()
-      });
-    } catch (e) {
-      console.warn('Erro ao salvar cliente na nuvem:', e);
-    }
-  }
-
-  async saveAppointmentCloud(app) {
-    if (!this.client || !this.isConnected) return;
-    try {
-      await this.client.from('appointments').upsert({
-        id: app.id,
-        client_id: app.clientId,
-        client_name: app.clientName,
-        client_phone: app.clientPhone,
-        date: app.date,
-        time: app.time,
-        duration_minutes: app.durationMinutes || 120,
-        services: app.services,
-        assigned_to: app.assignedTo,
-        address: app.address,
-        total_value: app.totalValue,
-        payment_method: app.paymentMethod,
-        status: app.status,
-        notes: app.notes,
-        created_at: app.createdAt || new Date().toISOString()
-      });
-    } catch (e) {
-      console.warn('Erro ao salvar agendamento na nuvem:', e);
-    }
-  }
-
-  async saveQuoteCloud(quote) {
-    if (!this.client || !this.isConnected) return;
-    try {
-      await this.client.from('quotes').upsert({
-        id: quote.id,
-        client_id: quote.clientId,
-        client_name: quote.clientName,
-        client_phone: quote.clientPhone,
-        items: quote.items,
-        subtotal: quote.subtotal,
-        discount: quote.discount,
-        total: quote.total,
-        payment_method: quote.paymentMethod,
-        validity_days: quote.validityDays,
-        status: quote.status,
-        notes: quote.notes,
-        created_at: quote.createdAt || new Date().toISOString()
-      });
-    } catch (e) {
-      console.warn('Erro ao salvar orçamento na nuvem:', e);
-    }
-  }
-
-  updateStatusBadge() {
-    const el = document.getElementById('cloudDbStatusBadge');
-    if (!el) return;
-    if (this.isConnected) {
-      el.className = 'text-xs font-semibold px-2.5 py-1 rounded-full bg-emerald-100 text-emerald-800 flex items-center gap-1.5';
-      el.innerHTML = '<span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span> Nuvem Conectada (Tempo Real)';
-    } else {
-      el.className = 'text-xs font-semibold px-2.5 py-1 rounded-full bg-amber-100 text-amber-800 flex items-center gap-1.5';
-      el.innerHTML = '<span class="w-2 h-2 rounded-full bg-amber-500"></span> Modo Local (Offline / Sem Nuvem)';
-    }
-  }
-}
-
-window.cloudDb = new CloudDatabaseManager();
-
-
-  </script>
-  <script>
-  /**
+/**
  * App Controller - ADRIREZ HOME CARE
  * Gerenciamento central de interface, eventos, navegação e regras de negócio
  */
@@ -2235,11 +2298,11 @@ class AdrirezApp {
     document.querySelectorAll('.nav-btn').forEach(btn => {
       const match = btn.getAttribute('data-view') === viewId;
       if (match) {
-        btn.classList.add('text-sky-600', 'font-semibold', 'bg-sky-50');
-        btn.classList.remove('text-slate-600', 'hover:bg-slate-100');
+        btn.classList.add('text-amber-400', 'font-semibold', 'bg-amber-500/10', 'border-amber-500/30');
+        btn.classList.remove('text-zinc-400', 'hover:bg-zinc-800/60', 'hover:text-white', 'text-slate-600', 'text-slate-500');
       } else {
-        btn.classList.remove('text-sky-600', 'font-semibold', 'bg-sky-50');
-        btn.classList.add('text-slate-600', 'hover:bg-slate-100');
+        btn.classList.remove('text-amber-400', 'font-semibold', 'bg-amber-500/10', 'border-amber-500/30');
+        btn.classList.add('text-zinc-400', 'hover:bg-zinc-800/60', 'hover:text-white');
       }
     });
 
@@ -2330,11 +2393,11 @@ class AdrirezApp {
     document.querySelectorAll('.filter-tech-btn').forEach(btn => {
       btn.addEventListener('click', () => {
         document.querySelectorAll('.filter-tech-btn').forEach(b => {
-          b.classList.remove('bg-sky-600', 'text-white');
-          b.classList.add('bg-white', 'text-slate-700', 'border');
+          b.classList.remove('bg-amber-500', 'text-zinc-950', 'bg-sky-600', 'text-white');
+          b.classList.add('bg-zinc-900', 'text-zinc-300', 'border', 'border-zinc-800');
         });
-        btn.classList.add('bg-sky-600', 'text-white');
-        btn.classList.remove('bg-white', 'text-slate-700', 'border');
+        btn.classList.add('bg-amber-500', 'text-zinc-950');
+        btn.classList.remove('bg-zinc-900', 'text-zinc-300', 'border-zinc-800');
         this.activeFilterTechnician = btn.getAttribute('data-tech') || 'all';
         this.renderAgenda();
       });
@@ -2386,13 +2449,13 @@ class AdrirezApp {
     if (todayListContainer) {
       if (todayAppointments.length === 0) {
         todayListContainer.innerHTML = `
-          <div class="p-8 text-center bg-slate-50 border border-dashed border-slate-200 rounded-2xl">
-            <div class="w-12 h-12 bg-sky-100 text-sky-600 rounded-full flex items-center justify-center mx-auto mb-3">
+          <div class="col-span-full p-8 text-center bg-[#131317] border border-dashed border-amber-500/20 rounded-2xl">
+            <div class="w-12 h-12 bg-amber-500/10 text-amber-400 border border-amber-500/20 rounded-full flex items-center justify-center mx-auto mb-3">
               <i data-lucide="calendar" class="w-6 h-6"></i>
             </div>
-            <p class="text-sm font-semibold text-slate-700">Nenhum atendimento agendado para hoje!</p>
-            <p class="text-xs text-slate-500 mt-1">Aproveite para prospectar clientes, enviar propostas ou agendar novos serviços.</p>
-            <button onclick="window.app.openAppointmentModal()" class="mt-4 inline-flex items-center gap-1.5 px-4 py-2 bg-sky-600 hover:bg-sky-700 text-white text-xs font-semibold rounded-xl shadow-sm transition">
+            <p class="text-sm font-bold text-white">Nenhum atendimento agendado para hoje!</p>
+            <p class="text-xs text-zinc-400 mt-1">Aproveite para prospectar clientes, enviar propostas ou agendar novos serviços.</p>
+            <button onclick="window.app.openAppointmentModal()" class="btn-gold mt-4 inline-flex items-center gap-1.5 px-4 py-2 text-xs font-bold rounded-xl transition">
               <i data-lucide="plus" class="w-4 h-4"></i> Agendar Agora
             </button>
           </div>
@@ -2434,10 +2497,10 @@ class AdrirezApp {
       <div class="bg-white border border-slate-200/90 rounded-2xl p-4 shadow-sm hover:shadow-md transition action-card">
         <div class="flex flex-wrap items-start justify-between gap-2 mb-3">
           <div class="flex items-center gap-2">
-            <span class="text-xs font-bold px-2.5 py-1 bg-slate-900 text-white rounded-lg flex items-center gap-1">
+            <span class="text-xs font-bold px-2.5 py-1 bg-amber-950/60 border border-amber-500/30 text-amber-300 rounded-lg flex items-center gap-1">
               <i data-lucide="clock" class="w-3.5 h-3.5"></i> ${app.time || '--:--'}h
             </span>
-            ${!isToday ? `<span class="text-xs font-semibold text-slate-600 bg-slate-100 px-2 py-0.5 rounded-md">${dateFormatted}</span>` : ''}
+            ${!isToday ? `<span class="text-xs font-semibold text-zinc-300 bg-zinc-900 border border-zinc-800 px-2 py-0.5 rounded-md">${dateFormatted}</span>` : ''}
             ${statusBadge}
           </div>
           <div>
@@ -2447,40 +2510,40 @@ class AdrirezApp {
 
         <div class="mb-3">
           <div class="flex items-center justify-between">
-            <h4 class="text-base font-bold text-slate-900">${app.clientName}</h4>
-            <span class="text-sm font-bold text-emerald-600">R$ ${Number(app.totalValue || 0).toFixed(2)}</span>
+            <h4 class="text-base font-bold text-white tracking-tight">${app.clientName}</h4>
+            <span class="text-sm font-extrabold text-amber-400">R$ ${Number(app.totalValue || 0).toFixed(2)}</span>
           </div>
-          <div class="flex items-center gap-1 text-xs text-slate-600 mt-1">
-            <i data-lucide="map-pin" class="w-3.5 h-3.5 text-slate-400 shrink-0"></i>
+          <div class="flex items-center gap-1 text-xs text-zinc-300 mt-1">
+            <i data-lucide="map-pin" class="w-3.5 h-3.5 text-amber-400/80 shrink-0"></i>
             <span class="truncate">${app.address || 'Endereço não informado'}</span>
           </div>
-          <div class="flex items-center gap-1 text-xs text-sky-700 font-medium mt-1">
-            <i data-lucide="sparkles" class="w-3.5 h-3.5 text-sky-500 shrink-0"></i>
+          <div class="flex items-center gap-1 text-xs text-amber-300 font-medium mt-1">
+            <i data-lucide="sparkles" class="w-3.5 h-3.5 text-amber-400 shrink-0"></i>
             <span class="line-clamp-1">${Array.isArray(app.services) ? app.services.join(', ') : app.services}</span>
           </div>
-          ${app.notes ? `<div class="mt-2 text-xs text-slate-500 italic bg-slate-50 p-2 rounded-lg border border-slate-100">Obs: ${app.notes}</div>` : ''}
+          ${app.notes ? `<div class="mt-2 text-xs text-zinc-300 italic bg-[#1c1c24] p-2.5 rounded-xl border border-zinc-800">Obs: ${app.notes}</div>` : ''}
         </div>
 
         <!-- Botões de Ação Rápida -->
-        <div class="pt-3 border-t border-slate-100 flex flex-wrap items-center justify-between gap-2">
+        <div class="pt-3 border-t border-zinc-800/80 flex flex-wrap items-center justify-between gap-2">
           <div class="flex items-center gap-1.5">
             <!-- Botão WhatsApp 1 Clique -->
-            <button onclick="window.app.openWhatsAppModal('appointment', '${app.id}')" title="Enviar WhatsApp de 1 clique" class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-semibold rounded-xl shadow-sm transition">
+            <button onclick="window.app.openWhatsAppModal('appointment', '${app.id}')" title="Enviar WhatsApp de 1 clique" class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-semibold rounded-xl shadow-md transition">
               <i data-lucide="message-circle" class="w-4 h-4"></i> WhatsApp
             </button>
             <!-- Botão Rota Maps / Waze -->
-            <a href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(app.address || '')}" target="_blank" title="Abrir no Google Maps / Waze" class="inline-flex items-center gap-1 px-2.5 py-1.5 bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-medium rounded-xl transition">
-              <i data-lucide="navigation" class="w-3.5 h-3.5"></i> Mapa
+            <a href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(app.address || '')}" target="_blank" title="Abrir no Google Maps / Waze" class="inline-flex items-center gap-1 px-2.5 py-1.5 bg-zinc-900 hover:bg-zinc-800 text-zinc-200 border border-zinc-800 text-xs font-medium rounded-xl transition">
+              <i data-lucide="navigation" class="w-3.5 h-3.5 text-amber-400"></i> Mapa
             </a>
             <!-- Botão Ligar -->
-            <a href="tel:${app.clientPhone || ''}" title="Ligar para o cliente" class="inline-flex items-center gap-1 px-2.5 py-1.5 bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-medium rounded-xl transition">
-              <i data-lucide="phone" class="w-3.5 h-3.5"></i>
+            <a href="tel:${app.clientPhone || ''}" title="Ligar para o cliente" class="inline-flex items-center gap-1 px-2.5 py-1.5 bg-zinc-900 hover:bg-zinc-800 text-zinc-200 border border-zinc-800 text-xs font-medium rounded-xl transition">
+              <i data-lucide="phone" class="w-3.5 h-3.5 text-amber-400"></i>
             </a>
           </div>
 
           <div class="flex items-center gap-1.5">
             <!-- Mudar Status Rápido -->
-            <select onchange="window.app.changeAppointmentStatus('${app.id}', this.value)" class="text-xs bg-slate-50 border border-slate-200 rounded-lg px-2 py-1 text-slate-700 font-medium focus:ring-sky-500">
+            <select onchange="window.app.changeAppointmentStatus('${app.id}', this.value)" class="text-xs bg-[#1c1c24] border border-zinc-700 rounded-lg px-2 py-1 text-zinc-200 font-medium focus:border-amber-400 focus:outline-hidden">
               <option value="pendente" ${app.status === 'pendente' ? 'selected' : ''}>Pendente</option>
               <option value="confirmado" ${app.status === 'confirmado' ? 'selected' : ''}>Confirmado</option>
               <option value="a_caminho" ${app.status === 'a_caminho' ? 'selected' : ''}>A caminho</option>
@@ -2489,7 +2552,7 @@ class AdrirezApp {
               <option value="cancelado" ${app.status === 'cancelado' ? 'selected' : ''}>Cancelado</option>
             </select>
             <!-- Editar -->
-            <button onclick="window.app.openAppointmentModal('${app.id}')" title="Editar agendamento" class="p-1.5 text-slate-400 hover:text-sky-600 rounded-lg hover:bg-sky-50 transition">
+            <button onclick="window.app.openAppointmentModal('${app.id}')" title="Editar agendamento" class="p-1.5 text-zinc-400 hover:text-amber-400 rounded-lg hover:bg-amber-500/10 transition">
               <i data-lucide="edit-3" class="w-4 h-4"></i>
             </button>
           </div>
@@ -2500,16 +2563,16 @@ class AdrirezApp {
 
   getTechBadgeHTML(assignedTo) {
     if (assignedTo === 'adriano') {
-      return `<span class="badge-adriano text-[11px] font-semibold px-2 py-0.5 rounded-full flex items-center gap-1">
-        <span class="w-2 h-2 rounded-full bg-blue-600"></span> Adriano
+      return `<span class="badge-adriano text-[11px] font-semibold px-2.5 py-0.5 rounded-full flex items-center gap-1.5">
+        <span class="w-2 h-2 rounded-full bg-amber-400"></span> Adriano
       </span>`;
     } else if (assignedTo === 'anny') {
-      return `<span class="badge-anny text-[11px] font-semibold px-2 py-0.5 rounded-full flex items-center gap-1">
-        <span class="w-2 h-2 rounded-full bg-pink-600"></span> Anny
+      return `<span class="badge-anny text-[11px] font-semibold px-2.5 py-0.5 rounded-full flex items-center gap-1.5">
+        <span class="w-2 h-2 rounded-full bg-amber-200"></span> Anny
       </span>`;
     }
-    return `<span class="badge-ambos text-[11px] font-semibold px-2 py-0.5 rounded-full flex items-center gap-1">
-      <span class="w-2 h-2 rounded-full bg-emerald-600"></span> Adriano & Anny
+    return `<span class="badge-ambos text-[11px] font-semibold px-2.5 py-0.5 rounded-full flex items-center gap-1.5">
+      <span class="w-2 h-2 rounded-full bg-amber-300"></span> Adriano & Anny
     </span>`;
   }
 
@@ -2641,13 +2704,13 @@ class AdrirezApp {
 
     if (clients.length === 0) {
       container.innerHTML = `
-        <div class="col-span-full py-12 text-center bg-white border border-dashed border-slate-200 rounded-2xl">
-          <div class="w-12 h-12 bg-sky-50 text-sky-600 rounded-full flex items-center justify-center mx-auto mb-3">
+        <div class="col-span-full py-12 text-center bg-[#131317] border border-dashed border-amber-500/20 rounded-2xl">
+          <div class="w-12 h-12 bg-amber-500/10 text-amber-400 border border-amber-500/20 rounded-full flex items-center justify-center mx-auto mb-3">
             <i data-lucide="users" class="w-6 h-6"></i>
           </div>
-          <p class="text-sm font-semibold text-slate-700">Nenhum cliente cadastrado ainda.</p>
-          <p class="text-xs text-slate-500 mt-1">Cadastre seus clientes com endereço completo e observações.</p>
-          <button onclick="window.app.openClientModal()" class="mt-4 px-4 py-2 bg-sky-600 hover:bg-sky-700 text-white text-xs font-semibold rounded-xl">
+          <p class="text-sm font-bold text-white">Nenhum cliente cadastrado ainda.</p>
+          <p class="text-xs text-zinc-400 mt-1">Cadastre seus clientes com endereço completo e observações.</p>
+          <button onclick="window.app.openClientModal()" class="btn-gold mt-4 px-4 py-2 text-xs font-bold rounded-xl">
             + Cadastrar Cliente
           </button>
         </div>
@@ -2663,49 +2726,49 @@ class AdrirezApp {
       const cleanPhone = window.whatsappService.cleanPhoneNumber(client.phone);
 
       return `
-        <div class="bg-white border border-slate-200/90 rounded-2xl p-4 shadow-sm hover:shadow-md transition action-card flex flex-col justify-between">
+        <div class="action-card rounded-2xl p-4 transition flex flex-col justify-between">
           <div>
             <div class="flex items-start justify-between gap-2 mb-2">
               <div class="flex items-center gap-3">
-                <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-sky-500 to-blue-600 text-white font-bold text-sm flex items-center justify-center shrink-0 shadow-sm">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-amber-500 to-amber-700 text-zinc-950 font-black text-sm flex items-center justify-center shrink-0 shadow-md">
                   ${client.name.substring(0, 2).toUpperCase()}
                 </div>
                 <div>
-                  <h4 class="text-sm font-bold text-slate-900 leading-snug">${client.name}</h4>
-                  <span class="text-xs text-slate-500">${client.phone || 'Sem telefone'}</span>
+                  <h4 class="text-sm font-bold text-white leading-snug">${client.name}</h4>
+                  <span class="text-xs text-amber-300/70">${client.phone || 'Sem telefone'}</span>
                 </div>
               </div>
               <div class="flex items-center gap-1">
-                <button onclick="window.app.openClientModal('${client.id}')" title="Editar cliente" class="p-1.5 text-slate-400 hover:text-sky-600 rounded-lg hover:bg-sky-50 transition">
+                <button onclick="window.app.openClientModal('${client.id}')" title="Editar cliente" class="p-1.5 text-zinc-400 hover:text-amber-400 rounded-lg hover:bg-amber-500/10 transition">
                   <i data-lucide="edit-3" class="w-4 h-4"></i>
                 </button>
               </div>
             </div>
 
-            <div class="space-y-1.5 mt-3 text-xs text-slate-600">
+            <div class="space-y-1.5 mt-3 text-xs text-zinc-300">
               <div class="flex items-start gap-1.5">
-                <i data-lucide="map-pin" class="w-3.5 h-3.5 text-slate-400 mt-0.5 shrink-0"></i>
+                <i data-lucide="map-pin" class="w-3.5 h-3.5 text-amber-400/80 mt-0.5 shrink-0"></i>
                 <span class="line-clamp-2">${client.address || 'Endereço não cadastrado'} ${client.neighborhood ? `(${client.neighborhood})` : ''}</span>
               </div>
               ${client.notes ? `
-                <div class="p-2 bg-slate-50 border border-slate-100 rounded-lg text-slate-500 italic text-[11px]">
-                  <strong>Obs:</strong> ${client.notes}
+                <div class="p-2 bg-[#1c1c24] border border-zinc-800 rounded-lg text-zinc-300 italic text-[11px]">
+                  <strong class="text-amber-300">Obs:</strong> ${client.notes}
                 </div>
               ` : ''}
             </div>
           </div>
 
-          <div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between gap-2">
-            <span class="text-[11px] font-medium text-slate-400">
+          <div class="mt-4 pt-3 border-t border-zinc-800/80 flex items-center justify-between gap-2">
+            <span class="text-[11px] font-medium text-zinc-500">
               ${clientApps.length} serviço(s) realizado(s)
             </span>
             <div class="flex items-center gap-1.5">
               <!-- WhatsApp direto -->
-              <a href="https://wa.me/${cleanPhone}" target="_blank" class="inline-flex items-center gap-1 px-3 py-1.5 bg-emerald-50 text-emerald-700 hover:bg-emerald-100 text-xs font-semibold rounded-xl transition">
+              <a href="https://wa.me/${cleanPhone}" target="_blank" class="inline-flex items-center gap-1 px-3 py-1.5 bg-emerald-950/60 text-emerald-400 hover:bg-emerald-900/60 border border-emerald-500/30 text-xs font-semibold rounded-xl transition">
                 <i data-lucide="message-circle" class="w-3.5 h-3.5"></i> WhatsApp
               </a>
               <!-- Novo Agendamento para este cliente -->
-              <button onclick="window.app.quickBookForClient('${client.id}')" title="Agendar serviço para este cliente" class="inline-flex items-center gap-1 px-3 py-1.5 bg-sky-600 hover:bg-sky-700 text-white text-xs font-semibold rounded-xl transition">
+              <button onclick="window.app.quickBookForClient('${client.id}')" title="Agendar serviço para este cliente" class="btn-gold inline-flex items-center gap-1 px-3 py-1.5 text-xs font-bold rounded-xl transition">
                 <i data-lucide="calendar-plus" class="w-3.5 h-3.5"></i> Agendar
               </button>
             </div>
@@ -2729,13 +2792,13 @@ class AdrirezApp {
 
     if (quotes.length === 0) {
       container.innerHTML = `
-        <div class="col-span-full py-12 text-center bg-white border border-dashed border-slate-200 rounded-2xl">
-          <div class="w-12 h-12 bg-sky-50 text-sky-600 rounded-full flex items-center justify-center mx-auto mb-3">
+        <div class="col-span-full py-12 text-center bg-[#131317] border border-dashed border-amber-500/20 rounded-2xl">
+          <div class="w-12 h-12 bg-amber-500/10 text-amber-400 border border-amber-500/20 rounded-full flex items-center justify-center mx-auto mb-3">
             <i data-lucide="file-text" class="w-6 h-6"></i>
           </div>
-          <p class="text-sm font-semibold text-slate-700">Nenhum orçamento cadastrado.</p>
-          <p class="text-xs text-slate-500 mt-1">Crie propostas rápidas e envie no WhatsApp do cliente com 1 clique!</p>
-          <button onclick="window.app.openQuoteModal()" class="mt-4 px-4 py-2 bg-sky-600 hover:bg-sky-700 text-white text-xs font-semibold rounded-xl">
+          <p class="text-sm font-bold text-white">Nenhum orçamento cadastrado.</p>
+          <p class="text-xs text-zinc-400 mt-1">Crie propostas rápidas e envie no WhatsApp do cliente com 1 clique!</p>
+          <button onclick="window.app.openQuoteModal()" class="btn-gold mt-4 px-4 py-2 text-xs font-bold rounded-xl">
             + Criar Orçamento
           </button>
         </div>
@@ -2748,34 +2811,34 @@ class AdrirezApp {
     container.innerHTML = quotes.map(orc => {
       const dateFormatted = orc.createdAt ? new Date(orc.createdAt).toLocaleDateString('pt-BR') : '';
       const statusMap = {
-        rascunho: { label: 'Rascunho', class: 'bg-slate-100 text-slate-700' },
-        enviado: { label: 'Enviado', class: 'bg-blue-100 text-blue-800' },
-        aprovado: { label: 'Aprovado', class: 'bg-emerald-100 text-emerald-800' },
-        recusado: { label: 'Recusado', class: 'bg-red-100 text-red-800' }
+        rascunho: { label: 'Rascunho', class: 'bg-zinc-800 text-zinc-300 border border-zinc-700' },
+        enviado: { label: 'Enviado', class: 'bg-amber-950/70 text-amber-300 border border-amber-600/30' },
+        aprovado: { label: 'Aprovado', class: 'bg-emerald-950/70 text-emerald-300 border border-emerald-600/30' },
+        recusado: { label: 'Recusado', class: 'bg-red-950/70 text-red-300 border border-red-600/30' }
       };
       const st = statusMap[orc.status] || statusMap.rascunho;
 
       return `
-        <div class="bg-white border border-slate-200/90 rounded-2xl p-5 shadow-sm hover:shadow-md transition action-card flex flex-col justify-between">
+        <div class="action-card rounded-2xl p-5 transition flex flex-col justify-between">
           <div>
             <div class="flex items-start justify-between gap-2 mb-3">
               <div>
-                <span class="text-[11px] font-bold text-slate-400">#${orc.id.substring(4)}</span>
-                <h4 class="text-base font-bold text-slate-900 mt-0.5">${orc.clientName}</h4>
-                <span class="text-xs text-slate-500">${dateFormatted}</span>
+                <span class="text-[11px] font-bold text-amber-400/80">#${orc.id.substring(4)}</span>
+                <h4 class="text-base font-bold text-white mt-0.5">${orc.clientName}</h4>
+                <span class="text-xs text-zinc-400">${dateFormatted}</span>
               </div>
               <span class="${st.class} text-xs font-bold px-2.5 py-1 rounded-lg">${st.label}</span>
             </div>
 
-            <div class="space-y-1.5 my-3 text-xs text-slate-600 bg-slate-50 p-3 rounded-xl border border-slate-100">
+            <div class="space-y-1.5 my-3 text-xs text-zinc-300 bg-[#1c1c24] p-3.5 rounded-xl border border-zinc-800">
               ${(orc.items || []).map(item => `
                 <div class="flex justify-between items-center">
                   <span>${item.quantity}x ${item.name}</span>
-                  <span class="font-semibold text-slate-800">R$ ${Number(item.total).toFixed(2)}</span>
+                  <span class="font-bold text-amber-300">R$ ${Number(item.total).toFixed(2)}</span>
                 </div>
               `).join('')}
               ${orc.discount > 0 ? `
-                <div class="flex justify-between items-center text-red-600 pt-1 border-t border-slate-200">
+                <div class="flex justify-between items-center text-red-400 pt-1 border-t border-zinc-700/60">
                   <span>Desconto aplicado:</span>
                   <span>- R$ ${Number(orc.discount).toFixed(2)}</span>
                 </div>
@@ -2783,35 +2846,35 @@ class AdrirezApp {
             </div>
 
             <div class="flex items-center justify-between mt-3">
-              <span class="text-xs font-semibold text-slate-500">Valor Total:</span>
-              <span class="text-lg font-extrabold text-emerald-600">R$ ${Number(orc.total || 0).toFixed(2)}</span>
+              <span class="text-xs font-semibold text-zinc-400">Valor Total:</span>
+              <span class="text-lg font-black text-amber-400">R$ ${Number(orc.total || 0).toFixed(2)}</span>
             </div>
-            <div class="text-[11px] text-slate-500 mt-1">
-              Pagamento: <strong>${orc.paymentMethod || 'A combinar'}</strong>
+            <div class="text-[11px] text-zinc-400 mt-1">
+              Pagamento: <strong class="text-zinc-200">${orc.paymentMethod || 'A combinar'}</strong>
             </div>
           </div>
 
-          <div class="mt-5 pt-3 border-t border-slate-100 flex flex-wrap items-center justify-between gap-2">
+          <div class="mt-5 pt-3 border-t border-zinc-800/80 flex flex-wrap items-center justify-between gap-2">
             <div class="flex items-center gap-1.5">
               <!-- Enviar Orçamento WhatsApp -->
-              <button onclick="window.app.openWhatsAppModal('quote', '${orc.id}')" title="Enviar proposta por WhatsApp" class="inline-flex items-center gap-1 px-3 py-1.5 bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-semibold rounded-xl transition">
+              <button onclick="window.app.openWhatsAppModal('quote', '${orc.id}')" title="Enviar proposta por WhatsApp" class="inline-flex items-center gap-1 px-3 py-1.5 bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-semibold rounded-xl transition shadow-sm">
                 <i data-lucide="message-circle" class="w-3.5 h-3.5"></i> Enviar WhatsApp
               </button>
               <!-- Imprimir / PDF -->
-              <button onclick="window.app.printProposal('${orc.id}')" title="Imprimir / Salvar PDF" class="inline-flex items-center gap-1 px-2.5 py-1.5 bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-medium rounded-xl transition">
-                <i data-lucide="printer" class="w-3.5 h-3.5"></i> Imprimir
+              <button onclick="window.app.printProposal('${orc.id}')" title="Imprimir / Salvar PDF" class="inline-flex items-center gap-1 px-2.5 py-1.5 bg-zinc-900 hover:bg-zinc-800 text-zinc-200 border border-zinc-800 text-xs font-medium rounded-xl transition">
+                <i data-lucide="printer" class="w-3.5 h-3.5 text-amber-400"></i> Imprimir
               </button>
             </div>
 
             <div class="flex items-center gap-1.5">
               ${orc.status !== 'aprovado' ? `
-                <button onclick="window.app.approveQuoteAndSchedule('${orc.id}')" title="Aprovar e agendar serviço" class="inline-flex items-center gap-1 px-2.5 py-1.5 bg-sky-50 text-sky-700 hover:bg-sky-100 text-xs font-semibold rounded-xl transition">
-                  <i data-lucide="check-circle" class="w-3.5 h-3.5"></i> Aprovar & Agendar
+                <button onclick="window.app.approveQuoteAndSchedule('${orc.id}')" title="Aprovar e agendar serviço" class="inline-flex items-center gap-1 px-2.5 py-1.5 bg-amber-500/10 text-amber-300 hover:bg-amber-500/20 border border-amber-500/30 text-xs font-semibold rounded-xl transition">
+                  <i data-lucide="check-circle" class="w-3.5 h-3.5 text-amber-400"></i> Aprovar & Agendar
                 </button>
               ` : `
-                <span class="text-[11px] font-bold text-emerald-700 bg-emerald-50 px-2 py-1 rounded-lg">Aprovado</span>
+                <span class="text-[11px] font-bold text-emerald-400 bg-emerald-950/60 border border-emerald-500/30 px-2.5 py-1 rounded-lg">Aprovado</span>
               `}
-              <button onclick="window.app.openQuoteModal('${orc.id}')" title="Editar orçamento" class="p-1.5 text-slate-400 hover:text-sky-600 rounded-lg hover:bg-sky-50 transition">
+              <button onclick="window.app.openQuoteModal('${orc.id}')" title="Editar orçamento" class="p-1.5 text-zinc-400 hover:text-amber-400 rounded-lg hover:bg-amber-500/10 transition">
                 <i data-lucide="edit-3" class="w-4 h-4"></i>
               </button>
             </div>
@@ -3330,26 +3393,31 @@ class AdrirezApp {
     const dateFormatted = orc.createdAt ? new Date(orc.createdAt).toLocaleDateString('pt-BR') : new Date().toLocaleDateString('pt-BR');
 
     container.innerHTML = `
-      <div style="font-family: Arial, sans-serif; max-width: 800px; margin: 0 auto; color: #1e293b; padding: 20px;">
-        <!-- Cabeçalho -->
-        <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #0284c7; padding-bottom: 15px; margin-bottom: 20px;">
-          <div>
-            <h1 style="margin: 0; font-size: 24px; color: #0f172a; font-weight: 800;">${settings.companyName}</h1>
-            <p style="margin: 4px 0 0 0; font-size: 13px; color: #0284c7; font-weight: 600;">${settings.slogan}</p>
-            <p style="margin: 4px 0 0 0; font-size: 12px; color: #64748b;">Administração: Adriano & Anny | Tel/WhatsApp: ${settings.phone}</p>
+      <div style="font-family: Arial, sans-serif; max-width: 800px; margin: 0 auto; color: #18181b; padding: 25px; background: #ffffff;">
+        <!-- Cabeçalho com Logo Oficial do Instagram -->
+        <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #d4af37; padding-bottom: 18px; margin-bottom: 24px;">
+          <div style="display: flex; align-items: center; gap: 16px;">
+            <img src="assets/logo.png" alt="Adrirez Home Care" style="width: 65px; height: 65px; border-radius: 50%; border: 2px solid #d4af37; object-fit: cover;" onerror="if(window.ADRIREZ_LOGO_B64) this.src=window.ADRIREZ_LOGO_B64" />
+            <div>
+              <h1 style="margin: 0; font-size: 24px; color: #0a0a0c; font-weight: 800; letter-spacing: -0.5px;">${settings.companyName}</h1>
+              <p style="margin: 3px 0 0 0; font-size: 13px; color: #b89628; font-weight: 700;">🛋️ Higienização & Impermeabilização Especializada</p>
+              <p style="margin: 3px 0 0 0; font-size: 12px; color: #52525b;">📸 Instagram: @adrirez.homecare &bull; Tel/WhatsApp: ${settings.phone}</p>
+            </div>
           </div>
           <div style="text-align: right;">
-            <span style="font-size: 18px; font-weight: bold; color: #0284c7;">PROPOSTA Nº ${orc.id.substring(4)}</span>
-            <p style="margin: 4px 0 0 0; font-size: 12px; color: #64748b;">Data: ${dateFormatted}</p>
-            <p style="margin: 2px 0 0 0; font-size: 12px; color: #64748b;">Validade: ${orc.validityDays || 15} dias</p>
+            <div style="display: inline-block; background: #faf5eb; border: 1px solid #d4af37; color: #b89628; font-weight: 800; font-size: 15px; padding: 5px 12px; border-radius: 6px;">
+              PROPOSTA Nº ${orc.id.substring(4)}
+            </div>
+            <p style="margin: 6px 0 0 0; font-size: 12px; color: #71717a;">Data: <strong>${dateFormatted}</strong></p>
+            <p style="margin: 2px 0 0 0; font-size: 12px; color: #71717a;">Validade: <strong>${orc.validityDays || 15} dias</strong></p>
           </div>
         </div>
 
         <!-- Dados do Cliente -->
-        <div style="background-color: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 12px 16px; margin-bottom: 20px;">
-          <h3 style="margin: 0 0 8px 0; font-size: 13px; text-transform: uppercase; color: #475569; letter-spacing: 0.5px;">Dados do Cliente</h3>
-          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; font-size: 13px;">
-            <div><strong>Nome:</strong> ${orc.clientName}</div>
+        <div style="background-color: #fafaf9; border: 1px solid #e7e5e4; border-left: 4px solid #d4af37; border-radius: 6px; padding: 14px 18px; margin-bottom: 22px;">
+          <h3 style="margin: 0 0 8px 0; font-size: 12px; text-transform: uppercase; color: #78716c; letter-spacing: 0.8px; font-weight: 700;">Dados do Cliente</h3>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; font-size: 13px; color: #27272a;">
+            <div><strong>Cliente:</strong> ${orc.clientName}</div>
             <div><strong>WhatsApp:</strong> ${orc.clientPhone || client.phone || 'A combinar'}</div>
             <div><strong>Endereço:</strong> ${client.address || 'Conforme agendamento'}</div>
             <div><strong>Bairro/Cidade:</strong> ${client.neighborhood || ''} - ${client.city || settings.city}</div>
@@ -3359,20 +3427,20 @@ class AdrirezApp {
         <!-- Tabela de Itens -->
         <table style="width: 100%; border-collapse: collapse; margin-bottom: 20px; font-size: 13px;">
           <thead>
-            <tr style="background-color: #0f172a; color: white;">
-              <th style="padding: 10px; text-align: left; border-radius: 4px 0 0 0;">Item / Descrição do Serviço</th>
-              <th style="padding: 10px; text-align: center;">Qtd</th>
-              <th style="padding: 10px; text-align: right;">Valor Unit.</th>
-              <th style="padding: 10px; text-align: right; border-radius: 0 4px 0 0;">Subtotal</th>
+            <tr style="background-color: #0a0a0c; color: #fef08a;">
+              <th style="padding: 10px 14px; text-align: left; border-radius: 6px 0 0 0;">Item / Descrição do Serviço</th>
+              <th style="padding: 10px 14px; text-align: center;">Qtd</th>
+              <th style="padding: 10px 14px; text-align: right;">Valor Unit.</th>
+              <th style="padding: 10px 14px; text-align: right; border-radius: 0 6px 0 0;">Subtotal</th>
             </tr>
           </thead>
           <tbody>
-            ${(orc.items || []).map(item => `
-              <tr style="border-bottom: 1px solid #e2e8f0;">
-                <td style="padding: 10px; font-weight: 500;">${item.name}</td>
-                <td style="padding: 10px; text-align: center;">${item.quantity}</td>
-                <td style="padding: 10px; text-align: right;">R$ ${item.unitPrice.toFixed(2)}</td>
-                <td style="padding: 10px; text-align: right; font-weight: bold;">R$ ${item.total.toFixed(2)}</td>
+            ${(orc.items || []).map((item, idx) => `
+              <tr style="border-bottom: 1px solid #e4e4e7; background-color: ${idx % 2 === 0 ? '#ffffff' : '#fafafa'};">
+                <td style="padding: 11px 14px; font-weight: 600; color: #18181b;">${item.name}</td>
+                <td style="padding: 11px 14px; text-align: center; color: #52525b;">${item.quantity}</td>
+                <td style="padding: 11px 14px; text-align: right; color: #52525b;">R$ ${item.unitPrice.toFixed(2)}</td>
+                <td style="padding: 11px 14px; text-align: right; font-weight: 700; color: #09090b;">R$ ${item.total.toFixed(2)}</td>
               </tr>
             `).join('')}
           </tbody>
@@ -3380,42 +3448,43 @@ class AdrirezApp {
 
         <!-- Totais -->
         <div style="display: flex; justify-content: flex-end; margin-bottom: 25px;">
-          <div style="width: 280px; font-size: 13px;">
-            <div style="display: flex; justify-content: space-between; padding: 4px 0;">
+          <div style="width: 300px; font-size: 13px; background: #fafaf9; border: 1px solid #e4e4e7; border-radius: 8px; padding: 12px 16px;">
+            <div style="display: flex; justify-content: space-between; padding: 4px 0; color: #52525b;">
               <span>Subtotal:</span>
-              <span>R$ ${orc.subtotal.toFixed(2)}</span>
+              <span style="font-weight: 600;">R$ ${orc.subtotal.toFixed(2)}</span>
             </div>
             ${orc.discount > 0 ? `
               <div style="display: flex; justify-content: space-between; padding: 4px 0; color: #dc2626;">
                 <span>Desconto especial:</span>
-                <span>- R$ ${orc.discount.toFixed(2)}</span>
+                <span style="font-weight: 600;">- R$ ${orc.discount.toFixed(2)}</span>
               </div>
             ` : ''}
-            <div style="display: flex; justify-content: space-between; padding: 8px 0; border-top: 2px solid #0f172a; font-size: 16px; font-weight: bold; color: #0284c7;">
+            <div style="display: flex; justify-content: space-between; padding: 8px 0; margin-top: 6px; border-top: 2px solid #d4af37; font-size: 17px; font-weight: 800; color: #0a0a0c;">
               <span>VALOR TOTAL:</span>
-              <span>R$ ${orc.total.toFixed(2)}</span>
+              <span style="color: #b89628;">R$ ${orc.total.toFixed(2)}</span>
             </div>
           </div>
         </div>
 
         <!-- Condições de Pagamento e Chave PIX -->
-        <div style="background-color: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 8px; padding: 12px 16px; margin-bottom: 20px; font-size: 12px; color: #166534;">
-          <strong>Condições de Pagamento:</strong> ${orc.paymentMethod || 'PIX ou Cartão'}<br>
-          <strong>Chave PIX:</strong> ${settings.pixKey} (${settings.pixType}) - Titular: ${settings.companyName}
+        <div style="background-color: #fdfbf7; border: 1px solid #fed7aa; border-radius: 8px; padding: 12px 16px; margin-bottom: 20px; font-size: 12px; color: #9a3412;">
+          <strong>💳 Condições de Pagamento:</strong> ${orc.paymentMethod || 'PIX ou Cartão em até 3x'}<br>
+          <strong>🔑 Chave PIX:</strong> ${settings.pixKey} (${settings.pixType}) - Titular: ${settings.companyName}
         </div>
 
         <!-- Termos e Garantias -->
-        <div style="font-size: 11px; color: #64748b; line-height: 1.5; border-top: 1px solid #e2e8f0; padding-top: 15px;">
-          <strong>Garantia & Procedimento Técnico:</strong><br>
+        <div style="font-size: 11px; color: #71717a; line-height: 1.6; border-top: 1px solid #e4e4e7; padding-top: 15px;">
+          <strong>🛡️ Garantia & Padrão de Qualidade Adrirez:</strong><br>
           ${settings.termsWarranty}
         </div>
 
-        <div style="margin-top: 40px; display: flex; justify-content: space-between; text-align: center; font-size: 12px; color: #475569;">
-          <div style="width: 220px; border-top: 1px solid #94a3b8; padding-top: 6px;">
-            <strong>ADRIREZ HOME CARE</strong><br>Adriano / Anny
+        <!-- Assinaturas -->
+        <div style="margin-top: 45px; display: flex; justify-content: space-between; text-align: center; font-size: 12px; color: #3f3f46;">
+          <div style="width: 230px; border-top: 1px solid #a1a1aa; padding-top: 8px;">
+            <strong>ADRIREZ HOME CARE</strong><br>Adriano & Anny
           </div>
-          <div style="width: 220px; border-top: 1px solid #94a3b8; padding-top: 6px;">
-            <strong>${orc.clientName}</strong><br>De Acordo / Assinatura
+          <div style="width: 230px; border-top: 1px solid #a1a1aa; padding-top: 8px;">
+            <strong>${orc.clientName}</strong><br>De Acordo / Assinatura do Cliente
           </div>
         </div>
       </div>
@@ -3440,15 +3509,15 @@ class AdrirezApp {
     list.innerHTML = notifs.map(n => {
       const timeAgo = this.formatTimeAgo(n.date);
       return `
-        <div class="p-3.5 rounded-xl border ${n.read ? 'bg-white border-slate-100 text-slate-600' : 'bg-sky-50/70 border-sky-200 text-slate-900'} transition" onclick="window.app.markNotificationAsRead('${n.id}')">
+        <div class="p-3.5 rounded-xl border ${n.read ? 'bg-[#18181f] border-zinc-800 text-zinc-400' : 'bg-amber-950/40 border-amber-500/30 text-amber-200'} transition cursor-pointer" onclick="window.app.markNotificationAsRead('${n.id}')">
           <div class="flex items-center justify-between gap-1 mb-1">
-            <span class="text-xs font-bold ${n.read ? 'text-slate-700' : 'text-sky-900'} flex items-center gap-1.5">
-              ${!n.read ? '<span class="w-2 h-2 rounded-full bg-sky-600"></span>' : ''}
+            <span class="text-xs font-bold ${n.read ? 'text-zinc-300' : 'text-amber-300'} flex items-center gap-1.5">
+              ${!n.read ? '<span class="w-2 h-2 rounded-full bg-amber-400"></span>' : ''}
               ${n.title}
             </span>
-            <span class="text-[10px] text-slate-400">${timeAgo}</span>
+            <span class="text-[10px] text-zinc-500">${timeAgo}</span>
           </div>
-          <p class="text-xs ${n.read ? 'text-slate-500' : 'text-slate-700'}">${n.message}</p>
+          <p class="text-xs ${n.read ? 'text-zinc-400' : 'text-zinc-200'}">${n.message}</p>
         </div>
       `;
     }).join('');
@@ -3706,13 +3775,13 @@ window.addEventListener('DOMContentLoaded', () => {
 
   </script>
 
-  <!-- Service Worker para suporte PWA / Offline -->
+  <!-- Service Worker PWA -->
   <script>
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
-        navigator.serviceWorker.register('sw.js').catch(err => {
-          console.log('ServiceWorker nÃ£o registrado:', err);
-        });
+        navigator.serviceWorker.register('sw.js')
+          .then(reg => console.log('ServiceWorker Adrirez ativo com sucesso'))
+          .catch(err => console.log('ServiceWorker registro:', err));
       });
     }
   </script>
