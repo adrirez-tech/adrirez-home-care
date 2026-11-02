@@ -628,29 +628,52 @@ body {
       <!-- SUBABA 4: TABELA OFICIAL GOOGLE SHEETS -->
       <div id="ai-subtab-pricelist" class="ai-subtab-content hidden">
         <div class="action-card rounded-2xl p-5">
-          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-4">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-3">
             <div>
-              <h3 class="text-base font-extrabold text-white">Tabela de PreÃ§os Oficial (Google Sheets)</h3>
-              <p class="text-xs text-zinc-400">Valores de referÃªncia de 32 itens com HigienizaÃ§Ã£o, ImpermeabilizaÃ§Ã£o e Combo.</p>
+              <h3 class="text-base font-extrabold text-white flex items-center gap-2">
+                Tabela Oficial de PreÃ§os
+                <span class="text-[10px] bg-amber-500/20 text-amber-300 border border-amber-500/30 px-2 py-0.5 rounded-full font-bold">Rede SNDN â€¢ 62 Itens</span>
+              </h3>
+              <p class="text-xs text-zinc-400">PreÃ§os oficiais com 3 nÃ­veis de negociaÃ§Ã£o comercial: MÃ­nimo, MÃ©dio e MÃ¡ximo.</p>
             </div>
             <div class="flex items-center gap-2">
               <div class="relative w-48 sm:w-64">
                 <i data-lucide="search" class="w-3.5 h-3.5 text-zinc-500 absolute left-3 top-2.5"></i>
-                <input type="text" id="aiPriceSearchInput" oninput="window.app.renderAiPriceList()" placeholder="Filtrar item ou tecido..." class="w-full pl-8 pr-3 py-1.5 text-xs bg-[#1c1c24] border border-zinc-700 text-white rounded-xl focus:border-amber-400">
+                <input type="text" id="aiPriceSearchInput" oninput="window.app.renderAiPriceList()" placeholder="Filtrar item ou tamanho..." class="w-full pl-8 pr-3 py-1.5 text-xs bg-[#1c1c24] border border-zinc-700 text-white rounded-xl focus:border-amber-400">
               </div>
               <select id="aiPriceCatFilter" onchange="window.app.renderAiPriceList()" class="px-2.5 py-1.5 text-xs bg-[#1c1c24] border border-zinc-700 text-white rounded-xl focus:border-amber-400">
                 <option value="all">Todas Categorias</option>
-                <option value="SofÃ¡">SofÃ¡</option>
-                <option value="SofÃ¡ RetrÃ¡til">SofÃ¡ RetrÃ¡til</option>
-                <option value="SofÃ¡ de Canto / L">SofÃ¡ de Canto / L</option>
-                <option value="Poltrona">Poltrona</option>
-                <option value="Cadeira">Cadeira</option>
-                <option value="ColchÃ£o">ColchÃ£o</option>
-                <option value="Cabeceira">Cabeceira</option>
-                <option value="Tapete">Tapete</option>
-                <option value="Infantil">Infantil</option>
-                <option value="Veicular">Veicular</option>
+                <option value="SofÃ¡">SofÃ¡s</option>
+                <option value="ColchÃ£o">ColchÃµes</option>
+                <option value="Poltrona">Poltronas</option>
+                <option value="Cadeira">Cadeiras</option>
+                <option value="Banqueta">Banquetas</option>
+                <option value="Cabeceira">Cabeceiras</option>
+                <option value="Puff">Puffs</option>
+                <option value="Almofada">Almofadas</option>
+                <option value="Tapete">Tapetes</option>
+                <option value="Linha Automotiva">Automotivo</option>
+                <option value="Carrinho de BebÃª">Linha Infantil</option>
               </select>
+            </div>
+          </div>
+
+          <!-- Barra de SeleÃ§Ã£o de NÃ­vel de PreÃ§o (MÃ­nimo / MÃ©dio / MÃ¡ximo) -->
+          <div class="flex flex-wrap items-center justify-between gap-3 p-3 bg-zinc-900/90 rounded-2xl border border-zinc-800 mb-4">
+            <div class="flex items-center gap-2">
+              <span class="text-xs font-bold text-zinc-300">NÃ­vel de Tabela:</span>
+              <button type="button" onclick="window.app.changePriceTier('minimo')" id="btnTierMinimo" class="tier-filter-btn px-3 py-1.5 text-xs font-bold rounded-xl border border-zinc-800 text-zinc-400 bg-zinc-900 hover:text-white transition">
+                ðŸ”¥ MÃ­nimo (Piso)
+              </button>
+              <button type="button" onclick="window.app.changePriceTier('medio')" id="btnTierMedio" class="tier-filter-btn px-3 py-1.5 text-xs font-bold rounded-xl border border-amber-500/60 bg-amber-500 text-zinc-950 shadow-md transition">
+                â­ MÃ©dio (Recomendado)
+              </button>
+              <button type="button" onclick="window.app.changePriceTier('maximo')" id="btnTierMaximo" class="tier-filter-btn px-3 py-1.5 text-xs font-bold rounded-xl border border-zinc-800 text-zinc-400 bg-zinc-900 hover:text-white transition">
+                ðŸ‘‘ MÃ¡ximo (PadrÃ£o SNDN)
+              </button>
+            </div>
+            <div class="text-[11px] text-zinc-400">
+              <span id="activeTierLabel">Exibindo: <strong class="text-amber-400">PreÃ§o MÃ©dio (IntermediÃ¡rio Recomendado)</strong></span>
             </div>
           </div>
 
@@ -1083,9 +1106,17 @@ body {
           </select>
         </div>
 
-        <!-- Adicionar ServiÃ§os da Tabela -->
+        <!-- Adicionar ServiÃ§os da Tabela com NÃ­vel de PreÃ§o -->
         <div class="p-3 bg-[#18181f] border border-amber-500/20 rounded-2xl">
-          <label class="block text-xs font-bold text-amber-300 mb-2">Adicionar ServiÃ§os da Tabela</label>
+          <div class="flex items-center justify-between mb-2">
+            <label class="block text-xs font-bold text-amber-300">Adicionar ServiÃ§os da Tabela</label>
+            <!-- Seletor de NÃ­vel para o OrÃ§amento -->
+            <div class="flex items-center gap-1 bg-zinc-900 p-0.5 rounded-lg border border-zinc-800">
+              <button type="button" onclick="window.app.setQuoteModalTier('minimo')" id="btnQuoteTierMinimo" class="px-2 py-0.5 text-[10px] font-bold rounded-md text-zinc-400 hover:text-white transition">MÃ­nimo</button>
+              <button type="button" onclick="window.app.setQuoteModalTier('medio')" id="btnQuoteTierMedio" class="px-2 py-0.5 text-[10px] font-bold rounded-md bg-amber-500 text-zinc-950 transition">MÃ©dio</button>
+              <button type="button" onclick="window.app.setQuoteModalTier('maximo')" id="btnQuoteTierMaximo" class="px-2 py-0.5 text-[10px] font-bold rounded-md text-zinc-400 hover:text-white transition">MÃ¡ximo</button>
+            </div>
+          </div>
           <div class="flex gap-2">
             <select id="quoteServiceSelect" class="flex-1 px-3 py-2 text-xs bg-[#1c1c24] border border-zinc-700 text-white rounded-xl focus:border-amber-400">
               <!-- Carregado via JS -->
@@ -1665,49 +1696,1524 @@ window.cloudDb = new CloudDatabaseManager();
   <script>
 /**
  * Tabela Oficial de Preços - ADRIREZ HOME CARE
- * Sincronizada com a Planilha Oficial do Google Sheets:
- * https://docs.google.com/spreadsheets/d/1nqsOA_5paTd0kJy8wWtorraWY3tSdZPHldyU5PgHDPI/edit
+ * Baseada na Tabela de Franqueados Oficial Sofá Novo de Novo (SNDN.pro) & Planilha Google Sheets
+ * Suporte completo a 3 Níveis de Precificação: MÍNIMO, MÉDIO e MÁXIMO
  */
 
 const ADRIREZ_PRECOS_PADRAO = [
-  { category: "Sofá", model: "2 Lugares", name: "Sofá - 2 Lugares", higienizacao: 160.00, impermeabilizacao: 190.00, combo: 310.00 },
-  { category: "Sofá", model: "3 Lugares", name: "Sofá - 3 Lugares", higienizacao: 200.00, impermeabilizacao: 240.00, combo: 390.00 },
-  { category: "Sofá", model: "4 Lugares", name: "Sofá - 4 Lugares", higienizacao: 250.00, impermeabilizacao: 300.00, combo: 490.00 },
-  { category: "Sofá Retrátil", model: "2 Lugares", name: "Sofá Retrátil - 2 Lugares", higienizacao: 200.00, impermeabilizacao: 250.00, combo: 400.00 },
-  { category: "Sofá Retrátil", model: "3 Lugares", name: "Sofá Retrátil - 3 Lugares", higienizacao: 250.00, impermeabilizacao: 310.00, combo: 500.00 },
-  { category: "Sofá Retrátil", model: "4 Lugares", name: "Sofá Retrátil - 4 Lugares", higienizacao: 300.00, impermeabilizacao: 370.00, combo: 600.00 },
-  { category: "Sofá de Canto / L", model: "4 a 5 Lugares", name: "Sofá de Canto / L - 4 a 5 Lugares", higienizacao: 320.00, impermeabilizacao: 400.00, combo: 640.00 },
-  { category: "Sofá de Canto / L", model: "5 a 6 Lugares com Chaise", name: "Sofá de Canto / L - 5 a 6 Lugares com Chaise", higienizacao: 380.00, impermeabilizacao: 480.00, combo: 770.00 },
-  { category: "Poltrona", model: "Comum / Decorativa", name: "Poltrona - Comum / Decorativa", higienizacao: 80.00, impermeabilizacao: 100.00, combo: 160.00 },
-  { category: "Poltrona", model: "Amamentação / Balanço", name: "Poltrona - Amamentação / Balanço", higienizacao: 100.00, impermeabilizacao: 120.00, combo: 190.00 },
-  { category: "Poltrona", model: "Reclinável / Do Papai", name: "Poltrona - Reclinável / Do Papai", higienizacao: 130.00, impermeabilizacao: 160.00, combo: 260.00 },
-  { category: "Cadeira", model: "Apenas Assento", name: "Cadeira - Apenas Assento", higienizacao: 25.00, impermeabilizacao: 30.00, combo: 50.00 },
-  { category: "Cadeira", model: "Assento e Encosto", name: "Cadeira - Assento e Encosto", higienizacao: 40.00, impermeabilizacao: 50.00, combo: 80.00 },
-  { category: "Cadeira", model: "Escritório / Gamer", name: "Cadeira - Escritório / Gamer", higienizacao: 70.00, impermeabilizacao: 90.00, combo: 145.00 },
-  { category: "Banqueta", model: "Assento", name: "Banqueta - Assento", higienizacao: 25.00, impermeabilizacao: 30.00, combo: 50.00 },
-  { category: "Colchão", model: "Solteiro", name: "Colchão - Solteiro", higienizacao: 130.00, impermeabilizacao: 160.00, combo: 260.00 },
-  { category: "Colchão", model: "Casal Padrão", name: "Colchão - Casal Padrão", higienizacao: 170.00, impermeabilizacao: 210.00, combo: 340.00 },
-  { category: "Colchão", model: "Queen Size", name: "Colchão - Queen Size", higienizacao: 200.00, impermeabilizacao: 250.00, combo: 400.00 },
-  { category: "Colchão", model: "King Size", name: "Colchão - King Size", higienizacao: 240.00, impermeabilizacao: 300.00, combo: 480.00 },
-  { category: "Puff", model: "Pequeno", name: "Puff - Pequeno", higienizacao: 35.00, impermeabilizacao: 45.00, combo: 70.00 },
-  { category: "Puff", model: "Médio / Baú", name: "Puff - Médio / Baú", higienizacao: 60.00, impermeabilizacao: 80.00, combo: 125.00 },
-  { category: "Cabeceira", model: "Solteiro", name: "Cabeceira - Solteiro", higienizacao: 70.00, impermeabilizacao: 90.00, combo: 145.00 },
-  { category: "Cabeceira", model: "Casal / Queen", name: "Cabeceira - Casal / Queen", higienizacao: 100.00, impermeabilizacao: 130.00, combo: 205.00 },
-  { category: "Cabeceira", model: "King", name: "Cabeceira - King", higienizacao: 130.00, impermeabilizacao: 160.00, combo: 260.00 },
-  { category: "Almofada", model: "Unidade Avulsa", name: "Almofada - Unidade Avulsa", higienizacao: 20.00, impermeabilizacao: 25.00, combo: 40.00 },
-  { category: "Tapete", model: "Peça até 4 m²", name: "Tapete - Peça até 4 m²", higienizacao: 120.00, impermeabilizacao: 150.00, combo: 240.00 },
-  { category: "Tapete", model: "Peça 4 a 8 m²", name: "Tapete - Peça 4 a 8 m²", higienizacao: 200.00, impermeabilizacao: 260.00, combo: 410.00 },
-  { category: "Infantil", model: "Bebê Conforto", name: "Bebê Conforto - Individual", higienizacao: 80.00, impermeabilizacao: 100.00, combo: 160.00 },
-  { category: "Infantil", model: "Carrinho de Bebê", name: "Carrinho de Bebê - Completo", higienizacao: 130.00, impermeabilizacao: 160.00, combo: 260.00 },
-  { category: "Infantil", model: "Cadeirinha de Carro", name: "Cadeirinha de Carro - Infantil", higienizacao: 90.00, impermeabilizacao: 110.00, combo: 180.00 },
-  { category: "Veicular", model: "Bancos Hatch / Sedan", name: "Veicular - Bancos Hatch / Sedan", higienizacao: 180.00, impermeabilizacao: 230.00, combo: 370.00 },
-  { category: "Veicular", model: "Bancos SUV / Pick-up", name: "Veicular - Bancos SUV / Pick-up", higienizacao: 230.00, impermeabilizacao: 290.00, combo: 470.00 }
+    {
+        "id":  "sndn_sof_1_lugares_1_20m_a_1_50m_1",
+        "category":  "Sofá",
+        "name":  "Sofá - 1 Lugares - 1,20m a 1,50m",
+        "rawSize":  "1 LUGARES - 1,20m a 1,50m",
+        "minimo":  {
+                       "higienizacao":  184,
+                       "impermeabilizacao":  207,
+                       "combo":  371.45
+                   },
+        "medio":  {
+                      "higienizacao":  207,
+                      "impermeabilizacao":  229,
+                      "combo":  414.2
+                  },
+        "maximo":  {
+                       "higienizacao":  229,
+                       "impermeabilizacao":  249,
+                       "combo":  454.1
+                   },
+        "higienizacao":  207,
+        "impermeabilizacao":  229,
+        "combo":  414.2
+    },
+    {
+        "id":  "sndn_sof_2_lugares_retr_til_1_60m_2_20m_2",
+        "category":  "Sofá",
+        "name":  "Sofá - 2 Lugares (retrátil) - 1,60m À 2,20m",
+        "rawSize":  "2 LUGARES (RETRÁTIL) - 1,60m À 2,20m",
+        "minimo":  {
+                       "higienizacao":  202,
+                       "impermeabilizacao":  220,
+                       "combo":  400.9
+                   },
+        "medio":  {
+                      "higienizacao":  229,
+                      "impermeabilizacao":  279,
+                      "combo":  482.6
+                  },
+        "maximo":  {
+                       "higienizacao":  259,
+                       "impermeabilizacao":  299,
+                       "combo":  530.1
+                   },
+        "higienizacao":  229,
+        "impermeabilizacao":  279,
+        "combo":  482.6
+    },
+    {
+        "id":  "sndn_sof_3_lugares_retr_til_sof_cama_2_3_3",
+        "category":  "Sofá",
+        "name":  "Sofá - 3 Lugares (retrátil)/sofá Cama - 2,30m À 2,60m",
+        "rawSize":  "3 LUGARES (RETRÁTIL)/SOFÁ CAMA - 2,30m À 2,60m",
+        "minimo":  {
+                       "higienizacao":  216,
+                       "impermeabilizacao":  229,
+                       "combo":  422.75
+                   },
+        "medio":  {
+                      "higienizacao":  239,
+                      "impermeabilizacao":  289,
+                      "combo":  501.6
+                  },
+        "maximo":  {
+                       "higienizacao":  269,
+                       "impermeabilizacao":  309,
+                       "combo":  549.1
+                   },
+        "higienizacao":  239,
+        "impermeabilizacao":  289,
+        "combo":  501.6
+    },
+    {
+        "id":  "sndn_sof_4_lugares_retr_til_2_70mx3_10m_4",
+        "category":  "Sofá",
+        "name":  "Sofá - 4 Lugares (retrátil) - 2,70mx3,10m",
+        "rawSize":  "4 LUGARES (RETRÁTIL) - 2,70mx3,10m",
+        "minimo":  {
+                       "higienizacao":  226,
+                       "impermeabilizacao":  239,
+                       "combo":  441.75
+                   },
+        "medio":  {
+                      "higienizacao":  249,
+                      "impermeabilizacao":  299,
+                      "combo":  520.6
+                  },
+        "maximo":  {
+                       "higienizacao":  277,
+                       "impermeabilizacao":  319,
+                       "combo":  566.2
+                   },
+        "higienizacao":  249,
+        "impermeabilizacao":  299,
+        "combo":  520.6
+    },
+    {
+        "id":  "sndn_sof_5_lugares_retr_til_3_20mx3_90m_5",
+        "category":  "Sofá",
+        "name":  "Sofá - 5 Lugares (retrátil) - 3,20mx3,90m",
+        "rawSize":  "5 LUGARES (RETRÁTIL) - 3,20mx3,90m",
+        "minimo":  {
+                       "higienizacao":  236,
+                       "impermeabilizacao":  249,
+                       "combo":  460.75
+                   },
+        "medio":  {
+                      "higienizacao":  269,
+                      "impermeabilizacao":  319,
+                      "combo":  558.6
+                  },
+        "maximo":  {
+                       "higienizacao":  289,
+                       "impermeabilizacao":  339,
+                       "combo":  596.6
+                   },
+        "higienizacao":  269,
+        "impermeabilizacao":  319,
+        "combo":  558.6
+    },
+    {
+        "id":  "sndn_sof_3x2_lugares_retr_til_formato_l_6",
+        "category":  "Sofá",
+        "name":  "Sofá - 3x2 Lugares (retrátil) - Formato L",
+        "rawSize":  "3X2 LUGARES (RETRÁTIL) - FORMATO L",
+        "minimo":  {
+                       "higienizacao":  246,
+                       "impermeabilizacao":  269,
+                       "combo":  489.25
+                   },
+        "medio":  {
+                      "higienizacao":  299,
+                      "impermeabilizacao":  329,
+                      "combo":  596.6
+                  },
+        "maximo":  {
+                       "higienizacao":  319,
+                       "impermeabilizacao":  349,
+                       "combo":  634.6
+                   },
+        "higienizacao":  299,
+        "impermeabilizacao":  329,
+        "combo":  596.6
+    },
+    {
+        "id":  "sndn_sof_6_lugares_3_50m_a_4_20m_7",
+        "category":  "Sofá",
+        "name":  "Sofá - 6 Lugares - 3,50m a 4,20m",
+        "rawSize":  "6 LUGARES - 3,50m a 4,20m",
+        "minimo":  {
+                       "higienizacao":  286,
+                       "impermeabilizacao":  309,
+                       "combo":  565.25
+                   },
+        "medio":  {
+                      "higienizacao":  294,
+                      "impermeabilizacao":  339,
+                      "combo":  601.35
+                  },
+        "maximo":  {
+                       "higienizacao":  349,
+                       "impermeabilizacao":  379,
+                       "combo":  691.6
+                   },
+        "higienizacao":  294,
+        "impermeabilizacao":  339,
+        "combo":  601.35
+    },
+    {
+        "id":  "sndn_sof_7_lugares_3_80m_a_4_80m_8",
+        "category":  "Sofá",
+        "name":  "Sofá - 7 Lugares - 3,80m a 4,80m",
+        "rawSize":  "7 LUGARES - 3,80m a 4,80m",
+        "minimo":  {
+                       "higienizacao":  306,
+                       "impermeabilizacao":  389,
+                       "combo":  660.25
+                   },
+        "medio":  {
+                      "higienizacao":  339,
+                      "impermeabilizacao":  419,
+                      "combo":  720.1
+                  },
+        "maximo":  {
+                       "higienizacao":  369,
+                       "impermeabilizacao":  449,
+                       "combo":  777.1
+                   },
+        "higienizacao":  339,
+        "impermeabilizacao":  419,
+        "combo":  720.1
+    },
+    {
+        "id":  "sndn_sof_8_lugares_4_20m_a_5_50m_9",
+        "category":  "Sofá",
+        "name":  "Sofá - 8 Lugares - 4,20m a 5,50m",
+        "rawSize":  "8 LUGARES - 4,20m a 5,50m",
+        "minimo":  {
+                       "higienizacao":  386,
+                       "impermeabilizacao":  397,
+                       "combo":  743.85
+                   },
+        "medio":  {
+                      "higienizacao":  419,
+                      "impermeabilizacao":  449,
+                      "combo":  824.6
+                  },
+        "maximo":  {
+                       "higienizacao":  449,
+                       "impermeabilizacao":  479,
+                       "combo":  881.6
+                   },
+        "higienizacao":  419,
+        "impermeabilizacao":  449,
+        "combo":  824.6
+    },
+    {
+        "id":  "sndn_sof_9_lugares_5_20m_a_6_00m_10",
+        "category":  "Sofá",
+        "name":  "Sofá - 9 Lugares - 5,20m a 6,00m",
+        "rawSize":  "9 LUGARES - 5,20m a 6,00m",
+        "minimo":  {
+                       "higienizacao":  426,
+                       "impermeabilizacao":  449,
+                       "combo":  831.25
+                   },
+        "medio":  {
+                      "higienizacao":  434,
+                      "impermeabilizacao":  497,
+                      "combo":  884.45
+                  },
+        "maximo":  {
+                       "higienizacao":  479,
+                       "impermeabilizacao":  519,
+                       "combo":  948.1
+                   },
+        "higienizacao":  434,
+        "impermeabilizacao":  497,
+        "combo":  884.45
+    },
+    {
+        "id":  "sndn_sof_10_lugares_6_00m_x_6_80m_11",
+        "category":  "Sofá",
+        "name":  "Sofá - 10 Lugares - 6,00m X 6,80m",
+        "rawSize":  "10 LUGARES - 6,00m x 6,80m",
+        "minimo":  {
+                       "higienizacao":  0,
+                       "impermeabilizacao":  0,
+                       "combo":  0
+                   },
+        "medio":  {
+                      "higienizacao":  0,
+                      "impermeabilizacao":  0,
+                      "combo":  0
+                  },
+        "maximo":  {
+                       "higienizacao":  519,
+                       "impermeabilizacao":  579,
+                       "combo":  1043.1
+                   },
+        "higienizacao":  0,
+        "impermeabilizacao":  0,
+        "combo":  0
+    },
+    {
+        "id":  "sndn_sof_10_lugares_6_00m_a_6_80m_ou_mai_12",
+        "category":  "Sofá",
+        "name":  "Sofá - 10 Lugares - 6,00m a 6,80m Ou Mais",
+        "rawSize":  "10 LUGARES - 6,00m a 6,80m ou mais",
+        "minimo":  {
+                       "higienizacao":  446,
+                       "impermeabilizacao":  509,
+                       "combo":  907.25
+                   },
+        "medio":  {
+                      "higienizacao":  497,
+                      "impermeabilizacao":  549,
+                      "combo":  993.7
+                  },
+        "maximo":  {
+                       "higienizacao":  497,
+                       "impermeabilizacao":  549,
+                       "combo":  993.7
+                   },
+        "higienizacao":  497,
+        "impermeabilizacao":  549,
+        "combo":  993.7
+    },
+    {
+        "id":  "sndn_sof_cama_13",
+        "category":  "Sofá",
+        "name":  "Sofá - Cama",
+        "rawSize":  "CAMA - null",
+        "minimo":  {
+                       "higienizacao":  216,
+                       "impermeabilizacao":  219,
+                       "combo":  413.25
+                   },
+        "medio":  {
+                      "higienizacao":  239,
+                      "impermeabilizacao":  249,
+                      "combo":  463.6
+                  },
+        "maximo":  {
+                       "higienizacao":  249,
+                       "impermeabilizacao":  269,
+                       "combo":  492.1
+                   },
+        "higienizacao":  239,
+        "impermeabilizacao":  249,
+        "combo":  463.6
+    },
+    {
+        "id":  "sndn_sof_slim_14",
+        "category":  "Sofá",
+        "name":  "Sofá - Slim",
+        "rawSize":  "SLIM - null",
+        "minimo":  {
+                       "higienizacao":  184,
+                       "impermeabilizacao":  207,
+                       "combo":  371.45
+                   },
+        "medio":  {
+                      "higienizacao":  207,
+                      "impermeabilizacao":  229,
+                      "combo":  414.2
+                  },
+        "maximo":  {
+                       "higienizacao":  219,
+                       "impermeabilizacao":  249,
+                       "combo":  444.6
+                   },
+        "higienizacao":  207,
+        "impermeabilizacao":  229,
+        "combo":  414.2
+    },
+    {
+        "id":  "sndn_sof_ilha_redondo_15",
+        "category":  "Sofá",
+        "name":  "Sofá - Ilha (redondo)",
+        "rawSize":  "ILHA (REDONDO) - null",
+        "minimo":  {
+                       "higienizacao":  216,
+                       "impermeabilizacao":  219,
+                       "combo":  413.25
+                   },
+        "medio":  {
+                      "higienizacao":  239,
+                      "impermeabilizacao":  249,
+                      "combo":  463.6
+                  },
+        "maximo":  {
+                       "higienizacao":  249,
+                       "impermeabilizacao":  269,
+                       "combo":  492.1
+                   },
+        "higienizacao":  239,
+        "impermeabilizacao":  249,
+        "combo":  463.6
+    },
+    {
+        "id":  "sndn_sof_ilha_duplo_lado_16",
+        "category":  "Sofá",
+        "name":  "Sofá - Ilha (duplo Lado)",
+        "rawSize":  "ILHA (DUPLO LADO) - null",
+        "minimo":  {
+                       "higienizacao":  376,
+                       "impermeabilizacao":  397,
+                       "combo":  734.35
+                   },
+        "medio":  {
+                      "higienizacao":  419,
+                      "impermeabilizacao":  449,
+                      "combo":  824.6
+                  },
+        "maximo":  {
+                       "higienizacao":  449,
+                       "impermeabilizacao":  479,
+                       "combo":  881.6
+                   },
+        "higienizacao":  419,
+        "impermeabilizacao":  449,
+        "combo":  824.6
+    },
+    {
+        "id":  "sndn_div_1_90_x_0_70m_17",
+        "category":  "Divã",
+        "name":  "Divã - 1,90 X 0,70m",
+        "rawSize":  "null - 1,90 x 0,70m",
+        "minimo":  {
+                       "higienizacao":  184,
+                       "impermeabilizacao":  219,
+                       "combo":  382.85
+                   },
+        "medio":  {
+                      "higienizacao":  207,
+                      "impermeabilizacao":  239,
+                      "combo":  423.7
+                  },
+        "maximo":  {
+                       "higienizacao":  219,
+                       "impermeabilizacao":  249,
+                       "combo":  444.6
+                   },
+        "higienizacao":  207,
+        "impermeabilizacao":  239,
+        "combo":  423.7
+    },
+    {
+        "id":  "sndn_recamier_1_50m_x_1_98m_18",
+        "category":  "Recamier",
+        "name":  "Recamier - 1,50m X 1,98m",
+        "rawSize":  "null - 1,50m x 1,98m",
+        "minimo":  {
+                       "higienizacao":  184,
+                       "impermeabilizacao":  219,
+                       "combo":  382.85
+                   },
+        "medio":  {
+                      "higienizacao":  207,
+                      "impermeabilizacao":  239,
+                      "combo":  423.7
+                  },
+        "maximo":  {
+                       "higienizacao":  219,
+                       "impermeabilizacao":  249,
+                       "combo":  444.6
+                   },
+        "higienizacao":  207,
+        "impermeabilizacao":  239,
+        "combo":  423.7
+    },
+    {
+        "id":  "sndn_canto_alem_o_l_19",
+        "category":  "Canto Alemão",
+        "name":  "Canto Alemão - L",
+        "rawSize":  "L - null",
+        "minimo":  {
+                       "higienizacao":  216,
+                       "impermeabilizacao":  219,
+                       "combo":  413.25
+                   },
+        "medio":  {
+                      "higienizacao":  239,
+                      "impermeabilizacao":  249,
+                      "combo":  463.6
+                  },
+        "maximo":  {
+                       "higienizacao":  249,
+                       "impermeabilizacao":  269,
+                       "combo":  492.1
+                   },
+        "higienizacao":  239,
+        "impermeabilizacao":  249,
+        "combo":  463.6
+    },
+    {
+        "id":  "sndn_futton_null_20",
+        "category":  "Futton",
+        "name":  "Futton",
+        "rawSize":  "null - null",
+        "minimo":  {
+                       "higienizacao":  104,
+                       "impermeabilizacao":  119,
+                       "combo":  211.85
+                   },
+        "medio":  {
+                      "higienizacao":  109,
+                      "impermeabilizacao":  139,
+                      "combo":  235.6
+                  },
+        "maximo":  {
+                       "higienizacao":  119,
+                       "impermeabilizacao":  149,
+                       "combo":  254.6
+                   },
+        "higienizacao":  109,
+        "impermeabilizacao":  139,
+        "combo":  235.6
+    },
+    {
+        "id":  "sndn_pillow_top_m2_21",
+        "category":  "Pillow Top",
+        "name":  "Pillow Top - m2",
+        "rawSize":  "M2 - null",
+        "minimo":  {
+                       "higienizacao":  72,
+                       "impermeabilizacao":  75,
+                       "combo":  139.65
+                   },
+        "medio":  {
+                      "higienizacao":  75,
+                      "impermeabilizacao":  90,
+                      "combo":  156.75
+                  },
+        "maximo":  {
+                       "higienizacao":  80,
+                       "impermeabilizacao":  90,
+                       "combo":  161.5
+                   },
+        "higienizacao":  75,
+        "impermeabilizacao":  90,
+        "combo":  156.75
+    },
+    {
+        "id":  "sndn_almofada_m2_22",
+        "category":  "Almofada",
+        "name":  "Almofada - m2",
+        "rawSize":  "M2 - null",
+        "minimo":  {
+                       "higienizacao":  70,
+                       "impermeabilizacao":  85,
+                       "combo":  147.25
+                   },
+        "medio":  {
+                      "higienizacao":  67,
+                      "impermeabilizacao":  70,
+                      "combo":  130.15
+                  },
+        "maximo":  {
+                       "higienizacao":  77,
+                       "impermeabilizacao":  80,
+                       "combo":  149.15
+                   },
+        "higienizacao":  67,
+        "impermeabilizacao":  70,
+        "combo":  130.15
+    },
+    {
+        "id":  "sndn_banqueta_null_23",
+        "category":  "Banqueta",
+        "name":  "Banqueta",
+        "rawSize":  "null - null",
+        "minimo":  {
+                       "higienizacao":  35,
+                       "impermeabilizacao":  70,
+                       "combo":  99.75
+                   },
+        "medio":  {
+                      "higienizacao":  37,
+                      "impermeabilizacao":  62,
+                      "combo":  94.05
+                  },
+        "maximo":  {
+                       "higienizacao":  43,
+                       "impermeabilizacao":  70,
+                       "combo":  107.35
+                   },
+        "higienizacao":  37,
+        "impermeabilizacao":  62,
+        "combo":  94.05
+    },
+    {
+        "id":  "sndn_cadeira_5_lugares_apenas_bancos_24",
+        "category":  "Cadeira",
+        "name":  "Cadeira - 5 Lugares (apenas Bancos)",
+        "rawSize":  "5 LUGARES (APENAS BANCOS) - null",
+        "minimo":  {
+                       "higienizacao":  186,
+                       "impermeabilizacao":  219,
+                       "combo":  384.75
+                   },
+        "medio":  {
+                      "higienizacao":  209,
+                      "impermeabilizacao":  239,
+                      "combo":  425.6
+                  },
+        "maximo":  {
+                       "higienizacao":  219,
+                       "impermeabilizacao":  249,
+                       "combo":  444.6
+                   },
+        "higienizacao":  209,
+        "impermeabilizacao":  239,
+        "combo":  425.6
+    },
+    {
+        "id":  "sndn_cadeira_7_lugares_apenas_bancos_25",
+        "category":  "Cadeira",
+        "name":  "Cadeira - 7 Lugares (apenas Bancos)",
+        "rawSize":  "7 LUGARES (APENAS BANCOS) - null",
+        "minimo":  {
+                       "higienizacao":  216,
+                       "impermeabilizacao":  239,
+                       "combo":  432.25
+                   },
+        "medio":  {
+                      "higienizacao":  249,
+                      "impermeabilizacao":  289,
+                      "combo":  511.1
+                  },
+        "maximo":  {
+                       "higienizacao":  259,
+                       "impermeabilizacao":  299,
+                       "combo":  530.1
+                   },
+        "higienizacao":  249,
+        "impermeabilizacao":  289,
+        "combo":  511.1
+    },
+    {
+        "id":  "sndn_cadeira_5_lugares_completo_26",
+        "category":  "Cadeira",
+        "name":  "Cadeira - 5 Lugares Completo",
+        "rawSize":  "5 LUGARES COMPLETO - null",
+        "minimo":  {
+                       "higienizacao":  276,
+                       "impermeabilizacao":  299,
+                       "combo":  546.25
+                   },
+        "medio":  {
+                      "higienizacao":  309,
+                      "impermeabilizacao":  319,
+                      "combo":  596.6
+                  },
+        "maximo":  {
+                       "higienizacao":  319,
+                       "impermeabilizacao":  349,
+                       "combo":  634.6
+                   },
+        "higienizacao":  309,
+        "impermeabilizacao":  319,
+        "combo":  596.6
+    },
+    {
+        "id":  "sndn_cadeira_7_lugares_completo_27",
+        "category":  "Cadeira",
+        "name":  "Cadeira - 7 Lugares Completo",
+        "rawSize":  "7 LUGARES COMPLETO - null",
+        "minimo":  {
+                       "higienizacao":  306,
+                       "impermeabilizacao":  319,
+                       "combo":  593.75
+                   },
+        "medio":  {
+                      "higienizacao":  329,
+                      "impermeabilizacao":  349,
+                      "combo":  644.1
+                  },
+        "maximo":  {
+                       "higienizacao":  349,
+                       "impermeabilizacao":  379,
+                       "combo":  691.6
+                   },
+        "higienizacao":  329,
+        "impermeabilizacao":  349,
+        "combo":  644.1
+    },
+    {
+        "id":  "sndn_travesseiro_null_28",
+        "category":  "Travesseiro",
+        "name":  "Travesseiro",
+        "rawSize":  "null - null",
+        "minimo":  {
+                       "higienizacao":  35,
+                       "impermeabilizacao":  45,
+                       "combo":  76
+                   },
+        "medio":  {
+                      "higienizacao":  41,
+                      "impermeabilizacao":  49,
+                      "combo":  85.5
+                  },
+        "maximo":  {
+                       "higienizacao":  50,
+                       "impermeabilizacao":  69,
+                       "combo":  113.05
+                   },
+        "higienizacao":  41,
+        "impermeabilizacao":  49,
+        "combo":  85.5
+    },
+    {
+        "id":  "sndn_poltrona_p_29",
+        "category":  "Poltrona",
+        "name":  "Poltrona - P",
+        "rawSize":  "P - null",
+        "minimo":  {
+                       "higienizacao":  82,
+                       "impermeabilizacao":  95,
+                       "combo":  168.15
+                   },
+        "medio":  {
+                      "higienizacao":  94,
+                      "impermeabilizacao":  109,
+                      "combo":  192.85
+                  },
+        "maximo":  {
+                       "higienizacao":  104,
+                       "impermeabilizacao":  119,
+                       "combo":  211.85
+                   },
+        "higienizacao":  94,
+        "impermeabilizacao":  109,
+        "combo":  192.85
+    },
+    {
+        "id":  "sndn_poltrona_m_30",
+        "category":  "Poltrona",
+        "name":  "Poltrona - M",
+        "rawSize":  "M - null",
+        "minimo":  {
+                       "higienizacao":  92,
+                       "impermeabilizacao":  105,
+                       "combo":  187.15
+                   },
+        "medio":  {
+                      "higienizacao":  104,
+                      "impermeabilizacao":  119,
+                      "combo":  211.85
+                  },
+        "maximo":  {
+                       "higienizacao":  119,
+                       "impermeabilizacao":  129,
+                       "combo":  235.6
+                   },
+        "higienizacao":  104,
+        "impermeabilizacao":  119,
+        "combo":  211.85
+    },
+    {
+        "id":  "sndn_poltrona_g_31",
+        "category":  "Poltrona",
+        "name":  "Poltrona - G",
+        "rawSize":  "G - null",
+        "minimo":  {
+                       "higienizacao":  102,
+                       "impermeabilizacao":  115,
+                       "combo":  206.15
+                   },
+        "medio":  {
+                      "higienizacao":  114,
+                      "impermeabilizacao":  129,
+                      "combo":  230.85
+                  },
+        "maximo":  {
+                       "higienizacao":  129,
+                       "impermeabilizacao":  139,
+                       "combo":  254.6
+                   },
+        "higienizacao":  114,
+        "impermeabilizacao":  129,
+        "combo":  230.85
+    },
+    {
+        "id":  "sndn_poltrona_papai_32",
+        "category":  "Poltrona",
+        "name":  "Poltrona - Papai",
+        "rawSize":  "PAPAI - null",
+        "minimo":  {
+                       "higienizacao":  116,
+                       "impermeabilizacao":  129,
+                       "combo":  232.75
+                   },
+        "medio":  {
+                      "higienizacao":  124,
+                      "impermeabilizacao":  139,
+                      "combo":  249.85
+                  },
+        "maximo":  {
+                       "higienizacao":  134,
+                       "impermeabilizacao":  159,
+                       "combo":  278.35
+                   },
+        "higienizacao":  124,
+        "impermeabilizacao":  139,
+        "combo":  249.85
+    },
+    {
+        "id":  "sndn_poltrona_amamenta_o_33",
+        "category":  "Poltrona",
+        "name":  "Poltrona - Amamentação",
+        "rawSize":  "AMAMENTAÇÃO - null",
+        "minimo":  {
+                       "higienizacao":  144,
+                       "impermeabilizacao":  177,
+                       "combo":  304.95
+                   },
+        "medio":  {
+                      "higienizacao":  154,
+                      "impermeabilizacao":  197,
+                      "combo":  333.45
+                  },
+        "maximo":  {
+                       "higienizacao":  182,
+                       "impermeabilizacao":  209,
+                       "combo":  371.45
+                   },
+        "higienizacao":  154,
+        "impermeabilizacao":  197,
+        "combo":  333.45
+    },
+    {
+        "id":  "sndn_puff_p_34",
+        "category":  "Puff",
+        "name":  "Puff - P",
+        "rawSize":  "P - null",
+        "minimo":  {
+                       "higienizacao":  49,
+                       "impermeabilizacao":  60,
+                       "combo":  103.55
+                   },
+        "medio":  {
+                      "higienizacao":  44,
+                      "impermeabilizacao":  69,
+                      "combo":  107.35
+                  },
+        "maximo":  {
+                       "higienizacao":  54,
+                       "impermeabilizacao":  79,
+                       "combo":  126.35
+                   },
+        "higienizacao":  44,
+        "impermeabilizacao":  69,
+        "combo":  107.35
+    },
+    {
+        "id":  "sndn_puff_m_35",
+        "category":  "Puff",
+        "name":  "Puff - M",
+        "rawSize":  "M - null",
+        "minimo":  {
+                       "higienizacao":  57,
+                       "impermeabilizacao":  65,
+                       "combo":  115.9
+                   },
+        "medio":  {
+                      "higienizacao":  54,
+                      "impermeabilizacao":  79,
+                      "combo":  126.35
+                  },
+        "maximo":  {
+                       "higienizacao":  64,
+                       "impermeabilizacao":  89,
+                       "combo":  145.35
+                   },
+        "higienizacao":  54,
+        "impermeabilizacao":  79,
+        "combo":  126.35
+    },
+    {
+        "id":  "sndn_puff_g_36",
+        "category":  "Puff",
+        "name":  "Puff - G",
+        "rawSize":  "G - null",
+        "minimo":  {
+                       "higienizacao":  67,
+                       "impermeabilizacao":  80,
+                       "combo":  139.65
+                   },
+        "medio":  {
+                      "higienizacao":  64,
+                      "impermeabilizacao":  89,
+                      "combo":  145.35
+                  },
+        "maximo":  {
+                       "higienizacao":  74,
+                       "impermeabilizacao":  99,
+                       "combo":  164.35
+                   },
+        "higienizacao":  64,
+        "impermeabilizacao":  89,
+        "combo":  145.35
+    },
+    {
+        "id":  "sndn_cabeceira_solteiro_padr_o_1_25m_x_0_37",
+        "category":  "Cabeceira",
+        "name":  "Cabeceira - Solteiro Padrão - 1,25m X 0,90m",
+        "rawSize":  "SOLTEIRO PADRÃO - 1,25m x 0,90m",
+        "minimo":  {
+                       "higienizacao":  136,
+                       "impermeabilizacao":  149,
+                       "combo":  270.75
+                   },
+        "medio":  {
+                      "higienizacao":  159,
+                      "impermeabilizacao":  169,
+                      "combo":  311.6
+                  },
+        "maximo":  {
+                       "higienizacao":  169,
+                       "impermeabilizacao":  189,
+                       "combo":  340.1
+                   },
+        "higienizacao":  159,
+        "impermeabilizacao":  169,
+        "combo":  311.6
+    },
+    {
+        "id":  "sndn_cabeceira_casal_padr_o_1_88m_x_1_35_38",
+        "category":  "Cabeceira",
+        "name":  "Cabeceira - Casal Padrão - 1,88m X 1,35m",
+        "rawSize":  "CASAL PADRÃO - 1,88m x 1,35m",
+        "minimo":  {
+                       "higienizacao":  156,
+                       "impermeabilizacao":  169,
+                       "combo":  308.75
+                   },
+        "medio":  {
+                      "higienizacao":  179,
+                      "impermeabilizacao":  209,
+                      "combo":  368.6
+                  },
+        "maximo":  {
+                       "higienizacao":  194,
+                       "impermeabilizacao":  219,
+                       "combo":  392.35
+                   },
+        "higienizacao":  179,
+        "impermeabilizacao":  209,
+        "combo":  368.6
+    },
+    {
+        "id":  "sndn_chaise_unidade_39",
+        "category":  "Chaise",
+        "name":  "Chaise - Unidade",
+        "rawSize":  "UNIDADE - null",
+        "minimo":  {
+                       "higienizacao":  136,
+                       "impermeabilizacao":  169,
+                       "combo":  289.75
+                   },
+        "medio":  {
+                      "higienizacao":  149,
+                      "impermeabilizacao":  209,
+                      "combo":  340.1
+                  },
+        "maximo":  {
+                       "higienizacao":  169,
+                       "impermeabilizacao":  189,
+                       "combo":  340.1
+                   },
+        "higienizacao":  149,
+        "impermeabilizacao":  209,
+        "combo":  340.1
+    },
+    {
+        "id":  "sndn_colch_o_ber_o_40",
+        "category":  "Colchão",
+        "name":  "Colchão - Berço",
+        "rawSize":  "BERÇO - null",
+        "minimo":  {
+                       "higienizacao":  104,
+                       "impermeabilizacao":  139,
+                       "combo":  230.85
+                   },
+        "medio":  {
+                      "higienizacao":  137,
+                      "impermeabilizacao":  159,
+                      "combo":  281.2
+                  },
+        "maximo":  {
+                       "higienizacao":  147,
+                       "impermeabilizacao":  169,
+                       "combo":  300.2
+                   },
+        "higienizacao":  137,
+        "impermeabilizacao":  159,
+        "combo":  281.2
+    },
+    {
+        "id":  "sndn_colch_o_solteiro_padr_o_0_88mx1_88m_41",
+        "category":  "Colchão",
+        "name":  "Colchão - Solteiro Padrão - 0,88mx1,88m",
+        "rawSize":  "SOLTEIRO PADRÃO - 0,88mx1,88m",
+        "minimo":  {
+                       "higienizacao":  116,
+                       "impermeabilizacao":  159,
+                       "combo":  261.25
+                   },
+        "medio":  {
+                      "higienizacao":  149,
+                      "impermeabilizacao":  179,
+                      "combo":  311.6
+                  },
+        "maximo":  {
+                       "higienizacao":  159,
+                       "impermeabilizacao":  199,
+                       "combo":  340.1
+                   },
+        "higienizacao":  149,
+        "impermeabilizacao":  179,
+        "combo":  311.6
+    },
+    {
+        "id":  "sndn_colch_o_vi_va_42",
+        "category":  "Colchão",
+        "name":  "Colchão - Viúva",
+        "rawSize":  "VIÚVA - null",
+        "minimo":  {
+                       "higienizacao":  136,
+                       "impermeabilizacao":  169,
+                       "combo":  289.75
+                   },
+        "medio":  {
+                      "higienizacao":  169,
+                      "impermeabilizacao":  199,
+                      "combo":  349.6
+                  },
+        "maximo":  {
+                       "higienizacao":  174,
+                       "impermeabilizacao":  209,
+                       "combo":  363.85
+                   },
+        "higienizacao":  169,
+        "impermeabilizacao":  199,
+        "combo":  349.6
+    },
+    {
+        "id":  "sndn_colch_o_casal_padr_o_1_38mx1_88m_43",
+        "category":  "Colchão",
+        "name":  "Colchão - Casal Padrão - 1,38mx1,88m",
+        "rawSize":  "CASAL PADRÃO - 1,38mx1,88m",
+        "minimo":  {
+                       "higienizacao":  146,
+                       "impermeabilizacao":  189,
+                       "combo":  318.25
+                   },
+        "medio":  {
+                      "higienizacao":  189,
+                      "impermeabilizacao":  239,
+                      "combo":  406.6
+                  },
+        "maximo":  {
+                       "higienizacao":  214,
+                       "impermeabilizacao":  259,
+                       "combo":  449.35
+                   },
+        "higienizacao":  189,
+        "impermeabilizacao":  239,
+        "combo":  406.6
+    },
+    {
+        "id":  "sndn_colch_o_casal_queen_1_58mx1_98m_44",
+        "category":  "Colchão",
+        "name":  "Colchão - Casal Queen - 1,58mx1,98m",
+        "rawSize":  "CASAL QUEEN - 1,58mx1,98m",
+        "minimo":  {
+                       "higienizacao":  156,
+                       "impermeabilizacao":  199,
+                       "combo":  337.25
+                   },
+        "medio":  {
+                      "higienizacao":  214,
+                      "impermeabilizacao":  239,
+                      "combo":  430.35
+                  },
+        "maximo":  {
+                       "higienizacao":  224,
+                       "impermeabilizacao":  269,
+                       "combo":  468.35
+                   },
+        "higienizacao":  214,
+        "impermeabilizacao":  239,
+        "combo":  430.35
+    },
+    {
+        "id":  "sndn_colch_o_casal_king_1_9_x2_03m_45",
+        "category":  "Colchão",
+        "name":  "Colchão - Casal King - 1,9,x2,03m",
+        "rawSize":  "CASAL KING - 1,9,x2,03m",
+        "minimo":  {
+                       "higienizacao":  176,
+                       "impermeabilizacao":  219,
+                       "combo":  375.25
+                   },
+        "medio":  {
+                      "higienizacao":  224,
+                      "impermeabilizacao":  259,
+                      "combo":  458.85
+                  },
+        "maximo":  {
+                       "higienizacao":  254,
+                       "impermeabilizacao":  279,
+                       "combo":  506.35
+                   },
+        "higienizacao":  224,
+        "impermeabilizacao":  259,
+        "combo":  458.85
+    },
+    {
+        "id":  "sndn_colch_o_box_46",
+        "category":  "Colchão",
+        "name":  "Colchão - Box",
+        "rawSize":  "BOX - null",
+        "minimo":  {
+                       "higienizacao":  56,
+                       "impermeabilizacao":  89,
+                       "combo":  137.75
+                   },
+        "medio":  {
+                      "higienizacao":  54,
+                      "impermeabilizacao":  99,
+                      "combo":  145.35
+                  },
+        "maximo":  {
+                       "higienizacao":  64,
+                       "impermeabilizacao":  109,
+                       "combo":  164.35
+                   },
+        "higienizacao":  54,
+        "impermeabilizacao":  99,
+        "combo":  145.35
+    },
+    {
+        "id":  "sndn_carpete_m2_47",
+        "category":  "Carpete",
+        "name":  "Carpete - m2",
+        "rawSize":  "M2 - null",
+        "minimo":  {
+                       "higienizacao":  33,
+                       "impermeabilizacao":  50,
+                       "combo":  78.85
+                   },
+        "medio":  {
+                      "higienizacao":  37,
+                      "impermeabilizacao":  70,
+                      "combo":  101.65
+                  },
+        "maximo":  {
+                       "higienizacao":  42,
+                       "impermeabilizacao":  80,
+                       "combo":  115.9
+                   },
+        "higienizacao":  37,
+        "impermeabilizacao":  70,
+        "combo":  101.65
+    },
+    {
+        "id":  "sndn_tapete_m2_48",
+        "category":  "Tapete",
+        "name":  "Tapete - m2",
+        "rawSize":  "M2 - null",
+        "minimo":  {
+                       "higienizacao":  70,
+                       "impermeabilizacao":  85,
+                       "combo":  147.25
+                   },
+        "medio":  {
+                      "higienizacao":  67,
+                      "impermeabilizacao":  70,
+                      "combo":  130.15
+                  },
+        "maximo":  {
+                       "higienizacao":  77,
+                       "impermeabilizacao":  80,
+                       "combo":  149.15
+                   },
+        "higienizacao":  67,
+        "impermeabilizacao":  70,
+        "combo":  130.15
+    },
+    {
+        "id":  "sndn_passadeira_m2_49",
+        "category":  "Passadeira",
+        "name":  "Passadeira - m2",
+        "rawSize":  "M2 - null",
+        "minimo":  {
+                       "higienizacao":  67,
+                       "impermeabilizacao":  70,
+                       "combo":  130.15
+                   },
+        "medio":  {
+                      "higienizacao":  70,
+                      "impermeabilizacao":  85,
+                      "combo":  147.25
+                  },
+        "maximo":  {
+                       "higienizacao":  80,
+                       "impermeabilizacao":  95,
+                       "combo":  166.25
+                   },
+        "higienizacao":  70,
+        "impermeabilizacao":  85,
+        "combo":  147.25
+    },
+    {
+        "id":  "sndn_cortina_m2_50",
+        "category":  "Cortina",
+        "name":  "Cortina - m2",
+        "rawSize":  "M2 - null",
+        "minimo":  {
+                       "higienizacao":  67,
+                       "impermeabilizacao":  70,
+                       "combo":  130.15
+                   },
+        "medio":  {
+                      "higienizacao":  70,
+                      "impermeabilizacao":  90,
+                      "combo":  152
+                  },
+        "maximo":  {
+                       "higienizacao":  80,
+                       "impermeabilizacao":  95,
+                       "combo":  166.25
+                   },
+        "higienizacao":  70,
+        "impermeabilizacao":  90,
+        "combo":  152
+    },
+    {
+        "id":  "sndn_persiana_m2_51",
+        "category":  "Persiana",
+        "name":  "Persiana - m2",
+        "rawSize":  "M2 - null",
+        "minimo":  {
+                       "higienizacao":  72,
+                       "impermeabilizacao":  75,
+                       "combo":  139.65
+                   },
+        "medio":  {
+                      "higienizacao":  75,
+                      "impermeabilizacao":  90,
+                      "combo":  156.75
+                  },
+        "maximo":  {
+                       "higienizacao":  80,
+                       "impermeabilizacao":  90,
+                       "combo":  161.5
+                   },
+        "higienizacao":  75,
+        "impermeabilizacao":  90,
+        "combo":  156.75
+    },
+    {
+        "id":  "sndn_linha_automotiva_5_lugares_apenas_b_52",
+        "category":  "Linha Automotiva",
+        "name":  "Linha Automotiva - 5 Lugares (apenas Bancos)",
+        "rawSize":  "5 LUGARES (APENAS BANCOS) - null",
+        "minimo":  {
+                       "higienizacao":  186,
+                       "impermeabilizacao":  219,
+                       "combo":  384.75
+                   },
+        "medio":  {
+                      "higienizacao":  209,
+                      "impermeabilizacao":  239,
+                      "combo":  425.6
+                  },
+        "maximo":  {
+                       "higienizacao":  219,
+                       "impermeabilizacao":  249,
+                       "combo":  444.6
+                   },
+        "higienizacao":  209,
+        "impermeabilizacao":  239,
+        "combo":  425.6
+    },
+    {
+        "id":  "sndn_linha_automotiva_7_lugares_apenas_b_53",
+        "category":  "Linha Automotiva",
+        "name":  "Linha Automotiva - 7 Lugares (apenas Bancos)",
+        "rawSize":  "7 LUGARES (APENAS BANCOS) - null",
+        "minimo":  {
+                       "higienizacao":  216,
+                       "impermeabilizacao":  239,
+                       "combo":  432.25
+                   },
+        "medio":  {
+                      "higienizacao":  249,
+                      "impermeabilizacao":  289,
+                      "combo":  511.1
+                  },
+        "maximo":  {
+                       "higienizacao":  259,
+                       "impermeabilizacao":  299,
+                       "combo":  530.1
+                   },
+        "higienizacao":  249,
+        "impermeabilizacao":  289,
+        "combo":  511.1
+    },
+    {
+        "id":  "sndn_linha_automotiva_5_lugares_completo_54",
+        "category":  "Linha Automotiva",
+        "name":  "Linha Automotiva - 5 Lugares Completo",
+        "rawSize":  "5 LUGARES COMPLETO - null",
+        "minimo":  {
+                       "higienizacao":  276,
+                       "impermeabilizacao":  299,
+                       "combo":  546.25
+                   },
+        "medio":  {
+                      "higienizacao":  309,
+                      "impermeabilizacao":  319,
+                      "combo":  596.6
+                  },
+        "maximo":  {
+                       "higienizacao":  319,
+                       "impermeabilizacao":  349,
+                       "combo":  634.6
+                   },
+        "higienizacao":  309,
+        "impermeabilizacao":  319,
+        "combo":  596.6
+    },
+    {
+        "id":  "sndn_linha_automotiva_7_lugares_completo_55",
+        "category":  "Linha Automotiva",
+        "name":  "Linha Automotiva - 7 Lugares Completo",
+        "rawSize":  "7 LUGARES COMPLETO - null",
+        "minimo":  {
+                       "higienizacao":  306,
+                       "impermeabilizacao":  319,
+                       "combo":  593.75
+                   },
+        "medio":  {
+                      "higienizacao":  329,
+                      "impermeabilizacao":  349,
+                      "combo":  644.1
+                  },
+        "maximo":  {
+                       "higienizacao":  349,
+                       "impermeabilizacao":  379,
+                       "combo":  691.6
+                   },
+        "higienizacao":  329,
+        "impermeabilizacao":  349,
+        "combo":  644.1
+    },
+    {
+        "id":  "sndn_cabine_caminh_o_null_56",
+        "category":  "Cabine Caminhão",
+        "name":  "Cabine Caminhão",
+        "rawSize":  "null - null",
+        "minimo":  {
+                       "higienizacao":  316,
+                       "impermeabilizacao":  379,
+                       "combo":  660.25
+                   },
+        "medio":  {
+                      "higienizacao":  367,
+                      "impermeabilizacao":  449,
+                      "combo":  775.2
+                  },
+        "maximo":  {
+                       "higienizacao":  399,
+                       "impermeabilizacao":  509,
+                       "combo":  862.6
+                   },
+        "higienizacao":  367,
+        "impermeabilizacao":  449,
+        "combo":  775.2
+    },
+    {
+        "id":  "sndn_mesa_de_sinuca_null_57",
+        "category":  "Mesa de Sinuca",
+        "name":  "Mesa de Sinuca",
+        "rawSize":  "null - null",
+        "minimo":  {
+                       "higienizacao":  114,
+                       "impermeabilizacao":  149,
+                       "combo":  249.85
+                   },
+        "medio":  {
+                      "higienizacao":  157,
+                      "impermeabilizacao":  179,
+                      "combo":  319.2
+                  },
+        "maximo":  {
+                       "higienizacao":  167,
+                       "impermeabilizacao":  187,
+                       "combo":  336.3
+                   },
+        "higienizacao":  157,
+        "impermeabilizacao":  179,
+        "combo":  319.2
+    },
+    {
+        "id":  "sndn_cercadinho_infantil_null_58",
+        "category":  "Cercadinho Infantil",
+        "name":  "Cercadinho Infantil",
+        "rawSize":  "null - null",
+        "minimo":  {
+                       "higienizacao":  114,
+                       "impermeabilizacao":  149,
+                       "combo":  249.85
+                   },
+        "medio":  {
+                      "higienizacao":  157,
+                      "impermeabilizacao":  179,
+                      "combo":  319.2
+                  },
+        "maximo":  {
+                       "higienizacao":  167,
+                       "impermeabilizacao":  187,
+                       "combo":  336.3
+                   },
+        "higienizacao":  157,
+        "impermeabilizacao":  179,
+        "combo":  319.2
+    },
+    {
+        "id":  "sndn_carrinho_de_beb_null_59",
+        "category":  "Carrinho de Bebê",
+        "name":  "Carrinho de Bebê",
+        "rawSize":  "null - null",
+        "minimo":  {
+                       "higienizacao":  114,
+                       "impermeabilizacao":  149,
+                       "combo":  249.85
+                   },
+        "medio":  {
+                      "higienizacao":  157,
+                      "impermeabilizacao":  179,
+                      "combo":  319.2
+                  },
+        "maximo":  {
+                       "higienizacao":  167,
+                       "impermeabilizacao":  187,
+                       "combo":  336.3
+                   },
+        "higienizacao":  157,
+        "impermeabilizacao":  179,
+        "combo":  319.2
+    },
+    {
+        "id":  "sndn_cadeirinha_de_beb_null_60",
+        "category":  "Cadeirinha de Bebê",
+        "name":  "Cadeirinha de Bebê",
+        "rawSize":  "null - null",
+        "minimo":  {
+                       "higienizacao":  59,
+                       "impermeabilizacao":  82,
+                       "combo":  133.95
+                   },
+        "medio":  {
+                      "higienizacao":  72,
+                      "impermeabilizacao":  97,
+                      "combo":  160.55
+                  },
+        "maximo":  {
+                       "higienizacao":  82,
+                       "impermeabilizacao":  107,
+                       "combo":  179.55
+                   },
+        "higienizacao":  72,
+        "impermeabilizacao":  97,
+        "combo":  160.55
+    },
+    {
+        "id":  "sndn_beb_conforto_null_61",
+        "category":  "Bebê Conforto",
+        "name":  "Bebê Conforto",
+        "rawSize":  "null - null",
+        "minimo":  {
+                       "higienizacao":  64,
+                       "impermeabilizacao":  87,
+                       "combo":  143.45
+                   },
+        "medio":  {
+                      "higienizacao":  82,
+                      "impermeabilizacao":  107,
+                      "combo":  179.55
+                  },
+        "maximo":  {
+                       "higienizacao":  92,
+                       "impermeabilizacao":  117,
+                       "combo":  198.55
+                   },
+        "higienizacao":  82,
+        "impermeabilizacao":  107,
+        "combo":  179.55
+    },
+    {
+        "id":  "sndn_caminha_pet_null_62",
+        "category":  "Caminha Pet",
+        "name":  "Caminha Pet",
+        "rawSize":  "null - null",
+        "minimo":  {
+                       "higienizacao":  64,
+                       "impermeabilizacao":  87,
+                       "combo":  143.45
+                   },
+        "medio":  {
+                      "higienizacao":  82,
+                      "impermeabilizacao":  107,
+                      "combo":  179.55
+                  },
+        "maximo":  {
+                       "higienizacao":  92,
+                       "impermeabilizacao":  117,
+                       "combo":  198.55
+                   },
+        "higienizacao":  82,
+        "impermeabilizacao":  107,
+        "combo":  179.55
+    }
 ];
 
 class TabelaPrecosManager {
   constructor() {
     this.storageKey = 'adrirez_tabela_precos_gsheets';
+    this.currentTier = localStorage.getItem('adrirez_pricing_tier') || 'medio'; // 'minimo' | 'medio' | 'maximo'
     this.items = this.loadPrices();
+  }
+
+  setTier(tier) {
+    if (['minimo', 'medio', 'maximo'].includes(tier)) {
+      this.currentTier = tier;
+      localStorage.setItem('adrirez_pricing_tier', tier);
+      this.syncToServicesList();
+    }
+  }
+
+  getTier() {
+    return this.currentTier;
+  }
+
+  getTierLabel(tier = this.currentTier) {
+    if (tier === 'minimo') return 'Mínimo (Piso Comercial)';
+    if (tier === 'maximo') return 'Máximo (Padrão SNDN)';
+    return 'Médio (Recomendado)';
   }
 
   loadPrices() {
@@ -1728,42 +3234,59 @@ class TabelaPrecosManager {
   savePrices(newItems) {
     this.items = newItems;
     localStorage.setItem(this.storageKey, JSON.stringify(newItems));
-    // Sincronizar também com a lista de serviços do Storage
     this.syncToServicesList();
   }
 
-  getAll() {
+  getAll(tier = this.currentTier) {
+    return this.items.map(item => {
+      const tierData = item[tier] || item.medio || { higienizacao: item.higienizacao, impermeabilizacao: item.impermeabilizacao, combo: item.combo };
+      return {
+        ...item,
+        currentTier: tier,
+        higienizacao: Number(tierData.higienizacao || item.higienizacao || 0),
+        impermeabilizacao: Number(tierData.impermeabilizacao || item.impermeabilizacao || 0),
+        combo: Number(tierData.combo || (tierData.higienizacao + tierData.impermeabilizacao) || 0)
+      };
+    });
+  }
+
+  getRawItems() {
     return this.items;
   }
 
-  // Converte a tabela em lista linear de serviços para orçamentos e agendamentos
-  toFlatServicesList() {
+  toFlatServicesList(tier = this.currentTier) {
     const list = [];
-    this.items.forEach(item => {
-      // 1. Higienização
-      list.push({
-        id: `${item.name}_hig`.toLowerCase().replace(/[^a-z0-9]/g, '_'),
-        name: `Higienização ${item.name}`,
-        category: item.category,
-        price: item.higienizacao,
-        duration: 90
-      });
-      // 2. Impermeabilização
-      list.push({
-        id: `${item.name}_imp`.toLowerCase().replace(/[^a-z0-9]/g, '_'),
-        name: `Impermeabilização ${item.name}`,
-        category: item.category,
-        price: item.impermeabilizacao,
-        duration: 60
-      });
-      // 3. Combo
-      list.push({
-        id: `${item.name}_combo`.toLowerCase().replace(/[^a-z0-9]/g, '_'),
-        name: `Combo (Hig. + Imp.) ${item.name}`,
-        category: item.category,
-        price: item.combo,
-        duration: 150
-      });
+    this.getAll(tier).forEach(item => {
+      if (item.higienizacao > 0) {
+        list.push({
+          id: `${item.id}_hig`,
+          name: `Higienização ${item.name}`,
+          category: item.category,
+          price: item.higienizacao,
+          tier: tier,
+          duration: 90
+        });
+      }
+      if (item.impermeabilizacao > 0) {
+        list.push({
+          id: `${item.id}_imp`,
+          name: `Impermeabilização ${item.name}`,
+          category: item.category,
+          price: item.impermeabilizacao,
+          tier: tier,
+          duration: 60
+        });
+      }
+      if (item.combo > 0) {
+        list.push({
+          id: `${item.id}_combo`,
+          name: `Combo (Hig. + Imp.) ${item.name}`,
+          category: item.category,
+          price: item.combo,
+          tier: tier,
+          duration: 150
+        });
+      }
     });
     return list;
   }
@@ -1774,7 +3297,6 @@ class TabelaPrecosManager {
     }
   }
 
-  // Sincroniza diretamente com o Google Sheets via proxy / export
   async syncFromGoogleSheets(customUrl = null) {
     const defaultUrl = 'https://docs.google.com/spreadsheets/d/1nqsOA_5paTd0kJy8wWtorraWY3tSdZPHldyU5PgHDPI/export?format=csv';
     const targetUrl = customUrl || defaultUrl;
@@ -1786,14 +3308,13 @@ class TabelaPrecosManager {
       console.log('CSV retornado da planilha do Google Sheets');
       return { success: true, message: 'Planilha sincronizada com sucesso!' };
     } catch (e) {
-      console.warn('Sincronização via fetch direto bloqueada por CORS, usando dados integrados:', e);
-      return { success: true, message: 'Tabela oficial de 32 itens carregada!' };
+      console.warn('Sincronização via fetch direto bloqueada por CORS, usando dados integrados SNDN:', e);
+      return { success: true, message: 'Tabela oficial SNDN com 62 itens e níveis de preço carregada!' };
     }
   }
 }
 
 window.tabelaPrecos = new TabelaPrecosManager();
-
   </script>
 
   <!-- 3. Local Storage Layer -->
@@ -2991,8 +4512,20 @@ DIFERENCIAIS DA ADRIREZ HOME CARE:
 - Pagamento: PIX com 5% de desconto à vista ou até 3x sem juros no cartão.
 - Atendimento pontual e respeitoso na residência do cliente.
 
-TABELA OFICIAL DE PREÇOS (GOOGLE SHEETS):
-${prices.slice(0, 20).map(p => `- ${p.name}: Higienização R$ ${p.higienizacao.toFixed(2)} | Impermeabilização R$ ${p.impermeabilizacao.toFixed(2)} | Combo R$ ${p.combo.toFixed(2)}`).join('\n')}
+TABELA OFICIAL DE PREÇOS COM NÍVEIS (MÍNIMO, MÉDIO E MÁXIMO):
+${prices.slice(0, 30).map(p => {
+  const minHig = p.minimo ? p.minimo.higienizacao : p.higienizacao;
+  const medHig = p.medio ? p.medio.higienizacao : p.higienizacao;
+  const maxHig = p.maximo ? p.maximo.higienizacao : p.higienizacao;
+  const minCombo = p.minimo ? p.minimo.combo : p.combo;
+  const medCombo = p.medio ? p.medio.combo : p.combo;
+  return `- ${p.name}: Higienização [Mín R$ ${minHig} | Méd R$ ${medHig} | Máx R$ ${maxHig}] | Combo [Mín R$ ${minCombo} | Méd R$ ${medCombo}]`;
+}).join('\n')}
+
+ESTRATÉGIA DE NEGOCIAÇÃO DE PREÇOS:
+- Apresente inicialmente como referência o valor MÉDIO ou MÁXIMO.
+- Se o cliente chorar preço ou mencionar concorrência, use como carta na manga o valor MÍNIMO de tabela como condição imperdível exclusiva para fechar hoje!
+- NUNCA dê valor inferior ao MÍNIMO autorizado.
 
 DADOS DA MENSAGEM:
 - Nome do Cliente: ${clientName || 'Cliente'}
@@ -3369,7 +4902,7 @@ class AdrirezApp {
     const dateFormatted = window.whatsappService.formatDateBR(app.date);
 
     return `
-      <div class="bg-white border border-slate-200/90 rounded-2xl p-4 shadow-sm hover:shadow-md transition action-card">
+      <div class="action-card rounded-2xl p-4 shadow-sm hover:shadow-md transition">
         <div class="flex flex-wrap items-start justify-between gap-2 mb-3">
           <div class="flex items-center gap-2">
             <span class="text-xs font-bold px-2.5 py-1 bg-amber-950/60 border border-amber-500/30 text-amber-300 rounded-lg flex items-center gap-1">
@@ -3505,13 +5038,13 @@ class AdrirezApp {
 
     if (appointments.length === 0) {
       container.innerHTML = `
-        <div class="col-span-full py-12 text-center bg-white border border-dashed border-slate-200 rounded-2xl">
-          <div class="w-12 h-12 bg-sky-50 text-sky-600 rounded-full flex items-center justify-center mx-auto mb-3">
+        <div class="col-span-full py-12 text-center bg-[#131317] border border-dashed border-zinc-800 rounded-2xl">
+          <div class="w-12 h-12 bg-amber-500/10 text-amber-400 border border-amber-500/20 rounded-full flex items-center justify-center mx-auto mb-3">
             <i data-lucide="calendar-x" class="w-6 h-6"></i>
           </div>
-          <p class="text-sm font-semibold text-slate-700">Nenhum agendamento encontrado!</p>
-          <p class="text-xs text-slate-500 mt-1">Crie um novo agendamento ou ajuste os filtros acima.</p>
-          <button onclick="window.app.openAppointmentModal()" class="mt-4 px-4 py-2 bg-sky-600 hover:bg-sky-700 text-white text-xs font-semibold rounded-xl">
+          <p class="text-sm font-bold text-white">Nenhum agendamento encontrado!</p>
+          <p class="text-xs text-zinc-400 mt-1">Crie um novo agendamento ou ajuste os filtros acima.</p>
+          <button onclick="window.app.openAppointmentModal()" class="btn-gold mt-4 px-4 py-2 text-xs font-bold rounded-xl transition">
             + Novo Agendamento
           </button>
         </div>
@@ -3540,13 +5073,13 @@ class AdrirezApp {
       html += `
         <div class="mb-6">
           <div class="flex items-center gap-2 mb-3">
-            <h3 class="text-sm font-bold text-slate-800 capitalize flex items-center gap-2">
-              <span class="w-2.5 h-2.5 rounded-full ${isToday ? 'bg-emerald-500 animate-pulse' : 'bg-sky-500'}"></span>
+            <h3 class="text-sm font-bold text-zinc-200 capitalize flex items-center gap-2">
+              <span class="w-2.5 h-2.5 rounded-full ${isToday ? 'bg-amber-400 animate-pulse' : 'bg-zinc-600'}"></span>
               ${dayName}, ${dateFormatted}
-              ${isToday ? '<span class="text-[10px] bg-emerald-100 text-emerald-800 font-bold px-2 py-0.5 rounded-full">HOJE</span>' : ''}
+              ${isToday ? '<span class="text-[10px] bg-amber-500/20 text-amber-300 border border-amber-500/30 font-bold px-2 py-0.5 rounded-full">HOJE</span>' : ''}
             </h3>
-            <div class="flex-1 border-t border-slate-200"></div>
-            <span class="text-xs text-slate-400 font-medium">${groups[date].length} atendimento(s)</span>
+            <div class="flex-1 border-t border-zinc-800"></div>
+            <span class="text-xs text-zinc-400 font-medium">${groups[date].length} atendimento(s)</span>
           </div>
           <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             ${groups[date].map(app => this.createAppointmentCardHTML(app, isToday)).join('')}
@@ -3554,7 +5087,6 @@ class AdrirezApp {
         </div>
       `;
     }
-
     container.innerHTML = html;
   }
 
@@ -3974,13 +5506,36 @@ class AdrirezApp {
   }
 
   // Modal de Orçamento
-  renderServiceOptionsInModal() {
+  renderServiceOptionsInModal(tier = null) {
     const select = document.getElementById('quoteServiceSelect');
     if (!select) return;
 
-    const services = window.storage.getServices();
+    const currentTier = tier || (window.tabelaPrecos ? window.tabelaPrecos.getTier() : 'medio');
+    const services = window.tabelaPrecos ? window.tabelaPrecos.toFlatServicesList(currentTier) : window.storage.getServices();
     select.innerHTML = '<option value="">-- Escolha um serviço para adicionar --</option>' +
       services.map(s => `<option value="${s.id}" data-name="${s.name}" data-price="${s.price}">${s.name} - R$ ${s.price.toFixed(2)}</option>`).join('');
+  }
+
+  setQuoteModalTier(tier) {
+    this.quoteModalTier = tier;
+    const btnMin = document.getElementById('btnQuoteTierMinimo');
+    const btnMed = document.getElementById('btnQuoteTierMedio');
+    const btnMax = document.getElementById('btnQuoteTierMaximo');
+
+    [btnMin, btnMed, btnMax].forEach(b => {
+      if (!b) return;
+      b.className = 'px-2.5 py-1 text-[11px] font-bold rounded-lg border border-zinc-700 bg-zinc-900 text-zinc-400 transition';
+    });
+
+    if (tier === 'minimo' && btnMin) {
+      btnMin.className = 'px-2.5 py-1 text-[11px] font-bold rounded-lg border border-red-500/60 bg-red-500 text-zinc-950 font-black transition';
+    } else if (tier === 'maximo' && btnMax) {
+      btnMax.className = 'px-2.5 py-1 text-[11px] font-bold rounded-lg border border-emerald-500/60 bg-emerald-500 text-zinc-950 font-black transition';
+    } else if (btnMed) {
+      btnMed.className = 'px-2.5 py-1 text-[11px] font-bold rounded-lg border border-amber-500/60 bg-amber-500 text-zinc-950 font-black transition';
+    }
+
+    this.renderServiceOptionsInModal(tier);
   }
 
   openQuoteModal(quoteId = null) {
@@ -4066,7 +5621,7 @@ class AdrirezApp {
     if (!tbody) return;
 
     if (this.quoteItems.length === 0) {
-      tbody.innerHTML = `<tr><td colspan="5" class="py-4 text-center text-xs text-slate-400">Nenhum item adicionado ainda.</td></tr>`;
+      tbody.innerHTML = `<tr><td colspan="5" class="py-4 text-center text-xs text-zinc-500">Nenhum item adicionado ainda.</td></tr>`;
       if (subtotalEl) subtotalEl.textContent = 'R$ 0,00';
       if (totalEl) totalEl.textContent = 'R$ 0,00';
       return;
@@ -4077,11 +5632,11 @@ class AdrirezApp {
     const finalTotal = Math.max(0, subtotal - discount);
 
     tbody.innerHTML = this.quoteItems.map((item, idx) => `
-      <tr class="border-b border-slate-100 text-xs">
-        <td class="py-2.5 font-medium text-slate-800">${item.name}</td>
-        <td class="py-2.5 text-center">${item.quantity}</td>
-        <td class="py-2.5 text-right text-slate-500">R$ ${item.unitPrice.toFixed(2)}</td>
-        <td class="py-2.5 text-right font-bold text-slate-900">R$ ${item.total.toFixed(2)}</td>
+      <tr class="border-b border-zinc-800 text-xs">
+        <td class="py-2.5 font-medium text-white">${item.name}</td>
+        <td class="py-2.5 text-center text-zinc-300 font-bold">${item.quantity}</td>
+        <td class="py-2.5 text-right text-zinc-400">R$ ${item.unitPrice.toFixed(2)}</td>
+        <td class="py-2.5 text-right font-bold text-amber-400">R$ ${item.total.toFixed(2)}</td>
         <td class="py-2.5 text-center">
           <button type="button" onclick="window.app.removeQuoteItem(${idx})" class="text-red-500 hover:text-red-700 p-1">
             <i data-lucide="trash-2" class="w-3.5 h-3.5"></i>
@@ -4709,15 +6264,49 @@ ${opt.text}
     }
   }
 
+  changePriceTier(tier) {
+    if (window.tabelaPrecos) {
+      window.tabelaPrecos.setTier(tier);
+    }
+    const btnMin = document.getElementById('btnTierMinimo');
+    const btnMed = document.getElementById('btnTierMedio');
+    const btnMax = document.getElementById('btnTierMaximo');
+    const lbl = document.getElementById('activeTierLabel');
+
+    const resetBtn = (btn) => {
+      if (!btn) return;
+      btn.className = 'tier-filter-btn px-3 py-1.5 text-xs font-bold rounded-lg border border-zinc-800 text-zinc-400 bg-zinc-900 hover:text-white transition';
+    };
+
+    resetBtn(btnMin);
+    resetBtn(btnMed);
+    resetBtn(btnMax);
+
+    if (tier === 'minimo' && btnMin) {
+      btnMin.className = 'tier-filter-btn px-3 py-1.5 text-xs font-bold rounded-lg border border-red-500/60 bg-red-500 text-zinc-950 shadow-md transition';
+      if (lbl) lbl.innerHTML = 'Exibindo: <strong class="text-red-400">Preço Mínimo (Piso Comercial Autorizado)</strong>';
+    } else if (tier === 'maximo' && btnMax) {
+      btnMax.className = 'tier-filter-btn px-3 py-1.5 text-xs font-bold rounded-lg border border-emerald-500/60 bg-emerald-500 text-zinc-950 shadow-md transition';
+      if (lbl) lbl.innerHTML = 'Exibindo: <strong class="text-emerald-400">Preço Máximo (Padrão SNDN Cheio)</strong>';
+    } else if (btnMed) {
+      btnMed.className = 'tier-filter-btn px-3 py-1.5 text-xs font-bold rounded-lg border border-amber-500/60 bg-amber-500 text-zinc-950 shadow-md transition';
+      if (lbl) lbl.innerHTML = 'Exibindo: <strong class="text-amber-400">Preço Médio (Intermediário Recomendado)</strong>';
+    }
+
+    this.renderAiPriceList();
+    this.renderServiceOptionsInModal();
+  }
+
   renderAiPriceList() {
     const container = document.getElementById('aiPriceListTableBody');
     if (!container) return;
 
-    const prices = window.tabelaPrecos ? window.tabelaPrecos.getAll() : [];
+    const currentTier = window.tabelaPrecos ? window.tabelaPrecos.getTier() : 'medio';
+    const rawItems = window.tabelaPrecos ? window.tabelaPrecos.getRawItems() : [];
     const search = (document.getElementById('aiPriceSearchInput')?.value || '').toLowerCase();
     const filterCat = document.getElementById('aiPriceCatFilter')?.value || 'all';
 
-    let filtered = prices;
+    let filtered = rawItems;
     if (filterCat !== 'all') {
       filtered = filtered.filter(p => p.category === filterCat);
     }
@@ -4726,22 +6315,45 @@ ${opt.text}
     }
 
     container.innerHTML = filtered.map(item => {
-      const eco = (item.higienizacao + item.impermeabilizacao) - item.combo;
+      const min = item.minimo || { higienizacao: item.higienizacao, impermeabilizacao: item.impermeabilizacao, combo: item.combo };
+      const med = item.medio || { higienizacao: item.higienizacao, impermeabilizacao: item.impermeabilizacao, combo: item.combo };
+      const max = item.maximo || { higienizacao: item.higienizacao, impermeabilizacao: item.impermeabilizacao, combo: item.combo };
+
+      const activeHig = currentTier === 'minimo' ? min.higienizacao : (currentTier === 'maximo' ? max.higienizacao : med.higienizacao);
+      const activeImp = currentTier === 'minimo' ? min.impermeabilizacao : (currentTier === 'maximo' ? max.impermeabilizacao : med.impermeabilizacao);
+      const activeCombo = currentTier === 'minimo' ? min.combo : (currentTier === 'maximo' ? max.combo : med.combo);
+      const eco = (activeHig + activeImp) - activeCombo;
+
       return `
         <tr class="border-b border-zinc-800/80 hover:bg-[#181820] transition">
           <td class="py-3 px-3">
             <span class="text-xs font-bold text-white block">${item.name}</span>
-            <span class="text-[10px] text-amber-300/70">${item.category} &bull; ${item.model}</span>
-          </td>
-          <td class="py-3 px-3 text-right font-semibold text-zinc-300">
-            R$ ${item.higienizacao.toFixed(2)}
-          </td>
-          <td class="py-3 px-3 text-right font-semibold text-zinc-300">
-            R$ ${item.impermeabilizacao.toFixed(2)}
+            <span class="text-[10px] text-amber-300/70">${item.category}</span>
           </td>
           <td class="py-3 px-3 text-right">
-            <span class="font-extrabold text-amber-400">R$ ${item.combo.toFixed(2)}</span>
-            <span class="block text-[9px] text-emerald-400 font-bold">Economia R$ ${eco.toFixed(2)}</span>
+            <span class="text-xs font-bold text-white block">R$ ${activeHig.toFixed(2)}</span>
+            <div class="flex items-center justify-end gap-1 text-[9px] text-zinc-400 mt-0.5">
+              <span class="text-red-400 font-medium">Mín: ${min.higienizacao}</span> |
+              <span class="text-amber-400 font-semibold">Méd: ${med.higienizacao}</span> |
+              <span class="text-emerald-400 font-medium">Máx: ${max.higienizacao}</span>
+            </div>
+          </td>
+          <td class="py-3 px-3 text-right">
+            <span class="text-xs font-bold text-white block">R$ ${activeImp.toFixed(2)}</span>
+            <div class="flex items-center justify-end gap-1 text-[9px] text-zinc-400 mt-0.5">
+              <span class="text-red-400 font-medium">Mín: ${min.impermeabilizacao}</span> |
+              <span class="text-amber-400 font-semibold">Méd: ${med.impermeabilizacao}</span> |
+              <span class="text-emerald-400 font-medium">Máx: ${max.impermeabilizacao}</span>
+            </div>
+          </td>
+          <td class="py-3 px-3 text-right">
+            <span class="text-xs font-extrabold text-amber-400 block">R$ ${activeCombo.toFixed(2)}</span>
+            <div class="flex items-center justify-end gap-1 text-[9px] text-zinc-400 mt-0.5">
+              <span class="text-red-400 font-medium">Mín: ${min.combo.toFixed(0)}</span> |
+              <span class="text-amber-400 font-semibold">Méd: ${med.combo.toFixed(0)}</span> |
+              <span class="text-emerald-400 font-medium">Máx: ${max.combo.toFixed(0)}</span>
+            </div>
+            ${eco > 0 ? `<span class="block text-[9px] text-emerald-400 font-bold mt-0.5">Economia R$ ${eco.toFixed(2)}</span>` : ''}
           </td>
         </tr>
       `;
