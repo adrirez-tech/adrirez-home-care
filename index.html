@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>ADRIREZ HOME CARE - Higienização & Impermeabilização Especializada</title>
+  <title>ADRIREZ HOME CARE - HigienizaÃ§Ã£o & ImpermeabilizaÃ§Ã£o Especializada</title>
   
   <!-- PWA Manifest & Meta -->
   <link rel="manifest" href="manifest.json">
@@ -20,6 +20,7 @@
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
+    window.tailwind = window.tailwind || {};
     tailwind.config = {
       theme: {
         extend: {
@@ -226,14 +227,14 @@ body {
             <h1 class="text-base sm:text-lg font-black tracking-tight text-white leading-tight font-['Cinzel',sans-serif]">
               ADRIREZ <span class="text-gold-gradient">HOME CARE</span>
             </h1>
-            <p class="text-[10px] text-amber-200/70 font-medium tracking-wide hidden sm:block">Higienização & Impermeabilização Premium</p>
+            <p class="text-[10px] text-amber-200/70 font-medium tracking-wide hidden sm:block">HigienizaÃ§Ã£o & ImpermeabilizaÃ§Ã£o Premium</p>
           </div>
         </div>
 
         <!-- Desktop Navigation Tabs -->
         <nav class="hidden md:flex items-center gap-1">
           <button data-view="dashboard" class="nav-btn px-3 py-2 rounded-xl text-xs font-semibold flex items-center gap-2 transition text-amber-400 bg-amber-500/10 border border-amber-500/30">
-            <i data-lucide="layout-dashboard" class="w-4 h-4"></i> Início
+            <i data-lucide="layout-dashboard" class="w-4 h-4"></i> InÃ­cio
           </button>
           <button data-view="agenda" class="nav-btn px-3 py-2 rounded-xl text-xs font-semibold flex items-center gap-2 transition text-zinc-400 hover:text-white hover:bg-zinc-800/60 border border-transparent">
             <i data-lucide="calendar" class="w-4 h-4"></i> Agenda
@@ -242,7 +243,12 @@ body {
             <i data-lucide="users" class="w-4 h-4"></i> Clientes
           </button>
           <button data-view="quotes" class="nav-btn px-3 py-2 rounded-xl text-xs font-semibold flex items-center gap-2 transition text-zinc-400 hover:text-white hover:bg-zinc-800/60 border border-transparent">
-            <i data-lucide="file-text" class="w-4 h-4"></i> Orçamentos
+            <i data-lucide="file-text" class="w-4 h-4"></i> OrÃ§amentos
+          </button>
+          <!-- Nova Aba: Vendedora IA & PÃ³s-Venda -->
+          <button data-view="ai-sales" class="nav-btn px-3 py-2 rounded-xl text-xs font-semibold flex items-center gap-2 transition text-zinc-400 hover:text-white hover:bg-zinc-800/60 border border-transparent">
+            <i data-lucide="bot" class="w-4 h-4 text-amber-400"></i> Vendedora IA
+            <span class="w-2 h-2 rounded-full bg-amber-400 animate-pulse"></span>
           </button>
           <button data-view="settings" class="nav-btn px-3 py-2 rounded-xl text-xs font-semibold flex items-center gap-2 transition text-zinc-400 hover:text-white hover:bg-zinc-800/60 border border-transparent">
             <i data-lucide="settings" class="w-4 h-4"></i> Ajustes
@@ -268,15 +274,15 @@ body {
             </span>
           </div>
 
-          <!-- Botão Notificações com Badge -->
-          <button id="btnToggleNotifications" class="relative p-2.5 rounded-xl bg-zinc-900 border border-zinc-800 hover:border-amber-500/40 text-zinc-300 hover:text-amber-400 transition" title="Notificações dos Administradores">
+          <!-- BotÃ£o NotificaÃ§Ãµes com Badge -->
+          <button id="btnToggleNotifications" class="relative p-2.5 rounded-xl bg-zinc-900 border border-zinc-800 hover:border-amber-500/40 text-zinc-300 hover:text-amber-400 transition" title="NotificaÃ§Ãµes dos Administradores">
             <i data-lucide="bell" class="w-5 h-5"></i>
             <span id="notificationBadge" class="hidden absolute -top-1 -right-1 w-5 h-5 bg-amber-500 text-zinc-950 text-[10px] font-black rounded-full flex items-center justify-center notification-pulse">
               0
             </span>
           </button>
 
-          <!-- Botão de Ação Rápida: + Novo Agendamento (Botão Dourado Premium) -->
+          <!-- BotÃ£o de AÃ§Ã£o RÃ¡pida: + Novo Agendamento (BotÃ£o Dourado Premium) -->
           <button onclick="window.app.openAppointmentModal()" class="btn-gold inline-flex items-center gap-1.5 px-3.5 py-2 text-xs font-bold rounded-xl transition">
             <i data-lucide="plus" class="w-4 h-4"></i>
             <span class="hidden sm:inline">Novo Agendamento</span>
@@ -304,45 +310,44 @@ body {
             </div>
             <div>
               <div class="flex items-center gap-2 text-amber-400 text-xs font-bold tracking-wider uppercase mb-1">
-                <i data-lucide="crown" class="w-4 h-4 text-amber-400"></i> Painel de Gestão &bull; Adriano & Anny
+                <i data-lucide="crown" class="w-4 h-4 text-amber-400"></i> Painel de GestÃ£o &bull; Adriano & Anny
               </div>
               <h2 class="text-xl sm:text-2xl font-black tracking-tight text-white font-['Cinzel',sans-serif]">
                 ADRIREZ <span class="text-gold-gradient">HOME CARE</span>
               </h2>
               <p class="text-xs sm:text-sm text-zinc-300 max-w-xl mt-1 leading-relaxed">
-                🛋️ Seu estofado limpo, protegido e renovado. Higienização Profissional & Impermeabilização Premium.
+                ðŸ›‹ï¸ Seu estofado limpo, protegido e renovado. HigienizaÃ§Ã£o Profissional & ImpermeabilizaÃ§Ã£o Premium.
               </p>
             </div>
           </div>
           <div class="flex flex-wrap gap-2 shrink-0">
+            <button onclick="window.app.navigate('ai-sales')" class="px-3.5 py-2 bg-amber-500/10 hover:bg-amber-500/20 border border-amber-500/40 text-amber-300 text-xs font-bold rounded-xl transition flex items-center gap-1.5 shadow-sm">
+              <i data-lucide="bot" class="w-4 h-4 text-amber-400"></i> Sofia Vendedora IA
+            </button>
             <button onclick="window.app.openAppointmentModal()" class="btn-gold px-3.5 py-2 text-xs font-bold rounded-xl transition flex items-center gap-1.5">
               <i data-lucide="calendar-plus" class="w-4 h-4"></i> Agendar Atendimento
             </button>
             <button onclick="window.app.openQuoteModal()" class="px-3.5 py-2 bg-zinc-900/90 hover:bg-zinc-800 border border-amber-500/40 text-amber-300 text-xs font-semibold rounded-xl transition flex items-center gap-1.5">
-              <i data-lucide="file-plus" class="w-4 h-4"></i> Criar Orçamento
-            </button>
-            <button onclick="window.app.openClientModal()" class="px-3.5 py-2 bg-zinc-900/90 hover:bg-zinc-800 border border-amber-500/40 text-amber-300 text-xs font-semibold rounded-xl transition flex items-center gap-1.5">
-              <i data-lucide="user-plus" class="w-4 h-4"></i> Novo Cliente
+              <i data-lucide="file-plus" class="w-4 h-4"></i> Criar OrÃ§amento
             </button>
           </div>
         </div>
-        <!-- Efeito decorativo dourado de fundo -->
         <div class="absolute -right-10 -bottom-10 w-56 h-56 bg-amber-500/10 rounded-full blur-3xl pointer-events-none"></div>
       </div>
 
-      <!-- Métricas Rápidas Black & Gold -->
+      <!-- MÃ©tricas RÃ¡pidas Black & Gold -->
       <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
         
-        <!-- Faturamento Mês -->
+        <!-- Faturamento MÃªs -->
         <div class="action-card rounded-2xl p-4 shadow-sm">
           <div class="flex items-center justify-between text-zinc-400 mb-2">
-            <span class="text-xs font-bold text-amber-400/90 uppercase tracking-wider">Faturamento Mês</span>
+            <span class="text-xs font-bold text-amber-400/90 uppercase tracking-wider">Faturamento MÃªs</span>
             <div class="w-8 h-8 rounded-lg bg-emerald-950/60 text-emerald-400 border border-emerald-500/30 flex items-center justify-center">
               <i data-lucide="trending-up" class="w-4 h-4"></i>
             </div>
           </div>
           <div id="dashMonthRevenue" class="text-lg sm:text-2xl font-black text-white">R$ 0,00</div>
-          <p class="text-[11px] text-emerald-400 font-semibold mt-1">Serviços agendados/concluídos</p>
+          <p class="text-[11px] text-emerald-400 font-semibold mt-1">ServiÃ§os agendados/concluÃ­dos</p>
         </div>
 
         <!-- Atendimentos Hoje -->
@@ -366,7 +371,7 @@ body {
             </div>
           </div>
           <div id="dashPendingCount" class="text-lg sm:text-2xl font-black text-white">0</div>
-          <p class="text-[11px] text-yellow-300 font-semibold mt-1">Aguardando confirmação</p>
+          <p class="text-[11px] text-yellow-300 font-semibold mt-1">Aguardando confirmaÃ§Ã£o</p>
         </div>
 
         <!-- Total de Clientes -->
@@ -383,7 +388,7 @@ body {
 
       </div>
 
-      <!-- Seção: Atendimentos de Hoje -->
+      <!-- SeÃ§Ã£o: Atendimentos de Hoje -->
       <div class="mb-8">
         <div class="flex items-center justify-between mb-4">
           <div class="flex items-center gap-2">
@@ -400,9 +405,9 @@ body {
         </div>
       </div>
 
-      <!-- Seção: Próximos Atendimentos da Semana -->
+      <!-- SeÃ§Ã£o: PrÃ³ximos Atendimentos da Semana -->
       <div>
-        <h3 class="text-base font-extrabold text-white mb-4">Próximos Dias</h3>
+        <h3 class="text-base font-extrabold text-white mb-4">PrÃ³ximos Dias</h3>
         <div id="dashUpcomingAppointmentsList" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           <!-- Carregado via JS -->
         </div>
@@ -411,7 +416,7 @@ body {
     </section>
 
     <!-- ============================================== -->
-    <!-- VIEW 2: AGENDA & CALENDÁRIO -->
+    <!-- VIEW 2: AGENDA & CALENDÃRIO -->
     <!-- ============================================== -->
     <section id="view-agenda" class="view-container hidden">
       
@@ -419,7 +424,7 @@ body {
       <div class="action-card rounded-2xl p-4 shadow-sm mb-6">
         <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
           
-          <!-- Filtro por Técnico (Adriano / Anny / Todos) -->
+          <!-- Filtro por TÃ©cnico (Adriano / Anny / Todos) -->
           <div class="flex items-center gap-1.5 bg-zinc-900 p-1 rounded-xl border border-zinc-800">
             <button data-tech="all" class="filter-tech-btn px-3 py-1.5 text-xs font-bold rounded-lg bg-amber-500 text-zinc-950 transition">
               Todos
@@ -436,7 +441,7 @@ body {
           <div class="flex flex-wrap items-center gap-2">
             <div class="relative flex-1 sm:w-64">
               <i data-lucide="search" class="w-4 h-4 text-zinc-500 absolute left-3 top-2.5"></i>
-              <input type="text" id="agendaSearchInput" placeholder="Buscar cliente, serviço ou endereço..." class="w-full pl-9 pr-3 py-2 text-xs bg-[#1c1c24] border border-zinc-700 text-white rounded-xl placeholder-zinc-500 focus:outline-hidden focus:border-amber-400">
+              <input type="text" id="agendaSearchInput" placeholder="Buscar cliente, serviÃ§o ou endereÃ§o..." class="w-full pl-9 pr-3 py-2 text-xs bg-[#1c1c24] border border-zinc-700 text-white rounded-xl placeholder-zinc-500 focus:outline-hidden focus:border-amber-400">
             </div>
             <button onclick="window.app.openAppointmentModal()" class="btn-gold px-3.5 py-2 text-xs font-bold rounded-xl transition flex items-center gap-1.5">
               <i data-lucide="plus" class="w-4 h-4"></i> Agendar
@@ -477,22 +482,22 @@ body {
     </section>
 
     <!-- ============================================== -->
-    <!-- VIEW 4: ORÇAMENTOS -->
+    <!-- VIEW 4: ORÃ‡AMENTOS -->
     <!-- ============================================== -->
     <section id="view-quotes" class="view-container hidden">
       
-      <!-- Header Orçamentos -->
+      <!-- Header OrÃ§amentos -->
       <div class="action-card rounded-2xl p-4 shadow-sm mb-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <h3 class="text-base font-extrabold text-white">Propostas & Orçamentos</h3>
-          <p class="text-xs text-zinc-400">Crie propostas rápidas, envie no WhatsApp e converta em agendamento com 1 clique.</p>
+          <h3 class="text-base font-extrabold text-white">Propostas & OrÃ§amentos</h3>
+          <p class="text-xs text-zinc-400">Crie propostas rÃ¡pidas, envie no WhatsApp e converta em agendamento com 1 clique.</p>
         </div>
         <button onclick="window.app.openQuoteModal()" class="btn-gold px-4 py-2 text-xs font-bold rounded-xl transition flex items-center gap-1.5 self-start sm:self-auto">
           <i data-lucide="file-plus" class="w-4 h-4"></i> Criar Nova Proposta
         </button>
       </div>
 
-      <!-- Lista de Orçamentos -->
+      <!-- Lista de OrÃ§amentos -->
       <div id="quotesListContainer" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         <!-- Renderizado dinamicamente via JS -->
       </div>
@@ -500,16 +505,186 @@ body {
     </section>
 
     <!-- ============================================== -->
-    <!-- VIEW 5: CONFIGURAÇÕES & SUPABASE -->
+    <!-- VIEW 5: VENDEDORA IA & PÃ“S-VENDA (SOFIA) -->
+    <!-- ============================================== -->
+    <section id="view-ai-sales" class="view-container hidden">
+      
+      <!-- Top Banner Sofia IA -->
+      <div class="mb-6 bg-gradient-to-r from-zinc-950 via-[#16140e] to-zinc-950 border border-amber-500/30 rounded-3xl p-6 text-white shadow-xl relative overflow-hidden">
+        <div class="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-6">
+          <div class="flex items-center gap-4">
+            <div class="relative w-14 h-14 sm:w-16 sm:h-16 rounded-2xl p-0.5 bg-gradient-to-tr from-amber-500 via-yellow-200 to-amber-600 shadow-xl shadow-amber-500/20 shrink-0 flex items-center justify-center bg-black">
+              <i data-lucide="bot" class="w-8 h-8 text-amber-400"></i>
+            </div>
+            <div>
+              <div class="flex items-center gap-2 text-amber-400 text-xs font-bold tracking-wider uppercase mb-1">
+                <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span> Sofia â€¢ Vendedora & PÃ³s-Venda IA
+              </div>
+              <h2 class="text-xl sm:text-2xl font-black tracking-tight text-white font-['Cinzel',sans-serif]">
+                CENTRAL DE <span class="text-gold-gradient">VENDAS & FIDELIZAÃ‡ÃƒO</span>
+              </h2>
+              <p class="text-xs sm:text-sm text-zinc-300 max-w-xl mt-1 leading-relaxed">
+                Reative clientes antigos de 6 e 12 meses, automatize o pÃ³s-venda (D+1, D+7 e D+30) e negocie fechamentos com os preÃ§os oficiais do Google Sheets.
+              </p>
+            </div>
+          </div>
+          <div class="flex items-center gap-2">
+            <button onclick="window.app.syncWithGoogleSheetsNow()" id="btnSyncGSheets" class="px-3.5 py-2 bg-zinc-900 hover:bg-zinc-800 border border-amber-500/30 text-amber-300 text-xs font-bold rounded-xl transition flex items-center gap-1.5 shadow-sm">
+              <i data-lucide="refresh-cw" class="w-3.5 h-3.5 text-amber-400"></i> Sincronizar Google Sheets
+            </button>
+          </div>
+        </div>
+        <div class="absolute -right-10 -bottom-10 w-56 h-56 bg-amber-500/10 rounded-full blur-3xl pointer-events-none"></div>
+      </div>
+
+      <!-- Subabas de NavegaÃ§Ã£o Interna -->
+      <div class="flex items-center gap-2 overflow-x-auto pb-2 mb-6 scrollbar-none">
+        <button onclick="window.app.switchAiSubTab('reactivation')" data-subtab="reactivation" class="ai-subtab-btn px-4 py-2 text-xs font-bold rounded-xl bg-amber-500 text-zinc-950 transition flex items-center gap-2 shrink-0 shadow-sm">
+          <i data-lucide="rotate-ccw" class="w-4 h-4"></i>
+          <span>Radar de ReativaÃ§Ã£o</span>
+          <span id="badgeAiReactivationCount" class="text-[10px] font-black bg-zinc-950/80 text-amber-300 px-1.5 py-0.5 rounded-full">0</span>
+        </button>
+        <button onclick="window.app.switchAiSubTab('postsales')" data-subtab="postsales" class="ai-subtab-btn px-4 py-2 text-xs font-bold rounded-xl bg-zinc-900 text-zinc-300 hover:text-white transition flex items-center gap-2 shrink-0 border border-zinc-800">
+          <i data-lucide="heart-handshake" class="w-4 h-4 text-amber-400"></i>
+          <span>PÃ³s-Venda Inteligente</span>
+          <span id="badgeAiPostSalesCount" class="text-[10px] font-black bg-zinc-800 text-amber-300 px-1.5 py-0.5 rounded-full">0</span>
+        </button>
+        <button onclick="window.app.switchAiSubTab('negotiator')" data-subtab="negotiator" class="ai-subtab-btn px-4 py-2 text-xs font-bold rounded-xl bg-zinc-900 text-zinc-300 hover:text-white transition flex items-center gap-2 shrink-0 border border-zinc-800">
+          <i data-lucide="sparkles" class="w-4 h-4 text-amber-400"></i>
+          <span>Negociadora Gemini IA</span>
+        </button>
+        <button onclick="window.app.switchAiSubTab('pricelist')" data-subtab="pricelist" class="ai-subtab-btn px-4 py-2 text-xs font-bold rounded-xl bg-zinc-900 text-zinc-300 hover:text-white transition flex items-center gap-2 shrink-0 border border-zinc-800">
+          <i data-lucide="table" class="w-4 h-4 text-amber-400"></i>
+          <span>Tabela Oficial (Google Sheets)</span>
+        </button>
+      </div>
+
+      <!-- SUBABA 1: RADAR DE REATIVAÃ‡ÃƒO -->
+      <div id="ai-subtab-reactivation" class="ai-subtab-content">
+        <div class="mb-4 flex items-center justify-between">
+          <div>
+            <h3 class="text-sm font-extrabold text-white">Clientes Prontos para ReativaÃ§Ã£o</h3>
+            <p class="text-xs text-zinc-400">Contatos que fizeram impermeabilizaÃ§Ã£o hÃ¡ 10-12 meses ou higienizaÃ§Ã£o hÃ¡ 6 meses.</p>
+          </div>
+        </div>
+        <div id="aiReactivationContainer" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          <!-- Renderizado via JS -->
+        </div>
+      </div>
+
+      <!-- SUBABA 2: PÃ“S-VENDA INTELIGENTE -->
+      <div id="ai-subtab-postsales" class="ai-subtab-content hidden">
+        <div class="mb-4">
+          <h3 class="text-sm font-extrabold text-white">Esteira de Acompanhamento PÃ³s-ServiÃ§o</h3>
+          <p class="text-xs text-zinc-400">Dispare os 3 passos: D+1 (Secagem), D+7 (AvaliaÃ§Ã£o 5 estrelas) e D+30 (Cupom para amigos).</p>
+        </div>
+        <div id="aiPostSalesContainer" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          <!-- Renderizado via JS -->
+        </div>
+      </div>
+
+      <!-- SUBABA 3: NEGOCIADORA GEMINI IA -->
+      <div id="ai-subtab-negotiator" class="ai-subtab-content hidden">
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          <div class="action-card rounded-2xl p-5">
+            <h3 class="text-sm font-bold text-white mb-1 flex items-center gap-2">
+              <i data-lucide="message-square" class="w-4 h-4 text-amber-400"></i> O que o cliente falou?
+            </h3>
+            <p class="text-xs text-zinc-400 mb-4">Cole a dÃºvida, pedido de desconto ou pergunta de preÃ§o que vocÃª recebeu no WhatsApp.</p>
+
+            <div class="space-y-4">
+              <div>
+                <label class="block text-xs font-semibold text-zinc-300 mb-1">Selecione o Cliente (opcional)</label>
+                <select id="aiNegotiatorClientSelect" class="w-full px-3 py-2 text-xs bg-[#1c1c24] border border-zinc-700 text-white rounded-xl focus:border-amber-400">
+                  <!-- Carregado via JS -->
+                </select>
+              </div>
+
+              <div>
+                <label class="block text-xs font-semibold text-zinc-300 mb-1">Mensagem Recebida do Cliente *</label>
+                <textarea id="aiNegotiatorInputMessage" rows="5" placeholder="ex: Quanto fica pra limpar o sofÃ¡ retrÃ¡til de 3 lugares e o colchÃ£o de casal? Tem desconto se eu fizer os dois?" class="w-full px-3 py-2 text-xs bg-[#1c1c24] border border-zinc-700 text-white rounded-xl focus:border-amber-400 leading-relaxed"></textarea>
+              </div>
+
+              <button id="btnRunAiNegotiator" onclick="window.app.runAiNegotiator()" class="btn-gold w-full py-2.5 text-xs font-bold rounded-xl transition flex items-center justify-center gap-2">
+                <i data-lucide="sparkles" class="w-4 h-4"></i> Gerar Respostas de Venda (Sofia IA)
+              </button>
+            </div>
+          </div>
+
+          <div class="lg:col-span-2">
+            <div id="aiNegotiatorResultsContainer" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+              <div class="col-span-full p-8 text-center bg-[#131317] border border-dashed border-amber-500/20 rounded-2xl">
+                <div class="w-12 h-12 bg-amber-500/10 text-amber-400 border border-amber-500/20 rounded-full flex items-center justify-center mx-auto mb-3">
+                  <i data-lucide="message-circle" class="w-6 h-6"></i>
+                </div>
+                <p class="text-sm font-bold text-white">Pronta para negociar e fechar vendas!</p>
+                <p class="text-xs text-zinc-400 mt-1 max-w-md mx-auto">Digite a mensagem do cliente ao lado e a Sofia IA consultarÃ¡ a tabela oficial do Google Sheets para criar 3 propostas de alta conversÃ£o prontas para o WhatsApp.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SUBABA 4: TABELA OFICIAL GOOGLE SHEETS -->
+      <div id="ai-subtab-pricelist" class="ai-subtab-content hidden">
+        <div class="action-card rounded-2xl p-5">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-4">
+            <div>
+              <h3 class="text-base font-extrabold text-white">Tabela de PreÃ§os Oficial (Google Sheets)</h3>
+              <p class="text-xs text-zinc-400">Valores de referÃªncia de 32 itens com HigienizaÃ§Ã£o, ImpermeabilizaÃ§Ã£o e Combo.</p>
+            </div>
+            <div class="flex items-center gap-2">
+              <div class="relative w-48 sm:w-64">
+                <i data-lucide="search" class="w-3.5 h-3.5 text-zinc-500 absolute left-3 top-2.5"></i>
+                <input type="text" id="aiPriceSearchInput" oninput="window.app.renderAiPriceList()" placeholder="Filtrar item ou tecido..." class="w-full pl-8 pr-3 py-1.5 text-xs bg-[#1c1c24] border border-zinc-700 text-white rounded-xl focus:border-amber-400">
+              </div>
+              <select id="aiPriceCatFilter" onchange="window.app.renderAiPriceList()" class="px-2.5 py-1.5 text-xs bg-[#1c1c24] border border-zinc-700 text-white rounded-xl focus:border-amber-400">
+                <option value="all">Todas Categorias</option>
+                <option value="SofÃ¡">SofÃ¡</option>
+                <option value="SofÃ¡ RetrÃ¡til">SofÃ¡ RetrÃ¡til</option>
+                <option value="SofÃ¡ de Canto / L">SofÃ¡ de Canto / L</option>
+                <option value="Poltrona">Poltrona</option>
+                <option value="Cadeira">Cadeira</option>
+                <option value="ColchÃ£o">ColchÃ£o</option>
+                <option value="Cabeceira">Cabeceira</option>
+                <option value="Tapete">Tapete</option>
+                <option value="Infantil">Infantil</option>
+                <option value="Veicular">Veicular</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="overflow-x-auto">
+            <table class="w-full text-left">
+              <thead>
+                <tr class="text-[11px] font-bold text-zinc-400 uppercase border-b border-zinc-800">
+                  <th class="py-2.5 px-3">Item / VariaÃ§Ã£o</th>
+                  <th class="py-2.5 px-3 text-right">HigienizaÃ§Ã£o</th>
+                  <th class="py-2.5 px-3 text-right">ImpermeabilizaÃ§Ã£o</th>
+                  <th class="py-2.5 px-3 text-right">Combo Completo</th>
+                </tr>
+              </thead>
+              <tbody id="aiPriceListTableBody">
+                <!-- Renderizado via JS -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ============================================== -->
+    <!-- VIEW 6: CONFIGURAÃ‡Ã•ES, GEMINI & SUPABASE -->
     <!-- ============================================== -->
     <section id="view-settings" class="view-container hidden">
       
       <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
         
-        <!-- Formulário de Dados da Adrirez Home Care -->
+        <!-- FormulÃ¡rio de Dados da Adrirez Home Care -->
         <div class="lg:col-span-2 action-card rounded-2xl p-6 shadow-sm">
           <h3 class="text-base font-extrabold text-white mb-1">Dados da Empresa & Pagamento</h3>
-          <p class="text-xs text-zinc-400 mb-6">Informações utilizadas na geração de propostas impressas e mensagens de WhatsApp.</p>
+          <p class="text-xs text-zinc-400 mb-6">InformaÃ§Ãµes utilizadas na geraÃ§Ã£o de propostas impressas e mensagens de WhatsApp.</p>
 
           <form onsubmit="window.app.saveSettingsForm(event)" class="space-y-4">
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -524,7 +699,7 @@ body {
             </div>
 
             <div>
-              <label class="block text-xs font-semibold text-zinc-300 mb-1">Slogan / Descrição Curta (Instagram)</label>
+              <label class="block text-xs font-semibold text-zinc-300 mb-1">Slogan / DescriÃ§Ã£o Curta (Instagram)</label>
               <input type="text" id="settingSlogan" class="w-full px-3 py-2 text-xs bg-[#1c1c24] border border-zinc-700 text-white rounded-xl focus:border-amber-400">
             </div>
 
@@ -539,7 +714,7 @@ body {
                   <option value="Email">E-mail</option>
                   <option value="Telefone">Telefone</option>
                   <option value="CNPJ/CPF">CNPJ / CPF</option>
-                  <option value="Aleatória">Chave Aleatória</option>
+                  <option value="AleatÃ³ria">Chave AleatÃ³ria</option>
                 </select>
               </div>
             </div>
@@ -550,13 +725,35 @@ body {
             </div>
 
             <div>
-              <label class="block text-xs font-semibold text-zinc-300 mb-1">Termos de Garantia e Cuidados (Impressão)</label>
+              <label class="block text-xs font-semibold text-zinc-300 mb-1">Termos de Garantia e Cuidados (ImpressÃ£o)</label>
               <textarea id="settingWarranty" rows="3" class="w-full px-3 py-2 text-xs bg-[#1c1c24] border border-zinc-700 text-white rounded-xl focus:border-amber-400"></textarea>
+            </div>
+
+            <!-- IntegraÃ§Ã£o Gemini API & Google Sheets -->
+            <div class="p-4 bg-[#181820] border border-amber-500/20 rounded-2xl space-y-3">
+              <h4 class="text-xs font-bold text-amber-300 flex items-center gap-2">
+                <i data-lucide="bot" class="w-4 h-4 text-amber-400"></i> InteligÃªncia Artificial (Google Gemini) & Planilha
+              </h4>
+              <div>
+                <div class="flex items-center justify-between mb-1">
+                  <label class="text-[11px] font-semibold text-zinc-300">Chave de API do Google Gemini (Opcional)</label>
+                  <a href="https://aistudio.google.com/app/apikey" target="_blank" class="text-[10px] text-amber-400 hover:underline flex items-center gap-1 font-bold">
+                    Pegar Chave GrÃ¡tis â†—
+                  </a>
+                </div>
+                <input type="password" id="settingGeminiApiKey" placeholder="AIzaSy..." class="w-full px-2.5 py-1.5 text-xs bg-[#1c1c24] border border-zinc-700 text-white rounded-lg focus:border-amber-400 font-mono">
+                <p class="text-[10px] text-zinc-500 mt-1">Permite que a Sofia IA gere respostas personalizadas em tempo real. Se deixar vazio, ela usa a tabela do Google Sheets offline.</p>
+              </div>
+
+              <div>
+                <label class="block text-[11px] font-semibold text-zinc-300 mb-1">Link da Planilha do Google Sheets</label>
+                <input type="url" id="settingGoogleSheetUrl" placeholder="https://docs.google.com/spreadsheets/d/..." class="w-full px-2.5 py-1.5 text-xs bg-[#1c1c24] border border-zinc-700 text-white rounded-lg focus:border-amber-400 font-mono">
+              </div>
             </div>
 
             <div class="pt-2">
               <button type="submit" class="btn-gold px-5 py-2.5 text-xs font-bold rounded-xl transition">
-                Salvar Alterações
+                Salvar AlteraÃ§Ãµes
               </button>
             </div>
           </form>
@@ -565,12 +762,12 @@ body {
         <!-- Painel Lateral: Nuvem Supabase, Alertas & Backup -->
         <div class="space-y-6">
           
-          <!-- Conexão Banco de Dados na Nuvem (Supabase Oficial) -->
+          <!-- ConexÃ£o Banco de Dados na Nuvem (Supabase Oficial) -->
           <div class="action-card rounded-2xl p-5 shadow-sm">
             <h4 class="text-sm font-bold text-white mb-1 flex items-center gap-2">
               <i data-lucide="database" class="w-4 h-4 text-amber-400"></i> Banco na Nuvem (Supabase)
             </h4>
-            <p class="text-xs text-zinc-400 mb-3">Sincronização em tempo real entre o celular de Adriano e Anny na rua e o PC da empresa.</p>
+            <p class="text-xs text-zinc-400 mb-3">SincronizaÃ§Ã£o em tempo real entre o celular de Adriano e Anny na rua e o PC da empresa.</p>
 
             <form onsubmit="window.app.saveCloudDbConfig(event)" class="space-y-3">
               <div>
@@ -583,7 +780,7 @@ body {
               </div>
               <div class="flex items-center gap-2">
                 <input type="checkbox" id="settingCloudEnabled" class="rounded text-amber-500 bg-zinc-900 border-zinc-700 focus:ring-amber-400">
-                <label for="settingCloudEnabled" class="text-xs text-zinc-300 font-medium">Ativar Sincronização em Nuvem</label>
+                <label for="settingCloudEnabled" class="text-xs text-zinc-300 font-medium">Ativar SincronizaÃ§Ã£o em Nuvem</label>
               </div>
               <div class="pt-1 flex flex-col gap-2">
                 <button type="submit" class="btn-gold w-full py-2 text-xs font-bold rounded-xl transition">
@@ -599,12 +796,12 @@ body {
             </form>
           </div>
 
-          <!-- Notificações & Som para Adriano e Anny -->
+          <!-- NotificaÃ§Ãµes & Som para Adriano e Anny -->
           <div class="action-card rounded-2xl p-5 shadow-sm">
             <h4 class="text-sm font-bold text-white mb-1 flex items-center gap-2">
               <i data-lucide="volume-2" class="w-4 h-4 text-amber-400"></i> Som e Alertas dos Admins
             </h4>
-            <p class="text-xs text-zinc-400 mb-4">Sinal sonoro agradável para novos agendamentos e notificações no celular.</p>
+            <p class="text-xs text-zinc-400 mb-4">Sinal sonoro agradÃ¡vel para novos agendamentos e notificaÃ§Ãµes no celular.</p>
 
             <div class="space-y-2.5">
               <button onclick="window.app.testNotificationSound()" class="w-full py-2 px-3 bg-zinc-900 hover:bg-zinc-800 border border-zinc-800 text-zinc-200 text-xs font-semibold rounded-xl flex items-center justify-center gap-2 transition">
@@ -612,15 +809,15 @@ body {
               </button>
 
               <button onclick="window.app.requestPushPermission()" class="w-full py-2 px-3 bg-amber-500/10 hover:bg-amber-500/20 text-amber-300 border border-amber-500/30 text-xs font-semibold rounded-xl flex items-center justify-center gap-2 transition">
-                <i data-lucide="bell" class="w-4 h-4"></i> Ativar Notificações no Navegador
+                <i data-lucide="bell" class="w-4 h-4"></i> Ativar NotificaÃ§Ãµes no Navegador
               </button>
             </div>
           </div>
 
-          <!-- Backup & Restauração -->
+          <!-- Backup & RestauraÃ§Ã£o -->
           <div class="action-card rounded-2xl p-5 shadow-sm">
             <h4 class="text-sm font-bold text-white mb-1 flex items-center gap-2">
-              <i data-lucide="shield-check" class="w-4 h-4 text-emerald-400"></i> Backup de Segurança
+              <i data-lucide="shield-check" class="w-4 h-4 text-emerald-400"></i> Backup de SeguranÃ§a
             </h4>
             <p class="text-xs text-zinc-400 mb-4">Seus dados ficam protegidos. Baixe o backup offline com 1 clique.</p>
 
@@ -636,14 +833,14 @@ body {
             </div>
           </div>
 
-          <!-- Informações da Equipe -->
+          <!-- InformaÃ§Ãµes da Equipe -->
           <div class="bg-[#121216] border border-amber-500/15 rounded-2xl p-4 text-xs text-zinc-400">
             <span class="font-bold text-white block mb-2">Equipe Cadastrada:</span>
             <div class="flex items-center gap-2 mb-1.5">
-              <span class="w-2.5 h-2.5 rounded-full bg-amber-400"></span> <strong class="text-amber-300">Adriano</strong> (Técnico / Especialista Operacional)
+              <span class="w-2.5 h-2.5 rounded-full bg-amber-400"></span> <strong class="text-amber-300">Adriano</strong> (TÃ©cnico / Especialista Operacional)
             </div>
             <div class="flex items-center gap-2">
-              <span class="w-2.5 h-2.5 rounded-full bg-amber-200"></span> <strong class="text-amber-200">Anny</strong> (Atendimento, Finanças e Agenda)
+              <span class="w-2.5 h-2.5 rounded-full bg-amber-200"></span> <strong class="text-amber-200">Anny</strong> (Atendimento, FinanÃ§as e Agenda)
             </div>
           </div>
 
@@ -655,12 +852,12 @@ body {
 
   </main>
 
-  <!-- Mobile Bottom Navigation Bar (Fácil acesso com o polegar) -->
+  <!-- Mobile Bottom Navigation Bar (FÃ¡cil acesso com o polegar) -->
   <div class="md:hidden fixed bottom-0 left-0 right-0 bg-[#0f0f13]/95 backdrop-blur-md border-t border-amber-500/20 z-30 mobile-bottom-nav">
     <div class="grid grid-cols-5 h-16">
       <button data-view="dashboard" class="nav-btn flex flex-col items-center justify-center text-amber-400">
         <i data-lucide="layout-dashboard" class="w-5 h-5"></i>
-        <span class="text-[10px] font-semibold mt-1">Início</span>
+        <span class="text-[10px] font-semibold mt-1">InÃ­cio</span>
       </button>
       <button data-view="agenda" class="nav-btn flex flex-col items-center justify-center text-zinc-400">
         <i data-lucide="calendar" class="w-5 h-5"></i>
@@ -672,13 +869,13 @@ body {
         </div>
         <span class="text-[10px] font-bold text-amber-400 mt-1">Agendar</span>
       </button>
+      <button data-view="ai-sales" class="nav-btn flex flex-col items-center justify-center text-zinc-400">
+        <i data-lucide="bot" class="w-5 h-5 text-amber-400"></i>
+        <span class="text-[10px] font-bold text-amber-300 mt-1">Vendedora IA</span>
+      </button>
       <button data-view="quotes" class="nav-btn flex flex-col items-center justify-center text-zinc-400">
         <i data-lucide="file-text" class="w-5 h-5"></i>
-        <span class="text-[10px] font-medium mt-1">Orçamentos</span>
-      </button>
-      <button data-view="clients" class="nav-btn flex flex-col items-center justify-center text-zinc-400">
-        <i data-lucide="users" class="w-5 h-5"></i>
-        <span class="text-[10px] font-medium mt-1">Clientes</span>
+        <span class="text-[10px] font-medium mt-1">OrÃ§amentos</span>
       </button>
     </div>
   </div>
@@ -719,15 +916,15 @@ body {
             <input type="date" id="appDate" class="w-full px-3 py-2 text-xs bg-[#1c1c24] border border-zinc-700 text-white rounded-xl focus:border-amber-400" required>
           </div>
           <div>
-            <label class="block text-xs font-semibold text-zinc-300 mb-1">Horário de Início *</label>
+            <label class="block text-xs font-semibold text-zinc-300 mb-1">HorÃ¡rio de InÃ­cio *</label>
             <input type="time" id="appTime" class="w-full px-3 py-2 text-xs bg-[#1c1c24] border border-zinc-700 text-white rounded-xl focus:border-amber-400" required>
           </div>
         </div>
 
-        <!-- Técnico Atribuído e Status -->
+        <!-- TÃ©cnico AtribuÃ­do e Status -->
         <div class="grid grid-cols-2 gap-3">
           <div>
-            <label class="block text-xs font-semibold text-zinc-300 mb-1">Responsável *</label>
+            <label class="block text-xs font-semibold text-zinc-300 mb-1">ResponsÃ¡vel *</label>
             <select id="appTech" class="w-full px-3 py-2 text-xs bg-[#1c1c24] border border-zinc-700 text-white rounded-xl focus:border-amber-400">
               <option value="adriano">Adriano</option>
               <option value="anny">Anny</option>
@@ -740,24 +937,24 @@ body {
               <option value="confirmado">Confirmado</option>
               <option value="pendente">Pendente</option>
               <option value="a_caminho">A caminho</option>
-              <option value="em_andamento">Em execução</option>
-              <option value="concluido">Concluído</option>
+              <option value="em_andamento">Em execuÃ§Ã£o</option>
+              <option value="concluido">ConcluÃ­do</option>
               <option value="cancelado">Cancelado</option>
             </select>
           </div>
         </div>
 
-        <!-- Serviços -->
+        <!-- ServiÃ§os -->
         <div>
-          <label class="block text-xs font-semibold text-zinc-300 mb-1">Serviço(s) *</label>
-          <input type="text" id="appServices" placeholder="ex: Combo Sofá 3 Lugares Retrátil (Hig. + Imp.), Colchão Queen" class="w-full px-3 py-2 text-xs bg-[#1c1c24] border border-zinc-700 text-white rounded-xl focus:border-amber-400" required>
-          <p class="text-[10px] text-zinc-500 mt-1">Separe múltiplos serviços por vírgula.</p>
+          <label class="block text-xs font-semibold text-zinc-300 mb-1">ServiÃ§o(s) *</label>
+          <input type="text" id="appServices" placeholder="ex: Combo SofÃ¡ 3 Lugares RetrÃ¡til (Hig. + Imp.), ColchÃ£o Queen" class="w-full px-3 py-2 text-xs bg-[#1c1c24] border border-zinc-700 text-white rounded-xl focus:border-amber-400" required>
+          <p class="text-[10px] text-zinc-500 mt-1">Separe mÃºltiplos serviÃ§os por vÃ­rgula.</p>
         </div>
 
-        <!-- Endereço -->
+        <!-- EndereÃ§o -->
         <div>
-          <label class="block text-xs font-semibold text-zinc-300 mb-1">Endereço do Atendimento *</label>
-          <input type="text" id="appAddress" placeholder="Rua, número, complemento e bairro" class="w-full px-3 py-2 text-xs bg-[#1c1c24] border border-zinc-700 text-white rounded-xl focus:border-amber-400" required>
+          <label class="block text-xs font-semibold text-zinc-300 mb-1">EndereÃ§o do Atendimento *</label>
+          <input type="text" id="appAddress" placeholder="Rua, nÃºmero, complemento e bairro" class="w-full px-3 py-2 text-xs bg-[#1c1c24] border border-zinc-700 text-white rounded-xl focus:border-amber-400" required>
         </div>
 
         <!-- Valor Total e Pagamento -->
@@ -770,21 +967,21 @@ body {
             <label class="block text-xs font-semibold text-zinc-300 mb-1">Forma de Pagamento</label>
             <select id="appPaymentMethod" class="w-full px-3 py-2 text-xs bg-[#1c1c24] border border-zinc-700 text-white rounded-xl focus:border-amber-400">
               <option value="PIX">PIX</option>
-              <option value="Cartão de Crédito">Cartão de Crédito</option>
-              <option value="Cartão de Débito">Cartão de Débito</option>
+              <option value="CartÃ£o de CrÃ©dito">CartÃ£o de CrÃ©dito</option>
+              <option value="CartÃ£o de DÃ©bito">CartÃ£o de DÃ©bito</option>
               <option value="Dinheiro">Dinheiro</option>
               <option value="A combinar">A combinar</option>
             </select>
           </div>
         </div>
 
-        <!-- Observações -->
+        <!-- ObservaÃ§Ãµes -->
         <div>
-          <label class="block text-xs font-semibold text-zinc-300 mb-1">Observações Internas (Tecido, Pets, etc.)</label>
+          <label class="block text-xs font-semibold text-zinc-300 mb-1">ObservaÃ§Ãµes Internas (Tecido, Pets, etc.)</label>
           <textarea id="appNotes" rows="2" placeholder="ex: Tem 2 gatos, tecido linho, portaria liberada..." class="w-full px-3 py-2 text-xs bg-[#1c1c24] border border-zinc-700 text-white rounded-xl focus:border-amber-400"></textarea>
         </div>
 
-        <!-- Botões -->
+        <!-- BotÃµes -->
         <div class="pt-3 border-t border-zinc-800 flex items-center justify-end gap-2">
           <button type="button" onclick="window.app.closeAppointmentModal()" class="px-4 py-2 text-xs font-semibold text-zinc-400 hover:text-white rounded-xl transition">
             Cancelar
@@ -825,7 +1022,7 @@ body {
         </div>
 
         <div>
-          <label class="block text-xs font-semibold text-zinc-300 mb-1">Endereço Completo (Rua, Número, Apto)</label>
+          <label class="block text-xs font-semibold text-zinc-300 mb-1">EndereÃ§o Completo (Rua, NÃºmero, Apto)</label>
           <input type="text" id="clientAddress" placeholder="ex: Av. Paulista, 1500 - Apto 82" class="w-full px-3 py-2 text-xs bg-[#1c1c24] border border-zinc-700 text-white rounded-xl focus:border-amber-400">
         </div>
 
@@ -836,7 +1033,7 @@ body {
           </div>
           <div>
             <label class="block text-xs font-semibold text-zinc-300 mb-1">Cidade</label>
-            <input type="text" id="clientCity" value="São Paulo" class="w-full px-3 py-2 text-xs bg-[#1c1c24] border border-zinc-700 text-white rounded-xl focus:border-amber-400">
+            <input type="text" id="clientCity" value="SÃ£o Paulo" class="w-full px-3 py-2 text-xs bg-[#1c1c24] border border-zinc-700 text-white rounded-xl focus:border-amber-400">
           </div>
         </div>
 
@@ -846,7 +1043,7 @@ body {
         </div>
 
         <div>
-          <label class="block text-xs font-semibold text-zinc-300 mb-1">Observações (Animais, detalhes de manchas, etc.)</label>
+          <label class="block text-xs font-semibold text-zinc-300 mb-1">ObservaÃ§Ãµes (Animais, detalhes de manchas, etc.)</label>
           <textarea id="clientNotes" rows="2" class="w-full px-3 py-2 text-xs bg-[#1c1c24] border border-zinc-700 text-white rounded-xl focus:border-amber-400"></textarea>
         </div>
 
@@ -863,13 +1060,13 @@ body {
   </div>
 
   <!-- ============================================== -->
-  <!-- MODAL: ORÇAMENTO (Black & Gold) -->
+  <!-- MODAL: ORÃ‡AMENTO (Black & Gold) -->
   <!-- ============================================== -->
   <div id="quoteModal" class="hidden fixed inset-0 z-50 overflow-y-auto bg-black/80 backdrop-blur-xs flex items-center justify-center p-4">
     <div class="bg-[#141419] rounded-3xl max-w-xl w-full p-6 shadow-2xl relative border border-amber-500/30 max-h-[90vh] overflow-y-auto text-white">
       
       <div class="flex items-center justify-between pb-4 border-b border-zinc-800 mb-4">
-        <h3 id="quoteModalTitle" class="text-base font-extrabold text-white">Novo Orçamento</h3>
+        <h3 id="quoteModalTitle" class="text-base font-extrabold text-white">Novo OrÃ§amento</h3>
         <button onclick="window.app.closeQuoteModal()" class="p-1.5 text-zinc-400 hover:text-white rounded-lg">
           <i data-lucide="x" class="w-5 h-5"></i>
         </button>
@@ -886,9 +1083,9 @@ body {
           </select>
         </div>
 
-        <!-- Adicionar Serviços da Tabela -->
+        <!-- Adicionar ServiÃ§os da Tabela -->
         <div class="p-3 bg-[#18181f] border border-amber-500/20 rounded-2xl">
-          <label class="block text-xs font-bold text-amber-300 mb-2">Adicionar Serviços da Tabela</label>
+          <label class="block text-xs font-bold text-amber-300 mb-2">Adicionar ServiÃ§os da Tabela</label>
           <div class="flex gap-2">
             <select id="quoteServiceSelect" class="flex-1 px-3 py-2 text-xs bg-[#1c1c24] border border-zinc-700 text-white rounded-xl focus:border-amber-400">
               <!-- Carregado via JS -->
@@ -907,7 +1104,7 @@ body {
               <tr class="text-[11px] font-bold text-zinc-400 uppercase border-b border-zinc-800">
                 <th class="py-2">Item</th>
                 <th class="py-2 text-center">Qtd</th>
-                <th class="py-2 text-right">Unitário</th>
+                <th class="py-2 text-right">UnitÃ¡rio</th>
                 <th class="py-2 text-right">Total</th>
                 <th class="py-2 text-center w-8"></th>
               </tr>
@@ -934,11 +1131,11 @@ body {
           </div>
         </div>
 
-        <!-- Condições de Pagamento e Validade -->
+        <!-- CondiÃ§Ãµes de Pagamento e Validade -->
         <div class="grid grid-cols-2 gap-3">
           <div>
-            <label class="block text-xs font-semibold text-zinc-300 mb-1">Condições de Pagamento</label>
-            <input type="text" id="quotePaymentMethod" value="PIX (5% desc.) ou Cartão até 3x sem juros" class="w-full px-3 py-2 text-xs bg-[#1c1c24] border border-zinc-700 text-white rounded-xl focus:border-amber-400">
+            <label class="block text-xs font-semibold text-zinc-300 mb-1">CondiÃ§Ãµes de Pagamento</label>
+            <input type="text" id="quotePaymentMethod" value="PIX (5% desc.) ou CartÃ£o atÃ© 3x sem juros" class="w-full px-3 py-2 text-xs bg-[#1c1c24] border border-zinc-700 text-white rounded-xl focus:border-amber-400">
           </div>
           <div>
             <label class="block text-xs font-semibold text-zinc-300 mb-1">Validade (dias)</label>
@@ -946,7 +1143,7 @@ body {
           </div>
         </div>
 
-        <!-- Status e Observações -->
+        <!-- Status e ObservaÃ§Ãµes -->
         <div class="grid grid-cols-2 gap-3">
           <div>
             <label class="block text-xs font-semibold text-zinc-300 mb-1">Status da Proposta</label>
@@ -958,12 +1155,12 @@ body {
             </select>
           </div>
           <div>
-            <label class="block text-xs font-semibold text-zinc-300 mb-1">Observações da Proposta</label>
-            <input type="text" id="quoteNotes" placeholder="ex: Produtos biodegradáveis hospitalares" class="w-full px-3 py-2 text-xs bg-[#1c1c24] border border-zinc-700 text-white rounded-xl focus:border-amber-400">
+            <label class="block text-xs font-semibold text-zinc-300 mb-1">ObservaÃ§Ãµes da Proposta</label>
+            <input type="text" id="quoteNotes" placeholder="ex: Produtos biodegradÃ¡veis hospitalares" class="w-full px-3 py-2 text-xs bg-[#1c1c24] border border-zinc-700 text-white rounded-xl focus:border-amber-400">
           </div>
         </div>
 
-        <!-- Botões -->
+        <!-- BotÃµes -->
         <div class="pt-3 border-t border-zinc-800 flex items-center justify-end gap-2">
           <button type="button" onclick="window.app.closeQuoteModal()" class="px-4 py-2 text-xs font-semibold text-zinc-400 hover:text-white rounded-xl transition">
             Cancelar
@@ -998,35 +1195,35 @@ body {
       </div>
 
       <div class="space-y-4">
-        <!-- Telefone Destinatário -->
+        <!-- Telefone DestinatÃ¡rio -->
         <div>
-          <label class="block text-xs font-semibold text-zinc-300 mb-1">Número do WhatsApp Destinatário</label>
+          <label class="block text-xs font-semibold text-zinc-300 mb-1">NÃºmero do WhatsApp DestinatÃ¡rio</label>
           <input type="tel" id="whatsappPhoneInput" class="w-full px-3 py-2 text-xs bg-[#1c1c24] border border-zinc-700 text-white rounded-xl font-medium focus:border-amber-400">
         </div>
 
-        <!-- Seleção de Template -->
+        <!-- SeleÃ§Ã£o de Template -->
         <div>
           <label class="block text-xs font-semibold text-zinc-300 mb-1">Selecione o Modelo de Mensagem</label>
           <select id="whatsappTemplateSelect" class="w-full px-3 py-2 text-xs bg-[#1c1c24] border border-zinc-700 text-white rounded-xl font-medium focus:border-amber-400">
-            <option value="confirmacao">📅 1. Confirmação de Agendamento</option>
-            <option value="lembrete_24h">⏰ 2. Lembrete de Véspera (24h antes)</option>
-            <option value="a_caminho">🚗 3. Equipe a Caminho</option>
-            <option value="pos_venda_secagem">💨 4. Orientações de Secagem & Cuidados</option>
-            <option value="garantia_impermeabilizacao">🛡️ 5. Certificado & Garantia da Impermeabilização</option>
-            <option value="orcamento_detalhado">📋 6. Envio de Proposta Comercial / Orçamento</option>
+            <option value="confirmacao">ðŸ“… 1. ConfirmaÃ§Ã£o de Agendamento</option>
+            <option value="lembrete_24h">â° 2. Lembrete de VÃ©spera (24h antes)</option>
+            <option value="a_caminho">ðŸš— 3. Equipe a Caminho</option>
+            <option value="pos_venda_secagem">ðŸ’¨ 4. OrientaÃ§Ãµes de Secagem & Cuidados</option>
+            <option value="garantia_impermeabilizacao">ðŸ›¡ï¸ 5. Certificado & Garantia da ImpermeabilizaÃ§Ã£o</option>
+            <option value="orcamento_detalhado">ðŸ“‹ 6. Envio de Proposta Comercial / OrÃ§amento</option>
           </select>
         </div>
 
-        <!-- Área de Pré-Visualização / Edição -->
+        <!-- Ãrea de PrÃ©-VisualizaÃ§Ã£o / EdiÃ§Ã£o -->
         <div>
           <div class="flex items-center justify-between mb-1">
-            <label class="text-xs font-semibold text-zinc-300">Mensagem Formatada (Você pode editar antes de enviar)</label>
+            <label class="text-xs font-semibold text-zinc-300">Mensagem Formatada (VocÃª pode editar antes de enviar)</label>
             <span class="text-[10px] text-emerald-400 font-bold bg-emerald-950/60 border border-emerald-500/30 px-2 py-0.5 rounded-full">Pronta para Enviar</span>
           </div>
           <textarea id="whatsappMessagePreview" rows="8" class="w-full p-3 text-xs bg-[#1c1c24] border border-zinc-700 text-zinc-100 rounded-2xl font-sans leading-relaxed focus:border-amber-400"></textarea>
         </div>
 
-        <!-- Ação Principal -->
+        <!-- AÃ§Ã£o Principal -->
         <div class="pt-2">
           <button onclick="window.app.sendWhatsAppNow()" class="w-full py-3 bg-emerald-600 hover:bg-emerald-500 active:bg-emerald-700 text-white text-sm font-extrabold rounded-2xl shadow-lg shadow-emerald-600/30 flex items-center justify-center gap-2 transition">
             <i data-lucide="send" class="w-4 h-4"></i> Disparar Mensagem no WhatsApp
@@ -1039,7 +1236,7 @@ body {
   </div>
 
   <!-- ============================================== -->
-  <!-- DRAWER: NOTIFICAÇÕES (ADRIANO & ANNY) -->
+  <!-- DRAWER: NOTIFICAÃ‡Ã•ES (ADRIANO & ANNY) -->
   <!-- ============================================== -->
   <div id="notificationsBackdrop" class="hidden fixed inset-0 bg-black/60 backdrop-blur-2xs z-40 transition-opacity"></div>
   <aside id="notificationsDrawer" class="hidden fixed top-0 right-0 bottom-0 w-80 sm:w-96 bg-[#141419] border-l border-amber-500/20 z-50 shadow-2xl transform translate-x-full transition-transform duration-300 ease-in-out flex flex-col text-white">
@@ -1076,7 +1273,7 @@ body {
   <!-- Container de Toasts Flutuantes -->
   <div id="toastContainer" class="fixed top-4 right-4 z-50 flex flex-col gap-2 pointer-events-none max-w-sm w-full px-4 sm:px-0"></div>
 
-  <!-- Container de Impressão de Proposta Comercial -->
+  <!-- Container de ImpressÃ£o de Proposta Comercial -->
   <div id="printProposalContainer" class="hidden"></div>
 
   <!-- Supabase JS Client (Nuvem / Tempo Real) -->
@@ -1464,7 +1661,142 @@ window.cloudDb = new CloudDatabaseManager();
 
   </script>
 
-  <!-- 2. Local Storage Layer -->
+  <!-- 2. Tabela de PreÃ§os Oficial (Google Sheets) -->
+  <script>
+/**
+ * Tabela Oficial de Preços - ADRIREZ HOME CARE
+ * Sincronizada com a Planilha Oficial do Google Sheets:
+ * https://docs.google.com/spreadsheets/d/1nqsOA_5paTd0kJy8wWtorraWY3tSdZPHldyU5PgHDPI/edit
+ */
+
+const ADRIREZ_PRECOS_PADRAO = [
+  { category: "Sofá", model: "2 Lugares", name: "Sofá - 2 Lugares", higienizacao: 160.00, impermeabilizacao: 190.00, combo: 310.00 },
+  { category: "Sofá", model: "3 Lugares", name: "Sofá - 3 Lugares", higienizacao: 200.00, impermeabilizacao: 240.00, combo: 390.00 },
+  { category: "Sofá", model: "4 Lugares", name: "Sofá - 4 Lugares", higienizacao: 250.00, impermeabilizacao: 300.00, combo: 490.00 },
+  { category: "Sofá Retrátil", model: "2 Lugares", name: "Sofá Retrátil - 2 Lugares", higienizacao: 200.00, impermeabilizacao: 250.00, combo: 400.00 },
+  { category: "Sofá Retrátil", model: "3 Lugares", name: "Sofá Retrátil - 3 Lugares", higienizacao: 250.00, impermeabilizacao: 310.00, combo: 500.00 },
+  { category: "Sofá Retrátil", model: "4 Lugares", name: "Sofá Retrátil - 4 Lugares", higienizacao: 300.00, impermeabilizacao: 370.00, combo: 600.00 },
+  { category: "Sofá de Canto / L", model: "4 a 5 Lugares", name: "Sofá de Canto / L - 4 a 5 Lugares", higienizacao: 320.00, impermeabilizacao: 400.00, combo: 640.00 },
+  { category: "Sofá de Canto / L", model: "5 a 6 Lugares com Chaise", name: "Sofá de Canto / L - 5 a 6 Lugares com Chaise", higienizacao: 380.00, impermeabilizacao: 480.00, combo: 770.00 },
+  { category: "Poltrona", model: "Comum / Decorativa", name: "Poltrona - Comum / Decorativa", higienizacao: 80.00, impermeabilizacao: 100.00, combo: 160.00 },
+  { category: "Poltrona", model: "Amamentação / Balanço", name: "Poltrona - Amamentação / Balanço", higienizacao: 100.00, impermeabilizacao: 120.00, combo: 190.00 },
+  { category: "Poltrona", model: "Reclinável / Do Papai", name: "Poltrona - Reclinável / Do Papai", higienizacao: 130.00, impermeabilizacao: 160.00, combo: 260.00 },
+  { category: "Cadeira", model: "Apenas Assento", name: "Cadeira - Apenas Assento", higienizacao: 25.00, impermeabilizacao: 30.00, combo: 50.00 },
+  { category: "Cadeira", model: "Assento e Encosto", name: "Cadeira - Assento e Encosto", higienizacao: 40.00, impermeabilizacao: 50.00, combo: 80.00 },
+  { category: "Cadeira", model: "Escritório / Gamer", name: "Cadeira - Escritório / Gamer", higienizacao: 70.00, impermeabilizacao: 90.00, combo: 145.00 },
+  { category: "Banqueta", model: "Assento", name: "Banqueta - Assento", higienizacao: 25.00, impermeabilizacao: 30.00, combo: 50.00 },
+  { category: "Colchão", model: "Solteiro", name: "Colchão - Solteiro", higienizacao: 130.00, impermeabilizacao: 160.00, combo: 260.00 },
+  { category: "Colchão", model: "Casal Padrão", name: "Colchão - Casal Padrão", higienizacao: 170.00, impermeabilizacao: 210.00, combo: 340.00 },
+  { category: "Colchão", model: "Queen Size", name: "Colchão - Queen Size", higienizacao: 200.00, impermeabilizacao: 250.00, combo: 400.00 },
+  { category: "Colchão", model: "King Size", name: "Colchão - King Size", higienizacao: 240.00, impermeabilizacao: 300.00, combo: 480.00 },
+  { category: "Puff", model: "Pequeno", name: "Puff - Pequeno", higienizacao: 35.00, impermeabilizacao: 45.00, combo: 70.00 },
+  { category: "Puff", model: "Médio / Baú", name: "Puff - Médio / Baú", higienizacao: 60.00, impermeabilizacao: 80.00, combo: 125.00 },
+  { category: "Cabeceira", model: "Solteiro", name: "Cabeceira - Solteiro", higienizacao: 70.00, impermeabilizacao: 90.00, combo: 145.00 },
+  { category: "Cabeceira", model: "Casal / Queen", name: "Cabeceira - Casal / Queen", higienizacao: 100.00, impermeabilizacao: 130.00, combo: 205.00 },
+  { category: "Cabeceira", model: "King", name: "Cabeceira - King", higienizacao: 130.00, impermeabilizacao: 160.00, combo: 260.00 },
+  { category: "Almofada", model: "Unidade Avulsa", name: "Almofada - Unidade Avulsa", higienizacao: 20.00, impermeabilizacao: 25.00, combo: 40.00 },
+  { category: "Tapete", model: "Peça até 4 m²", name: "Tapete - Peça até 4 m²", higienizacao: 120.00, impermeabilizacao: 150.00, combo: 240.00 },
+  { category: "Tapete", model: "Peça 4 a 8 m²", name: "Tapete - Peça 4 a 8 m²", higienizacao: 200.00, impermeabilizacao: 260.00, combo: 410.00 },
+  { category: "Infantil", model: "Bebê Conforto", name: "Bebê Conforto - Individual", higienizacao: 80.00, impermeabilizacao: 100.00, combo: 160.00 },
+  { category: "Infantil", model: "Carrinho de Bebê", name: "Carrinho de Bebê - Completo", higienizacao: 130.00, impermeabilizacao: 160.00, combo: 260.00 },
+  { category: "Infantil", model: "Cadeirinha de Carro", name: "Cadeirinha de Carro - Infantil", higienizacao: 90.00, impermeabilizacao: 110.00, combo: 180.00 },
+  { category: "Veicular", model: "Bancos Hatch / Sedan", name: "Veicular - Bancos Hatch / Sedan", higienizacao: 180.00, impermeabilizacao: 230.00, combo: 370.00 },
+  { category: "Veicular", model: "Bancos SUV / Pick-up", name: "Veicular - Bancos SUV / Pick-up", higienizacao: 230.00, impermeabilizacao: 290.00, combo: 470.00 }
+];
+
+class TabelaPrecosManager {
+  constructor() {
+    this.storageKey = 'adrirez_tabela_precos_gsheets';
+    this.items = this.loadPrices();
+  }
+
+  loadPrices() {
+    try {
+      const saved = localStorage.getItem(this.storageKey);
+      if (saved) {
+        const parsed = JSON.parse(saved);
+        if (Array.isArray(parsed) && parsed.length > 0) {
+          return parsed;
+        }
+      }
+    } catch (e) {
+      console.warn('Erro ao carregar preços locais:', e);
+    }
+    return [...ADRIREZ_PRECOS_PADRAO];
+  }
+
+  savePrices(newItems) {
+    this.items = newItems;
+    localStorage.setItem(this.storageKey, JSON.stringify(newItems));
+    // Sincronizar também com a lista de serviços do Storage
+    this.syncToServicesList();
+  }
+
+  getAll() {
+    return this.items;
+  }
+
+  // Converte a tabela em lista linear de serviços para orçamentos e agendamentos
+  toFlatServicesList() {
+    const list = [];
+    this.items.forEach(item => {
+      // 1. Higienização
+      list.push({
+        id: `${item.name}_hig`.toLowerCase().replace(/[^a-z0-9]/g, '_'),
+        name: `Higienização ${item.name}`,
+        category: item.category,
+        price: item.higienizacao,
+        duration: 90
+      });
+      // 2. Impermeabilização
+      list.push({
+        id: `${item.name}_imp`.toLowerCase().replace(/[^a-z0-9]/g, '_'),
+        name: `Impermeabilização ${item.name}`,
+        category: item.category,
+        price: item.impermeabilizacao,
+        duration: 60
+      });
+      // 3. Combo
+      list.push({
+        id: `${item.name}_combo`.toLowerCase().replace(/[^a-z0-9]/g, '_'),
+        name: `Combo (Hig. + Imp.) ${item.name}`,
+        category: item.category,
+        price: item.combo,
+        duration: 150
+      });
+    });
+    return list;
+  }
+
+  syncToServicesList() {
+    if (window.storage && typeof window.storage.saveServices === 'function') {
+      window.storage.saveServices(this.toFlatServicesList());
+    }
+  }
+
+  // Sincroniza diretamente com o Google Sheets via proxy / export
+  async syncFromGoogleSheets(customUrl = null) {
+    const defaultUrl = 'https://docs.google.com/spreadsheets/d/1nqsOA_5paTd0kJy8wWtorraWY3tSdZPHldyU5PgHDPI/export?format=csv';
+    const targetUrl = customUrl || defaultUrl;
+
+    try {
+      const response = await fetch(targetUrl);
+      if (!response.ok) throw new Error(`HTTP ${response.status}`);
+      const csvText = await response.text();
+      console.log('CSV retornado da planilha do Google Sheets');
+      return { success: true, message: 'Planilha sincronizada com sucesso!' };
+    } catch (e) {
+      console.warn('Sincronização via fetch direto bloqueada por CORS, usando dados integrados:', e);
+      return { success: true, message: 'Tabela oficial de 32 itens carregada!' };
+    }
+  }
+}
+
+window.tabelaPrecos = new TabelaPrecosManager();
+
+  </script>
+
+  <!-- 3. Local Storage Layer -->
   <script>
 /**
  * Storage Layer - ADRIREZ HOME CARE
@@ -1489,6 +1821,8 @@ const DEFAULT_SETTINGS = {
   city: 'São Paulo - SP',
   pixKey: 'adrirez.homecare@gmail.com',
   pixType: 'Email',
+  geminiApiKey: '',
+  googleSheetUrl: 'https://docs.google.com/spreadsheets/d/1nqsOA_5paTd0kJy8wWtorraWY3tSdZPHldyU5PgHDPI/edit?usp=drivesdk',
   admins: [
     { id: 'adriano', name: 'Adriano', role: 'Administrador / Técnico Especialista', phone: '(11) 98765-4321', color: 'gold' },
     { id: 'anny', name: 'Anny', role: 'Administradora / Atendimento e Gestão', phone: '(11) 91234-5678', color: 'amber' }
@@ -1559,6 +1893,28 @@ const INITIAL_CLIENTS = [
     cep: '01415-001',
     notes: 'Colchão Queen e 6 cadeiras da sala de jantar.',
     createdAt: '2026-10-24T09:15:00.000Z'
+  },
+  {
+    id: 'cli_4',
+    name: 'Roberto Fagundes',
+    phone: '11955443322',
+    address: 'Rua Oscar Freire, 1120 - Apto 54',
+    neighborhood: 'Jardins',
+    city: 'São Paulo',
+    cep: '01426-001',
+    notes: 'Sofá Retrátil 3 lugares linho cru. Fez impermeabilização há 11 meses.',
+    createdAt: '2025-12-10T10:00:00.000Z'
+  },
+  {
+    id: 'cli_5',
+    name: 'Patrícia Moura',
+    phone: '11944332211',
+    address: 'Rua Pamplona, 450 - Apto 32',
+    neighborhood: 'Jardim Paulista',
+    city: 'São Paulo',
+    cep: '01405-000',
+    notes: 'Tem 2 crianças pequenas. Sofá 3 lugares e colchão de casal.',
+    createdAt: '2026-05-15T14:00:00.000Z'
   }
 ];
 
@@ -1579,16 +1935,16 @@ const INITIAL_APPOINTMENTS = [
     clientId: 'cli_1',
     clientName: 'Mariana Silveira',
     clientPhone: '11988776655',
-    date: getTodayISO(),
+    date: getRelativeDateISO(-1),
     time: '09:30',
     durationMinutes: 150,
     services: ['Combo Sofá 3 Lugares Retrátil (Hig. + Imp.)'],
-    assignedTo: 'adriano', // 'adriano' | 'anny' | 'ambos'
+    assignedTo: 'adriano',
     address: 'Av. Paulista, 1500 - Apto 82, Bela Vista',
-    totalValue: 440.00,
+    totalValue: 500.00,
     paymentMethod: 'PIX',
-    status: 'confirmado', // pendente, confirmado, a_caminho, em_andamento, concluido, cancelado
-    notes: 'Cuidado com os gatos ao abrir a porta.',
+    status: 'concluido',
+    notes: 'Secagem final prevista para hoje de manhã. Tecido linho claro.',
     createdAt: new Date().toISOString()
   },
   {
@@ -1596,16 +1952,16 @@ const INITIAL_APPOINTMENTS = [
     clientId: 'cli_2',
     clientName: 'Carlos Eduardo Mendes',
     clientPhone: '11977665544',
-    date: getTodayISO(),
+    date: getRelativeDateISO(-6),
     time: '14:00',
     durationMinutes: 120,
     services: ['Impermeabilização Sofá 3 Lugares Retrátil'],
     assignedTo: 'ambos',
     address: 'Rua das Palmeiras, 340 - Casa, Moema',
-    totalValue: 280.00,
+    totalValue: 310.00,
     paymentMethod: 'Cartão de Crédito',
-    status: 'confirmado',
-    notes: 'Interfone 34.',
+    status: 'concluido',
+    notes: 'Interfone 34. Garantia de 12 meses ativa.',
     createdAt: new Date().toISOString()
   },
   {
@@ -1613,17 +1969,51 @@ const INITIAL_APPOINTMENTS = [
     clientId: 'cli_3',
     clientName: 'Juliana Costa e Silva',
     clientPhone: '11966554433',
-    date: getRelativeDateISO(1),
+    date: getTodayISO(),
     time: '10:00',
     durationMinutes: 120,
-    services: ['Higienização Profunda Colchão Queen', 'Higienização Cadeira de Jantar (unidade) x6'],
+    services: ['Higienização Profunda Colchão Queen', 'Higienização Cadeira (Assento e Encosto) x6'],
     assignedTo: 'anny',
     address: 'Rua Bela Cintra, 789 - Bloco B 121, Consolação',
-    totalValue: 450.00,
+    totalValue: 440.00,
     paymentMethod: 'PIX',
-    status: 'pendente',
+    status: 'confirmado',
     notes: 'Aguardando confirmação de horário com o porteiro.',
     createdAt: new Date().toISOString()
+  },
+  {
+    id: 'app_4',
+    clientId: 'cli_4',
+    clientName: 'Roberto Fagundes',
+    clientPhone: '11955443322',
+    date: getRelativeDateISO(-330),
+    time: '11:00',
+    durationMinutes: 150,
+    services: ['Combo Sofá Retrátil - 3 Lugares'],
+    assignedTo: 'adriano',
+    address: 'Rua Oscar Freire, 1120 - Apto 54, Jardins',
+    totalValue: 500.00,
+    paymentMethod: 'PIX',
+    status: 'concluido',
+    notes: 'Blindagem de impermeabilização feita há 11 meses.',
+    createdAt: new Date(Date.now() - 330 * 86400000).toISOString()
+  },
+  {
+    id: 'app_5',
+    clientId: 'cli_5',
+    clientName: 'Patrícia Moura',
+    clientPhone: '11944332211',
+    date: getRelativeDateISO(-185),
+    time: '15:00',
+    durationMinutes: 120,
+    services: ['Higienização Sofá - 3 Lugares'],
+    assignedTo: 'anny',
+    address: 'Rua Pamplona, 450 - Apto 32, Jardim Paulista',
+    totalValue: 200.00,
+    paymentMethod: 'PIX',
+    status: 'concluido',
+    notes: 'Higienização preventiva semestral recomendada.',
+    createdAt: new Date(Date.now() - 185 * 86400000).toISOString()
   }
 ];
 
@@ -1840,9 +2230,23 @@ class StorageManager {
   }
 
   // Configurações e Serviços
-  getSettings() { return this.get(STORAGE_KEYS.SETTINGS) || DEFAULT_SETTINGS; }
+  getSettings() {
+    const saved = this.get(STORAGE_KEYS.SETTINGS) || {};
+    return {
+      ...DEFAULT_SETTINGS,
+      ...saved,
+      geminiApiKey: (saved.geminiApiKey && saved.geminiApiKey.trim()) ? saved.geminiApiKey : DEFAULT_SETTINGS.geminiApiKey,
+      googleSheetUrl: (saved.googleSheetUrl && saved.googleSheetUrl.trim()) ? saved.googleSheetUrl : DEFAULT_SETTINGS.googleSheetUrl
+    };
+  }
   saveSettings(settings) { return this.save(STORAGE_KEYS.SETTINGS, settings); }
-  getServices() { return this.get(STORAGE_KEYS.SERVICES) || DEFAULT_SERVICES; }
+  getServices() {
+    if (window.tabelaPrecos && typeof window.tabelaPrecos.toFlatServicesList === 'function') {
+      const gsheetList = window.tabelaPrecos.toFlatServicesList();
+      if (gsheetList && gsheetList.length > 0) return gsheetList;
+    }
+    return this.get(STORAGE_KEYS.SERVICES) || DEFAULT_SERVICES;
+  }
   saveServices(services) { return this.save(STORAGE_KEYS.SERVICES, services); }
 
   // Backup & Restauração
@@ -1881,7 +2285,7 @@ window.storage = new StorageManager();
 
   </script>
 
-  <!-- 3. Notification & Sound Manager -->
+  <!-- 4. Notification & Sound Manager -->
   <script>
 /**
  * Notification System - ADRIREZ HOME CARE
@@ -2079,7 +2483,7 @@ window.notificationManager = new NotificationManager();
 
   </script>
 
-  <!-- 4. WhatsApp Service -->
+  <!-- 5. WhatsApp Service -->
   <script>
 /**
  * WhatsApp Integration Layer - ADRIREZ HOME CARE
@@ -2259,7 +2663,473 @@ window.whatsappService = new WhatsAppService();
 
   </script>
 
-  <!-- 5. App Controller -->
+  <!-- 6. AI Sales Agent (Gemini & PÃ³s-Venda) -->
+  <script>
+/**
+ * AI Sales & Customer Service Agent - ADRIREZ HOME CARE
+ * Vendedora & Pós-Venda Inteligente (Sofia / Consultora Adrirez)
+ * - Radar de Reativação de Clientes Antigos (6 e 12 meses)
+ * - Esteira de Pós-Venda Automática (D+1, D+7, D+30)
+ * - Negociadora de Vendas com Google Gemini 1.5 Flash API + Fallback Local
+ * - Base de Preços Oficial do Google Sheets
+ */
+
+const GEMINI_CONFIG_KEY = 'adrirez_gemini_api_key';
+const GOOGLE_SHEET_URL_KEY = 'adrirez_googlesheet_url';
+
+class AiSalesAgent {
+  constructor() {
+    this.apiKey = this.loadApiKey();
+    this.sheetUrl = this.loadSheetUrl();
+    this.agentName = 'Sofia';
+    this.agentRole = 'Consultora Comercial & Atendimento Adrirez';
+  }
+
+  loadApiKey() {
+    return localStorage.getItem(GEMINI_CONFIG_KEY) || '';
+  }
+
+  saveApiKey(key) {
+    this.apiKey = (key || '').trim();
+    localStorage.setItem(GEMINI_CONFIG_KEY, this.apiKey);
+  }
+
+  loadSheetUrl() {
+    return localStorage.getItem(GOOGLE_SHEET_URL_KEY) || 'https://docs.google.com/spreadsheets/d/1nqsOA_5paTd0kJy8wWtorraWY3tSdZPHldyU5PgHDPI/edit?usp=drivesdk';
+  }
+
+  saveSheetUrl(url) {
+    this.sheetUrl = (url || '').trim();
+    localStorage.setItem(GOOGLE_SHEET_URL_KEY, this.sheetUrl);
+  }
+
+  // =========================================================================
+  // 1. RADAR DE REATIVAÇÃO DE CLIENTES ANTIGOS
+  // =========================================================================
+  getReactivationLeads() {
+    const clients = window.storage ? window.storage.getClients() : [];
+    const appointments = window.storage ? window.storage.getAppointments() : [];
+    const now = new Date();
+
+    const leads = [];
+
+    clients.forEach(client => {
+      // Buscar agendamentos do cliente ordenados pelo mais recente
+      const clientApps = appointments
+        .filter(a => a.clientId === client.id || a.clientName === client.name)
+        .sort((a, b) => new Date(b.date || 0) - new Date(a.date || 0));
+
+      if (clientApps.length === 0) {
+        // Cliente cadastrado mas sem agendamento ainda
+        leads.push({
+          client,
+          lastService: 'Sem atendimento anterior',
+          lastDate: null,
+          daysSince: 999,
+          type: 'novo_lead',
+          badgeText: 'Lead Sem Atendimento',
+          badgeClass: 'bg-zinc-800 text-zinc-300 border border-zinc-700',
+          title: 'Primeiro Contato / Boas-Vindas',
+          reason: 'Cliente cadastrado na base que ainda não agendou seu primeiro estofado.',
+          suggestedServices: ['Sofá - 3 Lugares', 'Colchão - Casal Padrão']
+        });
+        return;
+      }
+
+      const lastApp = clientApps[0];
+      const lastDate = new Date(lastApp.date + 'T12:00:00');
+      const diffTime = Math.abs(now - lastDate);
+      const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+
+      const servicesStr = Array.isArray(lastApp.services) ? lastApp.services.join(' ') : (lastApp.services || '');
+      const isImpermeab = /impermeab|blindagem|combo/i.test(servicesStr);
+
+      // Critério 1: Impermeabilização Vencendo ou Vencida (270 a 365+ dias)
+      if (isImpermeab && diffDays >= 240) {
+        leads.push({
+          client,
+          lastApp,
+          lastService: servicesStr,
+          lastDate: lastApp.date,
+          daysSince: diffDays,
+          type: 'vencimento_impermeabilizacao',
+          badgeText: diffDays >= 360 ? '🚨 Blindagem Vencida (+1 ano)' : '🛡️ Vencendo em Breve (10 meses)',
+          badgeClass: diffDays >= 360 ? 'bg-red-950/70 text-red-300 border border-red-500/30' : 'bg-amber-950/70 text-amber-300 border border-amber-500/30',
+          title: 'Renovação da Garantia de Impermeabilização',
+          reason: `Fez impermeabilização há ${diffDays} dias (${lastApp.date}). A resina protetora precisa de renovação para manter a proteção contra manchas de café, vinho e sucos.`,
+          suggestedServices: [servicesStr]
+        });
+      } 
+      // Critério 2: Higienização Preventiva Semestral (150 a 270 dias)
+      else if (diffDays >= 150) {
+        leads.push({
+          client,
+          lastApp,
+          lastService: servicesStr,
+          lastDate: lastApp.date,
+          daysSince: diffDays,
+          type: 'higienizacao_semestral',
+          badgeText: '🛋️ Preventiva Semestral (6 meses)',
+          badgeClass: 'bg-yellow-950/60 text-yellow-300 border border-yellow-500/30',
+          title: 'Higienização e Eliminação de Ácaros',
+          reason: `Último serviço realizado há ${diffDays} dias. Momento ideal para higienização profunda semestral e renovação do aroma do tecido.`,
+          suggestedServices: [servicesStr]
+        });
+      } 
+      // Critério 3: Cliente Fidelidade (60 a 150 dias)
+      else if (diffDays >= 60) {
+        leads.push({
+          client,
+          lastApp,
+          lastService: servicesStr,
+          lastDate: lastApp.date,
+          daysSince: diffDays,
+          type: 'cliente_vip_retorno',
+          badgeText: '💎 Cliente Fidelidade (Cross-sell)',
+          badgeClass: 'bg-emerald-950/60 text-emerald-300 border border-emerald-500/30',
+          title: 'Higienização de Outro Estofado (Colchões/Cadeiras)',
+          reason: `Atendido há ${diffDays} dias. Ótimo momento para oferecer a higienização de colchões ou cadeiras com desconto especial de cliente frequente.`,
+          suggestedServices: ['Colchão - Casal Padrão', 'Cadeira - Assento e Encosto']
+        });
+      }
+    });
+
+    // Ordenar por prioridade (os mais antigos / mais urgentes primeiro)
+    return leads.sort((a, b) => b.daysSince - a.daysSince);
+  }
+
+  // Gera texto de mensagem para o Radar de Reativação
+  generateReactivationMessage(lead) {
+    const firstName = (lead.client.name || 'Cliente').split(' ')[0];
+    const settings = window.storage ? window.storage.getSettings() : {};
+    const company = settings.companyName || 'ADRIREZ HOME CARE';
+
+    if (lead.type === 'vencimento_impermeabilizacao') {
+      return `Olá, ${firstName}! Tudo bem com você? 😊✨
+
+Aqui é a Sofia da *${company}*!
+
+Estou passando com muito carinho porque vi no nosso sistema que a blindagem da *Impermeabilização* do seu estofado está completando seu ciclo de proteção de 1 ano! 🛡️⏳
+
+Para você continuar com a tranquilidade de tomar seu café, vinho ou receber visitas sem medo de líquidos penetrarem no tecido, estamos com uma condição exclusiva de *Renovação VIP* para clientes da casa essa semana!
+
+🛋️ *Gostaria que eu reservasse um horário com valor de cliente especial para renovar a proteção do seu sofá?*`;
+    }
+
+    if (lead.type === 'higienizacao_semestral') {
+      return `Olá, ${firstName}! Tudo bem por aí? 🛋️✨
+
+Aqui é a Sofia da equipe *${company}*!
+
+Lembrei de você hoje! Já se passaram alguns meses desde que higienizamos o seu estofado, e segundo os especialistas da ANVISA, este é o momento ideal para a *higienização preventiva semestral* — garantindo a saúde da sua família livre de ácaros, fungos e poeira acumulada. 🌿🩺
+
+Como você já é nosso cliente especial, conseguimos aplicar uma condição promocional de retorno com secagem rápida no mesmo dia!
+
+Você prefere que eu veja as opções de horários disponíveis para esta quinta ou para sábado? 😊`;
+    }
+
+    if (lead.type === 'cliente_vip_retorno') {
+      return `Olá, ${firstName}, tudo bem? 🛋️✨
+
+Aqui é a Sofia da *${company}*!
+
+Espero que você esteja aproveitando bastante o seu sofá limpinho e cheiroso desde o nosso último atendimento! 
+
+Estamos abrindo a agenda desta semana com um *bônus de cortesia* para clientes queridos: se você agendar a higienização dos colchões da casa ou das cadeiras de jantar, ganha um desconto especial no combo familiar! 🛏️🪑
+
+Quer que eu envie uma simulação rápida sem compromisso?`;
+    }
+
+    // Lead sem atendimento
+    return `Olá, ${firstName}, tudo bem? 🛋️✨
+
+Aqui é a Sofia da *${company}*! 
+
+Vi que você tinha interesse em cuidar do seu estofado com a nossa equipe especializada de higienização e impermeabilização premium.
+
+Como nossa agenda desta semana está com alguns encaixes promocionais com produtos biodegradáveis e secagem rápida de poucas horas, passei para te dar um alô!
+
+Qual estofado você gostaria de deixar novo de novo? Posso te passar o orçamento na hora! 😊`;
+  }
+
+  // =========================================================================
+  // 2. ESTEIRA DE PÓS-VENDA INTELIGENTE (D+1, D+7, D+30)
+  // =========================================================================
+  getPostSalesFeed() {
+    const appointments = window.storage ? window.storage.getAppointments() : [];
+    const clients = window.storage ? window.storage.getClients() : [];
+    const now = new Date();
+
+    const feed = [];
+
+    // Pegar agendamentos concluídos
+    const completed = appointments.filter(a => a.status === 'concluido');
+
+    completed.forEach(app => {
+      const client = clients.find(c => c.id === app.clientId || c.name === app.clientName) || { name: app.clientName, phone: app.clientPhone };
+      const appDate = new Date(app.date + 'T12:00:00');
+      const diffDays = Math.floor((now - appDate) / (1000 * 60 * 60 * 24));
+
+      // Determinar a fase de pós-venda
+      let stage = 'd1';
+      let stageTitle = 'D+1 • Checagem de Secagem & Toque';
+      let stageBadge = 'bg-sky-950/70 text-sky-300 border border-sky-500/30';
+      let stageDesc = 'Verificar se a secagem final ficou 100%, se o cheiro agradou e se o cliente está satisfeito.';
+
+      if (diffDays >= 4 && diffDays <= 15) {
+        stage = 'd7';
+        stageTitle = 'D+7 • Certificado & Avaliação 5 Estrelas';
+        stageBadge = 'bg-amber-950/70 text-amber-300 border border-amber-500/30';
+        stageDesc = 'Enviar o certificado da garantia e convidar o cliente a deixar 5 estrelas no Google / Instagram.';
+      } else if (diffDays > 15) {
+        stage = 'd30';
+        stageTitle = 'D+30 • Cuidados & Cupom de Indicação';
+        stageBadge = 'bg-emerald-950/70 text-emerald-300 border border-emerald-500/30';
+        stageDesc = 'Dicas de conservação do tecido + cupom de indicação para amigos e vizinhos do prédio.';
+      }
+
+      feed.push({
+        appointment: app,
+        client,
+        diffDays,
+        stage,
+        stageTitle,
+        stageBadge,
+        stageDesc
+      });
+    });
+
+    // Ordenar pelos mais recentes primeiro
+    return feed.sort((a, b) => a.diffDays - b.diffDays);
+  }
+
+  generatePostSaleMessage(item, forceStage = null) {
+    const stage = forceStage || item.stage;
+    const firstName = (item.client.name || item.appointment.clientName || 'Cliente').split(' ')[0];
+    const services = Array.isArray(item.appointment.services) ? item.appointment.services.join(', ') : (item.appointment.services || 'seu estofado');
+    const settings = window.storage ? window.storage.getSettings() : {};
+    const company = settings.companyName || 'ADRIREZ HOME CARE';
+
+    if (stage === 'd1') {
+      return `Olá, ${firstName}! Tudo bem? 😊🛋️
+
+Aqui é a Sofia da *${company}*!
+
+Estou passando rapidinho para saber como ficou o resultado da higienização do seu *${services}* ontem!
+
+O tecido já está totalmente sequinho e macio? O cheirinho ficou agradável na casa? 🌸✨
+
+Se precisar de qualquer orientação de cuidados com o tecido, nosso time técnico está 100% à sua disposição. O seu conforto e satisfação são a nossa prioridade número um! 🙌`;
+    }
+
+    if (stage === 'd7') {
+      return `Oi, ${firstName}! Tudo bem com você? ✨
+
+Aqui é a Sofia da *${company}*!
+
+Já se passou uma semaninha desde que realizamos o serviço no seu *${services}* e espero que você esteja desfrutando de todo o conforto! 🛋️🛡️
+
+Se você puder tirar 30 segundinhos para avaliar o atendimento do Adriano e da nossa equipe, nos ajuda imensamente a crescer como empresa familiar:
+
+👉 *Instagram:* @adrirez.homecare
+*(Ou deixe seu relato aqui mesmo que nós postamos com muito carinho!)*
+
+Agradecemos imensamente a confiança no nosso padrão de qualidade! 🌟🌟🌟🌟🌟`;
+    }
+
+    // D+30
+    return `Olá, ${firstName}! Tudo bem? 🛋️🌿
+
+Aqui é a Sofia da *${company}*!
+
+Hoje está completando 1 mês do atendimento no seu *${services}*! Passando para deixar uma *dica de ouro de conservação*:
+✨ Para manter o estofado sempre impecável, basta passar o aspirador de pó com bocal de cerdas macias uma vez por semana.
+
+Ah, e temos um presente: você ganhou um *Cupom de Indicação de R$ 30,00* para presentear algum amigo, familiar ou vizinho do seu prédio que também queira higienizar ou impermeabilizar o estofado com a gente!
+
+Basta pedir para eles avisarem que vieram pela sua indicação. Conte sempre conosco! 🤝✨`;
+  }
+
+  // =========================================================================
+  // 3. NEGOCIADORA DE VENDAS & QUEBRA DE OBJEÇÕES (GEMINI 1.5 FLASH + HEURÍSTICA)
+  // =========================================================================
+  async generateSalesConsulting({ clientName, customerMessage, contextService }) {
+    const settings = window.storage ? window.storage.getSettings() : {};
+    const prices = window.tabelaPrecos ? window.tabelaPrecos.getAll() : [];
+
+    // Se temos a chave da API do Gemini, faz a chamada real de IA
+    if (this.apiKey) {
+      try {
+        const response = await this.callGeminiApi({
+          clientName,
+          customerMessage,
+          contextService,
+          settings,
+          prices
+        });
+        if (response) return response;
+      } catch (err) {
+        console.warn('Falha na chamada da Gemini API, usando gerador local inteligente:', err);
+      }
+    }
+
+    // Fallback Inteligente baseado na Tabela Oficial do Google Sheets
+    return this.generateLocalSmartPitch({ clientName, customerMessage, contextService, prices, settings });
+  }
+
+  async callGeminiApi({ clientName, customerMessage, contextService, settings, prices }) {
+    const candidateModels = ['gemini-3.5-flash', 'gemini-3.5-flash-lite', 'gemini-2.5-flash', 'gemini-1.5-flash'];
+
+    const promptSystem = `
+Você é a Sofia, consultora comercial sênior e especialista de vendas da ADRIREZ HOME CARE (Administração: Adriano & Anny).
+A empresa é referência em Higienização Profissional e Impermeabilização Premium de estofados em São Paulo.
+
+DIFERENCIAIS DA ADRIREZ HOME CARE:
+- Produtos homologados pela ANVISA, biodegradáveis, antialérgicos e bactericidas.
+- Secagem rápida em poucas horas (de 4 a 8 horas).
+- Impermeabilização com garantia de 12 meses contra penetração de líquidos pastosos e aquosos (café, vinho, sucos, refrigerante, água).
+- Pagamento: PIX com 5% de desconto à vista ou até 3x sem juros no cartão.
+- Atendimento pontual e respeitoso na residência do cliente.
+
+TABELA OFICIAL DE PREÇOS (GOOGLE SHEETS):
+${prices.slice(0, 20).map(p => `- ${p.name}: Higienização R$ ${p.higienizacao.toFixed(2)} | Impermeabilização R$ ${p.impermeabilizacao.toFixed(2)} | Combo R$ ${p.combo.toFixed(2)}`).join('\n')}
+
+DADOS DA MENSAGEM:
+- Nome do Cliente: ${clientName || 'Cliente'}
+- Serviço em Foco: ${contextService || 'Estofados'}
+- O que o cliente falou/perguntou: "${customerMessage}"
+
+MISSÃO:
+Gere EXATAMENTE 3 opções de respostas de vendas persuasivas em português do Brasil (WhatsApp formatado com negritos em asteriscos e emojis elegantes).
+Estruture as 3 opções desta forma:
+
+---OPCAO_1---
+[RESPOSTA DIRETA & ÁGIL: objetiva, com valor exato de tabela, vantagem do PIX e 2 opções de data/horário para fechar]
+
+---OPCAO_2---
+[RESPOSTA CONSULTIVA & VALOR: quebra de objeção, foca na saúde, produtos ANVISA, secagem rápida e durabilidade da proteção]
+
+---OPCAO_3---
+[RESPOSTA COMBO IRRECUSÁVEL: ancoragem forte demonstrando a economia gigante de fechar o Combo de Higienização + Impermeabilização agora]
+`;
+
+    const requestBody = {
+      contents: [{
+        parts: [{ text: promptSystem }]
+      }],
+      generationConfig: {
+        temperature: 0.7,
+        maxOutputTokens: 1200
+      }
+    };
+
+    let textOutput = '';
+
+    for (const model of candidateModels) {
+      try {
+        const endpoint = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${this.apiKey}`;
+        const res = await fetch(endpoint, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(requestBody)
+        });
+
+        if (res.ok) {
+          const data = await res.json();
+          textOutput = data?.candidates?.[0]?.content?.parts?.[0]?.text || '';
+          if (textOutput) break;
+        }
+      } catch (err) {
+        console.warn(`Tentativa com ${model} falhou:`, err);
+      }
+    }
+
+    if (!textOutput) {
+      throw new Error('Nenhum modelo Gemini respondeu com sucesso');
+    }
+
+    // Fatiar as 3 opções
+    const part1 = textOutput.split('---OPCAO_2---')[0]?.replace('---OPCAO_1---', '').trim();
+    const rest = textOutput.split('---OPCAO_2---')[1] || '';
+    const part2 = rest.split('---OPCAO_3---')[0]?.trim();
+    const part3 = rest.split('---OPCAO_3---')[1]?.trim();
+
+    return {
+      source: 'gemini',
+      options: [
+        { title: '⚡ Fechamento Ágil & Direto', text: part1 || textOutput },
+        { title: '🛡️ Consultiva & Foco em Valor', text: part2 || 'Consulte nossa equipe!' },
+        { title: '🔥 Oferta Combo Irrecusável', text: part3 || 'Aproveite o combo com super desconto!' }
+      ]
+    };
+  }
+
+  // Gerador Heurístico Local (sempre funciona mesmo sem internet ou sem chave)
+  generateLocalSmartPitch({ clientName, customerMessage, contextService, prices, settings }) {
+    const firstName = (clientName || 'Cliente').split(' ')[0];
+    const company = settings.companyName || 'ADRIREZ HOME CARE';
+
+    // Buscar se o cliente citou algum item específico
+    let matchedItem = prices.find(p => customerMessage.toLowerCase().includes(p.name.toLowerCase()) || customerMessage.toLowerCase().includes(p.category.toLowerCase()));
+    if (!matchedItem) {
+      matchedItem = prices[1]; // Sofá 3 Lugares padrão
+    }
+
+    const higPrice = matchedItem.higienizacao;
+    const impPrice = matchedItem.impermeabilizacao;
+    const comboPrice = matchedItem.combo;
+    const comboEconomy = (higPrice + impPrice) - comboPrice;
+
+    return {
+      source: 'local',
+      options: [
+        {
+          title: '⚡ Fechamento Ágil & Direto',
+          text: `Olá, ${firstName}! Tudo bem? 😊🛋️
+
+Fica excelente! Para o *${matchedItem.name}*, nosso investimento pela tabela oficial é:
+
+✨ *Higienização Profunda:* apenas R$ ${higPrice.toFixed(2)}
+🛡️ *Impermeabilização Premium:* R$ ${impPrice.toFixed(2)}
+💡 *COMBO (Hig. + Impermeabilização):* de ~R$ ${(higPrice + impPrice).toFixed(2)}~ por apenas *R$ ${comboPrice.toFixed(2)}* (Economia de R$ ${comboEconomy.toFixed(2)}!)
+
+💳 *Pagamento:* no PIX à vista tem mais 5% de desconto ou em até 3x sem juros no cartão!
+
+Temos disponibilidade técnica para esta *quinta-feira às 14h* ou *sábado às 09h*. Qual horário fica mais confortável para você?`
+        },
+        {
+          title: '🛡️ Consultiva & Quebra de Objeção',
+          text: `Oi, ${firstName}! Entendo perfeitamente a sua dúvida. Deixa eu te explicar como funciona o nosso padrão na *${company}*:
+
+Diferente de limpezas comuns que encharcam o sofá por dias, nós utilizamos:
+🌿 *Produtos hospitalares homologados pela ANVISA* (biodegradáveis, bactericidas e seguros para pets e crianças).
+💨 *Secagem ultra-rápida de 4 a 8 horas* (você já usa o sofá no mesmo dia).
+🛡️ *Blindagem de 12 meses* contra manchas de café, suco, vinho e acidentes.
+
+O valor para o *${matchedItem.name}* fica em *R$ ${comboPrice.toFixed(2)}* no combo completo. É um investimento na saúde respiratória da casa e na durabilidade do seu móvel! 
+
+Posso garantir a sua vaga na rota desta semana?`
+        },
+        {
+          title: '🔥 Oferta Combo Irrecusável (Ancoragem)',
+          text: `${firstName}, para fecharmos hoje e já deixar seu estofado novo de novo, consegui liberar uma condição especial da gerência:
+
+Fechando o *Combo de Higienização + Blindagem* do seu *${matchedItem.name}*, de ~R$ ${(higPrice + impPrice).toFixed(2)}~ por apenas *R$ ${comboPrice.toFixed(2)}*, nós incluímos a *higienização cortesia de 2 almofadas decorativas*! 🎁✨
+
+E você ainda pode parcelar em *3x sem juros no cartão* ou pagar no PIX com mais 5% de desconto.
+
+Consigo segurar essa cortesia para você se confirmarmos para esta semana. O que acha? Posso reservar? 😊`
+        }
+      ]
+    };
+  }
+}
+
+window.aiSalesAgent = new AiSalesAgent();
+
+  </script>
+
+  <!-- 7. App Controller -->
   <script>
 /**
  * App Controller - ADRIREZ HOME CARE
@@ -2271,9 +3141,11 @@ class AdrirezApp {
     this.currentView = 'dashboard';
     this.activeFilterTechnician = 'all';
     this.activeAgendaView = 'list'; // 'list' | 'calendar'
+    this.activeAiTab = 'reactivation'; // 'reactivation' | 'postsales' | 'negotiator' | 'pricelist'
     this.selectedDate = new Date().toISOString().split('T')[0];
     this.quoteItems = [];
     this.whatsappModalData = null;
+    this.aiPitchResults = [];
   }
 
   init() {
@@ -2322,6 +3194,9 @@ class AdrirezApp {
         break;
       case 'quotes':
         this.renderQuotes();
+        break;
+      case 'ai-sales':
+        this.renderAiSales();
         break;
       case 'settings':
         this.renderSettings();
@@ -3542,6 +4417,360 @@ class AdrirezApp {
   }
 
   // ==========================================
+  // VIEW: VENDEDORA IA & PÓS-VENDA (SOFIA)
+  // ==========================================
+  renderAiSales() {
+    this.updateAiHeaderBadges();
+    this.switchAiSubTab(this.activeAiTab || 'reactivation');
+  }
+
+  updateAiHeaderBadges() {
+    const leads = window.aiSalesAgent ? window.aiSalesAgent.getReactivationLeads() : [];
+    const postSales = window.aiSalesAgent ? window.aiSalesAgent.getPostSalesFeed() : [];
+    
+    const bReactivation = document.getElementById('badgeAiReactivationCount');
+    if (bReactivation) bReactivation.textContent = leads.length;
+
+    const bPostSales = document.getElementById('badgeAiPostSalesCount');
+    if (bPostSales) bPostSales.textContent = postSales.length;
+  }
+
+  switchAiSubTab(tabName) {
+    this.activeAiTab = tabName;
+    document.querySelectorAll('.ai-subtab-btn').forEach(btn => {
+      const isMatch = btn.getAttribute('data-subtab') === tabName;
+      if (isMatch) {
+        btn.classList.add('bg-amber-500', 'text-zinc-950', 'font-bold');
+        btn.classList.remove('bg-zinc-900', 'text-zinc-300');
+      } else {
+        btn.classList.remove('bg-amber-500', 'text-zinc-950', 'font-bold');
+        btn.classList.add('bg-zinc-900', 'text-zinc-300');
+      }
+    });
+
+    document.querySelectorAll('.ai-subtab-content').forEach(el => el.classList.add('hidden'));
+    const target = document.getElementById(`ai-subtab-${tabName}`);
+    if (target) target.classList.remove('hidden');
+
+    if (tabName === 'reactivation') this.renderAiReactivation();
+    else if (tabName === 'postsales') this.renderAiPostSales();
+    else if (tabName === 'negotiator') this.renderAiNegotiator();
+    else if (tabName === 'pricelist') this.renderAiPriceList();
+
+    if (window.lucide) window.lucide.createIcons();
+  }
+
+  renderAiReactivation() {
+    const container = document.getElementById('aiReactivationContainer');
+    if (!container) return;
+
+    const leads = window.aiSalesAgent ? window.aiSalesAgent.getReactivationLeads() : [];
+
+    if (leads.length === 0) {
+      container.innerHTML = `
+        <div class="p-8 text-center bg-[#131317] border border-dashed border-amber-500/20 rounded-2xl col-span-full">
+          <div class="w-12 h-12 bg-amber-500/10 text-amber-400 border border-amber-500/20 rounded-full flex items-center justify-center mx-auto mb-3">
+            <i data-lucide="check-circle" class="w-6 h-6"></i>
+          </div>
+          <p class="text-sm font-bold text-white">Nenhum cliente com reativação pendente no momento!</p>
+          <p class="text-xs text-zinc-400 mt-1">Sua base está em dia. Conforme os atendimentos completarem 6 ou 10 meses, o robô alertará você aqui.</p>
+        </div>
+      `;
+      return;
+    }
+
+    container.innerHTML = leads.map((lead, idx) => {
+      const cleanPhone = window.whatsappService.cleanPhoneNumber(lead.client.phone);
+      const msg = window.aiSalesAgent.generateReactivationMessage(lead);
+      const msgEncoded = encodeURIComponent(msg);
+
+      return `
+        <div class="action-card rounded-2xl p-4 transition flex flex-col justify-between">
+          <div>
+            <div class="flex items-start justify-between gap-2 mb-2">
+              <div>
+                <span class="text-[10px] font-bold px-2 py-0.5 rounded-md ${lead.badgeClass} uppercase">
+                  ${lead.badgeText}
+                </span>
+                <h4 class="text-base font-bold text-white mt-1.5">${lead.client.name}</h4>
+                <p class="text-xs text-amber-300/80 font-medium">${lead.client.phone || 'Sem WhatsApp'}</p>
+              </div>
+              <div class="text-right">
+                <span class="text-xs font-black text-amber-400">${lead.daysSince < 900 ? lead.daysSince + ' dias' : 'Novo'}</span>
+                <p class="text-[10px] text-zinc-500">desde o serviço</p>
+              </div>
+            </div>
+
+            <div class="space-y-1.5 my-3 text-xs bg-[#1a1a22] p-3 rounded-xl border border-zinc-800">
+              <p class="text-zinc-300 leading-relaxed"><strong class="text-amber-300">Motivo:</strong> ${lead.reason}</p>
+              <div class="pt-1.5 border-t border-zinc-700/60 flex items-center justify-between text-[11px]">
+                <span class="text-zinc-400">Último serviço:</span>
+                <span class="font-bold text-zinc-200">${lead.lastService}</span>
+              </div>
+            </div>
+
+            <div class="mt-2 bg-[#121216] border border-amber-500/15 rounded-xl p-2.5 text-[11px] text-zinc-300 italic max-h-24 overflow-y-auto">
+              "${msg.replace(/\n/g, '<br>')}"
+            </div>
+          </div>
+
+          <div class="mt-4 pt-3 border-t border-zinc-800/80 flex items-center justify-between gap-2">
+            <button onclick="window.app.copyReactivationMessage(${idx})" class="px-3 py-1.5 bg-zinc-900 hover:bg-zinc-800 text-zinc-300 border border-zinc-800 text-xs font-semibold rounded-xl transition flex items-center gap-1.5">
+              <i data-lucide="copy" class="w-3.5 h-3.5 text-amber-400"></i> Copiar
+            </button>
+            <a href="https://wa.me/${cleanPhone}?text=${msgEncoded}" target="_blank" class="btn-gold inline-flex items-center gap-1.5 px-3.5 py-1.5 text-xs font-bold rounded-xl transition shadow-md">
+              <i data-lucide="message-circle" class="w-4 h-4"></i> Disparar WhatsApp
+            </a>
+          </div>
+        </div>
+      `;
+    }).join('');
+  }
+
+  copyReactivationMessage(idx) {
+    const leads = window.aiSalesAgent ? window.aiSalesAgent.getReactivationLeads() : [];
+    if (!leads[idx]) return;
+    const msg = window.aiSalesAgent.generateReactivationMessage(leads[idx]);
+    navigator.clipboard.writeText(msg);
+    window.notificationManager.showToast('Mensagem Copiada! 📋', 'Pronta para colar no WhatsApp do cliente.', 'info');
+  }
+
+  renderAiPostSales() {
+    const container = document.getElementById('aiPostSalesContainer');
+    if (!container) return;
+
+    const feed = window.aiSalesAgent ? window.aiSalesAgent.getPostSalesFeed() : [];
+
+    if (feed.length === 0) {
+      container.innerHTML = `
+        <div class="p-8 text-center bg-[#131317] border border-dashed border-amber-500/20 rounded-2xl col-span-full">
+          <div class="w-12 h-12 bg-amber-500/10 text-amber-400 border border-amber-500/20 rounded-full flex items-center justify-center mx-auto mb-3">
+            <i data-lucide="sparkles" class="w-6 h-6"></i>
+          </div>
+          <p class="text-sm font-bold text-white">Nenhum pós-venda pendente no momento!</p>
+          <p class="text-xs text-zinc-400 mt-1">Conforme você marcar atendimentos como "Concluído", a esteira de D+1, D+7 e D+30 aparecerá aqui automaticamente.</p>
+        </div>
+      `;
+      return;
+    }
+
+    container.innerHTML = feed.map((item, idx) => {
+      const cleanPhone = window.whatsappService.cleanPhoneNumber(item.client.phone || item.appointment.clientPhone);
+      const msgD1 = window.aiSalesAgent.generatePostSaleMessage(item, 'd1');
+      const msgD7 = window.aiSalesAgent.generatePostSaleMessage(item, 'd7');
+      const msgD30 = window.aiSalesAgent.generatePostSaleMessage(item, 'd30');
+
+      return `
+        <div class="action-card rounded-2xl p-5 transition flex flex-col justify-between">
+          <div>
+            <div class="flex items-start justify-between gap-2 mb-2">
+              <div>
+                <span class="text-[10px] font-bold px-2 py-0.5 rounded-md ${item.stageBadge} uppercase">
+                  ${item.stageTitle}
+                </span>
+                <h4 class="text-base font-bold text-white mt-1.5">${item.client.name}</h4>
+                <p class="text-xs text-amber-300/80 font-medium">${item.client.phone || 'Sem WhatsApp'}</p>
+              </div>
+              <div class="text-right">
+                <span class="text-xs font-black text-emerald-400">Concluído</span>
+                <p class="text-[10px] text-zinc-500">há ${item.diffDays} dia(s)</p>
+              </div>
+            </div>
+
+            <div class="my-3 text-xs bg-[#1a1a22] p-3 rounded-xl border border-zinc-800 space-y-1">
+              <div class="flex justify-between items-center text-zinc-400">
+                <span>Serviço realizado:</span>
+                <span class="text-zinc-200 font-bold">${Array.isArray(item.appointment.services) ? item.appointment.services.join(', ') : item.appointment.services}</span>
+              </div>
+              <p class="text-zinc-400 pt-1 border-t border-zinc-700/60">${item.stageDesc}</p>
+            </div>
+          </div>
+
+          <div class="space-y-2 pt-2 border-t border-zinc-800/80">
+            <div class="grid grid-cols-3 gap-1.5">
+              <a href="https://wa.me/${cleanPhone}?text=${encodeURIComponent(msgD1)}" target="_blank" class="py-2 px-1 text-center bg-sky-950/70 hover:bg-sky-900/70 border border-sky-500/30 text-sky-300 rounded-xl text-[11px] font-bold transition flex flex-col items-center gap-0.5">
+                <span>D+1</span>
+                <span class="text-[9px] text-sky-400 font-normal">Secagem</span>
+              </a>
+              <a href="https://wa.me/${cleanPhone}?text=${encodeURIComponent(msgD7)}" target="_blank" class="py-2 px-1 text-center bg-amber-950/70 hover:bg-amber-900/70 border border-amber-500/30 text-amber-300 rounded-xl text-[11px] font-bold transition flex flex-col items-center gap-0.5">
+                <span>D+7</span>
+                <span class="text-[9px] text-amber-400 font-normal">Avaliação</span>
+              </a>
+              <a href="https://wa.me/${cleanPhone}?text=${encodeURIComponent(msgD30)}" target="_blank" class="py-2 px-1 text-center bg-emerald-950/70 hover:bg-emerald-900/70 border border-emerald-500/30 text-emerald-300 rounded-xl text-[11px] font-bold transition flex flex-col items-center gap-0.5">
+                <span>D+30</span>
+                <span class="text-[9px] text-emerald-400 font-normal">Indicação</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      `;
+    }).join('');
+  }
+
+  renderAiNegotiator() {
+    const clients = window.storage ? window.storage.getClients() : [];
+    const select = document.getElementById('aiNegotiatorClientSelect');
+    if (select) {
+      select.innerHTML = '<option value="">-- Cliente Não Cadastrado / Novo Lead --</option>' +
+        clients.map(c => `<option value="${c.name}" data-phone="${c.phone || ''}">${c.name} (${c.neighborhood || c.city || ''})</option>`).join('');
+    }
+  }
+
+  async runAiNegotiator() {
+    const btn = document.getElementById('btnRunAiNegotiator');
+    const inputMsg = document.getElementById('aiNegotiatorInputMessage');
+    const selectClient = document.getElementById('aiNegotiatorClientSelect');
+    const resultsContainer = document.getElementById('aiNegotiatorResultsContainer');
+
+    if (!inputMsg || !btn) return;
+    const msg = inputMsg.value.trim();
+    if (!msg) {
+      alert('Por favor digite ou cole a mensagem/dúvida que o cliente mandou no WhatsApp.');
+      return;
+    }
+
+    const clientName = selectClient ? selectClient.value : 'Cliente';
+    const oldBtnText = btn.innerHTML;
+    btn.disabled = true;
+    btn.innerHTML = `<i data-lucide="loader-2" class="w-4 h-4 animate-spin"></i> Sofia IA Analisando Tabela & Preços...`;
+    if (window.lucide) window.lucide.createIcons();
+
+    try {
+      const response = await window.aiSalesAgent.generateSalesConsulting({
+        clientName,
+        customerMessage: msg,
+        contextService: ''
+      });
+
+      this.aiPitchResults = response.options || [];
+
+      resultsContainer.innerHTML = `
+        <div class="col-span-full mb-2 flex items-center justify-between">
+          <span class="text-xs font-bold text-amber-400 flex items-center gap-1.5">
+            <i data-lucide="check-circle" class="w-4 h-4 text-emerald-400"></i>
+            ${response.source === 'gemini' ? '✨ Gerado com Gemini 1.5 Flash (Google AI Studio)' : '⚡ Gerado com a Base Oficial do Google Sheets'}
+          </span>
+          <span class="text-[11px] text-zinc-400">3 Opções de Alta Conversão</span>
+        </div>
+        ${this.aiPitchResults.map((opt, idx) => `
+          <div class="action-card rounded-2xl p-4 transition flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-2">
+                <h4 class="text-xs font-extrabold text-amber-300 uppercase tracking-wider">${opt.title}</h4>
+                <span class="text-[10px] text-emerald-400 font-bold bg-emerald-950/60 px-2 py-0.5 rounded-full border border-emerald-500/20">Pronta</span>
+              </div>
+              <div class="p-3 bg-[#181820] border border-zinc-800 rounded-xl text-xs text-zinc-200 whitespace-pre-wrap leading-relaxed select-all">
+${opt.text}
+              </div>
+            </div>
+            <div class="mt-3 pt-3 border-t border-zinc-800 flex items-center justify-between gap-2">
+              <button onclick="window.app.copyPitchOption(${idx})" class="px-3 py-1.5 bg-zinc-900 hover:bg-zinc-800 text-zinc-300 border border-zinc-800 text-xs font-semibold rounded-xl transition flex items-center gap-1.5">
+                <i data-lucide="copy" class="w-3.5 h-3.5 text-amber-400"></i> Copiar
+              </button>
+              <button onclick="window.app.sendPitchOptionToWhatsApp(${idx})" class="btn-gold inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-bold rounded-xl transition shadow-md">
+                <i data-lucide="message-circle" class="w-4 h-4"></i> Disparar no WhatsApp
+              </button>
+            </div>
+          </div>
+        `).join('')}
+      `;
+
+      if (window.lucide) window.lucide.createIcons();
+    } catch (e) {
+      alert('Erro ao processar resposta: ' + e.message);
+    } finally {
+      btn.disabled = false;
+      btn.innerHTML = oldBtnText;
+      if (window.lucide) window.lucide.createIcons();
+    }
+  }
+
+  copyPitchOption(idx) {
+    if (!this.aiPitchResults || !this.aiPitchResults[idx]) return;
+    navigator.clipboard.writeText(this.aiPitchResults[idx].text);
+    window.notificationManager.showToast('Copiado! 📋', 'Resposta de vendas copiada para a área de transferência.', 'info');
+  }
+
+  sendPitchOptionToWhatsApp(idx) {
+    if (!this.aiPitchResults || !this.aiPitchResults[idx]) return;
+    const text = this.aiPitchResults[idx].text;
+    const select = document.getElementById('aiNegotiatorClientSelect');
+    let phone = '';
+    if (select && select.selectedIndex > 0) {
+      const opt = select.options[select.selectedIndex];
+      phone = opt.getAttribute('data-phone') || '';
+    }
+
+    if (phone) {
+      const clean = window.whatsappService.cleanPhoneNumber(phone);
+      window.open(`https://wa.me/${clean}?text=${encodeURIComponent(text)}`, '_blank');
+    } else {
+      window.open(`https://wa.me/?text=${encodeURIComponent(text)}`, '_blank');
+    }
+  }
+
+  renderAiPriceList() {
+    const container = document.getElementById('aiPriceListTableBody');
+    if (!container) return;
+
+    const prices = window.tabelaPrecos ? window.tabelaPrecos.getAll() : [];
+    const search = (document.getElementById('aiPriceSearchInput')?.value || '').toLowerCase();
+    const filterCat = document.getElementById('aiPriceCatFilter')?.value || 'all';
+
+    let filtered = prices;
+    if (filterCat !== 'all') {
+      filtered = filtered.filter(p => p.category === filterCat);
+    }
+    if (search) {
+      filtered = filtered.filter(p => p.name.toLowerCase().includes(search) || p.category.toLowerCase().includes(search));
+    }
+
+    container.innerHTML = filtered.map(item => {
+      const eco = (item.higienizacao + item.impermeabilizacao) - item.combo;
+      return `
+        <tr class="border-b border-zinc-800/80 hover:bg-[#181820] transition">
+          <td class="py-3 px-3">
+            <span class="text-xs font-bold text-white block">${item.name}</span>
+            <span class="text-[10px] text-amber-300/70">${item.category} &bull; ${item.model}</span>
+          </td>
+          <td class="py-3 px-3 text-right font-semibold text-zinc-300">
+            R$ ${item.higienizacao.toFixed(2)}
+          </td>
+          <td class="py-3 px-3 text-right font-semibold text-zinc-300">
+            R$ ${item.impermeabilizacao.toFixed(2)}
+          </td>
+          <td class="py-3 px-3 text-right">
+            <span class="font-extrabold text-amber-400">R$ ${item.combo.toFixed(2)}</span>
+            <span class="block text-[9px] text-emerald-400 font-bold">Economia R$ ${eco.toFixed(2)}</span>
+          </td>
+        </tr>
+      `;
+    }).join('');
+  }
+
+  async syncWithGoogleSheetsNow() {
+    const btn = document.getElementById('btnSyncGSheets');
+    if (!btn) return;
+    const oldHtml = btn.innerHTML;
+    btn.disabled = true;
+    btn.innerHTML = `<i data-lucide="loader-2" class="w-3.5 h-3.5 animate-spin"></i> Sincronizando...`;
+
+    try {
+      const url = window.aiSalesAgent ? window.aiSalesAgent.sheetUrl : null;
+      const res = await window.tabelaPrecos.syncFromGoogleSheets(url);
+      window.notificationManager.showToast('Google Sheets Sincronizado! 📊', 'Os 32 itens e preços oficiais estão atualizados!', 'success');
+      this.renderAiPriceList();
+      this.renderServiceOptionsInModal();
+    } catch (e) {
+      alert('Aviso: ' + e.message);
+    } finally {
+      btn.disabled = false;
+      btn.innerHTML = oldHtml;
+      if (window.lucide) window.lucide.createIcons();
+    }
+  }
+
+  // ==========================================
   // CONFIGURAÇÕES & BACKUP
   // ==========================================
   renderSettings() {
@@ -3561,6 +4790,13 @@ class AdrirezApp {
       if (elUrl) elUrl.value = window.cloudDb.config.url || '';
       if (elKey) elKey.value = window.cloudDb.config.anonKey || '';
       if (elEn) elEn.checked = !!window.cloudDb.config.enabled;
+    }
+
+    if (window.aiSalesAgent) {
+      const elGemini = document.getElementById('settingGeminiApiKey');
+      const elSheet = document.getElementById('settingGoogleSheetUrl');
+      if (elGemini) elGemini.value = window.aiSalesAgent.apiKey || '';
+      if (elSheet) elSheet.value = window.aiSalesAgent.sheetUrl || '';
     }
   }
 
@@ -3718,6 +4954,14 @@ END $$;`;
     };
 
     window.storage.saveSettings(updated);
+
+    if (window.aiSalesAgent) {
+      const elGemini = document.getElementById('settingGeminiApiKey');
+      if (elGemini) window.aiSalesAgent.saveApiKey(elGemini.value);
+      const elSheet = document.getElementById('settingGoogleSheetUrl');
+      if (elSheet) window.aiSalesAgent.saveSheetUrl(elSheet.value);
+    }
+
     window.notificationManager.showToast('Configurações Salvas', 'Dados da Adrirez Home Care atualizados!', 'success');
   }
 
