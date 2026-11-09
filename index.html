@@ -689,7 +689,6 @@ body {
                   <th class="py-2.5 px-3">Item / VariaÃ§Ã£o</th>
                   <th class="py-2.5 px-3 text-right">HigienizaÃ§Ã£o</th>
                   <th class="py-2.5 px-3 text-right">ImpermeabilizaÃ§Ã£o</th>
-                  <th class="py-2.5 px-3 text-right">Combo Completo</th>
                 </tr>
               </thead>
               <tbody id="aiPriceListTableBody">
@@ -975,7 +974,7 @@ body {
         <!-- ServiÃ§os -->
         <div>
           <label class="block text-xs font-semibold text-zinc-300 mb-1">ServiÃ§o(s) *</label>
-          <input type="text" id="appServices" placeholder="ex: Combo SofÃ¡ 3 Lugares RetrÃ¡til (Hig. + Imp.), ColchÃ£o Queen" class="w-full px-3 py-2 text-xs bg-[#1c1c24] border border-zinc-700 text-white rounded-xl focus:border-amber-400" required>
+          <input type="text" id="appServices" placeholder="ex: HigienizaÃ§Ã£o SofÃ¡ 3 Lugares RetrÃ¡til, ColchÃ£o Queen" class="w-full px-3 py-2 text-xs bg-[#1c1c24] border border-zinc-700 text-white rounded-xl focus:border-amber-400" required>
           <p class="text-[10px] text-zinc-500 mt-1">Separe mÃºltiplos serviÃ§os por vÃ­rgula.</p>
         </div>
 
@@ -1786,9 +1785,10 @@ window.cloudDb = new CloudDatabaseManager();
   <!-- 2. Tabela de PreÃ§os Oficial (Google Sheets) -->
   <script>
 /**
- * Tabela Oficial de Preços - ADRIREZ HOME CARE
- * Baseada na Tabela de Franqueados Oficial Sofá Novo de Novo (SNDN.pro) & Planilha Google Sheets
- * Suporte completo a 3 Níveis de Precificação: MÍNIMO, MÉDIO e MÁXIMO
+ * Tabela Oficial de PreÃ§os - ADRIREZ HOME CARE
+ * Baseada na Tabela de Franqueados Oficiais SofÃ¡ Novo de Novo (SNDN.pro)
+ * Suporte aos 3 NÃ­veis de PrecificaÃ§Ã£o: MÃNIMO, MÃ‰DIO e MÃXIMO
+ * Valores individuais transparentes (HigienizaÃ§Ã£o e ImpermeabilizaÃ§Ã£o)
  */
 
 const ADRIREZ_PRECOS_PADRAO = [
@@ -1799,22 +1799,18 @@ const ADRIREZ_PRECOS_PADRAO = [
         "rawSize":  "1 LUGARES - 1,20m a 1,50m",
         "minimo":  {
                        "higienizacao":  184,
-                       "impermeabilizacao":  207,
-                       "combo":  371.45
+                       "impermeabilizacao":  207
                    },
         "medio":  {
                       "higienizacao":  207,
-                      "impermeabilizacao":  229,
-                      "combo":  414.2
+                      "impermeabilizacao":  229
                   },
         "maximo":  {
                        "higienizacao":  229,
-                       "impermeabilizacao":  249,
-                       "combo":  454.1
+                       "impermeabilizacao":  249
                    },
         "higienizacao":  207,
-        "impermeabilizacao":  229,
-        "combo":  414.2
+        "impermeabilizacao":  229
     },
     {
         "id":  "sndn_sof_2_lugares_retr_til_1_60m_2_20m_2",
@@ -1823,22 +1819,18 @@ const ADRIREZ_PRECOS_PADRAO = [
         "rawSize":  "2 LUGARES (RETRÁTIL) - 1,60m À 2,20m",
         "minimo":  {
                        "higienizacao":  202,
-                       "impermeabilizacao":  220,
-                       "combo":  400.9
+                       "impermeabilizacao":  220
                    },
         "medio":  {
                       "higienizacao":  229,
-                      "impermeabilizacao":  279,
-                      "combo":  482.6
+                      "impermeabilizacao":  279
                   },
         "maximo":  {
                        "higienizacao":  259,
-                       "impermeabilizacao":  299,
-                       "combo":  530.1
+                       "impermeabilizacao":  299
                    },
         "higienizacao":  229,
-        "impermeabilizacao":  279,
-        "combo":  482.6
+        "impermeabilizacao":  279
     },
     {
         "id":  "sndn_sof_3_lugares_retr_til_sof_cama_2_3_3",
@@ -1847,22 +1839,18 @@ const ADRIREZ_PRECOS_PADRAO = [
         "rawSize":  "3 LUGARES (RETRÁTIL)/SOFÁ CAMA - 2,30m À 2,60m",
         "minimo":  {
                        "higienizacao":  216,
-                       "impermeabilizacao":  229,
-                       "combo":  422.75
+                       "impermeabilizacao":  229
                    },
         "medio":  {
                       "higienizacao":  239,
-                      "impermeabilizacao":  289,
-                      "combo":  501.6
+                      "impermeabilizacao":  289
                   },
         "maximo":  {
                        "higienizacao":  269,
-                       "impermeabilizacao":  309,
-                       "combo":  549.1
+                       "impermeabilizacao":  309
                    },
         "higienizacao":  239,
-        "impermeabilizacao":  289,
-        "combo":  501.6
+        "impermeabilizacao":  289
     },
     {
         "id":  "sndn_sof_4_lugares_retr_til_2_70mx3_10m_4",
@@ -1871,22 +1859,18 @@ const ADRIREZ_PRECOS_PADRAO = [
         "rawSize":  "4 LUGARES (RETRÁTIL) - 2,70mx3,10m",
         "minimo":  {
                        "higienizacao":  226,
-                       "impermeabilizacao":  239,
-                       "combo":  441.75
+                       "impermeabilizacao":  239
                    },
         "medio":  {
                       "higienizacao":  249,
-                      "impermeabilizacao":  299,
-                      "combo":  520.6
+                      "impermeabilizacao":  299
                   },
         "maximo":  {
                        "higienizacao":  277,
-                       "impermeabilizacao":  319,
-                       "combo":  566.2
+                       "impermeabilizacao":  319
                    },
         "higienizacao":  249,
-        "impermeabilizacao":  299,
-        "combo":  520.6
+        "impermeabilizacao":  299
     },
     {
         "id":  "sndn_sof_5_lugares_retr_til_3_20mx3_90m_5",
@@ -1895,22 +1879,18 @@ const ADRIREZ_PRECOS_PADRAO = [
         "rawSize":  "5 LUGARES (RETRÁTIL) - 3,20mx3,90m",
         "minimo":  {
                        "higienizacao":  236,
-                       "impermeabilizacao":  249,
-                       "combo":  460.75
+                       "impermeabilizacao":  249
                    },
         "medio":  {
                       "higienizacao":  269,
-                      "impermeabilizacao":  319,
-                      "combo":  558.6
+                      "impermeabilizacao":  319
                   },
         "maximo":  {
                        "higienizacao":  289,
-                       "impermeabilizacao":  339,
-                       "combo":  596.6
+                       "impermeabilizacao":  339
                    },
         "higienizacao":  269,
-        "impermeabilizacao":  319,
-        "combo":  558.6
+        "impermeabilizacao":  319
     },
     {
         "id":  "sndn_sof_3x2_lugares_retr_til_formato_l_6",
@@ -1919,22 +1899,18 @@ const ADRIREZ_PRECOS_PADRAO = [
         "rawSize":  "3X2 LUGARES (RETRÁTIL) - FORMATO L",
         "minimo":  {
                        "higienizacao":  246,
-                       "impermeabilizacao":  269,
-                       "combo":  489.25
+                       "impermeabilizacao":  269
                    },
         "medio":  {
                       "higienizacao":  299,
-                      "impermeabilizacao":  329,
-                      "combo":  596.6
+                      "impermeabilizacao":  329
                   },
         "maximo":  {
                        "higienizacao":  319,
-                       "impermeabilizacao":  349,
-                       "combo":  634.6
+                       "impermeabilizacao":  349
                    },
         "higienizacao":  299,
-        "impermeabilizacao":  329,
-        "combo":  596.6
+        "impermeabilizacao":  329
     },
     {
         "id":  "sndn_sof_6_lugares_3_50m_a_4_20m_7",
@@ -1943,22 +1919,18 @@ const ADRIREZ_PRECOS_PADRAO = [
         "rawSize":  "6 LUGARES - 3,50m a 4,20m",
         "minimo":  {
                        "higienizacao":  286,
-                       "impermeabilizacao":  309,
-                       "combo":  565.25
+                       "impermeabilizacao":  309
                    },
         "medio":  {
                       "higienizacao":  294,
-                      "impermeabilizacao":  339,
-                      "combo":  601.35
+                      "impermeabilizacao":  339
                   },
         "maximo":  {
                        "higienizacao":  349,
-                       "impermeabilizacao":  379,
-                       "combo":  691.6
+                       "impermeabilizacao":  379
                    },
         "higienizacao":  294,
-        "impermeabilizacao":  339,
-        "combo":  601.35
+        "impermeabilizacao":  339
     },
     {
         "id":  "sndn_sof_7_lugares_3_80m_a_4_80m_8",
@@ -1967,22 +1939,18 @@ const ADRIREZ_PRECOS_PADRAO = [
         "rawSize":  "7 LUGARES - 3,80m a 4,80m",
         "minimo":  {
                        "higienizacao":  306,
-                       "impermeabilizacao":  389,
-                       "combo":  660.25
+                       "impermeabilizacao":  389
                    },
         "medio":  {
                       "higienizacao":  339,
-                      "impermeabilizacao":  419,
-                      "combo":  720.1
+                      "impermeabilizacao":  419
                   },
         "maximo":  {
                        "higienizacao":  369,
-                       "impermeabilizacao":  449,
-                       "combo":  777.1
+                       "impermeabilizacao":  449
                    },
         "higienizacao":  339,
-        "impermeabilizacao":  419,
-        "combo":  720.1
+        "impermeabilizacao":  419
     },
     {
         "id":  "sndn_sof_8_lugares_4_20m_a_5_50m_9",
@@ -1991,22 +1959,18 @@ const ADRIREZ_PRECOS_PADRAO = [
         "rawSize":  "8 LUGARES - 4,20m a 5,50m",
         "minimo":  {
                        "higienizacao":  386,
-                       "impermeabilizacao":  397,
-                       "combo":  743.85
+                       "impermeabilizacao":  397
                    },
         "medio":  {
                       "higienizacao":  419,
-                      "impermeabilizacao":  449,
-                      "combo":  824.6
+                      "impermeabilizacao":  449
                   },
         "maximo":  {
                        "higienizacao":  449,
-                       "impermeabilizacao":  479,
-                       "combo":  881.6
+                       "impermeabilizacao":  479
                    },
         "higienizacao":  419,
-        "impermeabilizacao":  449,
-        "combo":  824.6
+        "impermeabilizacao":  449
     },
     {
         "id":  "sndn_sof_9_lugares_5_20m_a_6_00m_10",
@@ -2015,22 +1979,18 @@ const ADRIREZ_PRECOS_PADRAO = [
         "rawSize":  "9 LUGARES - 5,20m a 6,00m",
         "minimo":  {
                        "higienizacao":  426,
-                       "impermeabilizacao":  449,
-                       "combo":  831.25
+                       "impermeabilizacao":  449
                    },
         "medio":  {
                       "higienizacao":  434,
-                      "impermeabilizacao":  497,
-                      "combo":  884.45
+                      "impermeabilizacao":  497
                   },
         "maximo":  {
                        "higienizacao":  479,
-                       "impermeabilizacao":  519,
-                       "combo":  948.1
+                       "impermeabilizacao":  519
                    },
         "higienizacao":  434,
-        "impermeabilizacao":  497,
-        "combo":  884.45
+        "impermeabilizacao":  497
     },
     {
         "id":  "sndn_sof_10_lugares_6_00m_x_6_80m_11",
@@ -2039,22 +1999,18 @@ const ADRIREZ_PRECOS_PADRAO = [
         "rawSize":  "10 LUGARES - 6,00m x 6,80m",
         "minimo":  {
                        "higienizacao":  0,
-                       "impermeabilizacao":  0,
-                       "combo":  0
+                       "impermeabilizacao":  0
                    },
         "medio":  {
                       "higienizacao":  0,
-                      "impermeabilizacao":  0,
-                      "combo":  0
+                      "impermeabilizacao":  0
                   },
         "maximo":  {
                        "higienizacao":  519,
-                       "impermeabilizacao":  579,
-                       "combo":  1043.1
+                       "impermeabilizacao":  579
                    },
         "higienizacao":  0,
-        "impermeabilizacao":  0,
-        "combo":  0
+        "impermeabilizacao":  0
     },
     {
         "id":  "sndn_sof_10_lugares_6_00m_a_6_80m_ou_mai_12",
@@ -2063,22 +2019,18 @@ const ADRIREZ_PRECOS_PADRAO = [
         "rawSize":  "10 LUGARES - 6,00m a 6,80m ou mais",
         "minimo":  {
                        "higienizacao":  446,
-                       "impermeabilizacao":  509,
-                       "combo":  907.25
+                       "impermeabilizacao":  509
                    },
         "medio":  {
                       "higienizacao":  497,
-                      "impermeabilizacao":  549,
-                      "combo":  993.7
+                      "impermeabilizacao":  549
                   },
         "maximo":  {
                        "higienizacao":  497,
-                       "impermeabilizacao":  549,
-                       "combo":  993.7
+                       "impermeabilizacao":  549
                    },
         "higienizacao":  497,
-        "impermeabilizacao":  549,
-        "combo":  993.7
+        "impermeabilizacao":  549
     },
     {
         "id":  "sndn_sof_cama_13",
@@ -2087,22 +2039,18 @@ const ADRIREZ_PRECOS_PADRAO = [
         "rawSize":  "CAMA - null",
         "minimo":  {
                        "higienizacao":  216,
-                       "impermeabilizacao":  219,
-                       "combo":  413.25
+                       "impermeabilizacao":  219
                    },
         "medio":  {
                       "higienizacao":  239,
-                      "impermeabilizacao":  249,
-                      "combo":  463.6
+                      "impermeabilizacao":  249
                   },
         "maximo":  {
                        "higienizacao":  249,
-                       "impermeabilizacao":  269,
-                       "combo":  492.1
+                       "impermeabilizacao":  269
                    },
         "higienizacao":  239,
-        "impermeabilizacao":  249,
-        "combo":  463.6
+        "impermeabilizacao":  249
     },
     {
         "id":  "sndn_sof_slim_14",
@@ -2111,22 +2059,18 @@ const ADRIREZ_PRECOS_PADRAO = [
         "rawSize":  "SLIM - null",
         "minimo":  {
                        "higienizacao":  184,
-                       "impermeabilizacao":  207,
-                       "combo":  371.45
+                       "impermeabilizacao":  207
                    },
         "medio":  {
                       "higienizacao":  207,
-                      "impermeabilizacao":  229,
-                      "combo":  414.2
+                      "impermeabilizacao":  229
                   },
         "maximo":  {
                        "higienizacao":  219,
-                       "impermeabilizacao":  249,
-                       "combo":  444.6
+                       "impermeabilizacao":  249
                    },
         "higienizacao":  207,
-        "impermeabilizacao":  229,
-        "combo":  414.2
+        "impermeabilizacao":  229
     },
     {
         "id":  "sndn_sof_ilha_redondo_15",
@@ -2135,22 +2079,18 @@ const ADRIREZ_PRECOS_PADRAO = [
         "rawSize":  "ILHA (REDONDO) - null",
         "minimo":  {
                        "higienizacao":  216,
-                       "impermeabilizacao":  219,
-                       "combo":  413.25
+                       "impermeabilizacao":  219
                    },
         "medio":  {
                       "higienizacao":  239,
-                      "impermeabilizacao":  249,
-                      "combo":  463.6
+                      "impermeabilizacao":  249
                   },
         "maximo":  {
                        "higienizacao":  249,
-                       "impermeabilizacao":  269,
-                       "combo":  492.1
+                       "impermeabilizacao":  269
                    },
         "higienizacao":  239,
-        "impermeabilizacao":  249,
-        "combo":  463.6
+        "impermeabilizacao":  249
     },
     {
         "id":  "sndn_sof_ilha_duplo_lado_16",
@@ -2159,22 +2099,18 @@ const ADRIREZ_PRECOS_PADRAO = [
         "rawSize":  "ILHA (DUPLO LADO) - null",
         "minimo":  {
                        "higienizacao":  376,
-                       "impermeabilizacao":  397,
-                       "combo":  734.35
+                       "impermeabilizacao":  397
                    },
         "medio":  {
                       "higienizacao":  419,
-                      "impermeabilizacao":  449,
-                      "combo":  824.6
+                      "impermeabilizacao":  449
                   },
         "maximo":  {
                        "higienizacao":  449,
-                       "impermeabilizacao":  479,
-                       "combo":  881.6
+                       "impermeabilizacao":  479
                    },
         "higienizacao":  419,
-        "impermeabilizacao":  449,
-        "combo":  824.6
+        "impermeabilizacao":  449
     },
     {
         "id":  "sndn_div_1_90_x_0_70m_17",
@@ -2183,22 +2119,18 @@ const ADRIREZ_PRECOS_PADRAO = [
         "rawSize":  "null - 1,90 x 0,70m",
         "minimo":  {
                        "higienizacao":  184,
-                       "impermeabilizacao":  219,
-                       "combo":  382.85
+                       "impermeabilizacao":  219
                    },
         "medio":  {
                       "higienizacao":  207,
-                      "impermeabilizacao":  239,
-                      "combo":  423.7
+                      "impermeabilizacao":  239
                   },
         "maximo":  {
                        "higienizacao":  219,
-                       "impermeabilizacao":  249,
-                       "combo":  444.6
+                       "impermeabilizacao":  249
                    },
         "higienizacao":  207,
-        "impermeabilizacao":  239,
-        "combo":  423.7
+        "impermeabilizacao":  239
     },
     {
         "id":  "sndn_recamier_1_50m_x_1_98m_18",
@@ -2207,22 +2139,18 @@ const ADRIREZ_PRECOS_PADRAO = [
         "rawSize":  "null - 1,50m x 1,98m",
         "minimo":  {
                        "higienizacao":  184,
-                       "impermeabilizacao":  219,
-                       "combo":  382.85
+                       "impermeabilizacao":  219
                    },
         "medio":  {
                       "higienizacao":  207,
-                      "impermeabilizacao":  239,
-                      "combo":  423.7
+                      "impermeabilizacao":  239
                   },
         "maximo":  {
                        "higienizacao":  219,
-                       "impermeabilizacao":  249,
-                       "combo":  444.6
+                       "impermeabilizacao":  249
                    },
         "higienizacao":  207,
-        "impermeabilizacao":  239,
-        "combo":  423.7
+        "impermeabilizacao":  239
     },
     {
         "id":  "sndn_canto_alem_o_l_19",
@@ -2231,22 +2159,18 @@ const ADRIREZ_PRECOS_PADRAO = [
         "rawSize":  "L - null",
         "minimo":  {
                        "higienizacao":  216,
-                       "impermeabilizacao":  219,
-                       "combo":  413.25
+                       "impermeabilizacao":  219
                    },
         "medio":  {
                       "higienizacao":  239,
-                      "impermeabilizacao":  249,
-                      "combo":  463.6
+                      "impermeabilizacao":  249
                   },
         "maximo":  {
                        "higienizacao":  249,
-                       "impermeabilizacao":  269,
-                       "combo":  492.1
+                       "impermeabilizacao":  269
                    },
         "higienizacao":  239,
-        "impermeabilizacao":  249,
-        "combo":  463.6
+        "impermeabilizacao":  249
     },
     {
         "id":  "sndn_futton_null_20",
@@ -2255,22 +2179,18 @@ const ADRIREZ_PRECOS_PADRAO = [
         "rawSize":  "null - null",
         "minimo":  {
                        "higienizacao":  104,
-                       "impermeabilizacao":  119,
-                       "combo":  211.85
+                       "impermeabilizacao":  119
                    },
         "medio":  {
                       "higienizacao":  109,
-                      "impermeabilizacao":  139,
-                      "combo":  235.6
+                      "impermeabilizacao":  139
                   },
         "maximo":  {
                        "higienizacao":  119,
-                       "impermeabilizacao":  149,
-                       "combo":  254.6
+                       "impermeabilizacao":  149
                    },
         "higienizacao":  109,
-        "impermeabilizacao":  139,
-        "combo":  235.6
+        "impermeabilizacao":  139
     },
     {
         "id":  "sndn_pillow_top_m2_21",
@@ -2279,22 +2199,18 @@ const ADRIREZ_PRECOS_PADRAO = [
         "rawSize":  "M2 - null",
         "minimo":  {
                        "higienizacao":  72,
-                       "impermeabilizacao":  75,
-                       "combo":  139.65
+                       "impermeabilizacao":  75
                    },
         "medio":  {
                       "higienizacao":  75,
-                      "impermeabilizacao":  90,
-                      "combo":  156.75
+                      "impermeabilizacao":  90
                   },
         "maximo":  {
                        "higienizacao":  80,
-                       "impermeabilizacao":  90,
-                       "combo":  161.5
+                       "impermeabilizacao":  90
                    },
         "higienizacao":  75,
-        "impermeabilizacao":  90,
-        "combo":  156.75
+        "impermeabilizacao":  90
     },
     {
         "id":  "sndn_almofada_m2_22",
@@ -2303,22 +2219,18 @@ const ADRIREZ_PRECOS_PADRAO = [
         "rawSize":  "M2 - null",
         "minimo":  {
                        "higienizacao":  70,
-                       "impermeabilizacao":  85,
-                       "combo":  147.25
+                       "impermeabilizacao":  85
                    },
         "medio":  {
                       "higienizacao":  67,
-                      "impermeabilizacao":  70,
-                      "combo":  130.15
+                      "impermeabilizacao":  70
                   },
         "maximo":  {
                        "higienizacao":  77,
-                       "impermeabilizacao":  80,
-                       "combo":  149.15
+                       "impermeabilizacao":  80
                    },
         "higienizacao":  67,
-        "impermeabilizacao":  70,
-        "combo":  130.15
+        "impermeabilizacao":  70
     },
     {
         "id":  "sndn_banqueta_null_23",
@@ -2327,22 +2239,18 @@ const ADRIREZ_PRECOS_PADRAO = [
         "rawSize":  "null - null",
         "minimo":  {
                        "higienizacao":  35,
-                       "impermeabilizacao":  70,
-                       "combo":  99.75
+                       "impermeabilizacao":  70
                    },
         "medio":  {
                       "higienizacao":  37,
-                      "impermeabilizacao":  62,
-                      "combo":  94.05
+                      "impermeabilizacao":  62
                   },
         "maximo":  {
                        "higienizacao":  43,
-                       "impermeabilizacao":  70,
-                       "combo":  107.35
+                       "impermeabilizacao":  70
                    },
         "higienizacao":  37,
-        "impermeabilizacao":  62,
-        "combo":  94.05
+        "impermeabilizacao":  62
     },
     {
         "id":  "sndn_cadeira_5_lugares_apenas_bancos_24",
@@ -2351,22 +2259,18 @@ const ADRIREZ_PRECOS_PADRAO = [
         "rawSize":  "5 LUGARES (APENAS BANCOS) - null",
         "minimo":  {
                        "higienizacao":  186,
-                       "impermeabilizacao":  219,
-                       "combo":  384.75
+                       "impermeabilizacao":  219
                    },
         "medio":  {
                       "higienizacao":  209,
-                      "impermeabilizacao":  239,
-                      "combo":  425.6
+                      "impermeabilizacao":  239
                   },
         "maximo":  {
                        "higienizacao":  219,
-                       "impermeabilizacao":  249,
-                       "combo":  444.6
+                       "impermeabilizacao":  249
                    },
         "higienizacao":  209,
-        "impermeabilizacao":  239,
-        "combo":  425.6
+        "impermeabilizacao":  239
     },
     {
         "id":  "sndn_cadeira_7_lugares_apenas_bancos_25",
@@ -2375,22 +2279,18 @@ const ADRIREZ_PRECOS_PADRAO = [
         "rawSize":  "7 LUGARES (APENAS BANCOS) - null",
         "minimo":  {
                        "higienizacao":  216,
-                       "impermeabilizacao":  239,
-                       "combo":  432.25
+                       "impermeabilizacao":  239
                    },
         "medio":  {
                       "higienizacao":  249,
-                      "impermeabilizacao":  289,
-                      "combo":  511.1
+                      "impermeabilizacao":  289
                   },
         "maximo":  {
                        "higienizacao":  259,
-                       "impermeabilizacao":  299,
-                       "combo":  530.1
+                       "impermeabilizacao":  299
                    },
         "higienizacao":  249,
-        "impermeabilizacao":  289,
-        "combo":  511.1
+        "impermeabilizacao":  289
     },
     {
         "id":  "sndn_cadeira_5_lugares_completo_26",
@@ -2399,22 +2299,18 @@ const ADRIREZ_PRECOS_PADRAO = [
         "rawSize":  "5 LUGARES COMPLETO - null",
         "minimo":  {
                        "higienizacao":  276,
-                       "impermeabilizacao":  299,
-                       "combo":  546.25
+                       "impermeabilizacao":  299
                    },
         "medio":  {
                       "higienizacao":  309,
-                      "impermeabilizacao":  319,
-                      "combo":  596.6
+                      "impermeabilizacao":  319
                   },
         "maximo":  {
                        "higienizacao":  319,
-                       "impermeabilizacao":  349,
-                       "combo":  634.6
+                       "impermeabilizacao":  349
                    },
         "higienizacao":  309,
-        "impermeabilizacao":  319,
-        "combo":  596.6
+        "impermeabilizacao":  319
     },
     {
         "id":  "sndn_cadeira_7_lugares_completo_27",
@@ -2423,22 +2319,18 @@ const ADRIREZ_PRECOS_PADRAO = [
         "rawSize":  "7 LUGARES COMPLETO - null",
         "minimo":  {
                        "higienizacao":  306,
-                       "impermeabilizacao":  319,
-                       "combo":  593.75
+                       "impermeabilizacao":  319
                    },
         "medio":  {
                       "higienizacao":  329,
-                      "impermeabilizacao":  349,
-                      "combo":  644.1
+                      "impermeabilizacao":  349
                   },
         "maximo":  {
                        "higienizacao":  349,
-                       "impermeabilizacao":  379,
-                       "combo":  691.6
+                       "impermeabilizacao":  379
                    },
         "higienizacao":  329,
-        "impermeabilizacao":  349,
-        "combo":  644.1
+        "impermeabilizacao":  349
     },
     {
         "id":  "sndn_travesseiro_null_28",
@@ -2447,22 +2339,18 @@ const ADRIREZ_PRECOS_PADRAO = [
         "rawSize":  "null - null",
         "minimo":  {
                        "higienizacao":  35,
-                       "impermeabilizacao":  45,
-                       "combo":  76
+                       "impermeabilizacao":  45
                    },
         "medio":  {
                       "higienizacao":  41,
-                      "impermeabilizacao":  49,
-                      "combo":  85.5
+                      "impermeabilizacao":  49
                   },
         "maximo":  {
                        "higienizacao":  50,
-                       "impermeabilizacao":  69,
-                       "combo":  113.05
+                       "impermeabilizacao":  69
                    },
         "higienizacao":  41,
-        "impermeabilizacao":  49,
-        "combo":  85.5
+        "impermeabilizacao":  49
     },
     {
         "id":  "sndn_poltrona_p_29",
@@ -2471,22 +2359,18 @@ const ADRIREZ_PRECOS_PADRAO = [
         "rawSize":  "P - null",
         "minimo":  {
                        "higienizacao":  82,
-                       "impermeabilizacao":  95,
-                       "combo":  168.15
+                       "impermeabilizacao":  95
                    },
         "medio":  {
                       "higienizacao":  94,
-                      "impermeabilizacao":  109,
-                      "combo":  192.85
+                      "impermeabilizacao":  109
                   },
         "maximo":  {
                        "higienizacao":  104,
-                       "impermeabilizacao":  119,
-                       "combo":  211.85
+                       "impermeabilizacao":  119
                    },
         "higienizacao":  94,
-        "impermeabilizacao":  109,
-        "combo":  192.85
+        "impermeabilizacao":  109
     },
     {
         "id":  "sndn_poltrona_m_30",
@@ -2495,22 +2379,18 @@ const ADRIREZ_PRECOS_PADRAO = [
         "rawSize":  "M - null",
         "minimo":  {
                        "higienizacao":  92,
-                       "impermeabilizacao":  105,
-                       "combo":  187.15
+                       "impermeabilizacao":  105
                    },
         "medio":  {
                       "higienizacao":  104,
-                      "impermeabilizacao":  119,
-                      "combo":  211.85
+                      "impermeabilizacao":  119
                   },
         "maximo":  {
                        "higienizacao":  119,
-                       "impermeabilizacao":  129,
-                       "combo":  235.6
+                       "impermeabilizacao":  129
                    },
         "higienizacao":  104,
-        "impermeabilizacao":  119,
-        "combo":  211.85
+        "impermeabilizacao":  119
     },
     {
         "id":  "sndn_poltrona_g_31",
@@ -2519,22 +2399,18 @@ const ADRIREZ_PRECOS_PADRAO = [
         "rawSize":  "G - null",
         "minimo":  {
                        "higienizacao":  102,
-                       "impermeabilizacao":  115,
-                       "combo":  206.15
+                       "impermeabilizacao":  115
                    },
         "medio":  {
                       "higienizacao":  114,
-                      "impermeabilizacao":  129,
-                      "combo":  230.85
+                      "impermeabilizacao":  129
                   },
         "maximo":  {
                        "higienizacao":  129,
-                       "impermeabilizacao":  139,
-                       "combo":  254.6
+                       "impermeabilizacao":  139
                    },
         "higienizacao":  114,
-        "impermeabilizacao":  129,
-        "combo":  230.85
+        "impermeabilizacao":  129
     },
     {
         "id":  "sndn_poltrona_papai_32",
@@ -2543,22 +2419,18 @@ const ADRIREZ_PRECOS_PADRAO = [
         "rawSize":  "PAPAI - null",
         "minimo":  {
                        "higienizacao":  116,
-                       "impermeabilizacao":  129,
-                       "combo":  232.75
+                       "impermeabilizacao":  129
                    },
         "medio":  {
                       "higienizacao":  124,
-                      "impermeabilizacao":  139,
-                      "combo":  249.85
+                      "impermeabilizacao":  139
                   },
         "maximo":  {
                        "higienizacao":  134,
-                       "impermeabilizacao":  159,
-                       "combo":  278.35
+                       "impermeabilizacao":  159
                    },
         "higienizacao":  124,
-        "impermeabilizacao":  139,
-        "combo":  249.85
+        "impermeabilizacao":  139
     },
     {
         "id":  "sndn_poltrona_amamenta_o_33",
@@ -2567,22 +2439,18 @@ const ADRIREZ_PRECOS_PADRAO = [
         "rawSize":  "AMAMENTAÇÃO - null",
         "minimo":  {
                        "higienizacao":  144,
-                       "impermeabilizacao":  177,
-                       "combo":  304.95
+                       "impermeabilizacao":  177
                    },
         "medio":  {
                       "higienizacao":  154,
-                      "impermeabilizacao":  197,
-                      "combo":  333.45
+                      "impermeabilizacao":  197
                   },
         "maximo":  {
                        "higienizacao":  182,
-                       "impermeabilizacao":  209,
-                       "combo":  371.45
+                       "impermeabilizacao":  209
                    },
         "higienizacao":  154,
-        "impermeabilizacao":  197,
-        "combo":  333.45
+        "impermeabilizacao":  197
     },
     {
         "id":  "sndn_puff_p_34",
@@ -2591,22 +2459,18 @@ const ADRIREZ_PRECOS_PADRAO = [
         "rawSize":  "P - null",
         "minimo":  {
                        "higienizacao":  49,
-                       "impermeabilizacao":  60,
-                       "combo":  103.55
+                       "impermeabilizacao":  60
                    },
         "medio":  {
                       "higienizacao":  44,
-                      "impermeabilizacao":  69,
-                      "combo":  107.35
+                      "impermeabilizacao":  69
                   },
         "maximo":  {
                        "higienizacao":  54,
-                       "impermeabilizacao":  79,
-                       "combo":  126.35
+                       "impermeabilizacao":  79
                    },
         "higienizacao":  44,
-        "impermeabilizacao":  69,
-        "combo":  107.35
+        "impermeabilizacao":  69
     },
     {
         "id":  "sndn_puff_m_35",
@@ -2615,22 +2479,18 @@ const ADRIREZ_PRECOS_PADRAO = [
         "rawSize":  "M - null",
         "minimo":  {
                        "higienizacao":  57,
-                       "impermeabilizacao":  65,
-                       "combo":  115.9
+                       "impermeabilizacao":  65
                    },
         "medio":  {
                       "higienizacao":  54,
-                      "impermeabilizacao":  79,
-                      "combo":  126.35
+                      "impermeabilizacao":  79
                   },
         "maximo":  {
                        "higienizacao":  64,
-                       "impermeabilizacao":  89,
-                       "combo":  145.35
+                       "impermeabilizacao":  89
                    },
         "higienizacao":  54,
-        "impermeabilizacao":  79,
-        "combo":  126.35
+        "impermeabilizacao":  79
     },
     {
         "id":  "sndn_puff_g_36",
@@ -2639,22 +2499,18 @@ const ADRIREZ_PRECOS_PADRAO = [
         "rawSize":  "G - null",
         "minimo":  {
                        "higienizacao":  67,
-                       "impermeabilizacao":  80,
-                       "combo":  139.65
+                       "impermeabilizacao":  80
                    },
         "medio":  {
                       "higienizacao":  64,
-                      "impermeabilizacao":  89,
-                      "combo":  145.35
+                      "impermeabilizacao":  89
                   },
         "maximo":  {
                        "higienizacao":  74,
-                       "impermeabilizacao":  99,
-                       "combo":  164.35
+                       "impermeabilizacao":  99
                    },
         "higienizacao":  64,
-        "impermeabilizacao":  89,
-        "combo":  145.35
+        "impermeabilizacao":  89
     },
     {
         "id":  "sndn_cabeceira_solteiro_padr_o_1_25m_x_0_37",
@@ -2663,22 +2519,18 @@ const ADRIREZ_PRECOS_PADRAO = [
         "rawSize":  "SOLTEIRO PADRÃO - 1,25m x 0,90m",
         "minimo":  {
                        "higienizacao":  136,
-                       "impermeabilizacao":  149,
-                       "combo":  270.75
+                       "impermeabilizacao":  149
                    },
         "medio":  {
                       "higienizacao":  159,
-                      "impermeabilizacao":  169,
-                      "combo":  311.6
+                      "impermeabilizacao":  169
                   },
         "maximo":  {
                        "higienizacao":  169,
-                       "impermeabilizacao":  189,
-                       "combo":  340.1
+                       "impermeabilizacao":  189
                    },
         "higienizacao":  159,
-        "impermeabilizacao":  169,
-        "combo":  311.6
+        "impermeabilizacao":  169
     },
     {
         "id":  "sndn_cabeceira_casal_padr_o_1_88m_x_1_35_38",
@@ -2687,22 +2539,18 @@ const ADRIREZ_PRECOS_PADRAO = [
         "rawSize":  "CASAL PADRÃO - 1,88m x 1,35m",
         "minimo":  {
                        "higienizacao":  156,
-                       "impermeabilizacao":  169,
-                       "combo":  308.75
+                       "impermeabilizacao":  169
                    },
         "medio":  {
                       "higienizacao":  179,
-                      "impermeabilizacao":  209,
-                      "combo":  368.6
+                      "impermeabilizacao":  209
                   },
         "maximo":  {
                        "higienizacao":  194,
-                       "impermeabilizacao":  219,
-                       "combo":  392.35
+                       "impermeabilizacao":  219
                    },
         "higienizacao":  179,
-        "impermeabilizacao":  209,
-        "combo":  368.6
+        "impermeabilizacao":  209
     },
     {
         "id":  "sndn_chaise_unidade_39",
@@ -2711,22 +2559,18 @@ const ADRIREZ_PRECOS_PADRAO = [
         "rawSize":  "UNIDADE - null",
         "minimo":  {
                        "higienizacao":  136,
-                       "impermeabilizacao":  169,
-                       "combo":  289.75
+                       "impermeabilizacao":  169
                    },
         "medio":  {
                       "higienizacao":  149,
-                      "impermeabilizacao":  209,
-                      "combo":  340.1
+                      "impermeabilizacao":  209
                   },
         "maximo":  {
                        "higienizacao":  169,
-                       "impermeabilizacao":  189,
-                       "combo":  340.1
+                       "impermeabilizacao":  189
                    },
         "higienizacao":  149,
-        "impermeabilizacao":  209,
-        "combo":  340.1
+        "impermeabilizacao":  209
     },
     {
         "id":  "sndn_colch_o_ber_o_40",
@@ -2735,22 +2579,18 @@ const ADRIREZ_PRECOS_PADRAO = [
         "rawSize":  "BERÇO - null",
         "minimo":  {
                        "higienizacao":  104,
-                       "impermeabilizacao":  139,
-                       "combo":  230.85
+                       "impermeabilizacao":  139
                    },
         "medio":  {
                       "higienizacao":  137,
-                      "impermeabilizacao":  159,
-                      "combo":  281.2
+                      "impermeabilizacao":  159
                   },
         "maximo":  {
                        "higienizacao":  147,
-                       "impermeabilizacao":  169,
-                       "combo":  300.2
+                       "impermeabilizacao":  169
                    },
         "higienizacao":  137,
-        "impermeabilizacao":  159,
-        "combo":  281.2
+        "impermeabilizacao":  159
     },
     {
         "id":  "sndn_colch_o_solteiro_padr_o_0_88mx1_88m_41",
@@ -2759,22 +2599,18 @@ const ADRIREZ_PRECOS_PADRAO = [
         "rawSize":  "SOLTEIRO PADRÃO - 0,88mx1,88m",
         "minimo":  {
                        "higienizacao":  116,
-                       "impermeabilizacao":  159,
-                       "combo":  261.25
+                       "impermeabilizacao":  159
                    },
         "medio":  {
                       "higienizacao":  149,
-                      "impermeabilizacao":  179,
-                      "combo":  311.6
+                      "impermeabilizacao":  179
                   },
         "maximo":  {
                        "higienizacao":  159,
-                       "impermeabilizacao":  199,
-                       "combo":  340.1
+                       "impermeabilizacao":  199
                    },
         "higienizacao":  149,
-        "impermeabilizacao":  179,
-        "combo":  311.6
+        "impermeabilizacao":  179
     },
     {
         "id":  "sndn_colch_o_vi_va_42",
@@ -2783,22 +2619,18 @@ const ADRIREZ_PRECOS_PADRAO = [
         "rawSize":  "VIÚVA - null",
         "minimo":  {
                        "higienizacao":  136,
-                       "impermeabilizacao":  169,
-                       "combo":  289.75
+                       "impermeabilizacao":  169
                    },
         "medio":  {
                       "higienizacao":  169,
-                      "impermeabilizacao":  199,
-                      "combo":  349.6
+                      "impermeabilizacao":  199
                   },
         "maximo":  {
                        "higienizacao":  174,
-                       "impermeabilizacao":  209,
-                       "combo":  363.85
+                       "impermeabilizacao":  209
                    },
         "higienizacao":  169,
-        "impermeabilizacao":  199,
-        "combo":  349.6
+        "impermeabilizacao":  199
     },
     {
         "id":  "sndn_colch_o_casal_padr_o_1_38mx1_88m_43",
@@ -2807,22 +2639,18 @@ const ADRIREZ_PRECOS_PADRAO = [
         "rawSize":  "CASAL PADRÃO - 1,38mx1,88m",
         "minimo":  {
                        "higienizacao":  146,
-                       "impermeabilizacao":  189,
-                       "combo":  318.25
+                       "impermeabilizacao":  189
                    },
         "medio":  {
                       "higienizacao":  189,
-                      "impermeabilizacao":  239,
-                      "combo":  406.6
+                      "impermeabilizacao":  239
                   },
         "maximo":  {
                        "higienizacao":  214,
-                       "impermeabilizacao":  259,
-                       "combo":  449.35
+                       "impermeabilizacao":  259
                    },
         "higienizacao":  189,
-        "impermeabilizacao":  239,
-        "combo":  406.6
+        "impermeabilizacao":  239
     },
     {
         "id":  "sndn_colch_o_casal_queen_1_58mx1_98m_44",
@@ -2831,22 +2659,18 @@ const ADRIREZ_PRECOS_PADRAO = [
         "rawSize":  "CASAL QUEEN - 1,58mx1,98m",
         "minimo":  {
                        "higienizacao":  156,
-                       "impermeabilizacao":  199,
-                       "combo":  337.25
+                       "impermeabilizacao":  199
                    },
         "medio":  {
                       "higienizacao":  214,
-                      "impermeabilizacao":  239,
-                      "combo":  430.35
+                      "impermeabilizacao":  239
                   },
         "maximo":  {
                        "higienizacao":  224,
-                       "impermeabilizacao":  269,
-                       "combo":  468.35
+                       "impermeabilizacao":  269
                    },
         "higienizacao":  214,
-        "impermeabilizacao":  239,
-        "combo":  430.35
+        "impermeabilizacao":  239
     },
     {
         "id":  "sndn_colch_o_casal_king_1_9_x2_03m_45",
@@ -2855,22 +2679,18 @@ const ADRIREZ_PRECOS_PADRAO = [
         "rawSize":  "CASAL KING - 1,9,x2,03m",
         "minimo":  {
                        "higienizacao":  176,
-                       "impermeabilizacao":  219,
-                       "combo":  375.25
+                       "impermeabilizacao":  219
                    },
         "medio":  {
                       "higienizacao":  224,
-                      "impermeabilizacao":  259,
-                      "combo":  458.85
+                      "impermeabilizacao":  259
                   },
         "maximo":  {
                        "higienizacao":  254,
-                       "impermeabilizacao":  279,
-                       "combo":  506.35
+                       "impermeabilizacao":  279
                    },
         "higienizacao":  224,
-        "impermeabilizacao":  259,
-        "combo":  458.85
+        "impermeabilizacao":  259
     },
     {
         "id":  "sndn_colch_o_box_46",
@@ -2879,22 +2699,18 @@ const ADRIREZ_PRECOS_PADRAO = [
         "rawSize":  "BOX - null",
         "minimo":  {
                        "higienizacao":  56,
-                       "impermeabilizacao":  89,
-                       "combo":  137.75
+                       "impermeabilizacao":  89
                    },
         "medio":  {
                       "higienizacao":  54,
-                      "impermeabilizacao":  99,
-                      "combo":  145.35
+                      "impermeabilizacao":  99
                   },
         "maximo":  {
                        "higienizacao":  64,
-                       "impermeabilizacao":  109,
-                       "combo":  164.35
+                       "impermeabilizacao":  109
                    },
         "higienizacao":  54,
-        "impermeabilizacao":  99,
-        "combo":  145.35
+        "impermeabilizacao":  99
     },
     {
         "id":  "sndn_carpete_m2_47",
@@ -2903,22 +2719,18 @@ const ADRIREZ_PRECOS_PADRAO = [
         "rawSize":  "M2 - null",
         "minimo":  {
                        "higienizacao":  33,
-                       "impermeabilizacao":  50,
-                       "combo":  78.85
+                       "impermeabilizacao":  50
                    },
         "medio":  {
                       "higienizacao":  37,
-                      "impermeabilizacao":  70,
-                      "combo":  101.65
+                      "impermeabilizacao":  70
                   },
         "maximo":  {
                        "higienizacao":  42,
-                       "impermeabilizacao":  80,
-                       "combo":  115.9
+                       "impermeabilizacao":  80
                    },
         "higienizacao":  37,
-        "impermeabilizacao":  70,
-        "combo":  101.65
+        "impermeabilizacao":  70
     },
     {
         "id":  "sndn_tapete_m2_48",
@@ -2927,22 +2739,18 @@ const ADRIREZ_PRECOS_PADRAO = [
         "rawSize":  "M2 - null",
         "minimo":  {
                        "higienizacao":  70,
-                       "impermeabilizacao":  85,
-                       "combo":  147.25
+                       "impermeabilizacao":  85
                    },
         "medio":  {
                       "higienizacao":  67,
-                      "impermeabilizacao":  70,
-                      "combo":  130.15
+                      "impermeabilizacao":  70
                   },
         "maximo":  {
                        "higienizacao":  77,
-                       "impermeabilizacao":  80,
-                       "combo":  149.15
+                       "impermeabilizacao":  80
                    },
         "higienizacao":  67,
-        "impermeabilizacao":  70,
-        "combo":  130.15
+        "impermeabilizacao":  70
     },
     {
         "id":  "sndn_passadeira_m2_49",
@@ -2951,22 +2759,18 @@ const ADRIREZ_PRECOS_PADRAO = [
         "rawSize":  "M2 - null",
         "minimo":  {
                        "higienizacao":  67,
-                       "impermeabilizacao":  70,
-                       "combo":  130.15
+                       "impermeabilizacao":  70
                    },
         "medio":  {
                       "higienizacao":  70,
-                      "impermeabilizacao":  85,
-                      "combo":  147.25
+                      "impermeabilizacao":  85
                   },
         "maximo":  {
                        "higienizacao":  80,
-                       "impermeabilizacao":  95,
-                       "combo":  166.25
+                       "impermeabilizacao":  95
                    },
         "higienizacao":  70,
-        "impermeabilizacao":  85,
-        "combo":  147.25
+        "impermeabilizacao":  85
     },
     {
         "id":  "sndn_cortina_m2_50",
@@ -2975,22 +2779,18 @@ const ADRIREZ_PRECOS_PADRAO = [
         "rawSize":  "M2 - null",
         "minimo":  {
                        "higienizacao":  67,
-                       "impermeabilizacao":  70,
-                       "combo":  130.15
+                       "impermeabilizacao":  70
                    },
         "medio":  {
                       "higienizacao":  70,
-                      "impermeabilizacao":  90,
-                      "combo":  152
+                      "impermeabilizacao":  90
                   },
         "maximo":  {
                        "higienizacao":  80,
-                       "impermeabilizacao":  95,
-                       "combo":  166.25
+                       "impermeabilizacao":  95
                    },
         "higienizacao":  70,
-        "impermeabilizacao":  90,
-        "combo":  152
+        "impermeabilizacao":  90
     },
     {
         "id":  "sndn_persiana_m2_51",
@@ -2999,22 +2799,18 @@ const ADRIREZ_PRECOS_PADRAO = [
         "rawSize":  "M2 - null",
         "minimo":  {
                        "higienizacao":  72,
-                       "impermeabilizacao":  75,
-                       "combo":  139.65
+                       "impermeabilizacao":  75
                    },
         "medio":  {
                       "higienizacao":  75,
-                      "impermeabilizacao":  90,
-                      "combo":  156.75
+                      "impermeabilizacao":  90
                   },
         "maximo":  {
                        "higienizacao":  80,
-                       "impermeabilizacao":  90,
-                       "combo":  161.5
+                       "impermeabilizacao":  90
                    },
         "higienizacao":  75,
-        "impermeabilizacao":  90,
-        "combo":  156.75
+        "impermeabilizacao":  90
     },
     {
         "id":  "sndn_linha_automotiva_5_lugares_apenas_b_52",
@@ -3023,22 +2819,18 @@ const ADRIREZ_PRECOS_PADRAO = [
         "rawSize":  "5 LUGARES (APENAS BANCOS) - null",
         "minimo":  {
                        "higienizacao":  186,
-                       "impermeabilizacao":  219,
-                       "combo":  384.75
+                       "impermeabilizacao":  219
                    },
         "medio":  {
                       "higienizacao":  209,
-                      "impermeabilizacao":  239,
-                      "combo":  425.6
+                      "impermeabilizacao":  239
                   },
         "maximo":  {
                        "higienizacao":  219,
-                       "impermeabilizacao":  249,
-                       "combo":  444.6
+                       "impermeabilizacao":  249
                    },
         "higienizacao":  209,
-        "impermeabilizacao":  239,
-        "combo":  425.6
+        "impermeabilizacao":  239
     },
     {
         "id":  "sndn_linha_automotiva_7_lugares_apenas_b_53",
@@ -3047,22 +2839,18 @@ const ADRIREZ_PRECOS_PADRAO = [
         "rawSize":  "7 LUGARES (APENAS BANCOS) - null",
         "minimo":  {
                        "higienizacao":  216,
-                       "impermeabilizacao":  239,
-                       "combo":  432.25
+                       "impermeabilizacao":  239
                    },
         "medio":  {
                       "higienizacao":  249,
-                      "impermeabilizacao":  289,
-                      "combo":  511.1
+                      "impermeabilizacao":  289
                   },
         "maximo":  {
                        "higienizacao":  259,
-                       "impermeabilizacao":  299,
-                       "combo":  530.1
+                       "impermeabilizacao":  299
                    },
         "higienizacao":  249,
-        "impermeabilizacao":  289,
-        "combo":  511.1
+        "impermeabilizacao":  289
     },
     {
         "id":  "sndn_linha_automotiva_5_lugares_completo_54",
@@ -3071,22 +2859,18 @@ const ADRIREZ_PRECOS_PADRAO = [
         "rawSize":  "5 LUGARES COMPLETO - null",
         "minimo":  {
                        "higienizacao":  276,
-                       "impermeabilizacao":  299,
-                       "combo":  546.25
+                       "impermeabilizacao":  299
                    },
         "medio":  {
                       "higienizacao":  309,
-                      "impermeabilizacao":  319,
-                      "combo":  596.6
+                      "impermeabilizacao":  319
                   },
         "maximo":  {
                        "higienizacao":  319,
-                       "impermeabilizacao":  349,
-                       "combo":  634.6
+                       "impermeabilizacao":  349
                    },
         "higienizacao":  309,
-        "impermeabilizacao":  319,
-        "combo":  596.6
+        "impermeabilizacao":  319
     },
     {
         "id":  "sndn_linha_automotiva_7_lugares_completo_55",
@@ -3095,22 +2879,18 @@ const ADRIREZ_PRECOS_PADRAO = [
         "rawSize":  "7 LUGARES COMPLETO - null",
         "minimo":  {
                        "higienizacao":  306,
-                       "impermeabilizacao":  319,
-                       "combo":  593.75
+                       "impermeabilizacao":  319
                    },
         "medio":  {
                       "higienizacao":  329,
-                      "impermeabilizacao":  349,
-                      "combo":  644.1
+                      "impermeabilizacao":  349
                   },
         "maximo":  {
                        "higienizacao":  349,
-                       "impermeabilizacao":  379,
-                       "combo":  691.6
+                       "impermeabilizacao":  379
                    },
         "higienizacao":  329,
-        "impermeabilizacao":  349,
-        "combo":  644.1
+        "impermeabilizacao":  349
     },
     {
         "id":  "sndn_cabine_caminh_o_null_56",
@@ -3119,22 +2899,18 @@ const ADRIREZ_PRECOS_PADRAO = [
         "rawSize":  "null - null",
         "minimo":  {
                        "higienizacao":  316,
-                       "impermeabilizacao":  379,
-                       "combo":  660.25
+                       "impermeabilizacao":  379
                    },
         "medio":  {
                       "higienizacao":  367,
-                      "impermeabilizacao":  449,
-                      "combo":  775.2
+                      "impermeabilizacao":  449
                   },
         "maximo":  {
                        "higienizacao":  399,
-                       "impermeabilizacao":  509,
-                       "combo":  862.6
+                       "impermeabilizacao":  509
                    },
         "higienizacao":  367,
-        "impermeabilizacao":  449,
-        "combo":  775.2
+        "impermeabilizacao":  449
     },
     {
         "id":  "sndn_mesa_de_sinuca_null_57",
@@ -3143,22 +2919,18 @@ const ADRIREZ_PRECOS_PADRAO = [
         "rawSize":  "null - null",
         "minimo":  {
                        "higienizacao":  114,
-                       "impermeabilizacao":  149,
-                       "combo":  249.85
+                       "impermeabilizacao":  149
                    },
         "medio":  {
                       "higienizacao":  157,
-                      "impermeabilizacao":  179,
-                      "combo":  319.2
+                      "impermeabilizacao":  179
                   },
         "maximo":  {
                        "higienizacao":  167,
-                       "impermeabilizacao":  187,
-                       "combo":  336.3
+                       "impermeabilizacao":  187
                    },
         "higienizacao":  157,
-        "impermeabilizacao":  179,
-        "combo":  319.2
+        "impermeabilizacao":  179
     },
     {
         "id":  "sndn_cercadinho_infantil_null_58",
@@ -3167,22 +2939,18 @@ const ADRIREZ_PRECOS_PADRAO = [
         "rawSize":  "null - null",
         "minimo":  {
                        "higienizacao":  114,
-                       "impermeabilizacao":  149,
-                       "combo":  249.85
+                       "impermeabilizacao":  149
                    },
         "medio":  {
                       "higienizacao":  157,
-                      "impermeabilizacao":  179,
-                      "combo":  319.2
+                      "impermeabilizacao":  179
                   },
         "maximo":  {
                        "higienizacao":  167,
-                       "impermeabilizacao":  187,
-                       "combo":  336.3
+                       "impermeabilizacao":  187
                    },
         "higienizacao":  157,
-        "impermeabilizacao":  179,
-        "combo":  319.2
+        "impermeabilizacao":  179
     },
     {
         "id":  "sndn_carrinho_de_beb_null_59",
@@ -3191,22 +2959,18 @@ const ADRIREZ_PRECOS_PADRAO = [
         "rawSize":  "null - null",
         "minimo":  {
                        "higienizacao":  114,
-                       "impermeabilizacao":  149,
-                       "combo":  249.85
+                       "impermeabilizacao":  149
                    },
         "medio":  {
                       "higienizacao":  157,
-                      "impermeabilizacao":  179,
-                      "combo":  319.2
+                      "impermeabilizacao":  179
                   },
         "maximo":  {
                        "higienizacao":  167,
-                       "impermeabilizacao":  187,
-                       "combo":  336.3
+                       "impermeabilizacao":  187
                    },
         "higienizacao":  157,
-        "impermeabilizacao":  179,
-        "combo":  319.2
+        "impermeabilizacao":  179
     },
     {
         "id":  "sndn_cadeirinha_de_beb_null_60",
@@ -3215,22 +2979,18 @@ const ADRIREZ_PRECOS_PADRAO = [
         "rawSize":  "null - null",
         "minimo":  {
                        "higienizacao":  59,
-                       "impermeabilizacao":  82,
-                       "combo":  133.95
+                       "impermeabilizacao":  82
                    },
         "medio":  {
                       "higienizacao":  72,
-                      "impermeabilizacao":  97,
-                      "combo":  160.55
+                      "impermeabilizacao":  97
                   },
         "maximo":  {
                        "higienizacao":  82,
-                       "impermeabilizacao":  107,
-                       "combo":  179.55
+                       "impermeabilizacao":  107
                    },
         "higienizacao":  72,
-        "impermeabilizacao":  97,
-        "combo":  160.55
+        "impermeabilizacao":  97
     },
     {
         "id":  "sndn_beb_conforto_null_61",
@@ -3239,22 +2999,18 @@ const ADRIREZ_PRECOS_PADRAO = [
         "rawSize":  "null - null",
         "minimo":  {
                        "higienizacao":  64,
-                       "impermeabilizacao":  87,
-                       "combo":  143.45
+                       "impermeabilizacao":  87
                    },
         "medio":  {
                       "higienizacao":  82,
-                      "impermeabilizacao":  107,
-                      "combo":  179.55
+                      "impermeabilizacao":  107
                   },
         "maximo":  {
                        "higienizacao":  92,
-                       "impermeabilizacao":  117,
-                       "combo":  198.55
+                       "impermeabilizacao":  117
                    },
         "higienizacao":  82,
-        "impermeabilizacao":  107,
-        "combo":  179.55
+        "impermeabilizacao":  107
     },
     {
         "id":  "sndn_caminha_pet_null_62",
@@ -3263,22 +3019,18 @@ const ADRIREZ_PRECOS_PADRAO = [
         "rawSize":  "null - null",
         "minimo":  {
                        "higienizacao":  64,
-                       "impermeabilizacao":  87,
-                       "combo":  143.45
+                       "impermeabilizacao":  87
                    },
         "medio":  {
                       "higienizacao":  82,
-                      "impermeabilizacao":  107,
-                      "combo":  179.55
+                      "impermeabilizacao":  107
                   },
         "maximo":  {
                        "higienizacao":  92,
-                       "impermeabilizacao":  117,
-                       "combo":  198.55
+                       "impermeabilizacao":  117
                    },
         "higienizacao":  82,
-        "impermeabilizacao":  107,
-        "combo":  179.55
+        "impermeabilizacao":  107
     }
 ];
 
@@ -3330,13 +3082,12 @@ class TabelaPrecosManager {
 
   getAll(tier = this.currentTier) {
     return this.items.map(item => {
-      const tierData = item[tier] || item.medio || { higienizacao: item.higienizacao, impermeabilizacao: item.impermeabilizacao, combo: item.combo };
+      const tierData = item[tier] || item.medio || { higienizacao: item.higienizacao, impermeabilizacao: item.impermeabilizacao };
       return {
         ...item,
         currentTier: tier,
         higienizacao: Number(tierData.higienizacao || item.higienizacao || 0),
-        impermeabilizacao: Number(tierData.impermeabilizacao || item.impermeabilizacao || 0),
-        combo: Number(tierData.combo || (tierData.higienizacao + tierData.impermeabilizacao) || 0)
+        impermeabilizacao: Number(tierData.impermeabilizacao || item.impermeabilizacao || 0)
       };
     });
   }
@@ -3366,16 +3117,6 @@ class TabelaPrecosManager {
           price: item.impermeabilizacao,
           tier: tier,
           duration: 60
-        });
-      }
-      if (item.combo > 0) {
-        list.push({
-          id: `${item.id}_combo`,
-          name: `Combo (Hig. + Imp.) ${item.name}`,
-          category: item.category,
-          price: item.combo,
-          tier: tier,
-          duration: 150
         });
       }
     });
@@ -3446,15 +3187,12 @@ const DEFAULT_SETTINGS = {
 const DEFAULT_SERVICES = [
   { id: 'sofa_2l_hig', name: 'Higienização Sofá 2 Lugares', category: 'Sofás', price: 160.00, duration: 90 },
   { id: 'sofa_2l_imp', name: 'Impermeabilização Sofá 2 Lugares', category: 'Sofás', price: 200.00, duration: 60 },
-  { id: 'sofa_2l_combo', name: 'Combo Sofá 2 Lugares (Hig. + Impermeab.)', category: 'Sofás', price: 320.00, duration: 120 },
   
   { id: 'sofa_3l_hig', name: 'Higienização Sofá 3 Lugares Retrátil', category: 'Sofás', price: 220.00, duration: 120 },
   { id: 'sofa_3l_imp', name: 'Impermeabilização Sofá 3 Lugares Retrátil', category: 'Sofás', price: 280.00, duration: 80 },
-  { id: 'sofa_3l_combo', name: 'Combo Sofá 3 Lugares Retrátil (Hig. + Imp.)', category: 'Sofás', price: 440.00, duration: 150 },
 
   { id: 'sofa_4l_hig', name: 'Higienização Sofá 4 Lugares / Em L', category: 'Sofás', price: 280.00, duration: 150 },
   { id: 'sofa_4l_imp', name: 'Impermeabilização Sofá 4 Lugares / Em L', category: 'Sofás', price: 360.00, duration: 90 },
-  { id: 'sofa_4l_combo', name: 'Combo Sofá 4 Lugares / Em L (Hig. + Imp.)', category: 'Sofás', price: 580.00, duration: 180 },
 
   { id: 'poltrona_hig', name: 'Higienização de Poltrona Individual', category: 'Poltronas', price: 90.00, duration: 45 },
   { id: 'poltrona_imp', name: 'Impermeabilização de Poltrona', category: 'Poltronas', price: 110.00, duration: 40 },
@@ -3550,7 +3288,7 @@ const INITIAL_APPOINTMENTS = [
     date: getRelativeDateISO(-1),
     time: '09:30',
     durationMinutes: 150,
-    services: ['Combo Sofá 3 Lugares Retrátil (Hig. + Imp.)'],
+    services: ['Higienização e Impermeabilização Sofá 3 Lugares Retrátil'],
     assignedTo: 'adriano',
     address: 'Av. Paulista, 1500 - Apto 82, Bela Vista',
     totalValue: 500.00,
@@ -3601,7 +3339,7 @@ const INITIAL_APPOINTMENTS = [
     date: getRelativeDateISO(-330),
     time: '11:00',
     durationMinutes: 150,
-    services: ['Combo Sofá Retrátil - 3 Lugares'],
+    services: ['Higienização Sofá Retrátil 3 Lugares'],
     assignedTo: 'adriano',
     address: 'Rua Oscar Freire, 1120 - Apto 54, Jardins',
     totalValue: 500.00,
@@ -4354,7 +4092,7 @@ class AiSalesAgent {
       const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
 
       const servicesStr = Array.isArray(lastApp.services) ? lastApp.services.join(' ') : (lastApp.services || '');
-      const isImpermeab = /impermeab|blindagem|combo/i.test(servicesStr);
+      const isImpermeab = /impermeab|blindagem/i.test(servicesStr);
 
       // Critério 1: Impermeabilização Vencendo ou Vencida (270 a 365+ dias)
       if (isImpermeab && diffDays >= 240) {
@@ -4447,7 +4185,7 @@ Aqui é a Sofia da *${company}*!
 
 Espero que você esteja aproveitando bastante o seu sofá limpinho e cheiroso desde o nosso último atendimento! 
 
-Estamos abrindo a agenda desta semana com um *bônus de cortesia* para clientes queridos: se você agendar a higienização dos colchões da casa ou das cadeiras de jantar, ganha um desconto especial no combo familiar! 🛏️🪑
+Estamos abrindo a agenda desta semana com um *bônus de cortesia* para clientes queridos: se você agendar a higienização dos colchões da casa ou das cadeiras de jantar, ganha um desconto especial à vista! 🛏️🪑
 
 Quer que eu envie uma simulação rápida sem compromisso?`;
     }
@@ -4608,15 +4346,17 @@ ${prices.slice(0, 30).map(p => {
   const minHig = p.minimo ? p.minimo.higienizacao : p.higienizacao;
   const medHig = p.medio ? p.medio.higienizacao : p.higienizacao;
   const maxHig = p.maximo ? p.maximo.higienizacao : p.higienizacao;
-  const minCombo = p.minimo ? p.minimo.combo : p.combo;
-  const medCombo = p.medio ? p.medio.combo : p.combo;
-  return `- ${p.name}: Higienização [Mín R$ ${minHig} | Méd R$ ${medHig} | Máx R$ ${maxHig}] | Combo [Mín R$ ${minCombo} | Méd R$ ${medCombo}]`;
+  const minImp = p.minimo ? p.minimo.impermeabilizacao : p.impermeabilizacao;
+  const medImp = p.medio ? p.medio.impermeabilizacao : p.impermeabilizacao;
+  const maxImp = p.maximo ? p.maximo.impermeabilizacao : p.impermeabilizacao;
+  return `- ${p.name}: Higienização [Mín R$ ${minHig} | Méd R$ ${medHig} | Máx R$ ${maxHig}] | Impermeabilização [Mín R$ ${minImp} | Méd R$ ${medImp} | Máx R$ ${maxImp}]`;
 }).join('\n')}
 
 ESTRATÉGIA DE NEGOCIAÇÃO DE PREÇOS:
-- Apresente inicialmente como referência o valor MÉDIO ou MÁXIMO.
+- Apresente inicialmente como referência o valor MÉDIO ou MÁXIMO do serviço solicitado (Higienização ou Impermeabilização).
 - Se o cliente chorar preço ou mencionar concorrência, use como carta na manga o valor MÍNIMO de tabela como condição imperdível exclusiva para fechar hoje!
 - NUNCA dê valor inferior ao MÍNIMO autorizado.
+- Seja claro, direto e transparente: informe os valores individuais de cada serviço solicitado, sem confundir o cliente.
 
 DADOS DA MENSAGEM:
 - Nome do Cliente: ${clientName || 'Cliente'}
@@ -4628,13 +4368,13 @@ Gere EXATAMENTE 3 opções de respostas de vendas persuasivas em português do B
 Estruture as 3 opções desta forma:
 
 ---OPCAO_1---
-[RESPOSTA DIRETA & ÁGIL: objetiva, com valor exato de tabela, vantagem do PIX e 2 opções de data/horário para fechar]
+[RESPOSTA DIRETA & ÁGIL: objetiva, com valor exato do serviço solicitado, vantagem do PIX à vista ou parcelado, e 2 opções de data/horário para fechar]
 
 ---OPCAO_2---
-[RESPOSTA CONSULTIVA & VALOR: quebra de objeção, foca na saúde, produtos ANVISA, secagem rápida e durabilidade da proteção]
+[RESPOSTA CONSULTIVA & VALOR: quebra de objeção, foca na saúde, produtos ANVISA, secagem rápida em poucas horas e eliminação de ácaros e bactérias]
 
 ---OPCAO_3---
-[RESPOSTA COMBO IRRECUSÁVEL: ancoragem forte demonstrando a economia gigante de fechar o Combo de Higienização + Impermeabilização agora]
+[RESPOSTA ESPECIAL COM DESCONTO À VISTA: condição facilitada com desconto de 5% no PIX ou parcelamento em até 3x sem juros no cartão para fechamento imediato]
 `;
 
     const requestBody = {
@@ -4683,7 +4423,7 @@ Estruture as 3 opções desta forma:
       options: [
         { title: '⚡ Fechamento Ágil & Direto', text: part1 || textOutput },
         { title: '🛡️ Consultiva & Foco em Valor', text: part2 || 'Consulte nossa equipe!' },
-        { title: '🔥 Oferta Combo Irrecusável', text: part3 || 'Aproveite o combo com super desconto!' }
+        { title: '💎 Condição Especial & Desconto PIX', text: part3 || 'Aproveite nossa condição especial no PIX à vista!' }
       ]
     };
   }
@@ -4696,13 +4436,11 @@ Estruture as 3 opções desta forma:
     // Buscar se o cliente citou algum item específico
     let matchedItem = prices.find(p => customerMessage.toLowerCase().includes(p.name.toLowerCase()) || customerMessage.toLowerCase().includes(p.category.toLowerCase()));
     if (!matchedItem) {
-      matchedItem = prices[1]; // Sofá 3 Lugares padrão
+      matchedItem = prices[1] || prices[0]; // Sofá 3 Lugares padrão
     }
 
     const higPrice = matchedItem.higienizacao;
     const impPrice = matchedItem.impermeabilizacao;
-    const comboPrice = matchedItem.combo;
-    const comboEconomy = (higPrice + impPrice) - comboPrice;
 
     return {
       source: 'local',
@@ -4711,38 +4449,35 @@ Estruture as 3 opções desta forma:
           title: '⚡ Fechamento Ágil & Direto',
           text: `Olá, ${firstName}! Tudo bem? 😊🛋️
 
-Fica excelente! Para o *${matchedItem.name}*, nosso investimento pela tabela oficial é:
+Para o seu *${matchedItem.name}*, nosso investimento pela tabela oficial é:
 
 ✨ *Higienização Profunda:* apenas R$ ${higPrice.toFixed(2)}
 🛡️ *Impermeabilização Premium:* R$ ${impPrice.toFixed(2)}
-💡 *COMBO (Hig. + Impermeabilização):* de ~R$ ${(higPrice + impPrice).toFixed(2)}~ por apenas *R$ ${comboPrice.toFixed(2)}* (Economia de R$ ${comboEconomy.toFixed(2)}!)
 
-💳 *Pagamento:* no PIX à vista tem mais 5% de desconto ou em até 3x sem juros no cartão!
+💳 *Condições de Pagamento:* no PIX à vista tem 5% de desconto ou em até 3x sem juros no cartão!
 
-Temos disponibilidade técnica para esta *quinta-feira às 14h* ou *sábado às 09h*. Qual horário fica mais confortável para você?`
+Temos disponibilidade técnica para esta *quinta-feira às 14h* ou *sábado às 09h*. Qual dia fica melhor para você?`
         },
         {
-          title: '🛡️ Consultiva & Quebra de Objeção',
-          text: `Oi, ${firstName}! Entendo perfeitamente a sua dúvida. Deixa eu te explicar como funciona o nosso padrão na *${company}*:
+          title: '🛡️ Consultiva & Foco em Saúde e Qualidade',
+          text: `Oi, ${firstName}! Entendo perfeitamente. Deixa eu te explicar como funciona o padrão na *${company}*:
 
-Diferente de limpezas comuns que encharcam o sofá por dias, nós utilizamos:
-🌿 *Produtos hospitalares homologados pela ANVISA* (biodegradáveis, bactericidas e seguros para pets e crianças).
-💨 *Secagem ultra-rápida de 4 a 8 horas* (você já usa o sofá no mesmo dia).
-🛡️ *Blindagem de 12 meses* contra manchas de café, suco, vinho e acidentes.
+Diferente de limpezas comuns que apenas molham o tecido, o nosso processo conta com:
+🌿 *Produtos hospitalares homologados pela ANVISA* (bactericidas, antialérgicos e seguros para crianças e pets).
+💨 *Secagem rápida em poucas horas* (você já pode utilizar seu estofado no mesmo dia).
+🦠 *Eliminação profunda de ácaros, fungos e odores*.
 
-O valor para o *${matchedItem.name}* fica em *R$ ${comboPrice.toFixed(2)}* no combo completo. É um investimento na saúde respiratória da casa e na durabilidade do seu móvel! 
+O valor para a *Higienização Profunda* do seu *${matchedItem.name}* fica em *R$ ${higPrice.toFixed(2)}*!
 
 Posso garantir a sua vaga na rota desta semana?`
         },
         {
-          title: '🔥 Oferta Combo Irrecusável (Ancoragem)',
-          text: `${firstName}, para fecharmos hoje e já deixar seu estofado novo de novo, consegui liberar uma condição especial da gerência:
+          title: '💎 Condição Especial para Fechamento Hoje',
+          text: `${firstName}, para confirmarmos hoje e já deixar seu estofado impecável, consegui uma condição especial com a gerência:
 
-Fechando o *Combo de Higienização + Blindagem* do seu *${matchedItem.name}*, de ~R$ ${(higPrice + impPrice).toFixed(2)}~ por apenas *R$ ${comboPrice.toFixed(2)}*, nós incluímos a *higienização cortesia de 2 almofadas decorativas*! 🎁✨
+Para o seu *${matchedItem.name}*, além da *Higienização Profunda* por R$ ${higPrice.toFixed(2)}, liberamos *5% de desconto no PIX* ou parcelamento em até *3x sem juros no cartão*! ✨🛋️
 
-E você ainda pode parcelar em *3x sem juros no cartão* ou pagar no PIX com mais 5% de desconto.
-
-Consigo segurar essa cortesia para você se confirmarmos para esta semana. O que acha? Posso reservar? 😊`
+Consigo segurar essa condição para você confirmando agora. Qual o melhor horário para agendarmos? 😊`
         }
       ]
     };
@@ -6609,14 +6344,12 @@ ${opt.text}
     }
 
     container.innerHTML = filtered.map(item => {
-      const min = item.minimo || { higienizacao: item.higienizacao, impermeabilizacao: item.impermeabilizacao, combo: item.combo };
-      const med = item.medio || { higienizacao: item.higienizacao, impermeabilizacao: item.impermeabilizacao, combo: item.combo };
-      const max = item.maximo || { higienizacao: item.higienizacao, impermeabilizacao: item.impermeabilizacao, combo: item.combo };
+      const min = item.minimo || { higienizacao: item.higienizacao, impermeabilizacao: item.impermeabilizacao };
+      const med = item.medio || { higienizacao: item.higienizacao, impermeabilizacao: item.impermeabilizacao };
+      const max = item.maximo || { higienizacao: item.higienizacao, impermeabilizacao: item.impermeabilizacao };
 
       const activeHig = currentTier === 'minimo' ? min.higienizacao : (currentTier === 'maximo' ? max.higienizacao : med.higienizacao);
       const activeImp = currentTier === 'minimo' ? min.impermeabilizacao : (currentTier === 'maximo' ? max.impermeabilizacao : med.impermeabilizacao);
-      const activeCombo = currentTier === 'minimo' ? min.combo : (currentTier === 'maximo' ? max.combo : med.combo);
-      const eco = (activeHig + activeImp) - activeCombo;
 
       return `
         <tr class="border-b border-zinc-800/80 hover:bg-[#181820] transition">
@@ -6639,15 +6372,6 @@ ${opt.text}
               <span class="text-amber-400 font-semibold">Méd: ${med.impermeabilizacao}</span> |
               <span class="text-emerald-400 font-medium">Máx: ${max.impermeabilizacao}</span>
             </div>
-          </td>
-          <td class="py-3 px-3 text-right">
-            <span class="text-xs font-extrabold text-amber-400 block">R$ ${activeCombo.toFixed(2)}</span>
-            <div class="flex items-center justify-end gap-1 text-[9px] text-zinc-400 mt-0.5">
-              <span class="text-red-400 font-medium">Mín: ${min.combo.toFixed(0)}</span> |
-              <span class="text-amber-400 font-semibold">Méd: ${med.combo.toFixed(0)}</span> |
-              <span class="text-emerald-400 font-medium">Máx: ${max.combo.toFixed(0)}</span>
-            </div>
-            ${eco > 0 ? `<span class="block text-[9px] text-emerald-400 font-bold mt-0.5">Economia R$ ${eco.toFixed(2)}</span>` : ''}
           </td>
         </tr>
       `;
