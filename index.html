@@ -421,8 +421,8 @@ body {
     <section id="view-agenda" class="view-container hidden">
       
       <!-- Top Filters Bar -->
-      <div class="action-card rounded-2xl p-4 shadow-sm mb-6">
-        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+      <div class="action-card rounded-2xl p-3 sm:p-4 shadow-sm mb-4">
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-3">
           
           <!-- Filtro por TÃ©cnico (Adriano / Anny / Todos) -->
           <div class="flex items-center gap-1.5 bg-zinc-900 p-1 rounded-xl border border-zinc-800">
@@ -443,9 +443,49 @@ body {
               <i data-lucide="search" class="w-4 h-4 text-zinc-500 absolute left-3 top-2.5"></i>
               <input type="text" id="agendaSearchInput" placeholder="Buscar cliente, serviÃ§o ou endereÃ§o..." class="w-full pl-9 pr-3 py-2 text-xs bg-[#1c1c24] border border-zinc-700 text-white rounded-xl placeholder-zinc-500 focus:outline-hidden focus:border-amber-400">
             </div>
-            <button onclick="window.app.openAppointmentModal()" class="btn-gold px-3.5 py-2 text-xs font-bold rounded-xl transition flex items-center gap-1.5">
+            <button onclick="window.app.openAppointmentModal()" class="btn-gold px-3.5 py-2 text-xs font-bold rounded-xl transition flex items-center gap-1.5 shadow-sm">
               <i data-lucide="plus" class="w-4 h-4"></i> Agendar
             </button>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Barra de NavegaÃ§Ã£o do Dia no Topo (VisÃ£o Completa do Dia) -->
+      <div class="action-card rounded-2xl p-3 sm:p-3.5 shadow-sm mb-4 border border-amber-500/25">
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-3">
+          
+          <!-- Navegador de Data: < [Hoje, 08/Nov] > -->
+          <div class="flex items-center gap-2">
+            <button type="button" onclick="window.app.navigateAgendaDate(-1)" class="p-2 rounded-xl bg-zinc-900 hover:bg-zinc-800 text-zinc-300 hover:text-white border border-zinc-800 transition cursor-pointer" title="Dia anterior">
+              <i data-lucide="chevron-left" class="w-4 h-4 text-amber-400"></i>
+            </button>
+            
+            <div class="flex items-center gap-2.5">
+              <div class="w-8 h-8 rounded-xl bg-amber-500/15 border border-amber-500/30 flex items-center justify-center shrink-0">
+                <i data-lucide="calendar" class="w-4 h-4 text-amber-400"></i>
+              </div>
+              <div>
+                <div class="flex items-center gap-2">
+                  <h3 id="agendaCurrentDayTitle" class="text-xs sm:text-sm font-black text-white capitalize leading-tight">
+                    Hoje - Domingo, 08 de Novembro
+                  </h3>
+                  <span id="agendaTodayTag" class="text-[9px] bg-amber-500/20 text-amber-300 border border-amber-500/30 font-black px-1.5 py-0.2 rounded-md">HOJE</span>
+                </div>
+                <p id="agendaDaySummary" class="text-[11px] text-zinc-400 mt-0.5">
+                  <!-- Renderizado dinamicamente via JS -->
+                </p>
+              </div>
+            </div>
+
+            <button type="button" onclick="window.app.navigateAgendaDate(1)" class="p-2 rounded-xl bg-zinc-900 hover:bg-zinc-800 text-zinc-300 hover:text-white border border-zinc-800 transition cursor-pointer" title="PrÃ³ximo dia">
+              <i data-lucide="chevron-right" class="w-4 h-4 text-amber-400"></i>
+            </button>
+          </div>
+
+          <!-- PÃ­lulas RÃ¡pidas de Dias: [Hoje] [AmanhÃ£] [+2 Dias] [Ver Todos] -->
+          <div class="flex items-center gap-1.5 overflow-x-auto pb-1 md:pb-0" id="agendaQuickDayPills">
+            <!-- PÃ­lulas geradas via JS -->
           </div>
 
         </div>
@@ -1110,26 +1150,80 @@ body {
           </select>
         </div>
 
-        <!-- Adicionar ServiÃ§os da Tabela com NÃ­vel de PreÃ§o -->
-        <div class="p-3 bg-[#18181f] border border-amber-500/20 rounded-2xl">
-          <div class="flex items-center justify-between mb-2">
-            <label class="block text-xs font-bold text-amber-300">Adicionar ServiÃ§os da Tabela</label>
-            <!-- Seletor de NÃ­vel para o OrÃ§amento -->
-            <div class="flex items-center gap-1 bg-zinc-900 p-0.5 rounded-lg border border-zinc-800">
-              <button type="button" onclick="window.app.setQuoteModalTier('minimo')" id="btnQuoteTierMinimo" class="px-2 py-0.5 text-[10px] font-bold rounded-md text-zinc-400 hover:text-white transition">MÃ­nimo</button>
-              <button type="button" onclick="window.app.setQuoteModalTier('medio')" id="btnQuoteTierMedio" class="px-2 py-0.5 text-[10px] font-bold rounded-md bg-amber-500 text-zinc-950 transition">MÃ©dio</button>
-              <button type="button" onclick="window.app.setQuoteModalTier('maximo')" id="btnQuoteTierMaximo" class="px-2 py-0.5 text-[10px] font-bold rounded-md text-zinc-400 hover:text-white transition">MÃ¡ximo</button>
+        <!-- Adicionar ServiÃ§os da Tabela (Ordem: 1Âº Escolher Item -> 2Âº Escolher NÃ­vel de Valor) -->
+        <div class="p-4 bg-[#18181f] border border-amber-500/25 rounded-2xl space-y-3">
+          
+          <!-- Passo 1: Escolher o Item Primeiro -->
+          <div>
+            <div class="flex items-center justify-between mb-1.5">
+              <label class="block text-xs font-extrabold text-amber-300 flex items-center gap-1.5">
+                <span class="w-4 h-4 rounded-full bg-amber-500 text-zinc-950 text-[10px] font-black inline-flex items-center justify-center">1</span>
+                Escolha o Item a ser Atendido *
+              </label>
+              <span class="text-[10px] text-zinc-400">Tabela Oficial SNDN</span>
             </div>
-          </div>
-          <div class="flex gap-2">
-            <select id="quoteServiceSelect" class="flex-1 px-3 py-2 text-xs bg-[#1c1c24] border border-zinc-700 text-white rounded-xl focus:border-amber-400">
+            <select id="quoteServiceSelect" onchange="window.app.onQuoteServiceSelected()" class="w-full px-3 py-2.5 text-xs bg-[#1c1c24] border border-zinc-700 text-white rounded-xl focus:border-amber-400 transition">
               <!-- Carregado via JS -->
             </select>
-            <input type="number" id="quoteServiceQty" min="1" value="1" class="w-16 px-2 py-2 text-xs bg-[#1c1c24] border border-zinc-700 text-white rounded-xl text-center font-bold" title="Quantidade">
-            <button type="button" onclick="window.app.addServiceToQuote()" class="btn-gold px-3 py-2 text-xs font-bold rounded-xl transition">
-              + Adicionar
-            </button>
           </div>
+
+          <!-- Passo 2: Aparece logo apÃ³s escolher o item com os valores exatos -->
+          <div id="quoteTierSection" class="hidden pt-3 border-t border-zinc-800">
+            <div class="flex items-center justify-between mb-2">
+              <label class="text-xs font-extrabold text-amber-300 flex items-center gap-1.5">
+                <span class="w-4 h-4 rounded-full bg-amber-500 text-zinc-950 text-[10px] font-black inline-flex items-center justify-center">2</span>
+                Selecione o Valor para Cobrar:
+              </label>
+              <div id="quoteSelectedPriceBadge" class="text-xs font-black text-amber-400 bg-amber-500/10 px-2.5 py-0.5 rounded-lg border border-amber-500/30">
+                R$ 0,00
+              </div>
+            </div>
+
+            <!-- 3 Cards de SeleÃ§Ã£o de Valor para o item escolhido -->
+            <div class="grid grid-cols-3 gap-2">
+              <!-- MÃ­nimo -->
+              <button type="button" onclick="window.app.selectQuoteItemTier('minimo')" id="btnTierCardMinimo" class="p-2.5 rounded-xl border border-zinc-800 bg-zinc-900/90 text-left transition hover:border-red-500/50 cursor-pointer">
+                <div class="flex items-center justify-between">
+                  <span class="text-[10px] font-black text-red-400 uppercase tracking-wider">ðŸ”¥ MÃ­nimo</span>
+                  <i data-lucide="check-circle" class="w-3.5 h-3.5 text-red-400 hidden check-icon"></i>
+                </div>
+                <div class="text-sm sm:text-base font-black text-white mt-1" id="valTierMinimo">R$ 0,00</div>
+                <span class="text-[9px] text-zinc-400 block mt-0.5">Piso / Desconto</span>
+              </button>
+
+              <!-- MÃ©dio (PadrÃ£o Recomendado) -->
+              <button type="button" onclick="window.app.selectQuoteItemTier('medio')" id="btnTierCardMedio" class="p-2.5 rounded-xl border-2 border-amber-500 bg-amber-500/15 text-left transition cursor-pointer shadow-sm">
+                <div class="flex items-center justify-between">
+                  <span class="text-[10px] font-black text-amber-400 uppercase tracking-wider">â­ MÃ©dio</span>
+                  <i data-lucide="check-circle" class="w-3.5 h-3.5 text-amber-400 check-icon"></i>
+                </div>
+                <div class="text-sm sm:text-base font-black text-amber-300 mt-1" id="valTierMedio">R$ 0,00</div>
+                <span class="text-[9px] text-amber-400/80 font-semibold block mt-0.5">Recomendado</span>
+              </button>
+
+              <!-- MÃ¡ximo -->
+              <button type="button" onclick="window.app.selectQuoteItemTier('maximo')" id="btnTierCardMaximo" class="p-2.5 rounded-xl border border-zinc-800 bg-zinc-900/90 text-left transition hover:border-emerald-500/50 cursor-pointer">
+                <div class="flex items-center justify-between">
+                  <span class="text-[10px] font-black text-emerald-400 uppercase tracking-wider">ðŸ‘‘ MÃ¡ximo</span>
+                  <i data-lucide="check-circle" class="w-3.5 h-3.5 text-emerald-400 hidden check-icon"></i>
+                </div>
+                <div class="text-sm sm:text-base font-black text-white mt-1" id="valTierMaximo">R$ 0,00</div>
+                <span class="text-[9px] text-zinc-400 block mt-0.5">PadrÃ£o SNDN</span>
+              </button>
+            </div>
+
+            <!-- Quantidade e BotÃ£o Adicionar -->
+            <div class="flex items-center gap-2 mt-3 pt-2.5 border-t border-zinc-800/60">
+              <div class="flex items-center gap-1.5 bg-zinc-900 px-2.5 py-1.5 rounded-xl border border-zinc-800">
+                <label class="text-[11px] font-bold text-zinc-400">Qtd:</label>
+                <input type="number" id="quoteServiceQty" min="1" value="1" class="w-12 bg-transparent text-xs text-white text-center font-black focus:outline-none" title="Quantidade">
+              </div>
+              <button type="button" onclick="window.app.addServiceToQuote()" class="btn-gold flex-1 py-2 px-3 text-xs font-bold rounded-xl transition flex items-center justify-center gap-1.5 shadow-sm">
+                <i data-lucide="plus-circle" class="w-4 h-4"></i> Adicionar ao OrÃ§amento
+              </button>
+            </div>
+          </div>
+
         </div>
 
         <!-- Tabela de Itens Selecionados -->
@@ -4502,6 +4596,7 @@ class AdrirezApp {
     this.activeAgendaView = 'list'; // 'list' | 'calendar'
     this.activeAiTab = 'reactivation'; // 'reactivation' | 'postsales' | 'negotiator' | 'pricelist'
     this.selectedDate = new Date().toISOString().split('T')[0];
+    this.selectedAgendaDate = new Date().toISOString().split('T')[0];
     this.quoteItems = [];
     this.whatsappModalData = null;
     this.aiPitchResults = [];
@@ -4721,63 +4816,68 @@ class AdrirezApp {
     }
   }
 
-  // Card de Agendamento reutilizável
+  // Card de Agendamento compacto e otimizado para caber o dia todo na tela
   createAppointmentCardHTML(app, isToday = false) {
     const techBadge = this.getTechBadgeHTML(app.assignedTo);
     const statusBadge = this.getStatusBadgeHTML(app.status);
     const dateFormatted = window.whatsappService.formatDateBR(app.date);
 
     return `
-      <div class="action-card rounded-2xl p-4 shadow-sm hover:shadow-md transition">
-        <div class="flex flex-wrap items-start justify-between gap-2 mb-3">
-          <div class="flex items-center gap-2">
-            <span class="text-xs font-bold px-2.5 py-1 bg-amber-950/60 border border-amber-500/30 text-amber-300 rounded-lg flex items-center gap-1">
-              <i data-lucide="clock" class="w-3.5 h-3.5"></i> ${app.time || '--:--'}h
+      <div class="action-card rounded-xl p-3 border border-zinc-800/90 hover:border-amber-500/40 transition flex flex-col justify-between gap-2 shadow-xs">
+        
+        <!-- Linha Superior: Horário, Técnico, Status e Valor -->
+        <div class="flex items-center justify-between gap-1.5">
+          <div class="flex items-center gap-1.5 flex-wrap">
+            <span class="text-xs font-black px-2 py-0.5 bg-amber-500/15 border border-amber-500/40 text-amber-300 rounded-lg flex items-center gap-1">
+              <i data-lucide="clock" class="w-3 h-3 text-amber-400"></i> ${app.time || '--:--'}h
             </span>
-            ${!isToday ? `<span class="text-xs font-semibold text-zinc-300 bg-zinc-900 border border-zinc-800 px-2 py-0.5 rounded-md">${dateFormatted}</span>` : ''}
+            ${!isToday ? `<span class="text-[10px] font-bold text-zinc-400 bg-zinc-900 border border-zinc-800 px-1.5 py-0.5 rounded-md">${dateFormatted}</span>` : ''}
             ${statusBadge}
-          </div>
-          <div>
             ${techBadge}
           </div>
+          <span class="text-xs sm:text-sm font-black text-amber-400 shrink-0">R$ ${Number(app.totalValue || 0).toFixed(2)}</span>
         </div>
 
-        <div class="mb-3">
-          <div class="flex items-center justify-between">
-            <h4 class="text-base font-bold text-white tracking-tight">${app.clientName}</h4>
-            <span class="text-sm font-extrabold text-amber-400">R$ ${Number(app.totalValue || 0).toFixed(2)}</span>
+        <!-- Linha Central: Cliente, Serviços e Endereço Compactos -->
+        <div class="space-y-0.5 my-0.5">
+          <div class="flex items-baseline justify-between gap-1.5">
+            <h4 class="text-xs sm:text-sm font-extrabold text-white tracking-tight truncate">${app.clientName}</h4>
           </div>
-          <div class="flex items-center gap-1 text-xs text-zinc-300 mt-1">
-            <i data-lucide="map-pin" class="w-3.5 h-3.5 text-amber-400/80 shrink-0"></i>
+          <div class="flex items-center gap-1 text-[11px] text-amber-300/90 font-medium truncate">
+            <i data-lucide="sparkles" class="w-3 h-3 text-amber-400 shrink-0"></i>
+            <span class="truncate">${Array.isArray(app.services) ? app.services.join(', ') : app.services}</span>
+          </div>
+          <div class="flex items-center gap-1 text-[11px] text-zinc-400 truncate">
+            <i data-lucide="map-pin" class="w-3 h-3 text-zinc-500 shrink-0"></i>
             <span class="truncate">${app.address || 'Endereço não informado'}</span>
           </div>
-          <div class="flex items-center gap-1 text-xs text-amber-300 font-medium mt-1">
-            <i data-lucide="sparkles" class="w-3.5 h-3.5 text-amber-400 shrink-0"></i>
-            <span class="line-clamp-1">${Array.isArray(app.services) ? app.services.join(', ') : app.services}</span>
-          </div>
-          ${app.notes ? `<div class="mt-2 text-xs text-zinc-300 italic bg-[#1c1c24] p-2.5 rounded-xl border border-zinc-800">Obs: ${app.notes}</div>` : ''}
+          ${app.notes ? `
+            <div class="text-[10px] text-zinc-400 italic bg-[#16161c] px-2 py-0.5 rounded-md border border-zinc-800/80 truncate" title="${app.notes}">
+              Obs: ${app.notes}
+            </div>
+          ` : ''}
         </div>
 
-        <!-- Botões de Ação Rápida -->
-        <div class="pt-3 border-t border-zinc-800/80 flex flex-wrap items-center justify-between gap-2">
-          <div class="flex items-center gap-1.5">
+        <!-- Linha Inferior: Ações Rápidas Compactas -->
+        <div class="pt-2 border-t border-zinc-800/80 flex items-center justify-between gap-1">
+          <div class="flex items-center gap-1">
             <!-- Botão WhatsApp 1 Clique -->
-            <button onclick="window.app.openWhatsAppModal('appointment', '${app.id}')" title="Enviar WhatsApp de 1 clique" class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-semibold rounded-xl shadow-md transition">
-              <i data-lucide="message-circle" class="w-4 h-4"></i> WhatsApp
+            <button onclick="window.app.openWhatsAppModal('appointment', '${app.id}')" title="Enviar WhatsApp de 1 clique" class="px-2 py-1 bg-emerald-600 hover:bg-emerald-500 text-white text-[11px] font-bold rounded-lg shadow-xs transition inline-flex items-center gap-1">
+              <i data-lucide="message-circle" class="w-3 h-3"></i> WhatsApp
             </button>
             <!-- Botão Rota Maps / Waze -->
-            <a href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(app.address || '')}" target="_blank" title="Abrir no Google Maps / Waze" class="inline-flex items-center gap-1 px-2.5 py-1.5 bg-zinc-900 hover:bg-zinc-800 text-zinc-200 border border-zinc-800 text-xs font-medium rounded-xl transition">
-              <i data-lucide="navigation" class="w-3.5 h-3.5 text-amber-400"></i> Mapa
+            <a href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(app.address || '')}" target="_blank" title="Abrir no Google Maps / Waze" class="p-1 bg-zinc-900 hover:bg-zinc-800 text-zinc-300 border border-zinc-800 text-[11px] rounded-lg transition inline-flex items-center">
+              <i data-lucide="navigation" class="w-3.5 h-3.5 text-amber-400"></i>
             </a>
             <!-- Botão Ligar -->
-            <a href="tel:${app.clientPhone || ''}" title="Ligar para o cliente" class="inline-flex items-center gap-1 px-2.5 py-1.5 bg-zinc-900 hover:bg-zinc-800 text-zinc-200 border border-zinc-800 text-xs font-medium rounded-xl transition">
+            <a href="tel:${app.clientPhone || ''}" title="Ligar para o cliente" class="p-1 bg-zinc-900 hover:bg-zinc-800 text-zinc-300 border border-zinc-800 text-[11px] rounded-lg transition inline-flex items-center">
               <i data-lucide="phone" class="w-3.5 h-3.5 text-amber-400"></i>
             </a>
           </div>
 
-          <div class="flex items-center gap-1.5">
+          <div class="flex items-center gap-1">
             <!-- Mudar Status Rápido -->
-            <select onchange="window.app.changeAppointmentStatus('${app.id}', this.value)" class="text-xs bg-[#1c1c24] border border-zinc-700 rounded-lg px-2 py-1 text-zinc-200 font-medium focus:border-amber-400 focus:outline-hidden">
+            <select onchange="window.app.changeAppointmentStatus('${app.id}', this.value)" class="text-[10px] sm:text-[11px] bg-[#1c1c24] border border-zinc-700 rounded-lg px-1.5 py-0.5 text-zinc-200 font-semibold focus:border-amber-400 focus:outline-hidden">
               <option value="pendente" ${app.status === 'pendente' ? 'selected' : ''}>Pendente</option>
               <option value="confirmado" ${app.status === 'confirmado' ? 'selected' : ''}>Confirmado</option>
               <option value="a_caminho" ${app.status === 'a_caminho' ? 'selected' : ''}>A caminho</option>
@@ -4786,8 +4886,8 @@ class AdrirezApp {
               <option value="cancelado" ${app.status === 'cancelado' ? 'selected' : ''}>Cancelado</option>
             </select>
             <!-- Editar -->
-            <button onclick="window.app.openAppointmentModal('${app.id}')" title="Editar agendamento" class="p-1.5 text-zinc-400 hover:text-amber-400 rounded-lg hover:bg-amber-500/10 transition">
-              <i data-lucide="edit-3" class="w-4 h-4"></i>
+            <button onclick="window.app.openAppointmentModal('${app.id}')" title="Editar agendamento" class="p-1 text-zinc-400 hover:text-amber-400 rounded-md hover:bg-amber-500/10 transition">
+              <i data-lucide="edit-3" class="w-3.5 h-3.5"></i>
             </button>
           </div>
         </div>
@@ -4797,16 +4897,16 @@ class AdrirezApp {
 
   getTechBadgeHTML(assignedTo) {
     if (assignedTo === 'adriano') {
-      return `<span class="badge-adriano text-[11px] font-semibold px-2.5 py-0.5 rounded-full flex items-center gap-1.5">
-        <span class="w-2 h-2 rounded-full bg-amber-400"></span> Adriano
+      return `<span class="badge-adriano text-[10px] font-semibold px-2 py-0.5 rounded-full inline-flex items-center gap-1">
+        <span class="w-1.5 h-1.5 rounded-full bg-amber-400"></span> Adriano
       </span>`;
     } else if (assignedTo === 'anny') {
-      return `<span class="badge-anny text-[11px] font-semibold px-2.5 py-0.5 rounded-full flex items-center gap-1.5">
-        <span class="w-2 h-2 rounded-full bg-amber-200"></span> Anny
+      return `<span class="badge-anny text-[10px] font-semibold px-2 py-0.5 rounded-full inline-flex items-center gap-1">
+        <span class="w-1.5 h-1.5 rounded-full bg-amber-200"></span> Anny
       </span>`;
     }
-    return `<span class="badge-ambos text-[11px] font-semibold px-2.5 py-0.5 rounded-full flex items-center gap-1.5">
-      <span class="w-2 h-2 rounded-full bg-amber-300"></span> Adriano & Anny
+    return `<span class="badge-ambos text-[10px] font-semibold px-2 py-0.5 rounded-full inline-flex items-center gap-1">
+      <span class="w-1.5 h-1.5 rounded-full bg-amber-300"></span> Ambos
     </span>`;
   }
 
@@ -4819,8 +4919,8 @@ class AdrirezApp {
       concluido: { label: 'Concluído', class: 'status-concluido' },
       cancelado: { label: 'Cancelado', class: 'status-cancelado' }
     };
-    const s = map[status] || { label: status, class: 'bg-slate-100 text-slate-700' };
-    return `<span class="${s.class} text-[11px] font-semibold px-2 py-0.5 rounded-md">${s.label}</span>`;
+    const s = map[status] || { label: status, class: 'bg-zinc-800 text-zinc-300 border border-zinc-700' };
+    return `<span class="${s.class} text-[10px] font-semibold px-1.5 py-0.5 rounded-md">${s.label}</span>`;
   }
 
   changeAppointmentStatus(id, newStatus) {
@@ -4839,7 +4939,7 @@ class AdrirezApp {
   }
 
   // ==========================================
-  // AGENDA & CALENDÁRIO
+  // AGENDA & CALENDÁRIO COM VISÃO DO DIA NO TOPO
   // ==========================================
   renderAgenda() {
     let appointments = window.storage.getAppointments();
@@ -4862,58 +4962,187 @@ class AdrirezApp {
     const container = document.getElementById('agendaListContainer');
     if (!container) return;
 
-    if (appointments.length === 0) {
+    const todayISO = new Date().toISOString().split('T')[0];
+    if (!this.selectedAgendaDate) {
+      this.selectedAgendaDate = todayISO;
+    }
+
+    // Atualizar Barra do Dia no Topo com pílulas e dados
+    this.renderAgendaDayHeader(appointments);
+
+    // Se estiver pesquisando por texto ou se o usuário clicou em 'Ver Todos'
+    const isSearching = !!searchVal;
+    const isViewAll = this.selectedAgendaDate === 'all' || isSearching;
+
+    let displayAppointments = appointments;
+    if (!isViewAll) {
+      displayAppointments = appointments.filter(a => a.date === this.selectedAgendaDate);
+    }
+
+    displayAppointments.sort((a, b) => a.date.localeCompare(b.date) || (a.time || '').localeCompare(b.time || ''));
+
+    if (displayAppointments.length === 0) {
+      const isDateToday = this.selectedAgendaDate === todayISO;
+      const formattedDate = window.whatsappService.formatDateBR(this.selectedAgendaDate);
       container.innerHTML = `
-        <div class="col-span-full py-12 text-center bg-[#131317] border border-dashed border-zinc-800 rounded-2xl">
-          <div class="w-12 h-12 bg-amber-500/10 text-amber-400 border border-amber-500/20 rounded-full flex items-center justify-center mx-auto mb-3">
-            <i data-lucide="calendar-x" class="w-6 h-6"></i>
+        <div class="col-span-full py-10 text-center bg-[#131317] border border-dashed border-zinc-800 rounded-2xl">
+          <div class="w-10 h-10 bg-amber-500/10 text-amber-400 border border-amber-500/20 rounded-full flex items-center justify-center mx-auto mb-2.5">
+            <i data-lucide="calendar" class="w-5 h-5"></i>
           </div>
-          <p class="text-sm font-bold text-white">Nenhum agendamento encontrado!</p>
-          <p class="text-xs text-zinc-400 mt-1">Crie um novo agendamento ou ajuste os filtros acima.</p>
-          <button onclick="window.app.openAppointmentModal()" class="btn-gold mt-4 px-4 py-2 text-xs font-bold rounded-xl transition">
-            + Novo Agendamento
+          <p class="text-sm font-bold text-white">Nenhum atendimento em ${isDateToday ? 'Hoje' : formattedDate}</p>
+          <p class="text-xs text-zinc-400 mt-0.5">Sua agenda está livre neste dia.</p>
+          <button onclick="window.app.openAppointmentModal(null, '${this.selectedAgendaDate}')" class="btn-gold mt-3 px-3.5 py-1.5 text-xs font-bold rounded-xl transition inline-flex items-center gap-1.5 shadow-sm">
+            <i data-lucide="plus" class="w-3.5 h-3.5"></i> Agendar para este dia
           </button>
         </div>
       `;
+      if (window.lucide) window.lucide.createIcons();
       return;
     }
 
-    // Agrupar por data
-    appointments.sort((a, b) => a.date.localeCompare(b.date) || (a.time || '').localeCompare(b.time || ''));
+    // Se for visualização de Todos ou Busca: agrupa por dia
+    if (isViewAll) {
+      const groups = {};
+      displayAppointments.forEach(app => {
+        const d = app.date;
+        if (!groups[d]) groups[d] = [];
+        groups[d].push(app);
+      });
 
-    const groups = {};
-    appointments.forEach(app => {
-      const d = app.date;
-      if (!groups[d]) groups[d] = [];
-      groups[d].push(app);
-    });
+      let html = '';
+      for (const date in groups) {
+        const isToday = date === todayISO;
+        const dateFormatted = window.whatsappService.formatDateBR(date);
+        const dayName = new Date(date + 'T12:00:00').toLocaleDateString('pt-BR', { weekday: 'long' });
+        const dayTotal = groups[date].reduce((acc, a) => acc + (Number(a.totalValue) || 0), 0);
 
-    const today = new Date().toISOString().split('T')[0];
-    let html = '';
-
-    for (const date in groups) {
-      const isToday = date === today;
-      const dateFormatted = window.whatsappService.formatDateBR(date);
-      const dayName = new Date(date + 'T12:00:00').toLocaleDateString('pt-BR', { weekday: 'long' });
-
-      html += `
-        <div class="mb-6">
-          <div class="flex items-center gap-2 mb-3">
-            <h3 class="text-sm font-bold text-zinc-200 capitalize flex items-center gap-2">
-              <span class="w-2.5 h-2.5 rounded-full ${isToday ? 'bg-amber-400 animate-pulse' : 'bg-zinc-600'}"></span>
-              ${dayName}, ${dateFormatted}
-              ${isToday ? '<span class="text-[10px] bg-amber-500/20 text-amber-300 border border-amber-500/30 font-bold px-2 py-0.5 rounded-full">HOJE</span>' : ''}
-            </h3>
-            <div class="flex-1 border-t border-zinc-800"></div>
-            <span class="text-xs text-zinc-400 font-medium">${groups[date].length} atendimento(s)</span>
+        html += `
+          <div class="mb-5">
+            <div class="flex items-center justify-between gap-2 mb-2 pb-1 border-b border-zinc-800">
+              <h4 class="text-xs font-extrabold text-zinc-200 capitalize flex items-center gap-1.5">
+                <span class="w-2 h-2 rounded-full ${isToday ? 'bg-amber-400 animate-pulse' : 'bg-zinc-600'}"></span>
+                ${dayName}, ${dateFormatted}
+                ${isToday ? '<span class="text-[9px] bg-amber-500/20 text-amber-300 border border-amber-500/30 font-black px-1.5 py-0.2 rounded-md">HOJE</span>' : ''}
+              </h4>
+              <span class="text-[11px] text-zinc-400 font-medium">
+                ${groups[date].length} atendimento(s) &bull; <strong class="text-amber-400">R$ ${dayTotal.toFixed(2)}</strong>
+              </span>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-2.5">
+              ${groups[date].map(app => this.createAppointmentCardHTML(app, isToday)).join('')}
+            </div>
           </div>
-          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-            ${groups[date].map(app => this.createAppointmentCardHTML(app, isToday)).join('')}
-          </div>
+        `;
+      }
+      container.innerHTML = html;
+    } else {
+      // Visualização Completa do Dia na Tela (Compacta e Direta)
+      const isDateToday = this.selectedAgendaDate === todayISO;
+      container.innerHTML = `
+        <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-2.5">
+          ${displayAppointments.map(app => this.createAppointmentCardHTML(app, isDateToday)).join('')}
         </div>
       `;
     }
-    container.innerHTML = html;
+
+    if (window.lucide) window.lucide.createIcons();
+  }
+
+  // Renderiza a barra de navegação do dia no topo com título, totais e pílulas
+  renderAgendaDayHeader(appointments) {
+    const headerTitle = document.getElementById('agendaCurrentDayTitle');
+    const todayTag = document.getElementById('agendaTodayTag');
+    const daySummary = document.getElementById('agendaDaySummary');
+    const quickPillsContainer = document.getElementById('agendaQuickDayPills');
+
+    const todayISO = new Date().toISOString().split('T')[0];
+    const currentDate = this.selectedAgendaDate || todayISO;
+    const isToday = currentDate === todayISO;
+    const isAll = currentDate === 'all';
+
+    // Atualizar título do cabeçalho
+    if (headerTitle) {
+      if (isAll) {
+        headerTitle.textContent = 'Todos os Agendamentos';
+        if (todayTag) todayTag.classList.add('hidden');
+        if (daySummary) daySummary.innerHTML = `Exibindo lista geral de atendimentos (${appointments.length} total).`;
+      } else {
+        const dateObj = new Date(currentDate + 'T12:00:00');
+        const dayWeek = dateObj.toLocaleDateString('pt-BR', { weekday: 'long' });
+        const dateFormatted = window.whatsappService.formatDateBR(currentDate);
+        headerTitle.textContent = `${isToday ? 'Hoje - ' : ''}${dayWeek}, ${dateFormatted}`;
+        if (todayTag) {
+          if (isToday) todayTag.classList.remove('hidden');
+          else todayTag.classList.add('hidden');
+        }
+
+        const dayApps = appointments.filter(a => a.date === currentDate);
+        const dayTotal = dayApps.reduce((acc, a) => acc + (Number(a.totalValue) || 0), 0);
+        if (daySummary) {
+          daySummary.innerHTML = `<strong class="text-amber-400 font-black">${dayApps.length}</strong> atendimento(s) no dia &bull; Total: <strong class="text-amber-300 font-black">R$ ${dayTotal.toFixed(2)}</strong>`;
+        }
+      }
+    }
+
+    // Gerar os atalhos de dias rápidos
+    if (quickPillsContainer) {
+      const pills = [];
+      
+      // Hoje
+      const todayCount = appointments.filter(a => a.date === todayISO).length;
+      pills.push({
+        date: todayISO,
+        label: '🔥 Hoje',
+        count: todayCount,
+        active: currentDate === todayISO
+      });
+
+      // Próximos 4 dias
+      for (let i = 1; i <= 4; i++) {
+        const d = new Date(Date.now() + i * 86400000);
+        const iso = d.toISOString().split('T')[0];
+        const dayName = i === 1 ? 'Amanhã' : d.toLocaleDateString('pt-BR', { weekday: 'short' }).replace('.', '');
+        const count = appointments.filter(a => a.date === iso).length;
+        pills.push({
+          date: iso,
+          label: `${dayName} (${d.getDate()}/${d.getMonth() + 1})`,
+          count,
+          active: currentDate === iso
+        });
+      }
+
+      // Ver Todos
+      pills.push({
+        date: 'all',
+        label: '📅 Ver Todos',
+        count: appointments.length,
+        active: isAll
+      });
+
+      quickPillsContainer.innerHTML = pills.map(p => `
+        <button type="button" onclick="window.app.setAgendaDate('${p.date}')" class="px-2.5 py-1 text-[11px] font-bold rounded-lg border transition whitespace-nowrap flex items-center gap-1 cursor-pointer ${p.active ? 'bg-amber-500 text-zinc-950 border-amber-500 font-black shadow-xs' : 'bg-zinc-900/90 text-zinc-400 border-zinc-800 hover:text-white hover:border-zinc-700'}">
+          ${p.label}
+          ${p.count > 0 ? `<span class="px-1.5 py-0.2 text-[9px] rounded-full font-black ${p.active ? 'bg-zinc-950 text-amber-300' : 'bg-amber-500/20 text-amber-300'}">${p.count}</span>` : ''}
+        </button>
+      `).join('');
+    }
+  }
+
+  setAgendaDate(date) {
+    this.selectedAgendaDate = date;
+    this.renderAgenda();
+  }
+
+  navigateAgendaDate(offset) {
+    const todayISO = new Date().toISOString().split('T')[0];
+    let baseDate = this.selectedAgendaDate;
+    if (!baseDate || baseDate === 'all') {
+      baseDate = todayISO;
+    }
+    const current = new Date(baseDate + 'T12:00:00');
+    current.setDate(current.getDate() + offset);
+    this.selectedAgendaDate = current.toISOString().split('T')[0];
+    this.renderAgenda();
   }
 
   // ==========================================
@@ -5160,6 +5389,14 @@ class AdrirezApp {
     clientSelect.innerHTML = '<option value="">-- Selecione um Cliente --</option>' +
       clients.map(c => `<option value="${c.id}" data-phone="${c.phone || ''}" data-addr="${c.address || ''}">${c.name} (${c.neighborhood || c.city || ''})</option>`).join('');
 
+    // Se prefillClientId for uma data no formato YYYY-MM-DD
+    let prefillDate = null;
+    let actualClientId = prefillClientId;
+    if (typeof prefillClientId === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(prefillClientId)) {
+      prefillDate = prefillClientId;
+      actualClientId = null;
+    }
+
     let app = null;
     if (appointmentId) {
       app = window.storage.getAppointments().find(a => a.id === appointmentId);
@@ -5178,25 +5415,27 @@ class AdrirezApp {
     } else {
       if (titleEl) titleEl.textContent = 'Novo Agendamento';
       document.getElementById('appId').value = '';
-      document.getElementById('appDate').value = this.selectedDate || new Date().toISOString().split('T')[0];
+
+      const targetDate = prefillDate || (extraData && extraData.date) || (this.selectedAgendaDate && this.selectedAgendaDate !== 'all' ? this.selectedAgendaDate : (this.selectedDate || new Date().toISOString().split('T')[0]));
+      document.getElementById('appDate').value = targetDate;
       document.getElementById('appTime').value = '09:00';
       document.getElementById('appStatus').value = 'confirmado';
 
-      if (prefillClientId) {
-        clientSelect.value = prefillClientId;
+      if (actualClientId) {
+        clientSelect.value = actualClientId;
         const opt = clientSelect.selectedOptions[0];
         if (opt) {
           document.getElementById('appAddress').value = opt.getAttribute('data-addr') || '';
         }
       }
 
-      if (extraData.services) {
+      if (extraData && extraData.services) {
         document.getElementById('appServices').value = Array.isArray(extraData.services) ? extraData.services.join(', ') : extraData.services;
       }
-      if (extraData.totalValue) {
+      if (extraData && extraData.totalValue) {
         document.getElementById('appTotalValue').value = extraData.totalValue;
       }
-      if (extraData.paymentMethod) {
+      if (extraData && extraData.paymentMethod) {
         document.getElementById('appPaymentMethod').value = extraData.paymentMethod;
       }
     }
@@ -5535,36 +5774,178 @@ class AdrirezApp {
   }
 
   // Modal de Orçamento
-  renderServiceOptionsInModal(tier = null) {
+  renderServiceOptionsInModal() {
     const select = document.getElementById('quoteServiceSelect');
     if (!select) return;
 
-    const currentTier = tier || (window.tabelaPrecos ? window.tabelaPrecos.getTier() : 'medio');
-    const services = window.tabelaPrecos ? window.tabelaPrecos.toFlatServicesList(currentTier) : window.storage.getServices();
-    select.innerHTML = '<option value="">-- Escolha um serviço para adicionar --</option>' +
-      services.map(s => `<option value="${s.id}" data-name="${s.name}" data-price="${s.price}">${s.name} - R$ ${s.price.toFixed(2)}</option>`).join('');
+    const rawItems = window.tabelaPrecos ? window.tabelaPrecos.getRawItems() : [];
+    const categoriesMap = {};
+
+    rawItems.forEach(item => {
+      const cat = item.category || 'Geral';
+      if (!categoriesMap[cat]) categoriesMap[cat] = [];
+
+      const minHig = item.minimo ? item.minimo.higienizacao : (item.higienizacao || 0);
+      const medHig = item.medio ? item.medio.higienizacao : (item.higienizacao || 0);
+      const maxHig = item.maximo ? item.maximo.higienizacao : (item.higienizacao || 0);
+
+      const minImp = item.minimo ? item.minimo.impermeabilizacao : (item.impermeabilizacao || 0);
+      const medImp = item.medio ? item.medio.impermeabilizacao : (item.impermeabilizacao || 0);
+      const maxImp = item.maximo ? item.maximo.impermeabilizacao : (item.impermeabilizacao || 0);
+
+      if (medHig > 0) {
+        categoriesMap[cat].push({
+          id: `${item.id}_hig`,
+          name: `Higienização ${item.name}`,
+          serviceType: 'higienizacao',
+          minPrice: minHig,
+          medPrice: medHig,
+          maxPrice: maxHig
+        });
+      }
+      if (medImp > 0) {
+        categoriesMap[cat].push({
+          id: `${item.id}_imp`,
+          name: `Impermeabilização ${item.name}`,
+          serviceType: 'impermeabilizacao',
+          minPrice: minImp,
+          medPrice: medImp,
+          maxPrice: maxImp
+        });
+      }
+    });
+
+    // Se houver serviços customizados do storage que não estão na tabela SNDN
+    const customServices = window.storage ? window.storage.getServices() : [];
+    if (customServices && customServices.length > 0) {
+      customServices.forEach(cs => {
+        if (!cs.id.startsWith('sndn_')) {
+          const cat = cs.category || 'Outros';
+          if (!categoriesMap[cat]) categoriesMap[cat] = [];
+          if (!categoriesMap[cat].some(existing => existing.id === cs.id)) {
+            categoriesMap[cat].push({
+              id: cs.id,
+              name: cs.name,
+              serviceType: 'custom',
+              minPrice: cs.price,
+              medPrice: cs.price,
+              maxPrice: cs.price
+            });
+          }
+        }
+      });
+    }
+
+    let html = '<option value="">-- Escolha o item / serviço primeiro --</option>';
+
+    Object.keys(categoriesMap).forEach(cat => {
+      html += `<optgroup label="🏷️ ${cat}">`;
+      categoriesMap[cat].forEach(s => {
+        html += `<option value="${s.id}" data-name="${s.name}" data-min="${s.minPrice}" data-med="${s.medPrice}" data-max="${s.maxPrice}">${s.name} (Ref: R$ ${s.medPrice.toFixed(0)})</option>`;
+      });
+      html += `</optgroup>`;
+    });
+
+    select.innerHTML = html;
+  }
+
+  // Disparado imediatamente ao escolher um item no seletor do orçamento
+  onQuoteServiceSelected() {
+    const select = document.getElementById('quoteServiceSelect');
+    const tierSection = document.getElementById('quoteTierSection');
+    if (!select || !tierSection) return;
+
+    if (!select.value) {
+      tierSection.classList.add('hidden');
+      this.selectedQuoteItemData = null;
+      return;
+    }
+
+    const opt = select.selectedOptions[0];
+    const name = opt.getAttribute('data-name');
+    const minPrice = parseFloat(opt.getAttribute('data-min')) || 0;
+    const medPrice = parseFloat(opt.getAttribute('data-med')) || 0;
+    const maxPrice = parseFloat(opt.getAttribute('data-max')) || 0;
+
+    this.selectedQuoteItemData = {
+      id: select.value,
+      name: name,
+      minPrice: minPrice,
+      medPrice: medPrice,
+      maxPrice: maxPrice,
+      selectedTier: 'medio',
+      currentPrice: medPrice
+    };
+
+    // Atualizar os valores numéricos nos 3 cards
+    const elMin = document.getElementById('valTierMinimo');
+    const elMed = document.getElementById('valTierMedio');
+    const elMax = document.getElementById('valTierMaximo');
+
+    if (elMin) elMin.textContent = `R$ ${minPrice.toFixed(2)}`;
+    if (elMed) elMed.textContent = `R$ ${medPrice.toFixed(2)}`;
+    if (elMax) elMax.textContent = `R$ ${maxPrice.toFixed(2)}`;
+
+    // Exibir a seção dos 3 valores logo abaixo do item
+    tierSection.classList.remove('hidden');
+
+    // Selecionar o Médio por padrão
+    this.selectQuoteItemTier('medio');
+
+    if (window.lucide) window.lucide.createIcons();
+  }
+
+  // Selecionar o nível de valor desejado (Mínimo, Médio ou Máximo) para o item selecionado
+  selectQuoteItemTier(tier) {
+    if (!this.selectedQuoteItemData) return;
+
+    this.selectedQuoteItemData.selectedTier = tier;
+    let price = this.selectedQuoteItemData.medPrice;
+    if (tier === 'minimo') price = this.selectedQuoteItemData.minPrice;
+    else if (tier === 'maximo') price = this.selectedQuoteItemData.maxPrice;
+
+    this.selectedQuoteItemData.currentPrice = price;
+
+    // Atualizar badge de valor selecionado
+    const badge = document.getElementById('quoteSelectedPriceBadge');
+    if (badge) {
+      const tierLabel = tier === 'minimo' ? 'Mínimo' : (tier === 'maximo' ? 'Máximo' : 'Médio');
+      badge.innerHTML = `<span class="text-[10px] text-zinc-400 font-normal mr-1">(${tierLabel})</span> R$ ${price.toFixed(2)}`;
+    }
+
+    // Estilizar botões
+    const btnMin = document.getElementById('btnTierCardMinimo');
+    const btnMed = document.getElementById('btnTierCardMedio');
+    const btnMax = document.getElementById('btnTierCardMaximo');
+
+    const resetBtn = (btn) => {
+      if (!btn) return;
+      btn.className = 'p-2.5 rounded-xl border border-zinc-800 bg-zinc-900/90 text-left transition hover:border-zinc-700 cursor-pointer';
+      const check = btn.querySelector('.check-icon');
+      if (check) check.classList.add('hidden');
+    };
+
+    [btnMin, btnMed, btnMax].forEach(resetBtn);
+
+    if (tier === 'minimo' && btnMin) {
+      btnMin.className = 'p-2.5 rounded-xl border-2 border-red-500 bg-red-500/15 text-left transition cursor-pointer shadow-sm';
+      const check = btnMin.querySelector('.check-icon');
+      if (check) check.classList.remove('hidden');
+    } else if (tier === 'maximo' && btnMax) {
+      btnMax.className = 'p-2.5 rounded-xl border-2 border-emerald-500 bg-emerald-500/15 text-left transition cursor-pointer shadow-sm';
+      const check = btnMax.querySelector('.check-icon');
+      if (check) check.classList.remove('hidden');
+    } else if (btnMed) {
+      btnMed.className = 'p-2.5 rounded-xl border-2 border-amber-500 bg-amber-500/15 text-left transition cursor-pointer shadow-sm';
+      const check = btnMed.querySelector('.check-icon');
+      if (check) check.classList.remove('hidden');
+    }
+
+    if (window.lucide) window.lucide.createIcons();
   }
 
   setQuoteModalTier(tier) {
-    this.quoteModalTier = tier;
-    const btnMin = document.getElementById('btnQuoteTierMinimo');
-    const btnMed = document.getElementById('btnQuoteTierMedio');
-    const btnMax = document.getElementById('btnQuoteTierMaximo');
-
-    [btnMin, btnMed, btnMax].forEach(b => {
-      if (!b) return;
-      b.className = 'px-2.5 py-1 text-[11px] font-bold rounded-lg border border-zinc-700 bg-zinc-900 text-zinc-400 transition';
-    });
-
-    if (tier === 'minimo' && btnMin) {
-      btnMin.className = 'px-2.5 py-1 text-[11px] font-bold rounded-lg border border-red-500/60 bg-red-500 text-zinc-950 font-black transition';
-    } else if (tier === 'maximo' && btnMax) {
-      btnMax.className = 'px-2.5 py-1 text-[11px] font-bold rounded-lg border border-emerald-500/60 bg-emerald-500 text-zinc-950 font-black transition';
-    } else if (btnMed) {
-      btnMed.className = 'px-2.5 py-1 text-[11px] font-bold rounded-lg border border-amber-500/60 bg-amber-500 text-zinc-950 font-black transition';
-    }
-
-    this.renderServiceOptionsInModal(tier);
+    this.selectQuoteItemTier(tier);
   }
 
   openQuoteModal(quoteId = null) {
@@ -5574,6 +5955,12 @@ class AdrirezApp {
 
     form.reset();
     this.quoteItems = [];
+    this.selectedQuoteItemData = null;
+    const tierSection = document.getElementById('quoteTierSection');
+    if (tierSection) tierSection.classList.add('hidden');
+
+    this.renderServiceOptionsInModal();
+
     const titleEl = document.getElementById('quoteModalTitle');
     const clients = window.storage.getClients();
     const clientSelect = document.getElementById('quoteClientSelect');
@@ -5609,30 +5996,36 @@ class AdrirezApp {
   closeQuoteModal() {
     const modal = document.getElementById('quoteModal');
     if (modal) modal.classList.add('hidden');
+    this.selectedQuoteItemData = null;
+    const tierSection = document.getElementById('quoteTierSection');
+    if (tierSection) tierSection.classList.add('hidden');
   }
 
   addServiceToQuote() {
-    const select = document.getElementById('quoteServiceSelect');
-    const qtyInput = document.getElementById('quoteServiceQty');
-    if (!select || !select.value) {
-      alert('Selecione um serviço para adicionar.');
+    if (!this.selectedQuoteItemData) {
+      alert('Por favor, escolha um item / serviço no seletor primeiro.');
       return;
     }
 
-    const opt = select.selectedOptions[0];
-    const name = opt.getAttribute('data-name');
-    const unitPrice = parseFloat(opt.getAttribute('data-price')) || 0;
-    const quantity = parseInt(qtyInput.value) || 1;
+    const qtyInput = document.getElementById('quoteServiceQty');
+    const quantity = parseInt(qtyInput ? qtyInput.value : 1) || 1;
+    const unitPrice = this.selectedQuoteItemData.currentPrice;
+    const tierTag = this.selectedQuoteItemData.selectedTier === 'minimo' ? ' [Mín]' : (this.selectedQuoteItemData.selectedTier === 'maximo' ? ' [Máx]' : '');
 
     this.quoteItems.push({
-      name,
+      name: `${this.selectedQuoteItemData.name}${tierTag}`,
       quantity,
       unitPrice,
       total: unitPrice * quantity
     });
 
-    select.value = '';
-    qtyInput.value = 1;
+    const select = document.getElementById('quoteServiceSelect');
+    if (select) select.value = '';
+    if (qtyInput) qtyInput.value = 1;
+    const tierSection = document.getElementById('quoteTierSection');
+    if (tierSection) tierSection.classList.add('hidden');
+    this.selectedQuoteItemData = null;
+
     this.renderQuoteItemsTable();
   }
 
